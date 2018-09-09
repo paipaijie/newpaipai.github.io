@@ -779,7 +779,7 @@ else {
 				
 				$ppj_startpay_time = intval($_POST['ppj_startpay_time']);
 					
-				$ppj_endtapy_time = intval($_POST['ppj_endtapy_time']);
+				$ppj_endpay_time = intval($_POST['ppj_endpay_time']);
 
 				$ppj_addfee_type=2;   //1，按固定增长比例增加，2.自定义方式增加 ,此处默认阶梯，后期扩展
 			    

@@ -1,0 +1,474 @@
+[ 2018-08-16T05:37:09+00:00 ] 223.93.142.25 /mobile/index.php?m=user&a=mypaipaioklist&ts=0.6293079161902482
+ERR: 1052:Column 'user_id' in where clause is ambiguous
+ [ SQL语句 ] : select count(*) from dsc_goods as g,dsc_paipai_seller_ok as pl where g.goods_id =pl.goods_id and user_id=3465
+ERR: 1052:Column 'user_id' in where clause is ambiguous
+ [ SQL语句 ] : select count(*) from dsc_goods as g,dsc_paipai_seller_ok as pl where g.goods_id =pl.goods_id and user_id=3465
+
+[ 2018-08-16T05:37:13+00:00 ] 223.93.142.25 /mobile/index.php?m=user&a=mypaipaioklist&ts=0.4229101421762054
+ERR: 1052:Column 'user_id' in where clause is ambiguous
+ [ SQL语句 ] : select count(*) from dsc_goods as g,dsc_paipai_seller_ok as pl where g.goods_id =pl.goods_id and user_id=3465
+ERR: 1052:Column 'user_id' in where clause is ambiguous
+ [ SQL语句 ] : select count(*) from dsc_goods as g,dsc_paipai_seller_ok as pl where g.goods_id =pl.goods_id and user_id=3465
+
+[ 2018-08-16T05:38:49+00:00 ] 223.93.142.25 /mobile/index.php?m=user&a=mypaipaioklist&ts=0.3385832776682449
+ERR: 1052:Column 'user_id' in where clause is ambiguous
+ [ SQL语句 ] : select count(*) from dsc_goods as g,dsc_paipai_seller_ok as pl where g.goods_id =pl.goods_id and user_id=3465
+ERR: 1052:Column 'user_id' in where clause is ambiguous
+ [ SQL语句 ] : select count(*) from dsc_goods as g,dsc_paipai_seller_ok as pl where g.goods_id =pl.goods_id and user_id=3465
+
+[ 2018-08-16T07:31:59+00:00 ] 112.17.242.32 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:04+00:00 ] 112.17.242.32 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:09+00:00 ] 112.17.242.32 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:09+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:11+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:13+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:13+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:13+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:14+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:14+00:00 ] 112.17.245.108 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:15+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:15+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:15+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:15+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:15+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:15+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:16+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:16+00:00 ] 112.17.245.108 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:16+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:16+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:17+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:17+00:00 ] 36.23.33.219 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:17+00:00 ] 112.17.245.108 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:18+00:00 ] 112.17.245.108 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:18+00:00 ] 112.17.245.108 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:48+00:00 ] 36.23.199.177 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:50+00:00 ] 112.17.245.108 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:52+00:00 ] 112.17.245.108 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:53+00:00 ] 112.17.245.108 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:54+00:00 ] 112.17.245.108 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:54+00:00 ] 112.17.245.108 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:54+00:00 ] 112.17.245.108 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:57+00:00 ] 36.23.199.177 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:57+00:00 ] 36.23.199.177 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:58+00:00 ] 36.23.199.177 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:58+00:00 ] 36.23.199.177 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:59+00:00 ] 36.23.199.177 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:59+00:00 ] 36.23.199.177 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:32:59+00:00 ] 36.23.199.177 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:00+00:00 ] 36.23.199.177 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:33+00:00 ] 112.17.245.108 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:38+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:39+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:40+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:40+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:42+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:52+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:53+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:56+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:57+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:57+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:58+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:58+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:33:58+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:34:01+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:34:15+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:34:16+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:34:19+00:00 ] 223.104.247.221 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:34:43+00:00 ] 223.104.246.21 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:34:44+00:00 ] 223.104.246.21 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:19+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:21+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:23+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:23+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:24+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:24+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:24+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:24+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:24+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:25+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:25+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:25+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:25+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:26+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:26+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+
+[ 2018-08-16T07:35:26+00:00 ] 112.17.238.194 /mobile/index.php?m=user&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select oi.*,og.* from dsc_order_info as oi,dsc_order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id=
+

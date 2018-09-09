@@ -941,7 +941,7 @@ function write_static_cache($cache_name, $caches, $cache_file_path = '', $type =
 
 		$content .= '?>';
 		$cache_file_path = str_replace('//', '/', $cache_file_path);
-		file_put_contents($cache_file_path, $content, LOCK_EX);
+		@file_put_contents($cache_file_path, $content, LOCK_EX);
 		$cache_file_path = str_replace(ROOT_PATH, '', $cache_file_path);
 		$server_model = 0;
 

@@ -1,0 +1,164 @@
+{include file="page_header"}
+<style>
+.u-top span{
+	display: block;
+	margin-top:15px;
+	width:100%;
+	text-align: center;
+	line-height: 20px;
+}
+.alert-box {
+	display: none;
+	position: relative;
+	margin: 140px auto 0;
+	padding: 180px 85px 22px;
+	border-radius: 10px 10px 0 0;
+	background: #FFF;
+	box-shadow: 5px 9px 17px rgba(102,102,102,0.75);
+	width: 286px;
+	color: #FFF;
+	text-align: center
+}
+.alert-box p {
+	margin: 0
+}
+.alert-circle {
+	position: absolute;
+	top: -50px;
+	left: 26px
+}
+.alert-sec-circle {
+	stroke-dashoffset: 0;
+	stroke-dasharray: 735;
+	transition: stroke-dashoffset 1s linear
+}
+.alert-sec-text {
+	position: absolute;
+	top: 11px;
+	left: 105px;
+	width: 76px;
+	color: #000;
+	font-size: 68px
+}
+.alert-sec-unit {
+	font-size: 34px
+}
+.alert-body {
+	margin: 35px 0;
+	width:140px;
+}
+.alert-head {
+	color: #242424;
+	font-size: 28px
+}
+.alert-concent {
+	margin: 25px 0 14px;
+	color: #7B7B7B;
+	font-size: 18px
+}
+.alert-concent p {
+	line-height: 27px
+}
+.alert-btn {
+	display: block;
+	border-radius: 10px;
+	background-color: #4AB0F7;
+	height: 55px;
+	line-height: 55px;
+	width: 286px;
+	color: #FFF;
+	font-size: 20px;
+	text-decoration: none;
+	letter-spacing: 2px
+}
+.alert-btn:hover {
+	background-color: #6BC2FF
+}
+</style>
+<div class="u-top">
+    <span> 进度加载条 </span>
+
+</div>
+<input type="hidden" name="ppj_id" id="ppj_id" value="{$user_bid['ppj_id']}">
+<input type="hidden" name="ppj_no" id="ppj_no" value="{$user_bid['ppj_no']}">
+ <center>
+<div id="js-alert-box" class="alert-box"> <svg class="alert-circle" width="234" height="234">
+  <circle cx="117" cy="117" r="108" fill="#FFF" stroke="#43AEFA" stroke-width="17"></circle>
+  <circle id="js-sec-circle" class="alert-sec-circle" cx="117" cy="117" r="108" fill="transparent" stroke="#F4F1F1" stroke-width="18" transform="rotate(-90 117 117)"></circle>
+  <text class="alert-sec-unit" x="82" y="172" fill="#BDBDBD">secs</text>
+  </svg>
+  <div id="js-sec-text" class="alert-sec-text"></div>
+  <div class="alert-body">
+    <div id="js-alert-head" class="alert-head"></div>
+    <div class="alert-concent">
+      <p id='p1'>出价信息匹配中,请稍后</p>
+    </div>
+</div>
+</center>
+<script>
+function alertSet(e) {
+	var ppj_id=document.getElementById("ppj_id").value; 
+	var ppj_no=document.getElementById("ppj_no").value;  
+    document.getElementById("js-alert-box").style.display = "block",
+    document.getElementById("js-alert-head").innerHTML = e;
+    var t = 10;
+    n = document.getElementById("js-sec-circle");
+    document.getElementById("js-sec-text").innerHTML = t;
+    var interval = setInterval(function() {
+    	$.ajax({
+			type: "post",
+			url: "{url('user/userbuy/pbuy')}",
+			data: {
+				"pjd": ppj_id,
+				"pjn":ppj_no
+			},
+			dataType: "JSON",
+			success: function(re){	
+				if(t == 0){	
+                    clearInterval(interval);				
+				    document.getElementById('js-alert-head').innerHTML='匹配终止';
+			        document.getElementById('p1').innerHTML='';					
+					if(re.match_bid == 1){
+					    layer.open({
+						  content: '数据匹配成功'
+						  ,area:['260px', '100px']
+						  ,btn: ['去支付', '暂不支付']
+						  ,yes:function(success){
+						  	  window.location.href="{url('user/userbuy/paipaibuy')}&ppj_id={$user_bid['ppj_id']}&ppj_no={$user_bid['ppj_no']}";
+						  }
+						});
+				    }else if(re.match_bid == 3){
+                        layer.open({
+						    content: '限购数量为空'
+						    ,area:['260px', '100px']
+						    ,btn: ['拍拍活动', '回到首页']
+						    ,yes:function(success){
+						  	  window.location.href="{url('groupbuy/index/index')}";
+						    }
+						});
+				    }else{
+				    	layer.open({
+						    content: '匹配失败,请重新出价,'
+						    ,area:['260px', '100px']
+						    ,btn: ['拍拍活动', '回到首页']
+						    ,yes:function(success){
+						  	  window.location.href="{url('groupbuy/index/index')}";
+						    }
+						});
+				    }
+				}else{
+					t -= 1,
+			        document.getElementById("js-sec-text").innerHTML = t;
+			        var e = Math.round(t / 10 * 683);
+			        n.style.strokeDashoffset = e - 683
+		        }	
+			}
+		});
+		
+    }, 
+    2000 );
+}
+</script>
+</body>
+</html>
+<script>alertSet('数据匹配中');</script>

@@ -1,0 +1,329 @@
+[ 2018-09-09T17:26:51+08:00 ] 203.208.60.0 /mobile/index.php?m=category&a=products&id=1547
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015599s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015599s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_stats` [ RunTime:0.0156s ]
+SQL: INSERT INTO `dsc_stats` (`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`,`access_time`) VALUES ('203.208.60.0','1','Safari 537.36','Linux','','北京市','','','/mobile/index.php','1536456411') [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.000000s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.000000s ]
+SQL: select parent_id from `paipai`.`dsc_category` where cat_id = '1547' [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_category` where cat_id = '0' [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT cat_id  FROM `paipai`.`dsc_category` WHERE parent_id = '1547'  AND is_show = 1 ORDER BY sort_order ASC, cat_id ASC [ RunTime:0.0000s ]
+SQL: SELECT cat_id FROM `paipai`.`dsc_category` WHERE parent_id = '1556'  AND is_show = 1 LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT cat_name, keywords, cat_desc, style, grade, filter_attr, parent_id, cat_icon FROM dsc_category as g WHERE cat_id = 1547 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: brand_select D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Category\Controllers\IndexController.php 第 499 行.
+SQL: SELECT cat_id , cat_name, cat_alias_name FROM `paipai`.`dsc_category` WHERE parent_id = '1547'  AND is_show = 1 ORDER BY sort_order ASC, cat_id ASC [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: where_having D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Category\Controllers\IndexController.php 第 499 行.
+SQL: SELECT b.brand_id, b.brand_name, b.brand_logo, COUNT(*) AS goods_num FROM `paipai`.`dsc_brand`AS b  LEFT JOIN `paipai`.`dsc_goods` AS g ON g.brand_id = b.brand_id AND g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0   LEFT JOIN `paipai`.`dsc_goods_cat` AS gc ON g.goods_id = gc.goods_id  WHERE g.cat_id  IN ('1547','1556')  OR gc.cat_id  IN ('1547','1556')  AND b.is_show = 1 GROUP BY b.brand_id HAVING goods_num > 0  ORDER BY b.sort_order, b.brand_id ASC [ RunTime:0.0000s ]
+SQL: SELECT cat_name, keywords, cat_desc, style, grade, filter_attr, parent_id, cat_icon FROM dsc_category as g WHERE cat_id = 1547 [ RunTime:0.0000s ]
+SQL: SELECT region_id AS regionId, region_name FROM `paipai`.`dsc_region` WHERE region_type = 1 ORDER BY region_id ASC [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+SQL: SELECT region_id, region_name FROM `paipai`.`dsc_region` WHERE parent_id = '0' ORDER BY region_id ASC [ RunTime:0.0000s ]
+SQL: SELECT region_id, region_name FROM `paipai`.`dsc_region` WHERE parent_id = '1' ORDER BY region_id ASC [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '0' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+SQL: SELECT region_id, region_name, parent_id FROM `paipai`.`dsc_region` WHERE region_id = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT cat_id  FROM `paipai`.`dsc_category` WHERE parent_id = '1547'  AND is_show = 1 ORDER BY sort_order ASC, cat_id ASC [ RunTime:0.0000s ]
+SQL: SELECT cat_id FROM `paipai`.`dsc_category` WHERE parent_id = '1556'  AND is_show = 1 LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT g.goods_id, g.cat_id, g.goods_name,g.goods_img,g.shop_price FROM dsc_goods AS g WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND g.review_status > 2  AND g.cat_id  IN ('1547','1556')  ORDER BY goods_id desc LIMIT 1 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_category` [ RunTime:0.0156s ]
+SQL: SELECT `is_show`,`parent_id` FROM `dsc_category` WHERE `cat_id` = 1556 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `is_show`,`parent_id` FROM `dsc_category` WHERE `cat_id` = 1547 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT (AVG(comment_rank) * 20) AS rank,COUNT(*) AS count FROM dsc_comment WHERE comment_type = 0 AND id_value = 1042 [ RunTime:0.0000s ]
+SQL: SELECT cate_title as title,cate_keywords as keywords,cate_description as description FROM `dsc_category` WHERE `cat_id` = 1547 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT region_id, region_name, parent_id FROM `paipai`.`dsc_region` WHERE region_id = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT region_id, region_name, parent_id FROM `paipai`.`dsc_region` WHERE region_id = '0' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.015599s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.015599s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.000000s ]
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: town_region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 211 行.
+NOTIC: [8] Undefined variable: address_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 214 行.
+NOTIC: [8] Undefined index: region_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 217 行.
+NOTIC: [8] Undefined index: region_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 217 行.
+NOTIC: [8] Undefined index: region_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 217 行.
+NOTIC: [8] Undefined variable: town_row D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 217 行.
+NOTIC: [8] Undefined variable: village_row D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 217 行.
+NOTIC: [8] Undefined variable: filter_attr_list D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 257 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.046797s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.046797s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-09-09T17:27:18+08:00 ] 203.208.60.75 /mobile/index.php?m=category&a=products&id=1551
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_stats` [ RunTime:0.0000s ]
+SQL: INSERT INTO `dsc_stats` (`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`,`access_time`) VALUES ('203.208.60.75','1','Safari 537.36','Linux','','北京市','','','/mobile/index.php','1536456438') [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0156s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.000000s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.000000s ]
+SQL: select parent_id from `paipai`.`dsc_category` where cat_id = '1551' [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_category` where cat_id = '0' [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT cat_id  FROM `paipai`.`dsc_category` WHERE parent_id = '1551'  AND is_show = 1 ORDER BY sort_order ASC, cat_id ASC [ RunTime:0.0000s ]
+SQL: SELECT cat_id FROM `paipai`.`dsc_category` WHERE parent_id = '1553'  AND is_show = 1 LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT cat_id FROM `paipai`.`dsc_category` WHERE parent_id = '1554'  AND is_show = 1 LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT cat_id FROM `paipai`.`dsc_category` WHERE parent_id = '1555'  AND is_show = 1 LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT cat_name, keywords, cat_desc, style, grade, filter_attr, parent_id, cat_icon FROM dsc_category as g WHERE cat_id = 1551 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: brand_select D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Category\Controllers\IndexController.php 第 499 行.
+SQL: SELECT cat_id , cat_name, cat_alias_name FROM `paipai`.`dsc_category` WHERE parent_id = '1551'  AND is_show = 1 ORDER BY sort_order ASC, cat_id ASC [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: where_having D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Category\Controllers\IndexController.php 第 499 行.
+SQL: SELECT b.brand_id, b.brand_name, b.brand_logo, COUNT(*) AS goods_num FROM `paipai`.`dsc_brand`AS b  LEFT JOIN `paipai`.`dsc_goods` AS g ON g.brand_id = b.brand_id AND g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0   LEFT JOIN `paipai`.`dsc_goods_cat` AS gc ON g.goods_id = gc.goods_id  WHERE g.cat_id  IN ('1551','1553','1554','1555')  OR gc.cat_id  IN ('1551','1553','1554','1555')  AND b.is_show = 1 GROUP BY b.brand_id HAVING goods_num > 0  ORDER BY b.sort_order, b.brand_id ASC [ RunTime:0.0000s ]
+SQL: SELECT cat_name, keywords, cat_desc, style, grade, filter_attr, parent_id, cat_icon FROM dsc_category as g WHERE cat_id = 1551 [ RunTime:0.0000s ]
+SQL: SELECT region_id AS regionId, region_name FROM `paipai`.`dsc_region` WHERE region_type = 1 ORDER BY region_id ASC [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+NOTIC: [8] Undefined index: regionId D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\function_helper.php 第 1762 行.
+SQL: SELECT region_id, region_name FROM `paipai`.`dsc_region` WHERE parent_id = '0' ORDER BY region_id ASC [ RunTime:0.0000s ]
+SQL: SELECT region_id, region_name FROM `paipai`.`dsc_region` WHERE parent_id = '1' ORDER BY region_id ASC [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '0' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+SQL: SELECT region_id, region_name, parent_id FROM `paipai`.`dsc_region` WHERE region_id = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT cat_id  FROM `paipai`.`dsc_category` WHERE parent_id = '1551'  AND is_show = 1 ORDER BY sort_order ASC, cat_id ASC [ RunTime:0.0000s ]
+SQL: SELECT cat_id FROM `paipai`.`dsc_category` WHERE parent_id = '1553'  AND is_show = 1 LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT cat_id FROM `paipai`.`dsc_category` WHERE parent_id = '1554'  AND is_show = 1 LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT cat_id FROM `paipai`.`dsc_category` WHERE parent_id = '1555'  AND is_show = 1 LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT g.goods_id, g.cat_id, g.goods_name,g.goods_img,g.shop_price FROM dsc_goods AS g WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND g.review_status > 2  AND g.cat_id  IN ('1551','1553','1554','1555')  ORDER BY goods_id desc LIMIT 1 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_category` [ RunTime:0.0000s ]
+SQL: SELECT `is_show`,`parent_id` FROM `dsc_category` WHERE `cat_id` = 1553 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `is_show`,`parent_id` FROM `dsc_category` WHERE `cat_id` = 1551 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT (AVG(comment_rank) * 20) AS rank,COUNT(*) AS count FROM dsc_comment WHERE comment_type = 0 AND id_value = 1047 [ RunTime:0.0000s ]
+SQL: SELECT cate_title as title,cate_keywords as keywords,cate_description as description FROM `dsc_category` WHERE `cat_id` = 1551 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT region_id, region_name, parent_id FROM `paipai`.`dsc_region` WHERE region_id = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT region_id, region_name, parent_id FROM `paipai`.`dsc_region` WHERE region_id = '0' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.015599s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.015599s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.000000s ]
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: town_region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 211 行.
+NOTIC: [8] Undefined variable: address_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 214 行.
+NOTIC: [8] Undefined index: region_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 217 行.
+NOTIC: [8] Undefined index: region_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 217 行.
+NOTIC: [8] Undefined index: region_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 217 行.
+NOTIC: [8] Undefined variable: town_row D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 217 行.
+NOTIC: [8] Undefined variable: village_row D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 217 行.
+NOTIC: [8] Undefined variable: filter_attr_list D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Category\5bbfd71fab0596ddee091121a8acf69b.php 第 257 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.046796s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.046796s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-09-09T17:33:20+08:00 ] 203.208.60.99 /mobile/index.php?m=category&a=clear_history
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015599s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_stats` [ RunTime:0.0000s ]
+SQL: INSERT INTO `dsc_stats` (`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`,`access_time`) VALUES ('203.208.60.99','1','Safari 537.36','Linux','','北京市','','','/mobile/index.php','1536456800') [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0156s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.015599s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.015599s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+

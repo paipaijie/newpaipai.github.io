@@ -1,0 +1,149 @@
+{include file="page_header"}
+<style>
+    .con-filter-div-scrll{overflow-y:scroll;}
+        .con-filter-div-scrll::-webkit-scrollbar{width:2px;height:2px;}
+        .select-three-invoice .ect-select label {line-height:normal;height:auto;}
+        .select-three-invoice{padding:0 1.1rem;}
+       .select-three-invoice  .invoice-list{padding:.4rem 0;}
+       .select-three-invoice  .header-cont{padding:1rem 0;font-size:1.6rem; color:#333;}
+       .flow-receipt-title-1 input,.flow-receipt-title input{font-size:1.6rem;}
+       .btn-box{background:#f6f6f9;color:#999}
+</style>
+
+<form action="{url('user/userbuy/done')}" method="post" name="theForm" id="theForm" onSubmit="return checkOrderForm(this)">
+	
+    <div class="con">
+        <div class="flow-checkout">
+            <div class="flow-header" id="flow-header" >
+                {if $isStoreOrder == 1}
+                <section class="flow-checkout-adr padding-all">
+                    <div class="address-icon"><i class="iconfont icon-dingwei"></i></div>
+                    <div class="flow-have-adr">
+                        <p class="f-h-adr-title ">{$store.stores_name}</p>
+                        <p class="f-h-adr-con t-remark m-top04">{$store.address}</p>
+                        <p class="f-04 col-7 m-top02">服务电话：{$store.stores_tel}</p>
+                        <p class="f-04 col-7 m-top02">营业时间：{$store.stores_opening_hours}</p>
+                        <p class="f-04 col-7 m-top02">门店地址：[{$store.province_name} {$store.city_name}
+                            {$store.district_name}] {$store.stores_address}</p>
+                    </div>
+                    <input type="hidden" name="ru_id[]" value="0"/>
+                </section>
+                {else}
+                <section class="flow-checkout-adr padding-all" style="top:47px;disabled:disabled" >
+ 
+                    <p class="flow-no-adr" style="display:none"><i class="iconfont icon-dingwei"></i>请选择配送地址</p>
+                    <div class="address-icon"><i class="iconfont icon-dingwei"></i></div>
+                    <div class="flow-have-adr">
+                        <div class="f-h-adr-title dis-box p-r">
+                            <span class="address-name onelist-hidden">{$consignee.consignee}</span><label class="mobile">{$consignee.mobile}</label>
+                        </div>
+                        <div class="f-h-adr-con f-04 m-top04">{$consignee.region} {$consignee.address}</div>
+                    </div>
+                  
+                </section>
+                {/if}
+            </div>
+
+            <div id="flow-cont-height" style="padding-top:105px;">
+                <!-- 商品信息 start-->
+                <section class="m-top10">
+                    <section class="flow-checkout-pro j-flow-checkout-pro  active">
+                        <div class="product-list-small m-top1px b-color-f dis-box">
+                        	<ul>
+                                    <li>
+                                        <div class="product-div">
+                                            <a class="product-div-link" href="/mobile/index.php?m=groupbuy&a=detail&"></a>
+                                            <img class="product-list-img" src="{$goods.goods_thumb}"/>
+                                            <div class="product-text">
+                                                <h4>{$goods.goods_name}</h4>
+                                                <p><span class="p-price t-first ">金额：¥{$user_bid['bid_price']} </span></p>
+                                                <p class="dis-box p-t-remark"></p>
+
+                                            </div>
+                                            <!-- 该地区支持配送 -->
+                                            <input name="shipping_prompt" type="hidden" data-id="669" value="0">
+                                        </div>
+                                    </li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="flow-checkout-select b-color-f m-top08" >
+                    <ul>
+
+                        <li class="dis-box padding-all">
+                            <label class="t-remark g-t-temark">留言</label>
+                            <div class="box-flex t-goods1 flow-check-input">
+                                <input name="postscript[]" class="f-04" style="line-height: normal;" maxlength="50" placeholder="选填(50)"/>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                    
+                    
+                    <p class="padding-all f-05 text-right t-remark">共 1 件商品，合计金额：<span class="t-first" >{$user_bid['bid_price']}</span>
+                    </p>
+                    <input type="hidden" id="amount{$goodsRu.ru_id}" value="{$goodsRu.amount}">
+                    <input type="hidden" id="goods_price_amount{$goodsRu.ru_id}" value="{$goodsRu.goods_price_amount}">
+                </section>
+               
+                <!-- 商品信息 end-->
+
+                <section class="m-top10">
+                    <ul>
+                        {if $is_exchange_goods != 1 || $total.real_goods_count != 0}
+                        <li class="dis-box padding-all-n m-top1px b-color-f j-show-div" id="payment">
+                            <label class="t-remark g-t-temark">支付方式</label>
+                            <div class="box-flex t-goods1 text-right onelist-hidden" id="payment_info">
+                                {if $payment_selected.pay_name}
+                                <span>{$payment_selected.pay_name}{if $payment_selected.pay_fee} <em class="t-remark">[手续费]</em>{/if}</span>
+                                {if $payment_selected.pay_fee}<em class="t-first">{$payment_selected.format_pay_fee}</em>{/if}
+                                {else}
+                                {/if}
+                            </div>
+                            <input name="payment" type="hidden" value="{if $payment_selected}{$order.pay_id}{else}0{/if}"/>
+                        </li>
+                        {else}
+                        <input name="payment" type="hidden" value="-1"/>
+                        {/if}
+                    </ul>
+                </section>
+
+
+                <section class="filter-btn f-checkout-filter-btn dis-box pl">
+			        <!-- 检测单个商品是否支持配送 -->
+			        <input type="hidden" name="shipping_prompt_str" value="" >
+
+			        <span class="box-flex t-remark">实付款 <em class="t-first" id="amount">{$user_bid['bid_price']}</em></span>
+			        <input type="hidden" name="ppj_id" value="{$user_bid['ppj_id']}">
+			        <input type="hidden" name="ppj_no" value="{$user_bid['ppj_no']}">
+			        <input type="hidden" name="order" value="1">
+			        <div>
+			            <button name="submit" type="submit" class="btn-submit">安全支付</button>
+			        </div>
+			    </section>
+        
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(function ($) {
+        //内容自动获取高度
+        function contHeight(){
+            var new_btn = $(".comment-btn-height").outerHeight(true);
+            var cont_height = $(window).height() - new_btn;
+            $(".con-filter-div-1,.con-filter-div-coupon,.con-filter-div-card").css("height", cont_height);
+        }
+        contHeight();
+        window.onresize = function(){
+            contHeight();
+        }
+        document.getElementById("flow-cont-height").style.marginTop = $("#flow-header").height(73)  + "px";
+    });
+</script>
+
+
+
+</body>
+</html>

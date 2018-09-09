@@ -1,0 +1,12 @@
+[ 2018-09-04T16:09:50+08:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 1146:Table 'paipai.dsc_dsc_paipai_goods_bid_user' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_dsc_paipai_goods_bid_user` WHERE ppj_id='118' AND  ppj_no='2' 
+ERR: 1146:Table 'paipai.dsc_dsc_paipai_goods_bid_user' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_dsc_paipai_goods_bid_user` WHERE ppj_id='118' AND  ppj_no='2' 
+
+[ 2018-09-04T16:11:18+08:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 1146:Table 'paipai.dsc_dsc_paipai_goods_bid_user' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_dsc_paipai_goods_bid_user` WHERE ppj_id='118' AND  ppj_no='2' 
+ERR: 1146:Table 'paipai.dsc_dsc_paipai_goods_bid_user' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_dsc_paipai_goods_bid_user` WHERE ppj_id='118' AND  ppj_no='2' 
+

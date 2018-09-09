@@ -1,0 +1,193 @@
+{include file="page_header"}
+<style>
+    .flow-accessories .product-list .product-div{position:relative;}
+    .flow-accessories .product-list .product-div .a-accessories-clear{position: absolute;
+    font-size: 1.8rem;
+    color: #888;
+    right: 1.3rem;
+    bottom: 1.3rem;}
+    .flow-accessories .product-list .product-div .a-accessories-clear i{font-size:1.8rem;}
+</style>
+ <div class="store_info">
+     
+<script id="j-product" type="text/html">
+			<div class="flow-accessories blur-div">
+                              <%if goods_list !=''%>
+                             <%each goods_list as goods%>  
+			<section class="product-list j-product-list product-list-small">
+					<ul>
+						<li>
+							<div class="product-div">
+                               <a href="<%goods.url%>">
+                               	
+                               	    <div class="group-bq-box"   <%if goods.is_end == 1%> style="display:none" <%else%>  style="display:block" <%/if%>>  <span>进行中</span> </div>
+                               	    	
+								<img class="product-list-img" src="<%goods.goods_thumb%>" />
+								
+								<div class="product-text index-product-text">
+									<a href="<%goods.url%>"><h4><%goods.goods_name%></h4>
+										<em class="em-promotion"> 第 <%goods.ppj_no %>期</em>
+									</a>																		
+									<p class="dis-box p-t-remark"><span class="box-flex">保证金:<%goods.ppj_margin_fee%></span></p>
+									<p><span class="p-price t-first ">当前价格<%#goods.price%></span></p>
+                                    <p class="dis-box p-t-remark"><span class="box-flex">已出价次数:<%goods.cur_amount%></span></p>
+                           
+								</div>
+								                            
+							</div>
+							
+                          <footer class="padding-all b-color-f m-top1px of-hidden dis-box">
+						  <section class="m-top1px padding-all b-color-f goods-service j-show-div j-service">
+										<div class="dis-box">
+											<div class="box-flex">
+												<div class="dis-box">
+													<i class="iconfont icon-102 goods-min-icon">说明</i>
+												</div>
+											</div>
+										</div>
+									</section>
+						
+                        <p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:102px;padding-top:12px;">                            
+                            <span style="width:150px; color: red;" class="btn-default-new br-5 min-btn"  id="nowsale" ppjid="<%goods.ppj_id%>">手 动 售 出</span> 
+                           
+                              <span style="width:150px;color: blue;" class="btn-default-new br-5 min-btn"  id="autosale">自 动 售 出</span>  
+                        </p>
+                    </footer>     
+                            
+						</li>
+					</ul>
+				</section>
+                                 <%/each%>
+                                  <%else%>
+                                 <div class="no-div-message">
+				   <i class="iconfont icon-biaoqingleiben"></i>
+				<p>亲，还没有拍拍商品哦～！</p>
+			</div>
+                                    <%/if%>
+		</div>
+<div class="show-goods-service j-filter-show-div ts-3 b-color-1 service-box">
+	<section class="goods-show-title of-hidden padding-all b-color-f">
+		<h3 class="fl g-c-title-h3">零售说明</h3>
+		<i class="iconfont icon-guanbi2 show-div-guanbi fr"></i>
+	</section>
+	<section class="goods-show-con goods-big-service swiper-scroll">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<ul>
+					<li class="m-top1px b-color-f padding-all of-hidden">
+						<p class="dis-box t-remark3">
+							<em class="em-promotion"><i class="iconfont icon-daifukuan"></i></em>
+							<span class="box-flex">手动售出</span>
+						</p>
+						<p class="g-b-s-con m-top08"><p>把握价格，敬请关注实时浮动的当前价，选择确认是否售出哦</p></p>
+					</li>
+					<li class="m-top1px b-color-f padding-all of-hidden">
+						<p class="dis-box t-remark3">
+							<em class="em-promotion"><i class="iconfont icon-7tianwuliyoutuihuo"></i></em>
+							<span class="box-flex">自动售出</span>
+						</p>
+						<p class="g-b-s-con m-top08"><p>方便省心，设定预售价格区间，系统会根据买方出价自动售出呢</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</div>
+		 </script>
+		<script>
+			/*店铺信息商品滚动*/
+			var swiper = new Swiper('.j-f-n-c-prolist', {
+				scrollbarHide: true,
+				slidesPerView: 'auto',
+				centeredSlides: false,
+				grabCursor: true
+			});
+			
+       $('.store_info').infinite({url: "{url('user/index/mypaipailist')}", template:'j-product'});
+		
+		var url = "{url('user/index/paipaibuy')}";		
+		$("#nowsale").click(function(){
+			var ppj_id= $(this).attr("ppjid");
+			
+			//alert(ppj_no);
+			
+            layer.open({           	
+                content: '<h4 class="t-remark">确认售出即可获得收益</h4>	',
+                btn: ['确定', '取消'],
+                shadeClose: false,
+                yes: function() {
+                  $.post(url, {ppj_id:ppj_id},
+                     function(result){
+                     	
+                         if(result.y == 1){     
+                         	d_messages('出售成功，买家支付收货后您将获收益！');	
+                         	 setTimeout(function () {
+         window.location.href = "{url('user/index/mypaipailist')}";
+    }, 1000);
+                           
+                         }else if(result.y ==2){
+                         	
+                         	d_messages('当前还没有人出价，暂时不能卖');
+				            return false;
+				            
+                         }else if(result.y == 3){
+                         	d_messages('当前价格低于该商口最低成交价，暂时不能卖');
+				            return false;
+                         }else if(result.y == 4){
+                         	d_messages('您的销售券只能在下一期才能用，暂时不能卖');
+				            return false;
+                         }else if(result.y == 5){
+                         	d_messages('您的销售券为空，暂时不能卖');
+				            return false;
+                         }else if(result.y == 0){
+                         	d_messages('没有匹配的价格，暂时不能卖，请继续等待！');
+				            return false;
+                         }
+                         
+                         
+                     }, 'json');
+                 },
+                no: function() {
+
+                }
+            });
+        });
+		
+		
+		
+		$("#autosale").click(function(){
+        	
+            layer.open({
+           	
+                content: '<h4 class="t-remark">预计出售价</h4>	<div class="div-num dis-box m-top08"><input class="box-flex" type="text" value=""  name="sellers_fee" id="sellers_fee" /> </div>至	<div class="div-num dis-box m-top08"><input class="box-flex" type="text" value=""  name="sellers_fee" id="sellers_fee" /> </div>',
+                btn: ['确定', '取消'],
+                shadeClose: false,
+                yes: function() {
+                  $.post(url, {status:status},
+                     function(result){
+                         if(result.y == 1){
+                         	
+                            window.location.href = "{url('user/index/mypaipailist')}";
+                         }
+                     }, 'json');
+                 },
+                no: function() {
+
+                }
+            });
+        });
+		
+		
+   		
+		
+		$(function(){
+	        //服务
+	        $(".j-service").click(function() {
+	            $(".service-box").addClass('show')
+	        });
+		})
+		
+		</script>
+	</body>
+
+</html>

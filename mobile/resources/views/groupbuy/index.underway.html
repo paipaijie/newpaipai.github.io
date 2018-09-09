@@ -1,0 +1,248 @@
+{include file="page_header"}
+
+<section class="search new-group-search">
+    <div class="text-all dis-box j-text-all text-all-back">
+        <div class="box-flex input-text">
+            <div class="box-flex">
+                <input class="j-input-text" type="text" name="infokeyword" placeholder="商品名称"/>
+                <i class="iconfont icon-guanbi1 close-common j-is-null"></i>
+            </div>
+        </div>
+        <a type="button" class="btn-submit">搜索</a>
+    </div>
+</section>
+
+<section class="goods-evaluation">
+	
+    <div class="con">
+        <div class="user-center-1 user-register-1 of-hidden">
+        	
+            <section class="product-sequence dis-box">
+                <a class="box-flex active " sort="act_id" order="DESC">默认<i class="iconfont icon-xiajiantou"></i></a>
+                <a class="box-flex" sort="start_time" order="DESC">最新<i class="iconfont icon-xiajiantou"></i></a>
+                <a class="box-flex" sort="comments_number" order="DESC">评论数<i class="iconfont icon-xiajiantou"></i></a>
+            </section>
+            
+           
+            
+            <div id="j-tab-con" class="article_info">
+            	
+                <script id="j-product" type="text/html">
+            
+                    <%if totalPage > 0%>
+                    
+                <div class="swiper-wrapper">
+                	
+                    <section class="swiper-slide swiper-no-swiping product-list j-product-list product-list-medium" data="1">
+                        <ul>
+                            <%each gb_list as list%>
+
+                            <%if list.is_end == 1%>
+                            <li>
+                                <div class="product-div">
+                                
+
+                                    <div class="group-bq-box"   <%if list.is_end == 2%> style="display:none" <%else%>  style="display:block" <%/if%>>  <span>进行中</span> </div>
+                                                                        
+                                    <!-- <a class="product-div-link" href="<%list.url%>"></a> -->
+                                    
+                                    <!--
+                                    	作者：xul
+                                    	时间：2018-08-06
+                                    	描述：已结束标识
+                                    -->
+                                    <div class="group-img-box">
+                                        <div class="group-over-box" <%if list.is_end == 2%> style="display:block" <%else%>style="display:none" <%/if%> >
+                                        <div><p class="group-cont-box">已结束</p></div>
+                                    </div>   
+                                  <a href="<%list.url%>">  <img class="product-list-img" src="<%list.goods_thumb%>"></a>                                
+                                </div>
+                                <!-- 已结束标识  结束-->
+                                
+                                <div class="product-text-group">
+                                	
+                                    <h4><%list.ppj_name%></h4>
+                                    
+                                    <p style="color:#999;font-size:1rem;width:81px;"><em><%list.cur_amount%></em>人已下单</p>
+                                    
+                                    <p style="width:81px;"><span class="p-price t-first " ><%#list.price%><small>
+                                    	
+                                        <del><%#list.market_price%></del>
+                                        
+                                    </small></span></p>
+                                    
+                                    <span class="group-cont" style="margin-top:-26px;"><span style="color: red;margin-top:-26;" class="btn-default-new br-5 min-btn" id="chujia">立 即 出 价</span> 
+                                </div>
+                                
+                            </li>
+
+                            <%/if%>
+                            <%/each%>
+                            
+                        </ul>
+                    </section>
+                    
+                </div>
+                    <%else%>
+                    <div class="no-div-message">
+                        <i class="iconfont icon-biaoqingleiben"></i>
+                        <p>亲，此处没有内容～！</p>
+                    </div>
+                    <%/if%>
+                </script>
+            </div>
+       
+            </div>
+    </div>
+</section>
+     
+     	
+     <!--快捷导航-->
+    {include file="float_nav"}
+    {include file="float_nav_footer"}
+    
+<script>
+    var url = ROOT_URL + 'index.php?m=groupbuy';
+      
+    var infinite = $('.article_info').infinite({url: url, template: 'j-product'});
+    
+       // alert(infinite.length);
+    //搜
+    $(".btn-submit").click(function (){
+        keyword = $("input[name=infokeyword]").val();
+        if (keyword ||typeof(keyword) == "undefined")
+        {
+            infinite.onload('keyword='+keyword);
+        }else{
+            d_messages('请输入搜索关键字');
+        }
+    })
+    
+    
+    $(".product-sequence a").on('click', function(e) {
+        var sort = $(this).attr('sort');
+        var order = $(this).attr('order');
+        $(this).addClass("active").siblings().removeClass("active");
+        if (order == 'DESC') {
+            $(this).attr("order", "ASC");
+            $(this).removeClass("a-change");
+        } else {
+            $(this).attr("order", "DESC");
+            $(this).addClass("a-change");
+        }
+        infinite.onload('sort=' + sort + '&order=' + order);
+    })
+    
+    
+</script>
+
+
+<script>
+    /*切换*/
+    var tabsSwiper = new Swiper('#j-tab-con', {
+        speed: 0,
+        noSwiping: true,
+        autoHeight: true
+    })
+    
+    
+    
+    $(".j-tab-title li").on('touchstart mousedown', function (e) {
+        e.preventDefault()
+        $(".j-tab-title .active").removeClass('active')
+        $(this).addClass('active')
+        tabsSwiper.slideTo($(this).index())
+    })
+    
+    
+    $(".j-tab-title li").click(function (e) {
+        e.preventDefault()
+    })
+
+    $("#chujia").click(function(){
+        var ppj_id = document.getElementById('ppj_id').value;
+            layer.open({
+                type: 1,
+                title:'预售价格区间',
+                skin:'layui-layer-rim',
+                area:['300px', '80%'],
+                content: ' <div class="row" style="width: 420px;  margin-left:7px; margin-top:10px;">'
+                    +'<div class="col-sm-12">'
+                    +'<div class="input-group">'
+                    +'<span class="input-group-addon"> 最低价   :</span>'
+                    +'<input id="seller_min_fee" name="seller_min_fee" type="text" class="form-control" placeholder="不能少于成本价">'
+                    +'</div>'
+                    +'</div>'
+                    +'<div class="col-sm-12" style="margin-top: 10px">'
+                    +'<div class="input-group">'
+                    +'<span class="input-group-addon">最高价:</span>'
+                    +'<input id="seller_max_fee" name="seller_max_fee" type="text" class="form-control" placeholder="不能高于零售价">'
+                    +'</div>'
+                    +'</div>'
+                    +'</div>'
+                ,
+                btn:['保存','取消'],
+                yes: function (index, layero) {
+                    var max = $("#seller_max_fee").val();
+                    var min = $("#seller_min_fee").val();
+                    $.ajax({
+                        url:"{url('groupbuy/index/baoming')}",
+                        type:"post",
+                        data:{"max":max,"min":min,"ppj_id":ppj_id},
+                        dataType:'json',
+                        success:function(success){
+                            if(success == 1){
+                                layer.open({
+                                    content: '报名成功'
+                                    ,skin: 'msg'
+                                    ,time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            }else if(success == 2){
+                                layer.open({
+                                    content: '报名失败'
+                                    ,skin: 'msg'
+                                    ,time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            }else if(success == 3){
+                                layer.open({
+                                    content: '您没有优惠券'
+                                    ,skin: 'msg'
+                                    ,time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            }else if(success == 4){
+                                layer.open({
+                                    content: '请重新出价'
+                                    ,skin: 'msg'
+                                    ,time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            }
+                        },
+                        error:function(e){
+                            layer.open({
+                                content: '您没有优惠券'
+                                ,skin: 'msg'
+                                ,time: 2 //2秒后自动关闭
+                            });
+                            layer.close(index);
+                        }
+                    });
+                },
+                btn2:function (index,layero) {
+                    layer.open({
+                        content: '您没有优惠券'
+                        ,skin: 'msg'
+                        ,time: 2 //2秒后自动关闭
+                    });
+                    layer.close(index); 
+                }
+
+            });
+        });
+    
+</script>
+
+{include file="page_footer"}

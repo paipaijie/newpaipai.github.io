@@ -1,0 +1,85 @@
+{include file="page_header"}
+<div class="con" style="margin-top:-27px">
+    <div class="user-center user-register of-hidden">
+    	<img src="/mobile/resources/assets/img/icon/footbanner.png" style="width:100%;">
+        <div style="padding-top:20px" class="hd j-tab-title">
+                <h3 style="color:red;">注册成功</h3>
+				<br/>
+				<h4 style="color:red;">赠送您一张拍拍街销售券</h4>
+        </div>
+		<br/>
+		
+		<div style="padding-left:15%" >
+			<div style="margin-top:12px;margin-left:59px;width:67px;height:67px;position: absolute;">
+				<img src="/mobile/resources/assets/img/icon/pp.jpg" style="width:67px;height: 66px;" >
+			</div>
+			<div style="margin-top:13px;margin-left:153px;width:113px;height:17px;position: absolute;" >
+				<p style="font-size:8px;text-align: center;color:#FFFFFF">苹果数据线</p>
+			</div>
+			<div style="margin-top:32px;margin-left:155px;width:108px;height:33px;position: absolute;" >
+				<p style="font-size:20px;text-align: center;color:#FFFFFF">1&nbsp;&nbsp张</p>
+			</div>
+			<div style="margin-top:63px;margin-left:146px;width:130px;height:33px;position: absolute;" >
+				<p style="font-size:8px;text-align: center;color:#FFFFFF">有效期至：2018/8/31</p>
+			</div>
+			<img src="/mobile/resources/assets/img/icon/quan.png" style="margin: 0 auto;width:85%" />
+		</div>
+		<div style="margin-top:10px;">
+			<p style="text-align:center;">前往APP登录立即赚钱</p>
+		</div>
+        <div id="j-tab-con">
+            <div class="swiper-wrapper">
+                <section class="swiper-slide swiper-no-swiping">
+					<button type="submit" id="dianji" onclick="downApp()" class="btn-submit min-two-btn br-5">点击下载APP</button>					 
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+		var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		function downApp(){
+			var u = navigator.userAgent, 
+			isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1,
+			isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+			urls = {
+				'android':'http://lbuilder.applicationloader.net/app/download/17545',
+				'ios':'https://itunes.apple.com/cn/app/storybear/id1420348942',
+				'other':'http://www1.pcauto.com.cn/app/20141120/pcautoapp/index.html'
+			};
+			
+			if(isAndroid){
+				window.location.href=urls.android;
+			}else if(isiOS){
+				window.location.href=urls.ios;
+			}else{
+				window.location.href=urls.other;
+			}
+		}
+		downApp();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

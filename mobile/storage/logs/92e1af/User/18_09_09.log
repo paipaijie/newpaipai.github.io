@@ -1,0 +1,970 @@
+[ 2018-09-09T15:09:20+08:00 ] ::1 /newpaipai/mobile/index.php?m=user
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001953s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002930s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0029s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0020s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.021485s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.021485s ]
+
+[ 2018-09-09T15:09:21+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=login&back_act=http%253a%252f%252flocalhost%252fnewpaipai%252fmobile%252f
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001953s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.018554s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.018554s ]
+SQL: SHOW COLUMNS FROM `dsc_touch_auth` [ RunTime:0.0088s ]
+SQL: SELECT * FROM `dsc_touch_auth` WHERE `status` = 1 ORDER BY sort asc, id asc  [ RunTime:0.0010s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Library\Think\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.008789s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.008789s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000977s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.002930s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.001953s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.004883s ]
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: description D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\a788527c693672cc992124f3c5c26b1b.php 第 9 行.
+NOTIC: [8] Undefined variable: keywords D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\a788527c693672cc992124f3c5c26b1b.php 第 10 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.041016s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041016s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000976s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000976s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000977s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000977s ]
+
+[ 2018-09-09T15:09:24+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=login
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001953s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002929s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0029s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0029s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.021485s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.022461s ]
+SQL: SELECT user_name FROM dsc_users WHERE mobile_phone='13685758202' [ RunTime:0.0020s ]
+SQL: SELECT user_id, password, salt,ec_salt  FROM `paipai`.`dsc_users` WHERE user_name='13685758202' [ RunTime:0.0010s ]
+SQL: SELECT user_id, password, email FROM `paipai`.`dsc_users` WHERE user_name='13685758202' LIMIT 1 [ RunTime:0.0020s ]
+SQL: SELECT u.user_money,u.email, u.pay_points, u.user_rank, u.rank_points,  IFNULL(b.type_money, 0) AS user_bonus, u.last_login, u.last_ip FROM `paipai`.`dsc_users` AS u  LEFT JOIN `paipai`.`dsc_user_bonus` AS ub ON ub.user_id = u.user_id AND ub.used_time = 0  LEFT JOIN `paipai`.`dsc_bonus_type` AS b ON b.type_id = ub.bonus_type_id AND b.use_start_date <= '2018-09-09' AND b.use_end_date >= '2018-09-09'  WHERE u.user_id = '32523' [ RunTime:0.0010s ]
+SQL: SELECT special_rank from `paipai`.`dsc_user_rank`where rank_id='6' [ RunTime:0.0029s ]
+SQL: update `paipai`.`dsc_users`set user_rank='0' where user_id='32523' [ RunTime:0.0020s ]
+SQL: SELECT rank_id, discount FROM `paipai`.`dsc_user_rank` WHERE special_rank = '0' AND min_points <= 0 AND max_points > 0 [ RunTime:0.0010s ]
+SQL: UPDATE `paipai`.`dsc_users` SET visit_count = visit_count + 1,  last_ip = '0.0.0.0', last_login = '1536448164', user_rank = '6' WHERE user_id = '32523' [ RunTime:0.0020s ]
+SQL: SELECT c.rec_id, c.goods_id, c.goods_attr_id, c.ru_id, c.warehouse_id, c.area_id, c.area_city, g.promote_price, g.promote_start_date, c.goods_number, c.goods_price as c_price, c.extension_code, g.promote_end_date, IFNULL(mp.user_price, g.shop_price * '1') AS member_price FROM `paipai`.`dsc_cart` AS c LEFT JOIN `paipai`.`dsc_goods` AS g ON g.goods_id = c.goods_id LEFT JOIN `paipai`.`dsc_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '6' WHERE c.session_id = '0.0.0.0_269c4f0c0b9369967804c922fd5d773c' AND c.is_gift = 0 AND c.goods_id > 0 AND c.rec_type = '0' [ RunTime:0.0010s ]
+SQL: DELETE FROM `paipai`.`dsc_cart` WHERE session_id = '0.0.0.0_269c4f0c0b9369967804c922fd5d773c' AND is_gift > 0 [ RunTime:0.0010s ]
+
+[ 2018-09-09T15:09:31+08:00 ] ::1 /newpaipai/mobile/index.php?m=user
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0078s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0020s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.020508s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.021484s ]
+SQL: SHOW COLUMNS FROM `dsc_users` [ RunTime:0.0088s ]
+SQL: SELECT * FROM `dsc_users` WHERE `user_id` = 32523 LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) as num FROM `paipai`.`dsc_order_info` as oi WHERE oi.user_id = '32523' and oi.is_delete = '0' and oi.is_zc_order= '0'  and (select count(*) from `paipai`.`dsc_order_info` as oi_2 where oi_2.main_order_id = oi.order_id) = 0  AND oi.pay_status = 10 [ RunTime:0.0049s ]
+SQL: SELECT COUNT(*) as num FROM `paipai`.`dsc_order_info` as oi WHERE oi.user_id = '32523' and oi.is_delete = '0' and oi.is_zc_order= '0'  and (select count(*) from `paipai`.`dsc_order_info` as oi_2 where oi_2.main_order_id = oi.order_id) = 0  AND oi.pay_status = 0 AND oi.order_status not in(2,3,4) [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*) as num FROM `paipai`.`dsc_order_info` as oi WHERE oi.user_id = '32523' and oi.is_delete = '0' and oi.is_zc_order= '0'  and (select count(*) from `paipai`.`dsc_order_info` as oi_2 where oi_2.main_order_id = oi.order_id) = 0  AND oi.pay_status = 2 AND oi.order_status in (1, 5, 6) AND (oi.shipping_status >= 0 AND oi.shipping_status <> 2) [ RunTime:0.0010s ]
+SQL: SELECT a.msg_id  FROM dsc_feedback AS a WHERE a.parent_id IN  (SELECT b.msg_id FROM dsc_feedback AS b WHERE b.user_id = '32523') ORDER BY a.msg_id DESC [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*) AS admin_count FROM dsc_feedback AS a WHERE a.parent_id IN  (SELECT msg_id FROM dsc_feedback AS b WHERE b.user_id = '32523') [ RunTime:0.0010s ]
+SQL: SELECT email, mobile_phone,sex, pay_points, nick_name, user_money, credit_line, last_login, is_validated, user_picture, rank_points,user_rank, birthday FROM `paipai`.`dsc_users` WHERE user_id = '32523' [ RunTime:0.0010s ]
+SQL: SELECT rank_id, rank_name, discount, special_rank FROM `paipai`.`dsc_user_rank` WHERE rank_id = '6' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT rank_id, rank_name, discount, min_points FROM `paipai`.`dsc_user_rank` WHERE special_rank = '0' AND min_points <= 0 ORDER BY min_points DESC [ RunTime:0.0010s ]
+SQL: SELECT user_name, nick_name , user_picture FROM `paipai`.`dsc_users` WHERE user_id = '32523'  [ RunTime:0.0020s ]
+SQL: SELECT SUM(bt.type_money) AS bonus_value, COUNT(*) AS bonus_count FROM `paipai`.`dsc_user_bonus` AS ub, `paipai`.`dsc_bonus_type` AS bt WHERE ub.user_id = '32523' AND ub.bonus_type_id = bt.type_id AND ub.order_id = 0 [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_order_info` WHERE user_id = '32523' AND add_time > '1533769771' [ RunTime:0.0020s ]
+SQL: SELECT order_id, order_sn  FROM `paipai`.`dsc_order_info` WHERE user_id = '32523' AND shipping_time > '1536376651' AND order_status = '1' AND shipping_status  IN ('1','2')   [ RunTime:0.0020s ]
+SQL: SELECT rank_points, user_rank FROM `paipai`.`dsc_users` WHERE user_id = 32523 [ RunTime:0.0020s ]
+SQL: SELECT rank_id, rank_name, discount, special_rank FROM `paipai`.`dsc_user_rank` WHERE rank_id = '6' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT rank_id, rank_name, discount, min_points FROM `paipai`.`dsc_user_rank` WHERE special_rank = '0' AND min_points <= 0 ORDER BY min_points DESC [ RunTime:0.0020s ]
+SQL: SELECT count(*)  FROM `paipai`.`dsc_paipai_seller` WHERE usestaus = 0 and user_id = '32523' [ RunTime:0.0020s ]
+SQL: select msg_id from dsc_feedback where  user_id= '32523' [ RunTime:0.0010s ]
+SQL: select parent_id from dsc_feedback where parent_id in (0) [ RunTime:0.0020s ]
+SQL: SELECT count(*) as num FROM dsc_collect_goods WHERE user_id = '32523'   [ RunTime:0.0020s ]
+SQL: SELECT count(*) as num FROM dsc_collect_store WHERE user_id = '32523'   [ RunTime:0.0020s ]
+SQL: SELECT count(u.bonus_id) as bonus_count FROM dsc_user_bonus AS u  LEFT JOIN dsc_bonus_type AS b ON u.bonus_type_id=b.type_id  WHERE u.user_id = '32523' AND b.use_end_date > 1536448171 and u.order_id = 0  [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: paper D:\WWW\newpaipai\mobile\app\Modules\User\Helpers\function_helper.php 第 116 行.
+NOTIC: [8] Undefined variable: size D:\WWW\newpaipai\mobile\app\Modules\User\Helpers\function_helper.php 第 116 行.
+SQL: SELECT count(*) FROM `paipai`.`dsc_order_goods` AS og LEFT JOIN `paipai`.`dsc_order_info` AS oi ON og.order_id = oi.order_id LEFT JOIN  `paipai`.`dsc_goods` AS g ON og.goods_id = g.goods_id WHERE og.goods_id = g.goods_id AND og.extension_code != 'package_buy' AND oi.user_id = '32523'  AND (select count(*) from `paipai`.`dsc_order_info` as oi_2 where oi_2.main_order_id = oi.order_id) = 0  AND oi.order_status  IN ('1','5')   AND oi.shipping_status = '2' AND oi.pay_status  IN ('2','1')  AND og.order_id = oi.order_id  AND (SELECT count(*) FROM `paipai`.`dsc_comment` AS c WHERE c.comment_type = 0 AND c.id_value = g.goods_id AND c.rec_id = og.rec_id AND c.parent_id = 0 AND c.user_id = '32523') = 0  ORDER BY oi.add_time DESC [ RunTime:0.0020s ]
+SQL: SELECT count(*) as num FROM `paipai`.`dsc_order_return` WHERE return_status NOT IN (1,4 )  AND user_id = '32523'  [ RunTime:0.0020s ]
+SQL: select count(o.order_id) as num from dsc_order_info as o left join dsc_team_log as t on o.team_id = t.team_id left join dsc_team_goods as tg on tg.id = t.t_id  where o.user_id =32523 and o.extension_code ='team_buy' and order_status !=2  and t.status < 1 and '1536448171'< (t.start_time+(tg.validity_time*3600)) and tg.is_team = 1   [ RunTime:0.0059s ]
+SQL: SELECT ga.act_id,ga.goods_name FROM `paipai`.`dsc_goods_activity` AS ga  LEFT JOIN `paipai`.`dsc_auction_log` AS al ON ga.act_id = al.act_id  WHERE al.bid_user='32523' AND ga.is_finished= 0  [ RunTime:0.0039s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Library\Think\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.013672s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.013672s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.001953s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.001953s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.002929s ]
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000976s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000976s ]
+NOTIC: [8] Undefined variable: description D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\3a7916dc6cc69b693998cfc4ed25c317.php 第 9 行.
+NOTIC: [8] Undefined variable: keywords D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\3a7916dc6cc69b693998cfc4ed25c317.php 第 10 行.
+NOTIC: [8] Undefined variable: cache_info D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\3a7916dc6cc69b693998cfc4ed25c317.php 第 136 行.
+SQL: SELECT a.ad_id, a.position_id, a.media_type, a.ad_link, a.ad_code, a.ad_name, p.ad_width, p.ad_height, p.position_style, RAND() AS rnd FROM `paipai`.`dsc_touch_ad` AS a LEFT JOIN `paipai`.`dsc_touch_ad_position` AS p ON a.position_id = p.position_id WHERE enabled = 1 AND start_time <= '1536448171' AND end_time >= '1536448171' AND a.position_id = '267' ORDER BY rnd LIMIT 6 [ RunTime:0.0078s ]
+NOTIC: [8] Undefined variable: filter D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\3a7916dc6cc69b693998cfc4ed25c317.php 第 449 行.
+NOTIC: [8] Undefined variable: community D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\3a7916dc6cc69b693998cfc4ed25c317.php 第 453 行.
+NOTIC: [8] Array to string conversion D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\3a7916dc6cc69b693998cfc4ed25c317.php 第 483 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.059570s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.059570s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001953s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000977s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000977s ]
+
+[ 2018-09-09T15:09:34+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=order&a=indexpaipai&status=10
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001953s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002930s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0049s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.016602s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.016602s ]
+SQL: SELECT COUNT(*) as num FROM `paipai`.`dsc_order_info` as oi WHERE oi.user_id = '32523' and oi.is_delete = '0' and oi.is_zc_order= '0'  and (select count(*) from `paipai`.`dsc_order_info` as oi_2 where oi_2.main_order_id = oi.order_id) = 0  [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) as num FROM `paipai`.`dsc_order_info` as oi WHERE oi.user_id = '32523' and oi.is_delete = '0' and oi.is_zc_order= '0'  and (select count(*) from `paipai`.`dsc_order_info` as oi_2 where oi_2.main_order_id = oi.order_id) = 0  AND oi.pay_status = 10 [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) as num FROM `paipai`.`dsc_order_info` as oi WHERE oi.user_id = '32523' and oi.is_delete = '0' and oi.is_zc_order= '0'  and (select count(*) from `paipai`.`dsc_order_info` as oi_2 where oi_2.main_order_id = oi.order_id) = 0  AND oi.pay_status = 2 AND oi.order_status in (1, 5, 6) AND (oi.shipping_status >= 0 AND oi.shipping_status <> 2) [ RunTime:0.0010s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Library\Think\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.006836s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.006836s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000976s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.000977s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000977s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.004883s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.006836s ]
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: description D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\9bcb54f049c5739ade10b2d5af6c38dd.php 第 9 行.
+NOTIC: [8] Undefined variable: keywords D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\9bcb54f049c5739ade10b2d5af6c38dd.php 第 10 行.
+NOTIC: [8] Undefined index: paysucess_count D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\9bcb54f049c5739ade10b2d5af6c38dd.php 第 99 行.
+NOTIC: [8] Undefined index: payfail_count D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\9bcb54f049c5739ade10b2d5af6c38dd.php 第 102 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034179s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.034179s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000976s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001953s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001954s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001954s ]
+
+[ 2018-09-09T15:09:36+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=order&a=indexpaipai&ts=0.4556995630497711
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003906s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004883s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0078s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0020s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.020507s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.021484s ]
+SQL: SELECT oi.order_id FROM `paipai`.`dsc_order_info` as oi left join `paipai`.`dsc_order_goods` as og on oi.order_id = og.order_id WHERE oi.user_id = '32523' and oi.is_delete = '0' and oi.is_zc_order=0 and oi.pay_status = 10 and (select count(*) from `paipai`.`dsc_order_info` as oi2 where oi2.main_order_id = oi.order_id) = 0  group by oi.order_id ORDER BY oi.add_time DESC [ RunTime:0.0020s ]
+SQL: SELECT og.ru_id, oi.main_order_id,og.sellers_fee,og.ppj_no, oi.consignee,oi.pay_name, oi.order_id, oi.order_sn,oi.pay_time,oi.order_status, oi.shipping_status, oi.pay_status, oi.add_time, oi.shipping_time, oi.auto_delivery_time, oi.sign_time,oi.team_id,oi.extension_code,  (SELECT count(*) FROM `paipai`.`dsc_comment` AS c WHERE c.comment_type = 0 AND c.id_value = og.goods_id AND c.order_id = oi.order_id AND c.parent_id = 0 AND c.user_id = '32523') AS sign1, (SELECT count(*) FROM `paipai`.`dsc_comment_img` AS ci, `paipai`.`dsc_comment` AS c WHERE c.comment_type = 0 AND c.id_value = og.goods_id AND c.order_id = oi.order_id AND c.parent_id = 0 AND c.user_id = '32523' AND ci.comment_id = c.comment_id )  AS sign2, (oi.goods_amount + oi.shipping_fee + oi.insure_fee + oi.pay_fee + oi.pack_fee + oi.card_fee + oi.tax - oi.discount - oi.coupons) AS total_fee, og.goods_id, oi.invoice_no, oi.shipping_name, oi.tel, oi.email, oi.address, oi.province, oi.city, oi.district  FROM `paipai`.`dsc_order_info` as oi left join `paipai`.`dsc_order_goods` as og on oi.order_id = og.order_id WHERE oi.user_id = '32523' and oi.is_delete = '0' and oi.is_zc_order=0  and oi.pay_status = 10 and (select count(*) from `paipai`.`dsc_order_info` as oi2 where oi2.main_order_id = oi.order_id) = 0  group by oi.order_id ORDER BY oi.add_time DESC LIMIT 0, 10 [ RunTime:0.0146s ]
+SQL: select order_status,shipping_status,pay_status,shipping_time,auto_delivery_time from `paipai`.`dsc_order_info` where order_id = '539' and user_id = '32523' LIMIT 1 [ RunTime:0.0020s ]
+NOTIC: [8] Use of undefined constant order_sn - assumed 'order_sn' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 283 行.
+NOTIC: [8] Use of undefined constant order_status - assumed 'order_status' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 323 行.
+NOTIC: [8] Use of undefined constant order_status - assumed 'order_status' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 323 行.
+NOTIC: [8] Use of undefined constant order_status - assumed 'order_status' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 378 行.
+NOTIC: [8] Use of undefined constant pay_status - assumed 'pay_status' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 378 行.
+NOTIC: [8] Undefined offset: 10 D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 378 行.
+SQL: SELECT store_id  FROM `paipai`.`dsc_store_order` WHERE order_id = '539' [ RunTime:0.0020s ]
+SQL: SELECT g.goods_id, g.goods_name, g.goods_thumb, og.goods_number, og.goods_price, og.goods_price, og.extension_code, og.goods_name AS extension_name, oi.order_sn, ga.act_id FROM `paipai`.`dsc_order_goods` as og  LEFT JOIN `paipai`.`dsc_order_info` AS oi ON og.order_id = oi.order_id left join `paipai`.`dsc_goods` as g on og.goods_id = g.goods_id left join `paipai`.`dsc_goods_activity` as ga on og.goods_id = ga.act_id AND ga.review_status = 3 WHERE og.order_id = '539' group by g.goods_id order by g.goods_id [ RunTime:0.0010s ]
+SQL: select order_id from `paipai`.`dsc_order_info` where main_order_id='539' [ RunTime:0.0010s ]
+SQL: select order_id from `paipai`.`dsc_order_info` where main_order_id = '0' and main_order_id > 0 [ RunTime:0.0010s ]
+SQL: select kf_type, kf_ww, kf_qq  from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+SQL: select invoice_no, shipping_name, update_time from `paipai`.`dsc_delivery_order` where order_id = '539' [ RunTime:0.0029s ]
+SQL: select region_name from `paipai`.`dsc_region` where region_id = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_name from `paipai`.`dsc_region` where region_id = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_name from `paipai`.`dsc_region` where region_id = '3232' LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: update_time D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 440 行.
+NOTIC: [8] Undefined index: order_del D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+NOTIC: [8] Undefined index: status D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+NOTIC: [8] Undefined variable: status_number D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0010s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: self_run D:\WWW\newpaipai\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+NOTIC: [8] Undefined index: address_detail D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+NOTIC: [8] Undefined index: handler_return D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+SQL: select order_status,shipping_status,pay_status,shipping_time,auto_delivery_time from `paipai`.`dsc_order_info` where order_id = '535' and user_id = '32523' LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [8] Use of undefined constant order_sn - assumed 'order_sn' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 283 行.
+NOTIC: [8] Use of undefined constant order_status - assumed 'order_status' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 323 行.
+NOTIC: [8] Use of undefined constant order_status - assumed 'order_status' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 323 行.
+NOTIC: [8] Use of undefined constant order_status - assumed 'order_status' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 378 行.
+NOTIC: [8] Use of undefined constant pay_status - assumed 'pay_status' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 378 行.
+NOTIC: [8] Undefined offset: 10 D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 378 行.
+SQL: SELECT store_id  FROM `paipai`.`dsc_store_order` WHERE order_id = '535' [ RunTime:0.0010s ]
+SQL: SELECT g.goods_id, g.goods_name, g.goods_thumb, og.goods_number, og.goods_price, og.goods_price, og.extension_code, og.goods_name AS extension_name, oi.order_sn, ga.act_id FROM `paipai`.`dsc_order_goods` as og  LEFT JOIN `paipai`.`dsc_order_info` AS oi ON og.order_id = oi.order_id left join `paipai`.`dsc_goods` as g on og.goods_id = g.goods_id left join `paipai`.`dsc_goods_activity` as ga on og.goods_id = ga.act_id AND ga.review_status = 3 WHERE og.order_id = '535' group by g.goods_id order by g.goods_id [ RunTime:0.0010s ]
+SQL: select order_id from `paipai`.`dsc_order_info` where main_order_id='535' [ RunTime:0.0010s ]
+SQL: select order_id from `paipai`.`dsc_order_info` where main_order_id = '0' and main_order_id > 0 [ RunTime:0.0000s ]
+SQL: select kf_type, kf_ww, kf_qq  from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+SQL: select invoice_no, shipping_name, update_time from `paipai`.`dsc_delivery_order` where order_id = '535' [ RunTime:0.0010s ]
+SQL: select region_name from `paipai`.`dsc_region` where region_id = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_name from `paipai`.`dsc_region` where region_id = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_name from `paipai`.`dsc_region` where region_id = '3232' LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: update_time D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 440 行.
+NOTIC: [8] Undefined index: order_del D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+NOTIC: [8] Undefined index: status D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+NOTIC: [8] Undefined variable: status_number D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0010s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: self_run D:\WWW\newpaipai\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+NOTIC: [8] Undefined index: address_detail D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+NOTIC: [8] Undefined index: handler_return D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+SQL: select order_status,shipping_status,pay_status,shipping_time,auto_delivery_time from `paipai`.`dsc_order_info` where order_id = '534' and user_id = '32523' LIMIT 1 [ RunTime:0.0020s ]
+NOTIC: [8] Use of undefined constant order_sn - assumed 'order_sn' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 283 行.
+NOTIC: [8] Use of undefined constant order_status - assumed 'order_status' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 323 行.
+NOTIC: [8] Use of undefined constant order_status - assumed 'order_status' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 323 行.
+NOTIC: [8] Use of undefined constant order_status - assumed 'order_status' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 378 行.
+NOTIC: [8] Use of undefined constant pay_status - assumed 'pay_status' D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 378 行.
+NOTIC: [8] Undefined offset: 10 D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 378 行.
+SQL: SELECT store_id  FROM `paipai`.`dsc_store_order` WHERE order_id = '534' [ RunTime:0.0010s ]
+SQL: SELECT g.goods_id, g.goods_name, g.goods_thumb, og.goods_number, og.goods_price, og.goods_price, og.extension_code, og.goods_name AS extension_name, oi.order_sn, ga.act_id FROM `paipai`.`dsc_order_goods` as og  LEFT JOIN `paipai`.`dsc_order_info` AS oi ON og.order_id = oi.order_id left join `paipai`.`dsc_goods` as g on og.goods_id = g.goods_id left join `paipai`.`dsc_goods_activity` as ga on og.goods_id = ga.act_id AND ga.review_status = 3 WHERE og.order_id = '534' group by g.goods_id order by g.goods_id [ RunTime:0.0010s ]
+SQL: select order_id from `paipai`.`dsc_order_info` where main_order_id='534' [ RunTime:0.0010s ]
+SQL: select order_id from `paipai`.`dsc_order_info` where main_order_id = '0' and main_order_id > 0 [ RunTime:0.0010s ]
+SQL: select kf_type, kf_ww, kf_qq  from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+SQL: select invoice_no, shipping_name, update_time from `paipai`.`dsc_delivery_order` where order_id = '534' [ RunTime:0.0010s ]
+SQL: select region_name from `paipai`.`dsc_region` where region_id = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_name from `paipai`.`dsc_region` where region_id = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_name from `paipai`.`dsc_region` where region_id = '3232' LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: update_time D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 440 行.
+NOTIC: [8] Undefined index: order_del D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+NOTIC: [8] Undefined index: status D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+NOTIC: [8] Undefined variable: status_number D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0010s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: self_run D:\WWW\newpaipai\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+NOTIC: [8] Undefined index: address_detail D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+NOTIC: [8] Undefined index: handler_return D:\WWW\newpaipai\mobile\app\Helpers\transaction_helper.php 第 442 行.
+
+[ 2018-09-09T15:09:42+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=userbuy&a=userbuy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001953s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002930s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.019531s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.019531s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user`WHERE ppj_id=123 AND ppj_no=2 AND user_id=32523 AND is_status=2 [ RunTime:0.0000s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Library\Think\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.002930s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.002930s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000977s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.000976s ]
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\WWW\newpaipai\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000976s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.002930s ]
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: description D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\e7a134b7d12eb7f9c58385450320b34e.php 第 9 行.
+NOTIC: [8] Undefined variable: keywords D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\e7a134b7d12eb7f9c58385450320b34e.php 第 10 行.
+NOTIC: [8] Undefined variable: page_title D:\WWW\newpaipai\mobile\storage\framework\92e1af\Cache\User\e7a134b7d12eb7f9c58385450320b34e.php 第 11 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025391s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025391s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.002930s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003906s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000976s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001953s ]
+
+[ 2018-09-09T15:09:46+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=userbuy&a=buy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001953s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002930s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.016602s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.017578s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id=123 AND pl.ppj_no=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND user_id !=32523 AND is_status=2  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE ppj_id=123 AND ppj_no=2 AND user_id=32523 AND is_status=2 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND ls_staus=1 [ RunTime:0.0010s ]
+SQL:  SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE seller_min_fee=9.00 AND createtime=1536201234  [ RunTime:0.0010s ]
+SQL: DESC `paipai`.`dsc_paipai_seller_ok` [ RunTime:0.0068s ]
+SQL: INSERT INTO `paipai`.`dsc_paipai_seller_ok` (user_id, goods_id, ppj_id, ppj_no, sellers_fee, goods_nowprice, createtime, getmoney) VALUES ('32523', '1023', '123', '2', '11.00', 'underfine', '1536476986', '2') [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000976s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000976s ]
+
+[ 2018-09-09T15:09:48+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=userbuy&a=buy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001953s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.019532s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.019532s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id=123 AND pl.ppj_no=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND user_id !=32523 AND is_status=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE ppj_id=123 AND ppj_no=2 AND user_id=32523 AND is_status=2 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND ls_staus=1 [ RunTime:0.0010s ]
+SQL:  SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE seller_min_fee=9.00 AND createtime=1536201234  [ RunTime:0.0010s ]
+SQL: DESC `paipai`.`dsc_paipai_seller_ok` [ RunTime:0.0068s ]
+SQL: INSERT INTO `paipai`.`dsc_paipai_seller_ok` (user_id, goods_id, ppj_id, ppj_no, sellers_fee, goods_nowprice, createtime, getmoney) VALUES ('32523', '1023', '123', '2', '11.00', 'underfine', '1536476988', '2') [ RunTime:0.0020s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000976s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000976s ]
+
+[ 2018-09-09T15:09:50+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=userbuy&a=buy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001954s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002930s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0029s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0029s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.020508s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.020508s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0029s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id=123 AND pl.ppj_no=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND user_id !=32523 AND is_status=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE ppj_id=123 AND ppj_no=2 AND user_id=32523 AND is_status=2 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND ls_staus=1 [ RunTime:0.0010s ]
+SQL:  SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE seller_min_fee=9.00 AND createtime=1536201234  [ RunTime:0.0020s ]
+SQL: DESC `paipai`.`dsc_paipai_seller_ok` [ RunTime:0.0068s ]
+SQL: INSERT INTO `paipai`.`dsc_paipai_seller_ok` (user_id, goods_id, ppj_id, ppj_no, sellers_fee, goods_nowprice, createtime, getmoney) VALUES ('32523', '1023', '123', '2', '11.00', 'underfine', '1536476990', '2') [ RunTime:0.0020s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001954s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001954s ]
+
+[ 2018-09-09T15:09:52+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=userbuy&a=buy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002930s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0029s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0078s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0020s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.023438s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.023438s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id=123 AND pl.ppj_no=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND user_id !=32523 AND is_status=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE ppj_id=123 AND ppj_no=2 AND user_id=32523 AND is_status=2 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND ls_staus=1 [ RunTime:0.0020s ]
+SQL:  SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE seller_min_fee=9.00 AND createtime=1536201234  [ RunTime:0.0010s ]
+SQL: DESC `paipai`.`dsc_paipai_seller_ok` [ RunTime:0.0088s ]
+SQL: INSERT INTO `paipai`.`dsc_paipai_seller_ok` (user_id, goods_id, ppj_id, ppj_no, sellers_fee, goods_nowprice, createtime, getmoney) VALUES ('32523', '1023', '123', '2', '11.00', 'underfine', '1536476992', '2') [ RunTime:0.0020s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001954s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001954s ]
+
+[ 2018-09-09T15:09:54+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=userbuy&a=buy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001953s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001953s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0049s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.016602s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.017578s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id=123 AND pl.ppj_no=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND user_id !=32523 AND is_status=2  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE ppj_id=123 AND ppj_no=2 AND user_id=32523 AND is_status=2 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND ls_staus=1 [ RunTime:0.0000s ]
+SQL:  SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE seller_min_fee=9.00 AND createtime=1536201234  [ RunTime:0.0010s ]
+SQL: DESC `paipai`.`dsc_paipai_seller_ok` [ RunTime:0.0059s ]
+SQL: INSERT INTO `paipai`.`dsc_paipai_seller_ok` (user_id, goods_id, ppj_id, ppj_no, sellers_fee, goods_nowprice, createtime, getmoney) VALUES ('32523', '1023', '123', '2', '11.00', 'underfine', '1536476994', '2') [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001953s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001953s ]
+
+[ 2018-09-09T15:09:56+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=userbuy&a=buy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001953s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0029s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0078s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0020s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.022461s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.022461s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0029s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id=123 AND pl.ppj_no=2  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND user_id !=32523 AND is_status=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE ppj_id=123 AND ppj_no=2 AND user_id=32523 AND is_status=2 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND ls_staus=1 [ RunTime:0.0010s ]
+SQL:  SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE seller_min_fee=9.00 AND createtime=1536201234  [ RunTime:0.0020s ]
+SQL: DESC `paipai`.`dsc_paipai_seller_ok` [ RunTime:0.0078s ]
+SQL: INSERT INTO `paipai`.`dsc_paipai_seller_ok` (user_id, goods_id, ppj_id, ppj_no, sellers_fee, goods_nowprice, createtime, getmoney) VALUES ('32523', '1023', '123', '2', '11.00', 'underfine', '1536476996', '2') [ RunTime:0.0020s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001953s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001953s ]
+
+[ 2018-09-09T15:09:58+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=userbuy&a=buy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001953s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0029s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.020508s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.020508s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id=123 AND pl.ppj_no=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND user_id !=32523 AND is_status=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE ppj_id=123 AND ppj_no=2 AND user_id=32523 AND is_status=2 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND ls_staus=1 [ RunTime:0.0020s ]
+SQL:  SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE seller_min_fee=9.00 AND createtime=1536201234  [ RunTime:0.0010s ]
+SQL: DESC `paipai`.`dsc_paipai_seller_ok` [ RunTime:0.0078s ]
+SQL: INSERT INTO `paipai`.`dsc_paipai_seller_ok` (user_id, goods_id, ppj_id, ppj_no, sellers_fee, goods_nowprice, createtime, getmoney) VALUES ('32523', '1023', '123', '2', '11.00', 'underfine', '1536476998', '2') [ RunTime:0.0020s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001953s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001953s ]
+
+[ 2018-09-09T15:10:00+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=userbuy&a=buy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001953s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0049s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.016602s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.016602s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id=123 AND pl.ppj_no=2  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND user_id !=32523 AND is_status=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE ppj_id=123 AND ppj_no=2 AND user_id=32523 AND is_status=2 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND ls_staus=1 [ RunTime:0.0000s ]
+SQL:  SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE seller_min_fee=9.00 AND createtime=1536201234  [ RunTime:0.0010s ]
+SQL: DESC `paipai`.`dsc_paipai_seller_ok` [ RunTime:0.0078s ]
+SQL: INSERT INTO `paipai`.`dsc_paipai_seller_ok` (user_id, goods_id, ppj_id, ppj_no, sellers_fee, goods_nowprice, createtime, getmoney) VALUES ('32523', '1023', '123', '2', '11.00', 'underfine', '1536477000', '2') [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001953s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001953s ]
+
+[ 2018-09-09T15:10:02+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=userbuy&a=buy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.001953s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002930s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0020s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.019531s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.019531s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id=123 AND pl.ppj_no=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND user_id !=32523 AND is_status=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE ppj_id=123 AND ppj_no=2 AND user_id=32523 AND is_status=2 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND ls_staus=1 [ RunTime:0.0010s ]
+SQL:  SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE seller_min_fee=9.00 AND createtime=1536201234  [ RunTime:0.0010s ]
+SQL: DESC `paipai`.`dsc_paipai_seller_ok` [ RunTime:0.0059s ]
+SQL: INSERT INTO `paipai`.`dsc_paipai_seller_ok` (user_id, goods_id, ppj_id, ppj_no, sellers_fee, goods_nowprice, createtime, getmoney) VALUES ('32523', '1023', '123', '2', '11.00', 'underfine', '1536477002', '2') [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000976s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001953s ]
+
+[ 2018-09-09T15:10:04+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=userbuy&a=buy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000976s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002930s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.019531s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.019531s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id=123 AND pl.ppj_no=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND user_id !=32523 AND is_status=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE ppj_id=123 AND ppj_no=2 AND user_id=32523 AND is_status=2 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND ls_staus=1 [ RunTime:0.0010s ]
+SQL:  SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE seller_min_fee=9.00 AND createtime=1536201234  [ RunTime:0.0010s ]
+SQL: DESC `paipai`.`dsc_paipai_seller_ok` [ RunTime:0.0078s ]
+SQL: INSERT INTO `paipai`.`dsc_paipai_seller_ok` (user_id, goods_id, ppj_id, ppj_no, sellers_fee, goods_nowprice, createtime, getmoney) VALUES ('32523', '1023', '123', '2', '11.00', 'underfine', '1536477004', '2') [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001953s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001953s ]
+
+[ 2018-09-09T15:10:06+08:00 ] ::1 /newpaipai/mobile/index.php?m=user&c=userbuy&a=buy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\newpaipai\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001953s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\newpaipai\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.017579s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.017579s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id=123 AND pl.ppj_no=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND user_id !=32523 AND is_status=2  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_bid_user` WHERE ppj_id=123 AND ppj_no=2 AND user_id=32523 AND is_status=2 [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE 1  AND ppj_id=123 AND ppj_no=2 AND ls_staus=1 [ RunTime:0.0000s ]
+SQL:  SELECT * FROM `paipai`.`dsc_paipai_goods_sellers` WHERE seller_min_fee=9.00 AND createtime=1536201234  [ RunTime:0.0010s ]
+SQL: DESC `paipai`.`dsc_paipai_seller_ok` [ RunTime:0.0068s ]
+SQL: INSERT INTO `paipai`.`dsc_paipai_seller_ok` (user_id, goods_id, ppj_id, ppj_no, sellers_fee, goods_nowprice, createtime, getmoney) VALUES ('32523', '1023', '123', '2', '11.00', 'underfine', '1536477006', '2') [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001953s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001953s ]
+

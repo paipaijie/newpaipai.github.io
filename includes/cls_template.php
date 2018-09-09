@@ -193,8 +193,8 @@ class cls_template
 				if ($GLOBALS['_CFG']['open_memcached'] == 1) {
 					$GLOBALS['cache']->set('compiled_' . $name, $source);
 				}
-				else if (file_put_contents($name, $source, LOCK_EX) === false) {
-					trigger_error('can\'t write:' . $name);
+				else if (@file_put_contents($name, $source, LOCK_EX) === false) {
+					@trigger_error('can\'t write:' . $name);
 				}
 			}
 

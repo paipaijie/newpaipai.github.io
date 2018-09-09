@@ -1,0 +1,199 @@
+[ 2018-09-06T13:03:31+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=userbuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T13:06:16+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=userbuy&status=10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T13:13:14+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=userbuy&status=10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T13:13:19+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=userbuy&status=10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T13:13:46+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=userbuy&status=10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T13:15:04+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=userbuy&status=10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T13:15:09+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=userbuy&status=10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T13:25:43+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=userbuy&status=10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T13:31:46+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T13:32:50+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T13:40:07+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T13:40:10+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T14:30:29+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T14:30:43+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T14:30:48+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} AND ppj_no={$ppj_no}  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}  AND ls_staus=1
+
+[ 2018-09-06T14:33:37+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1054:Unknown column 'ppj_id' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id=123 AND ppj_no=2  AND ls_staus=1
+ERR: 1054:Unknown column 'ppj_id' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id=123 AND ppj_no=2  AND ls_staus=1
+
+[ 2018-09-06T14:34:13+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1054:Unknown column 'ppj_id' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id=123 AND ppj_no=2  AND ls_staus=1
+ERR: 1054:Unknown column 'ppj_id' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id=123 AND ppj_no=2  AND ls_staus=1
+
+[ 2018-09-06T14:34:35+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1054:Unknown column 'ppj_id' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id=123 AND ppj_no=2  AND ls_staus=1
+ERR: 1054:Unknown column 'ppj_id' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id=123 AND ppj_no=2  AND ls_staus=1
+
+[ 2018-09-06T14:34:47+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_id=123 AND ppj_no=2  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller`  AND ppj_id=123 AND ppj_no=2  AND ls_staus=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_id=123 AND ppj_no=2  AND ls_staus=1' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller`  AND ppj_id=123 AND ppj_no=2  AND ls_staus=1
+
+[ 2018-09-06T14:35:24+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1054:Unknown column 'ppj_id' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id=123 AND ppj_no=2  AND ls_staus=1
+ERR: 1054:Unknown column 'ppj_id' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_seller` WHERE 1  AND ppj_id=123 AND ppj_no=2  AND ls_staus=1
+
+[ 2018-09-06T14:46:04+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+
+[ 2018-09-06T14:46:33+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+
+[ 2018-09-06T14:47:02+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+
+[ 2018-09-06T14:47:20+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+
+[ 2018-09-06T14:47:25+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+
+[ 2018-09-06T14:47:33+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+
+[ 2018-09-06T14:47:44+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : SELECT * FROM 
+
+[ 2018-09-06T15:36:00+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1146:Table 'paipai.dsc_dsc_paipai_goods_bid_user' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2  AND user_id='32523' 
+ERR: 1146:Table 'paipai.dsc_dsc_paipai_goods_bid_user' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_dsc_paipai_goods_bid_user` WHERE 1  AND ppj_id=123 AND ppj_no=2  AND user_id='32523' 
+
+[ 2018-09-06T16:10:25+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1065:Query was empty
+ERR: 1065:Query was empty
+
+[ 2018-09-06T16:17:19+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1065:Query was empty
+ERR: 1065:Query was empty
+
+[ 2018-09-06T16:17:32+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1065:Query was empty
+ERR: 1065:Query was empty
+
+[ 2018-09-06T16:17:54+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1065:Query was empty
+ERR: 1065:Query was empty
+
+[ 2018-09-06T16:27:30+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: Think\Model:fetchRow方法不存在！
+
+[ 2018-09-06T16:45:54+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1065:Query was empty
+ERR: 1065:Query was empty
+
+[ 2018-09-06T16:46:08+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1065:Query was empty
+ERR: 1065:Query was empty
+
+[ 2018-09-06T16:53:02+08:00 ] 127.0.0.1 /mobile/index.php?m=user&a=history
+ERR: 1065:Query was empty
+ERR: 1065:Query was empty
+

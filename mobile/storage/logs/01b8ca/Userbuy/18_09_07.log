@@ -1,0 +1,9 @@
+[ 2018-09-07T16:20:00+08:00 ] 127.0.0.1 /mobile/index.php?m=userbuy&c=userbuy&a=userbuy
+ERR: 模板不存在:d:/www/paipaistreet/web/mobile/resources/views/userbuy/userbuy.userbuy.html
+
+[ 2018-09-07T16:21:12+08:00 ] 127.0.0.1 /mobile/index.php?m=userbuy&c=userbuy&a=userbuy
+ERR: 模板不存在:d:/www/paipaistreet/web/mobile/resources/views/userbuy/userbuy.userbuy.html
+
+[ 2018-09-07T16:21:17+08:00 ] 127.0.0.1 /mobile/index.php?m=userbuy&c=userbuy&a=userbuy
+ERR: 模板不存在:d:/www/paipaistreet/web/mobile/resources/views/userbuy/userbuy.userbuy.html
+

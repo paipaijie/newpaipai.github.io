@@ -1,0 +1,25 @@
+[ 2018-09-07T12:39:51+08:00 ] 127.0.0.1 /mobile/index.php
+ERR: SQLSTATE[HY000] [2002] сисзд©╠Й╪фкЦ╩З╩Щ╪╚╬э╬Ьё╛нч╥╗а╛╫с║ё
+
+
+[ 2018-09-07T12:39:58+08:00 ] 127.0.0.1 /mobile/index.php
+ERR: SQLSTATE[HY000] [2002] сисзд©╠Й╪фкЦ╩З╩Щ╪╚╬э╬Ьё╛нч╥╗а╛╫с║ё
+
+
+[ 2018-09-07T12:44:30+08:00 ] 127.0.0.1 /mobile/index.php
+ERR: SQLSTATE[HY000] [2002] сисзд©╠Й╪фкЦ╩З╩Щ╪╚╬э╬Ьё╛нч╥╗а╛╫с║ё
+
+
+[ 2018-09-07T12:44:36+08:00 ] 127.0.0.1 /mobile/index.php
+ERR: SQLSTATE[HY000] [2002] сисзд©╠Й╪фкЦ╩З╩Щ╪╚╬э╬Ьё╛нч╥╗а╛╫с║ё
+
+
+[ 2018-09-07T16:40:52+08:00 ] 127.0.0.1 /mobile/index.php?m=index&c=userbuy&a=userbuy
+ERR: Ф≈═ФЁ∙Е┼═Х╫╫Ф▌╖Е┬╤Е≥╗:Userbuy
+
+[ 2018-09-07T16:41:16+08:00 ] 127.0.0.1 /mobile/index.php?m=index&c=userbuy&a=userbuy
+ERR: Ф≈═ФЁ∙Е┼═Х╫╫Ф▌╖Е┬╤Е≥╗:Userbuy
+
+[ 2018-09-07T16:41:22+08:00 ] 127.0.0.1 /mobile/index.php?m=index&c=userbuy&a=userbuy
+ERR: Ф≈═ФЁ∙Е┼═Х╫╫Ф▌╖Е┬╤Е≥╗:Userbuy
+

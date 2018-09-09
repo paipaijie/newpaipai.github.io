@@ -1,0 +1,127 @@
+[ 2018-09-09T11:56:59+08:00 ] 127.0.0.1 /mobile/index.php?m=onlinepay&order_sn=2018090911583703106
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\PaipaiStreet\web\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001953s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.019531s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.019531s ]
+SQL: SHOW COLUMNS FROM `dsc_order_info` [ RunTime:0.0098s ]
+SQL: SELECT `order_id` FROM `dsc_order_info` WHERE `order_sn` = '2018090911583703106' AND `user_id` = 32523 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT pay_id, pay_code, pay_name, pay_fee,is_online,pay_desc, pay_config, is_cod FROM `paipai`.`dsc_payment` WHERE enabled = 1 AND is_cod = 0 ORDER BY pay_order ASC [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_payment` [ RunTime:0.0059s ]
+SQL: SELECT `pay_config` FROM `dsc_payment` WHERE `pay_code` = 'wxpay' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM dsc_order_info WHERE order_id='563' LIMIT 1 [ RunTime:0.0020s ]
+SQL:  SELECT log_id FROM `paipai`.`dsc_pay_log` WHERE order_id = '563' LIMIT 1  [ RunTime:0.0010s ]
+SQL: SELECT pay_id FROM dsc_payment WHERE pay_code='onlinepay' [ RunTime:0.0010s ]
+SQL: SELECT enabled FROM dsc_payment WHERE pay_code=9 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_payment` WHERE pay_id = '9' AND enabled = 1 [ RunTime:0.0010s ]
+SQL: UPDATE dsc_order_info set pay_id='9',pay_name='支付宝' WHERE order_id = '563' [ RunTime:0.0000s ]
+SQL: SELECT order_id FROM `paipai`.`dsc_order_info` WHERE main_order_id = '563' [ RunTime:0.0000s ]
+
+[ 2018-09-09T11:59:09+08:00 ] 127.0.0.1 /mobile/index.php?m=onlinepay&order_sn=2018090911684535479
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\PaipaiStreet\web\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001953s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0029s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0020s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0088s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0068s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0020s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.022461s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.022461s ]
+SQL: SHOW COLUMNS FROM `dsc_order_info` [ RunTime:0.0088s ]
+SQL: SELECT `order_id` FROM `dsc_order_info` WHERE `order_sn` = '2018090911684535479' AND `user_id` = 32523 LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT pay_id, pay_code, pay_name, pay_fee,is_online,pay_desc, pay_config, is_cod FROM `paipai`.`dsc_payment` WHERE enabled = 1 AND is_cod = 0 ORDER BY pay_order ASC [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `dsc_payment` [ RunTime:0.0068s ]
+SQL: SELECT `pay_config` FROM `dsc_payment` WHERE `pay_code` = 'wxpay' LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT * FROM dsc_order_info WHERE order_id='564' LIMIT 1 [ RunTime:0.0020s ]
+SQL:  SELECT log_id FROM `paipai`.`dsc_pay_log` WHERE order_id = '564' LIMIT 1  [ RunTime:0.0010s ]
+SQL: SELECT pay_id FROM dsc_payment WHERE pay_code='onlinepay' [ RunTime:0.0010s ]
+SQL: SELECT enabled FROM dsc_payment WHERE pay_code=9 [ RunTime:0.0020s ]
+SQL: SELECT * FROM `paipai`.`dsc_payment` WHERE pay_id = '9' AND enabled = 1 [ RunTime:0.0010s ]
+SQL: UPDATE dsc_order_info set pay_id='9',pay_name='支付宝' WHERE order_id = '564' [ RunTime:0.0020s ]
+SQL: SELECT order_id FROM `paipai`.`dsc_order_info` WHERE main_order_id = '564' [ RunTime:0.0010s ]
+
+[ 2018-09-09T12:04:39+08:00 ] 127.0.0.1 /mobile/index.php?m=onlinepay&order_sn=2018090912051541898
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\WWW\PaipaiStreet\web\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000977s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\WWW\PaipaiStreet\web\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0078s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0059s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.021485s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.021485s ]
+SQL: SHOW COLUMNS FROM `dsc_order_info` [ RunTime:0.0098s ]
+SQL: SELECT `order_id` FROM `dsc_order_info` WHERE `order_sn` = '2018090912051541898' AND `user_id` = 32523 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT pay_id, pay_code, pay_name, pay_fee,is_online,pay_desc, pay_config, is_cod FROM `paipai`.`dsc_payment` WHERE enabled = 1 AND is_cod = 0 ORDER BY pay_order ASC [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_payment` [ RunTime:0.0059s ]
+SQL: SELECT `pay_config` FROM `dsc_payment` WHERE `pay_code` = 'wxpay' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM dsc_order_info WHERE order_id='565' LIMIT 1 [ RunTime:0.0010s ]
+SQL:  SELECT log_id FROM `paipai`.`dsc_pay_log` WHERE order_id = '565' LIMIT 1  [ RunTime:0.0010s ]
+SQL: SELECT pay_id FROM dsc_payment WHERE pay_code='onlinepay' [ RunTime:0.0010s ]
+SQL: SELECT enabled FROM dsc_payment WHERE pay_code=9 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_payment` WHERE pay_id = '9' AND enabled = 1 [ RunTime:0.0010s ]
+SQL: UPDATE dsc_order_info set pay_id='9',pay_name='支付宝' WHERE order_id = '565' [ RunTime:0.0010s ]
+SQL: SELECT order_id FROM `paipai`.`dsc_order_info` WHERE main_order_id = '565' [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_payment` WHERE pay_code = 'alipay' AND enabled = '1' [ RunTime:0.0010s ]
+

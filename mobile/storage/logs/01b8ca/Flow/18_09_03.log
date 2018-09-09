@@ -1,0 +1,66 @@
+[ 2018-09-03T03:39:51+00:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 非法数据对象！
+
+[ 2018-09-03T03:40:05+00:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 非法数据对象！
+
+[ 2018-09-03T03:41:13+00:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 1054:Unknown column 'create_date' in 'field list'
+ [ SQL语句 ] : INSERT INTO `dsc_paipai_seller_pay_margin` (`user_id`,`ppj_id`,`ppj_no`,`order_sn`,`pay_fee`,`create_date`) VALUES ('32523','118','2','2018090303415260023','6.00','1535946073')
+ERR: 1054:Unknown column 'create_date' in 'field list'
+ [ SQL语句 ] : INSERT INTO `dsc_paipai_seller_pay_margin` (`user_id`,`ppj_id`,`ppj_no`,`order_sn`,`pay_fee`,`create_date`) VALUES ('32523','118','2','2018090303415260023','6.00','1535946073')
+
+[ 2018-09-03T03:42:29+00:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 1054:Unknown column 'create_date' in 'field list'
+ [ SQL语句 ] : INSERT INTO `dsc_paipai_seller_pay_margin` (`user_id`,`ppj_id`,`ppj_no`,`order_sn`,`pay_fee`,`create_date`) VALUES ('32523','118','2','2018090303515893950','6.00','1535946149')
+ERR: 1054:Unknown column 'create_date' in 'field list'
+ [ SQL语句 ] : INSERT INTO `dsc_paipai_seller_pay_margin` (`user_id`,`ppj_id`,`ppj_no`,`order_sn`,`pay_fee`,`create_date`) VALUES ('32523','118','2','2018090303515893950','6.00','1535946149')
+
+[ 2018-09-03T03:47:57+00:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 1054:Unknown column 'create_date' in 'field list'
+ [ SQL语句 ] : INSERT INTO `dsc_paipai_seller_pay_margin` (`user_id`,`ppj_id`,`ppj_no`,`order_sn`,`pay_fee`,`create_date`) VALUES ('32523','118','2','2018090303502246990','6.00','1535946477')
+ERR: 1054:Unknown column 'create_date' in 'field list'
+ [ SQL语句 ] : INSERT INTO `dsc_paipai_seller_pay_margin` (`user_id`,`ppj_id`,`ppj_no`,`order_sn`,`pay_fee`,`create_date`) VALUES ('32523','118','2','2018090303502246990','6.00','1535946477')
+
+[ 2018-09-03T03:50:33+00:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 1146:Table 'paipai.dsc_dsc_paipai_seller_pay_margin' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `dsc_dsc_paipai_seller_pay_margin`
+ERR: 1146:Table 'paipai.dsc_dsc_paipai_seller_pay_margin' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `dsc_dsc_paipai_seller_pay_margin`
+
+[ 2018-09-03T03:58:21+00:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 1146:Table 'paipai.paipai_seller_pay_margin' doesn't exist
+ [ SQL语句 ] : DESC paipai_seller_pay_margin
+ERR: 1146:Table 'paipai.paipai_seller_pay_margin' doesn't exist
+ [ SQL语句 ] : DESC paipai_seller_pay_margin
+
+[ 2018-09-03T03:59:43+00:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 1146:Table 'paipai.paipai_seller_pay_margin' doesn't exist
+ [ SQL语句 ] : DESC paipai_seller_pay_margin
+ERR: 1146:Table 'paipai.paipai_seller_pay_margin' doesn't exist
+ [ SQL语句 ] : DESC paipai_seller_pay_margin
+
+[ 2018-09-03T04:07:09+00:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FRPM dsc_paipai_seller_pay_margin WHERE ppj_id=118 AND  ppj_no2' at line 1
+ [ SQL语句 ] : SELECT * FRPM dsc_paipai_seller_pay_margin WHERE ppj_id=118 AND  ppj_no2 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FRPM dsc_paipai_seller_pay_margin WHERE ppj_id=118 AND  ppj_no2' at line 1
+ [ SQL语句 ] : SELECT * FRPM dsc_paipai_seller_pay_margin WHERE ppj_id=118 AND  ppj_no2 
+
+[ 2018-09-03T04:22:25+00:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FRPM `paipai`.`dsc_paipai_seller_pay_margin` WHERE ppj_id=118 AND  ppj_no2' at line 1
+ [ SQL语句 ] : SELECT * FRPM `paipai`.`dsc_paipai_seller_pay_margin` WHERE ppj_id=118 AND  ppj_no2 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FRPM `paipai`.`dsc_paipai_seller_pay_margin` WHERE ppj_id=118 AND  ppj_no2' at line 1
+ [ SQL语句 ] : SELECT * FRPM `paipai`.`dsc_paipai_seller_pay_margin` WHERE ppj_id=118 AND  ppj_no2 
+
+[ 2018-09-03T04:22:40+00:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FRPM `paipai`.`dsc_paipai_seller_pay_margin` WHERE ppj_id=118 AND  ppj_no2' at line 1
+ [ SQL语句 ] : SELECT * FRPM `paipai`.`dsc_paipai_seller_pay_margin` WHERE ppj_id=118 AND  ppj_no2 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FRPM `paipai`.`dsc_paipai_seller_pay_margin` WHERE ppj_id=118 AND  ppj_no2' at line 1
+ [ SQL语句 ] : SELECT * FRPM `paipai`.`dsc_paipai_seller_pay_margin` WHERE ppj_id=118 AND  ppj_no2 
+
+[ 2018-09-03T04:22:52+00:00 ] 127.0.0.1 /mobile/index.php?m=flow&a=done
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FRPM `paipai`.`dsc_paipai_seller_pay_margin` WHERE ppj_id=118 AND  ppj_no2' at line 1
+ [ SQL语句 ] : SELECT * FRPM `paipai`.`dsc_paipai_seller_pay_margin` WHERE ppj_id=118 AND  ppj_no2 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FRPM `paipai`.`dsc_paipai_seller_pay_margin` WHERE ppj_id=118 AND  ppj_no2' at line 1
+ [ SQL语句 ] : SELECT * FRPM `paipai`.`dsc_paipai_seller_pay_margin` WHERE ppj_id=118 AND  ppj_no2 
+

@@ -1,0 +1,510 @@
+[ 2018-09-08T10:00:02+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:30+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:32+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:34+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:36+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:38+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:40+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:42+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:44+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:46+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:48+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:50+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:52+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:54+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:56+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:00:58+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:01:00+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T10:01:03+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T14:21:57+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy&
+ERR: 1065:Query was empty
+ERR: 1065:Query was empty
+
+[ 2018-09-08T14:28:06+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy&ppj_id=123&ppj_no=2
+ERR: 1065:Query was empty
+ERR: 1065:Query was empty
+
+[ 2018-09-08T14:32:26+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy&ppj_id=123&ppj_no=2
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE user_id=32523 AND ppj_id=123 AND ppj_no=123' at line 1
+ [ SQL语句 ] : SELECT * FROM WHERE user_id=32523 AND ppj_id=123 AND ppj_no=123
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE user_id=32523 AND ppj_id=123 AND ppj_no=123' at line 1
+ [ SQL语句 ] : SELECT * FROM WHERE user_id=32523 AND ppj_id=123 AND ppj_no=123
+
+[ 2018-09-08T14:38:45+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy&ppj_id=123&ppj_no=2
+ERR: 1146:Table 'paipai.dsc_dsc_order_info' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_dsc_order_info`WHERE user_id=32523 AND ppj_id=123 AND ppj_no=2
+ERR: 1146:Table 'paipai.dsc_dsc_order_info' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_dsc_order_info`WHERE user_id=32523 AND ppj_id=123 AND ppj_no=2
+
+[ 2018-09-08T14:45:56+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy&ppj_id=123&ppj_no=2
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND order_status='10' AND extension_code ='paipaibuy'' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_order_info`WHERE user_id=32523 AND ppj_id=123 AND ppj_no=2 AND goods_amount= AND order_status='10' AND extension_code ='paipaibuy' 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND order_status='10' AND extension_code ='paipaibuy'' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_order_info`WHERE user_id=32523 AND ppj_id=123 AND ppj_no=2 AND goods_amount= AND order_status='10' AND extension_code ='paipaibuy' 
+
+[ 2018-09-08T14:50:25+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy&ppj_id=123&ppj_no=2
+ERR: 1065:Query was empty
+ERR: 1065:Query was empty
+
+[ 2018-09-08T17:25:29+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy&ppj_id=123&ppj_no=1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pay_status='10' AND extension_code ='paipai_buy'' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_order_info`WHERE user_id=32523 AND ppj_id=123 AND ppj_no=1 AND goods_amount= AND pay_status='10' AND extension_code ='paipai_buy' 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pay_status='10' AND extension_code ='paipai_buy'' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_order_info`WHERE user_id=32523 AND ppj_id=123 AND ppj_no=1 AND goods_amount= AND pay_status='10' AND extension_code ='paipai_buy' 
+
+[ 2018-09-08T19:15:56+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:15:58+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:00+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:02+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:04+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:06+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:08+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:10+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:12+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:14+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:16+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:18+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:20+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:22+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:24+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:26+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:28+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:30+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:32+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:34+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:36+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:38+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:40+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:42+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:44+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:46+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:48+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:50+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T19:16:52+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T20:46:19+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+
+[ 2018-09-08T20:47:13+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+
+[ 2018-09-08T20:47:40+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+
+[ 2018-09-08T20:48:25+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+
+[ 2018-09-08T20:48:29+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+
+[ 2018-09-08T20:48:36+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+
+[ 2018-09-08T20:50:26+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+
+[ 2018-09-08T20:52:28+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+
+[ 2018-09-08T20:52:38+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+
+[ 2018-09-08T22:16:14+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:16+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:18+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:20+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:22+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:24+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:26+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:28+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:30+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:32+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:34+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:36+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:38+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:40+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:42+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:44+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:46+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:48+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:50+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:16:52+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=buy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND pl.ppj_no=' at line 1
+ [ SQL语句 ] : SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM `paipai`.`dsc_paipai_list` AS pl LEFT JOIN `paipai`.`dsc_goods` AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id= AND pl.ppj_no= 
+
+[ 2018-09-08T22:35:03+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=paipaibuy
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+
+[ 2018-09-08T22:40:19+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=done
+ERR: 模板不存在:d:/www/paipaistreet/web/mobile/resources/views/user/userbuy.done.html
+
+[ 2018-09-08T22:40:41+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=done
+ERR: 模板不存在:d:/www/paipaistreet/web/mobile/resources/views/user/userbuy.done.html
+
+[ 2018-09-08T22:43:20+08:00 ] 127.0.0.1 /mobile/index.php?m=user&c=userbuy&a=done
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ppj_no=' at line 1
+ [ SQL语句 ] : SELECT * FROM `paipai`.`dsc_paipai_list`WHERE ppj_id= AND ppj_no=
+

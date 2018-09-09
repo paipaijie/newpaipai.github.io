@@ -1,0 +1,45 @@
+{include file="page_header"}
+<div class="con" style="margin-top:-17px">
+	<div class="affiliate-cont-box">
+		<!--分享二维码-->
+	    <header class="p-r">
+			<div class="yaoqingma" >
+				<p class="text-c">我的邀请码：{$uid}</p>
+			</div>
+		    <div><img src="{$ewm}" class="img"></div>	
+		    	
+			<div class="share-ewm-box" >				
+				<!-- <img src="{$ewm}"> -->
+				<button style="border:none;background:#FFFFFF;display:block;margin-left:35px;margin-top:4px" data-mshare="2"><p class="text-c">分享给好友</p></button>
+			</div>
+		</header>
+		
+
+		
+	</div>
+</div>
+
+<!--快捷导航-->
+{include file="float_nav"}
+{include file="float_nav_footer"}
+<script>
+
+	var mshare = new mShare({
+		title: '邀请码',
+		url: 'http://paipaistreet.com',
+		desc: '拍拍街邀请码',
+		img: 'http://placehold.it/150x150'
+	});
+	$('button').click(function () {
+		// 1 ==> 朋友圈  2 ==> 朋友  0 ==> 直接弹出原生
+		mshare.init(+$(this).data('mshare'));
+	});
+
+
+$(function () {
+	var url = "{url('affiliate')}";
+	//订单列表
+	$('.affiliate-ajax').infinite({url: url, template: 'j-product'});
+});
+</script>
+{include file="page_footer"}

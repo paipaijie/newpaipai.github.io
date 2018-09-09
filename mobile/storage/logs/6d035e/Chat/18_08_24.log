@@ -1,0 +1,104 @@
+[ 2018-08-24T05:42:27+00:00 ] 223.104.247.18 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+
+[ 2018-08-24T05:42:58+00:00 ] 223.104.247.18 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+
+[ 2018-08-24T05:42:59+00:00 ] 223.104.247.18 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+
+[ 2018-08-24T05:42:59+00:00 ] 223.104.247.18 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+
+[ 2018-08-24T05:43:16+00:00 ] 223.104.247.18 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+
+[ 2018-08-24T05:43:16+00:00 ] 223.104.247.18 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+
+[ 2018-08-24T05:43:40+00:00 ] 223.104.247.18 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+
+[ 2018-08-24T05:43:41+00:00 ] 223.104.247.18 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+
+[ 2018-08-24T05:43:42+00:00 ] 223.104.247.18 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+
+[ 2018-08-24T05:43:43+00:00 ] 223.104.247.18 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+
+[ 2018-08-24T05:43:49+00:00 ] 223.104.247.18 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+
+[ 2018-08-24T05:44:23+00:00 ] 223.104.247.18 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY a' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 3226, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 3226 AND to_user_id IN ()) OR (to_user_id = 3226 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+
+[ 2018-08-24T07:48:31+00:00 ] 124.160.218.225 /mobile/index.php?m=chat&a=singlechatlist
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 32517 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY ' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 32517, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 32517 AND to_user_id IN ()) OR (to_user_id = 32517 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) OR (to_user_id = 32517 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY ' at line 2
+ [ SQL语句 ] : SELECT id, IF(from_user_id = 32517, to_user_id, from_user_id) as service_id, message, user_type, from_user_id, to_user_id,
+ from_unixtime(add_time) as add_time, status FROM dsc_im_message WHERE ((from_user_id = 32517 AND to_user_id IN ()) OR (to_user_id = 32517 AND from_user_id IN ())) AND to_user_id <> 0 ORDER BY add_time DESC, id DESC limit 0, 10
+

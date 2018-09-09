@@ -1,0 +1,392 @@
+[ 2018-09-09T17:31:20+08:00 ] 110.75.242.161 /mobile/public/notify/alipay.php
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_stats` [ RunTime:0.0000s ]
+SQL: INSERT INTO `dsc_stats` (`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`,`access_time`) VALUES ('110.75.242.161','1','Unknow browser','Unknown','','IANA','','','/mobile/public/notify/alipay.php','1536456680') [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0156s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.000000s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `dsc_payment` [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `dsc_payment` WHERE `pay_code` = 'alipay' AND `enabled` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_payment` WHERE pay_code = 'alipay' AND enabled = '1' [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_pay_log` WHERE log_id = '473' [ RunTime:0.0000s ]
+SQL: UPDATE `paipai`.`dsc_pay_log` SET is_paid = '1' WHERE log_id = '473' [ RunTime:0.0000s ]
+SQL: SELECT main_order_id, order_id, user_id, order_sn, consignee, address, tel, mobile, shipping_id, pay_status, extension_code, extension_id, goods_amount, is_zc_order, zc_goods_id,team_id,team_parent_id,team_user_id, shipping_fee, insure_fee, pay_fee, tax, pack_fee, card_fee, surplus, money_paid, integral_money, bonus, order_amount, discount, pay_id, shipping_status FROM `paipai`.`dsc_order_info` WHERE order_id = '464' [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_payment` WHERE pay_id = '9' AND enabled = 1 [ RunTime:0.0000s ]
+ERR: 1146:Table 'paipai.dsc_dsc_paipai_seller_pay_margin' doesn't exist
+ [ SQL语句 ] : UPDATE `paipai`.`dsc_dsc_paipai_seller_pay_margin` SET ls_pay_ok= 1 ,pay_time='1536485480'
+ERR: 1146:Table 'paipai.dsc_dsc_paipai_seller_pay_margin' doesn't exist
+ [ SQL语句 ] : UPDATE `paipai`.`dsc_dsc_paipai_seller_pay_margin` SET ls_pay_ok= 1 ,pay_time='1536485480'
+
+[ 2018-09-09T17:31:32+08:00 ] 223.93.142.25 /mobile/respond.php?code=alipay&total_amount=0.02&timestamp=2018-09-09+17%3A31%3A31&sign=izl2EuOk9c5FHmhjsHV4CMUYnMopnobgapoxENCI%2B%2B11GUx%2BWxjRD3GM5Z2Xet2OqQc6bJkdYIte0RqUVJ2wusYPrKjbmRTlUnMwND0fG53VtGu2c6Q18jLUN0kGrMBW0IGLHKSPlkuNdXmDez4gg7S507HNAMsT6P6d2N1EuESey2lFlPMILkFDnZYCVy2QKw%2FzBb6BKjVKB9q9e4jE91yML%2BkpC9w7tj5QM2tu9w06gIeRmJdlvCCb4lyxj0wz3X6SrvqU05tHViM3DCC2qMMGG5PdB3r%2F70FVtQh0bffXtQ%2BzPh9JtyMvMDPHru8ygy0wk2EjA3axxtWT8WC7Tw%3D%3D&trade_no=2018090922001479410551041518&sign_type=RSA2&auth_app_id=2018052960298201&charset=UTF-8&seller_id=2088812051454714&method=alipay.trade.wap.pay.return&app_id=2018052960298201&out_trade_no=60000000000004730000000000000002&version=1.0
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.000000s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `dsc_payment` [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `dsc_payment` WHERE `pay_code` = 'alipay' AND `enabled` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT oi.order_sn, pl.log_id, pl.order_amount from `paipai`.`dsc_pay_log` as pl LEFT JOIN `paipai`.`dsc_order_info` as oi ON pl.order_id = oi.order_id WHERE pl.log_id = '473' [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_payment` WHERE pay_code = 'alipay' AND enabled = '1' [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_pay_log` WHERE log_id = '473' [ RunTime:0.0000s ]
+SQL: SELECT goods_id, goods_name, send_number AS num, extension_code FROM `paipai`.`dsc_order_goods` WHERE order_id = '464' AND extension_code = 'virtual_card' [ RunTime:0.0000s ]
+SQL: SELECT goods_id, goods_name, (goods_number - send_number) AS num, extension_code FROM `paipai`.`dsc_order_goods` WHERE order_id = '464' AND is_real = 0 AND (goods_number - send_number) > 0 AND extension_code = 'virtual_card'  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: total_amount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Respond\Controllers\IndexController.php 第 79 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.000000s ]
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: description D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Respond\a8765879f42919dc1ec3d3eea6c351e1.php 第 9 行.
+NOTIC: [8] Undefined variable: keywords D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Respond\a8765879f42919dc1ec3d3eea6c351e1.php 第 10 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031197s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031197s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-09-09T17:35:44+08:00 ] 110.75.242.176 /mobile/public/notify/alipay.php
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_stats` [ RunTime:0.0000s ]
+SQL: INSERT INTO `dsc_stats` (`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`,`access_time`) VALUES ('110.75.242.176','1','Unknow browser','Unknown','','IANA','','','/mobile/public/notify/alipay.php','1536456944') [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0156s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.000000s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `dsc_payment` [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `dsc_payment` WHERE `pay_code` = 'alipay' AND `enabled` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_payment` WHERE pay_code = 'alipay' AND enabled = '1' [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_pay_log` WHERE log_id = '473' [ RunTime:0.0000s ]
+SQL: SELECT goods_id, goods_name, send_number AS num, extension_code FROM `paipai`.`dsc_order_goods` WHERE order_id = '464' AND extension_code = 'virtual_card' [ RunTime:0.0000s ]
+SQL: SELECT goods_id, goods_name, (goods_number - send_number) AS num, extension_code FROM `paipai`.`dsc_order_goods` WHERE order_id = '464' AND is_real = 0 AND (goods_number - send_number) > 0 AND extension_code = 'virtual_card'  [ RunTime:0.0000s ]
+
+[ 2018-09-09T17:41:36+08:00 ] 110.75.242.249 /mobile/public/notify/alipay.php
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_stats` [ RunTime:0.0000s ]
+SQL: INSERT INTO `dsc_stats` (`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`,`access_time`) VALUES ('110.75.242.249','1','Unknow browser','Unknown','','IANA','','','/mobile/public/notify/alipay.php','1536457296') [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.015610s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.015610s ]
+SQL: SHOW COLUMNS FROM `dsc_payment` [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `dsc_payment` WHERE `pay_code` = 'alipay' AND `enabled` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_payment` WHERE pay_code = 'alipay' AND enabled = '1' [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_pay_log` WHERE log_id = '474' [ RunTime:0.0000s ]
+SQL: UPDATE `paipai`.`dsc_pay_log` SET is_paid = '1' WHERE log_id = '474' [ RunTime:0.0000s ]
+SQL: SELECT main_order_id, order_id, user_id, order_sn, consignee, address, tel, mobile, shipping_id, pay_status, extension_code, extension_id, goods_amount, is_zc_order, zc_goods_id,team_id,team_parent_id,team_user_id, shipping_fee, insure_fee, pay_fee, tax, pack_fee, card_fee, surplus, money_paid, integral_money, bonus, order_amount, discount, pay_id, shipping_status FROM `paipai`.`dsc_order_info` WHERE order_id = '465' [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_payment` WHERE pay_id = '9' AND enabled = 1 [ RunTime:0.0156s ]
+ERR: 1146:Table 'paipai.dsc_dsc_paipai_seller_pay_margin' doesn't exist
+ [ SQL语句 ] : UPDATE `paipai`.`dsc_dsc_paipai_seller_pay_margin` SET ls_pay_ok= 1 ,pay_time='1536486096'
+ERR: 1146:Table 'paipai.dsc_dsc_paipai_seller_pay_margin' doesn't exist
+ [ SQL语句 ] : UPDATE `paipai`.`dsc_dsc_paipai_seller_pay_margin` SET ls_pay_ok= 1 ,pay_time='1536486096'
+
+[ 2018-09-09T17:41:44+08:00 ] 223.93.142.25 /mobile/respond.php?code=alipay&total_amount=0.02&timestamp=2018-09-09+17%3A41%3A44&sign=A%2Bp2ohqu1Dho6IfyKsRNTxEHU5hs%2FOXsS9e%2BlHrv4hldPkYgVp%2BDC4goPKbp6%2F8r9MFVLQld4wkQ0qobvrq9o83cl%2FXx66ls9TJvA7EWjyAUeTHL8TMOmxPjCPOU%2FiMPJae7NPrAyidGvyiBtyJJtcDjLXcqXl8u1%2F8lXee%2BLP4zA2TgyIeWpmNdXjnT90zQcM7DPLihFO2y4%2BGRDcU%2BFQY0I6cwIHTCN7xLAz0dpMwKWRSF82kUQQkxDCo2em3QhsBStslmOPiHp2EK1sVpv5qJGamUFpSvej94aHqPYbrggm3N%2Bnp9UM4wak%2FwmElIe4h5VB6vhp7qLBNmeXpzow%3D%3D&trade_no=2018090922001479410549968988&sign_type=RSA2&auth_app_id=2018052960298201&charset=UTF-8&seller_id=2088812051454714&method=alipay.trade.wap.pay.return&app_id=2018052960298201&out_trade_no=60000000000004740000000000000002&version=1.0
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.015610s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.015610s ]
+SQL: SHOW COLUMNS FROM `dsc_payment` [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `dsc_payment` WHERE `pay_code` = 'alipay' AND `enabled` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT oi.order_sn, pl.log_id, pl.order_amount from `paipai`.`dsc_pay_log` as pl LEFT JOIN `paipai`.`dsc_order_info` as oi ON pl.order_id = oi.order_id WHERE pl.log_id = '474' [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_payment` WHERE pay_code = 'alipay' AND enabled = '1' [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_pay_log` WHERE log_id = '474' [ RunTime:0.0000s ]
+SQL: SELECT goods_id, goods_name, send_number AS num, extension_code FROM `paipai`.`dsc_order_goods` WHERE order_id = '465' AND extension_code = 'virtual_card' [ RunTime:0.0000s ]
+SQL: SELECT goods_id, goods_name, (goods_number - send_number) AS num, extension_code FROM `paipai`.`dsc_order_goods` WHERE order_id = '465' AND is_real = 0 AND (goods_number - send_number) > 0 AND extension_code = 'virtual_card'  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: total_amount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Respond\Controllers\IndexController.php 第 79 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.015610s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.015610s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.000000s ]
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: description D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Respond\a8765879f42919dc1ec3d3eea6c351e1.php 第 9 行.
+NOTIC: [8] Undefined variable: keywords D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Respond\a8765879f42919dc1ec3d3eea6c351e1.php 第 10 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015610s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015610s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-09-09T17:45:04+08:00 ] 110.75.242.211 /mobile/public/notify/alipay.php
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+NOTIC: [8] Undefined index: HTTP_ACCEPT D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 118 行.
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_stats` [ RunTime:0.0000s ]
+SQL: INSERT INTO `dsc_stats` (`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`,`access_time`) VALUES ('110.75.242.211','1','Unknow browser','Unknown','','IANA','','','/mobile/public/notify/alipay.php','1536457504') [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '0' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0000s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0156s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.015610s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.015610s ]
+SQL: SHOW COLUMNS FROM `dsc_payment` [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `dsc_payment` WHERE `pay_code` = 'alipay' AND `enabled` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_payment` WHERE pay_code = 'alipay' AND enabled = '1' [ RunTime:0.0000s ]
+SQL: SELECT * FROM `paipai`.`dsc_pay_log` WHERE log_id = '474' [ RunTime:0.0000s ]
+SQL: SELECT goods_id, goods_name, send_number AS num, extension_code FROM `paipai`.`dsc_order_goods` WHERE order_id = '465' AND extension_code = 'virtual_card' [ RunTime:0.0000s ]
+SQL: SELECT goods_id, goods_name, (goods_number - send_number) AS num, extension_code FROM `paipai`.`dsc_order_goods` WHERE order_id = '465' AND is_real = 0 AND (goods_number - send_number) > 0 AND extension_code = 'virtual_card'  [ RunTime:0.0000s ]
+
