@@ -1,5 +1,5 @@
 {include file="page_header"}
-<div class="con">
+<div class="con" style="padding-top:55px;">
 
 	<header class="drp-user-header">
 		<div class="padding-mr dis-box">
@@ -60,13 +60,27 @@
 		<ul class="box ul-4 text-c bg-white dis-nav">
 					
 			<li>
-				<a href="http://www.paipaistreet.com/mobile/index.php/groupbuy">
+				<a href="{url('groupbuy/index/notstarted')}">
 					<div class="dis-user-list"><i class="iconfont icon-shopping col-6 is-dis-size n-dis-s"></i></div>
-					<p class="col-6 f-02">拍拍商品</p>
+					<p class="col-6 f-02">即将开始</p>
+				</a>
+			</li>
+
+			<li>
+				<a href="{url('groupbuy/index/underway')}">
+					<div class="dis-user-list"><i class="iconfont icon-shopping col-6 is-dis-size n-dis-s"></i></div>
+					<p class="col-6 f-02">进行中</p>
+				</a>
+			</li>
+
+			<li>
+				<a href="{url('groupbuy/index/sign')}">
+					<div class="dis-user-list"><i class="iconfont icon-shopping col-6 is-dis-size n-dis-s"></i></div>
+					<p class="col-6 f-02">我报名的</p>
 				</a>
 			</li>
 			
-				<li>
+			<li>
 				<a href="{url('user/index/mypaipailist')}">
 					<div class="dis-user-list"><i class="iconfont icon-dianpu col-6 is-dis-size n-dis-s"></i></div>
 					<p class="col-6 f-02">我的拍拍</p>

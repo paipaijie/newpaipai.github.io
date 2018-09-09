@@ -423,9 +423,11 @@
 							<input type="hidden" value="{$user_id}" id="user_id" name="user_id">
 							<input type="hidden" value="{$area_id}" id="area_id" name="area_id">
 							<input type="hidden" value="{$group_buy_id}" id="group_buy_id" name="group_buy_id">
-							<a class="btn-disab box-flex quehuo" href="javascript:void(0);" {if $goods.is_end != 1}style="display:none"{/if}>团购结束</a>
-							
-							<button id="zhifu" type="sumbit" class="btn-submit box-flex add-to-cart" {if $goods.is_end == 1}style="display:none"{/if}>支付保证金</button>
+							{if $goods.is_end == 2 || $goods.is_end == 0}
+							<a class="btn-disab box-flex quehuo" href="javascript:void(0);"style="display:none">团购结束</a>
+							{else $goods.is_end == 1}
+							<button id="zhifu" type="sumbit" class="btn-submit box-flex add-to-cart" style="display:none">支付保证金</button>
+							{/if}
 						</section>
 					</div>
 					<!--商品属性弹出层end-->
