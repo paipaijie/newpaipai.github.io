@@ -27,7 +27,7 @@
 					<div class="common-content">
 
 						<div class="mian-info">
-
+							
 							<form method="post" action="paipai_buy.php?act=insert_update" name="theForm" id="group_buy_form">
 
 								<div class="switch_info">
@@ -64,7 +64,7 @@
 
 										<input type="hidden" name="ru_id" value="{$ru_id}" />
 										
-										<input type="text" name="keyword" class="text w150" placeholder={$lang.input_keywords} data-filter="keyword" autocomplete="off" />
+										<input type="text" name="keyword"  class="text w150" placeholder={$lang.input_keywords} data-filter="keyword" autocomplete="off" />
 										
 	<a href="javascript:void(0);" class="btn btn30" onclick="searchGoods()"><i class="icon icon-search"></i>{$lang.search_word}</a>
 									</div>
@@ -84,7 +84,7 @@
 												
 												<div id="goods_id" class="imitate_select select_w320">
 													<div class="cite">{if $group_buy.ppj_id}{$group_buy.ppj_name}{else}{$lang.please_select}{/if}</div>
-													{if !$group_buy.staus}
+													{if !$group_buy.ppj_staus}
 													<ul>
 														<li class="li_not">{$lang.please_search_goods}</li>
 													</ul>
@@ -97,8 +97,7 @@
 											
 										</div>
 										<!--字段1end  -->
-										
-										
+
 										<div class="item">
 											<div class="label">{$lang.require_field}{$lang.label_start_end_date}</div>
 											<div class="label_value text_time">
@@ -116,7 +115,7 @@
 												<div class="form_prompt"></div>
 											</div>
 										</div>-->
-										
+
 										<!--{保证金}-->
 										<div class="item">
 											<div class="label">{$lang.require_field}{$lang.label_deposit}</div>   
@@ -127,7 +126,14 @@
 											</div>
 										</div>
 										
-										
+										<!-- <div class="item">
+											<div class="label">{$lang.label_deposit}</div>
+											<div class="label_value"><input name="ppl_margin_fee" type="text" id="ppl_margin_fee" value="{$group_buy.ppj_margin_fee|default:0}" class="text" autocomplete="off" {if $group_buy.staus}readonly{/if}/>
+												<div class="notic">{$lang.notice_restrict_baozhenngjin}</div>
+												<div class="form_prompt"></div>
+											</div>
+										</div> -->
+
 										<div class="item">
 											<div class="label">{$lang.require_field}起拍价：</div>
 											<div class="label_value">
@@ -136,11 +142,12 @@
 												<div class="form_prompt"></div>
 											</div>
 										</div>
+
 										
 										
 										<div class="item">
-											<div class="label">最低成交价</div>
-											<div class="label_value"><input name="ppj_buy_fee" type="text" id="ppj_buy_fee" value="{$group_buy.ppj_buy_fee|default:0}" class="text" autocomplete="off" {if $group_buy.status}readonly{/if}/>
+											<div class="label">最低成交价：</div>
+											<div class="label_value"><input name="ppj_buy_fee" type="text" id="ppj_buy_fee" value="{$group_buy.ppj_buy_fee|default:0}" class="text" autocomplete="off"/>
 												<div class="form_prompt"></div>
 											</div>
 										</div>
@@ -165,24 +172,22 @@
 										</div>
 										
 										<div class="item">
-											<div class="label">当前价格</div>
+											<div class="label">当前价格：</div>
 											<div class="label_value">
 											<div class="" id="ppj_now_fee">{$group_buy.ppj_now_fee|default:0}</div>									
 											<div class="form_prompt">产品当前已拍到的价格</div>
 											</div>	
 										</div>
-
+										
 										<div class="item">
 											<div class="label">{$lang.lab_market_price}</div>
 											<div class="label_value" id="market_price">{$group_buy.market_price|default:0} 拍拍的价格不得高于此价格</div>	
 																					
 										</div>
-
 										<div class="item">
 										    <div class="label">{$lang.lab_cost_price}</div>
 											<div class="label_value" id="cost_price">{$group_buy.cost_price|default:0} 保证金必须大于批发价</div>	
 										</div>
-										
 										<!--
                                         	作者：offline
                                         	时间：2018-08-02
@@ -215,18 +220,18 @@
 										
 										
 										<div class="item">
-											<div class="label">交易匹配成功支付时间</div>
+											<div class="label">交易匹配成功支付时间：</div>
 											<div class="label_value">
-												<input type="text" name="ppj_startpay_time" value="{$group_buy.ppj_startpay_time|default:0}" class="text" autocomplete="off" />
+												<input type="text" name="ppj_startpay_time" value="{$group_buy.ppj_startpay_time|default:10}" class="text" autocomplete="off" />
 												<div class="notic">分钟为单位</div>
 												<div class="form_prompt"></div>
 											</div>
 										</div>
 										
 										<div class="item">
-											<div class="label">活动结束后支付时间</div>
+											<div class="label">活动结束后支付时间：</div>
 											<div class="label_value">
-												<input type="text" name="ppj_endpay_time" value="{$group_buy.ppj_endpay_time|default:0}" class="text" autocomplete="off" />
+												<input type="text" name="ppj_endtapy_time" value="{$group_buy.ppj_endtapy_time|default:10}" class="text" autocomplete="off" />
 												<div class="notic">分钟为单位</div>
 												<div class="form_prompt"></div>
 											</div>
@@ -297,7 +302,7 @@
 											<div class="label">&nbsp;</div>
 											
 											<div class="label_value info_btn">
-												{if $group_buy.ppj_staus eq 1 || $group_buy.ppj_staus eq 0}
+												{if $group_buy.ppj_staus eq 1 OR  $group_buy.ppj_staus eq 0  }
 												<input name="act_id" type="hidden" id="act_id" value="{$group_buy.ppj_id}" id="submitBtn">
 												
 												<input type="submit" name="submit" value="{$lang.button_submit}" class="button" />
@@ -358,10 +363,16 @@
                         required : true
                     },
                     ppl_margin_fee:{
+<<<<<<< Updated upstream
                         required : true
                     },
                     ppj_start_fee:{
-                        required : true
+                    	required : true
+=======
+                        //number : true
+                        required : true,
+                        min : 1
+>>>>>>> Stashed changes
                     },
                     restrict_amount:{
                         digits : true
@@ -373,7 +384,7 @@
 						min : 1
 					},
 					'ladder_price[]':{
-						min : 0.01
+						min : 1
 					},
                     start_time :{
                         required : true
@@ -387,11 +398,18 @@
                     goods_id:{
                         required : '<i class="icon icon-exclamation-sign"></i>'+error_goods_null
                     },
+<<<<<<< Updated upstream
                     ppl_margin_fee:{
 						required : '<i class="icon icon-exclamation-sign"></i>'+error_goods_deposit
-                    }, 
+                    },
                     ppj_start_fee:{
                     	required : '<i class="icon icon-exclamation-sign"></i>'+goods_start_fee
+=======
+                    deposit:{
+                        //number : '<i class="icon icon-exclamation-sign"></i>'+error_deposit
+						required : '<i class="icon icon-exclamation-sign"></i>'+error_goods_null
+
+>>>>>>> Stashed changes
                     },
                     restrict_amount:{
                         digits : '<i class="icon icon-exclamation-sign"></i>'+error_restrict_amount,
@@ -442,8 +460,7 @@
         //团购商品市场价格
         function groupGoods(val){
             var filter = new Object;
-            filter.goods_id = val;
-            
+            filter.goods_id = val;        
             Ajax.call('group_buy.php?is_ajax=1&act=group_goods', filter, groupGoodsResponse, 'GET', 'JSON');
         }
         

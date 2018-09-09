@@ -1,5 +1,5 @@
 {include file="page_header"}
-
+__STATIC__
 <section class="search new-group-search">
     <div class="text-all dis-box j-text-all text-all-back">
         <div class="box-flex input-text">
@@ -26,6 +26,7 @@
            
             
             <div id="j-tab-con" class="article_info">
+                
             	
                 <script id="j-product" type="text/html">
             
@@ -35,14 +36,13 @@
                 	
                     <section class="swiper-slide swiper-no-swiping product-list j-product-list product-list-medium" data="1">
                         <ul>
-
                             <%each gb_list as list%>
                             <%if list.is_end == 1 || list.is_end == 2%>
                             <li>
                                 <div class="product-div">
                                 
 
-                                    <div class="group-bq-box"   <%if list.is_end != 1%> style="display:none" <%else%>  style="display:block" <%/if%>>  <span>进行中</span> </div>
+                                    <div class="group-bq-box"   <%if list.is_end == 1%> style="display:none" <%else%>  style="display:block" <%/if%>>  <span>进行中</span> </div>
                                                                         
                                     <a class="product-div-link" href="<%list.url%>"></a>
                                     
@@ -113,7 +113,7 @@
     
 <script>
     var url = ROOT_URL + 'index.php?m=groupbuy';
-      
+    
     var infinite = $('.article_info').infinite({url: url, template: 'j-product'});
     
        // alert(infinite.length);

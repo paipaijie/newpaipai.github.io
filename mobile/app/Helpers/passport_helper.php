@@ -80,19 +80,19 @@ function register($username, $password, $email, $other = array())
        /*
         *   // 注册赠送赠送权益券的操作  
         */
-       $selle_have =true;
-       $goods_id=1023; 
+    //    $selle_have =true;
+    //    $goods_id=1023;
             
-       $endtime=time()+30*24*3600;
+    //    $endtime=time()+30*24*3600;
        
-       $beizhu="注册赠送";
-       $ppj_no=0;
+    //    $beizhu="注册赠送";
+    //    $ppj_no=0;
        
-       if($selle_have){
+    //    if($selle_have){
        		
-       	$sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('paipai_seller') . ' (goods_id,createtime,usestaus,user_id,endtime,beizhu,ppj_no) values(\''.$goods_id.'\' ,\''.gmtime().'\',0,\''.$_SESSION['user_id'].'\',\''.$endtime.'\' ,\''.$beizhu.'\',0)' ;      					
-				$GLOBALS['db']->query($sql);     	
-       }
+    //    	$sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('paipai_seller') . ' (goods_id,createtime,usestaus,user_id,endtime,beizhu,ppj_no) values(\''.$goods_id.'\' ,\''.gmtime().'\',0,\''.$_SESSION['user_id'].'\',\''.$endtime.'\' ,\''.$beizhu.'\',0)' ;      					
+	// 			$GLOBALS['db']->query($sql);     	
+    //    }
        
 
 

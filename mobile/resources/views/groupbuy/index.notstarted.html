@@ -54,19 +54,25 @@
                                 <div class="product-text-group">
                                 	
                                     <h4><%list.ppj_name%></h4>
-                                    <input type="hidden" id="ppj_id" name="ppj_id" value="<%list.ppj_id%>">
+                                    
                                     <p style="color:#999;font-size:1rem;"><em><%list.cur_amount%></em>人已下单</p>
                                     
-                                    <p><span class="p-price t-first "><%#list.price%><small>
+                                    <p style="width:92px;"><span class="p-price t-first "><%#list.price%><small>
                                     	
                                         <del><%#list.market_price%></del>
                                     </small></span></p>
                                     
-                                    
-                                    <p class="ect-button-more ect-button-more-dete n-br-5" style="width:150px;margin-left:84px;margin-top:-36px;">
-                                        <span style="color: red;" class="btn-default-new br-5 min-btn" id="autosale">立 即 报 名</span>  
+                                    <!-- <div class="zidong">
+                                    <p class="ect-button-more ect-button-more-dete n-br-5" style="width:150px;margin-left:110px;margin-top:-36px;">
+                                        <input type="hidden" id="ppj_id" name="ppj_id" value="<%list.ppj_id%>">
+                                        <span style="color: red;" class="btn-default-new br-5 min-btn" id="autosale">立 即 报 名</span>
                                     </p>
-                                    
+                                    </div> -->
+
+                                    <div class="zidong">
+                                            <span style="width:90px;color: blue; margin-left:102px;margin-top:-36px;position: absolute;" p class="btn-default-new br-5 min-btn" id="autosale">自 动 售 出</span>  
+                                            <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="<%list.ppj_id%>">
+                                      </div>
                                 </div>
                                 
                             </li>
@@ -114,8 +120,9 @@
     })
     
 
-    $("#autosale").click(function(){
-        var ppj_id = document.getElementById('ppj_id').value;
+    $(".zidong").click(function(){
+        var ppj_id = $(this).find(".ppj_id").val();
+        // alert(ppj_id);
             layer.open({
                 type: 1,
                 title:'预售价格区间',

@@ -42,7 +42,7 @@
                                 <div class="product-div">
                                 
 
-                                    <div class="group-bq-box"   <%if list.is_end == 2%> style="display:none" <%else%>  style="display:block" <%/if%>>  <span>进行中</span> </div>
+                                    <div class="group-bq-box"   <%if list.is_end == 1%> style="display:none" <%else%>  style="display:block" <%/if%>>  <span>进行中</span> </div>
                                                                         
                                     <!-- <a class="product-div-link" href="<%list.url%>"></a> -->
                                     
@@ -64,14 +64,16 @@
                                     <h4><%list.ppj_name%></h4>
                                     
                                     <p style="color:#999;font-size:1rem;width:81px;"><em><%list.cur_amount%></em>人已下单</p>
-                                    
+                                    <input type="hidden" id="ppj_id" name="ppj_id" value="<%list.ppj_id%>">
                                     <p style="width:81px;"><span class="p-price t-first " ><%#list.price%><small>
                                     	
                                         <del><%#list.market_price%></del>
                                         
                                     </small></span></p>
-                                    
-                                    <span class="group-cont" style="margin-top:-26px;"><span style="color: red;margin-top:-26;" class="btn-default-new br-5 min-btn" id="chujia">立 即 出 价</span> 
+                                    <div class="zidong">
+                                            <span style="width:90px;color: blue; margin-left:102px;margin-top:-36px;position: absolute;" p class="btn-default-new br-5 min-btn" id="autosale">自 动 售 出</span>  
+                                            <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="<%list.ppj_id%>">
+                                      </div>
                                 </div>
                                 
                             </li>
@@ -159,8 +161,9 @@
         e.preventDefault()
     })
 
-    $("#chujia").click(function(){
-        var ppj_id = document.getElementById('ppj_id').value;
+    $(".zidong").click(function(){
+        var ppj_id = $(this).find(".ppj_id").val();        
+        // alert(ppj_id);
             layer.open({
                 type: 1,
                 title:'预售价格区间',
@@ -215,6 +218,13 @@
                             }else if(success == 4){
                                 layer.open({
                                     content: '请重新出价'
+                                    ,skin: 'msg'
+                                    ,time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            }else if(success == 5){
+                                layer.open({
+                                    content: '活动期数不匹配'
                                     ,skin: 'msg'
                                     ,time: 2 //2秒后自动关闭
                                 });

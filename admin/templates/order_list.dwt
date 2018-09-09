@@ -99,18 +99,10 @@
                                     <th width="10%"><div class="tDiv">{$lang.ppj_user_name}</div></th>
                                     <th width="10%"><div class="tDiv">{$lang.ppj_mobile_phone}</div></th>
                                     <th width="10%"><div class="tDiv">{$lang.ppj_user_flag}</div></th>
-                                    {if $list_type eq 11}
-                                    <th width="18%"><div class="tDiv">活动名称</div></th>
-                                    <th width="10%"><div class="tDiv">活动id</div></th>
-                                    <th width="10%"><div class="tDiv">活动期数</div></th>
-                                    <th width="10%"><div class="tDiv">{$lang.ppj_bid_no}</div></th>
-                                    <th width="10%"><div class="tDiv">{$lang.ppj_bid_date}</div></th>
-                                    {elseif $list_type eq 12}
+                                    {if $list_type eq 12}
                                     <th width="10%"><div class="tDiv">{$lang.ppj_bid_no}</div></th>
                                     <th width="10%"><div class="tDiv">{$lang.ppj_bid_date}</div></th>
                                     {elseif $list_type eq 13}    
-                                    <th width="10%"><div class="tDiv">拍拍活动id</div></th>
-                                    <th width="10%"><div class="tDiv">期数</div></th>
                                     <th width="10%"><div class="tDiv">{$lang.ppj_margin_no}</div></th>
                                     <th width="10%"><div class="tDiv">{$lang.ppj_margin_pay_date}</div></th>
                                     <th width="10%"><div class="tDiv">{$lang.ppj_margin_status}</div></th>
@@ -140,18 +132,10 @@
                                 <col width="10%">
                                 <col width="10%">
                                 <col width="10%">
-                                {if $list_type eq 11}
-                                    <col width="18%">
+                                {if $list_type eq 12}
                                     <col width="10%">
                                     <col width="10%">
-                                    <col width="10%">
-                                    <col width="10%">
-                                {elseif $list_type eq 12}
-                                    <col width="10%">
-                                    <col width="10%">
-                                {elseif $list_type eq 13}
-                                    <col width="10%">
-                                    <col width="10%">    
+                                {elseif $list_type eq 13}    
                                     <col width="10%">
                                     <col width="10%">
                                     <col width="10%">
@@ -368,33 +352,7 @@
                                                 <span class="words">{$order.flag_ch}</span>
                                             </div>
                                         </td>
-                                        {if $list_type eq 11}
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ppj_name}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ppj_id}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ppj_no}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">￥{$order.seller_min_fee}——￥{$order.seller_max_fee}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.createtime}</span>
-                                                </div>
-                                            </td>
-                                        {elseif $list_type eq 12}
+                                        {if $list_type eq 12}
                                             <td >
                                                 <div class="tDiv ml10">
                                                     <span class="words">{$order.bid_price}</span>
@@ -405,17 +363,7 @@
                                                     <span class="words">{$order.bid_time}</span>
                                                 </div>
                                             </td>
-                                        {elseif $list_type eq 13}   
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ppj_id}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ppj_no}</span>
-                                                </div>
-                                            </td> 
+                                        {elseif $list_type eq 13}    
                                             <td >
                                                 <div class="tDiv ml10">
                                                     <span class="words">{$order.pay_fee}</span>
@@ -423,7 +371,7 @@
                                             </td>
                                             <td >
                                                 <div class="tDiv ml10">
-                                                    <span class="words">{$order.paytime}</span>
+                                                    <span class="words">{$order.createtime}</span>
                                                 </div>
                                             </td>
                                             <td >

@@ -15,88 +15,42 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 	
 
 	public function actionIndex()
-	{
-		uaredirect(__PC__ . '/');
-
-		if (IS_POST) {
-			$preview = input('preview', 0);
-
-			if ($preview) {
-				$module = \App\Libraries\Compile::getModule('preview');
+	{	
+		//查询商品信息
+		$sql = 'SELECT b.*, IFNULL(g.goods_thumb, \'\') AS goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date,g.goods_number ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . (' AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY ppj_id DESC');
+		$res = $GLOBALS['db']->query($sql);
+		$arr = array();
+		// var_dump($res);
+		$now = time();
+		foreach($res as $k => $val){
+			$val['goods_thumb']  = __STATIC__ .'/'. $val['goods_thumb'];
+			$arr[] = $val['goods_thumb'];
+			if($val['end_time'] > $now && $val['start_time'] < $now){
+				$val['is_end'] = 1;
+			}else if($val['start_time'] > $now){
+				$val['is_end'] = 0;
+			}else if($val['end_time']<$now){
+				$val['is_end'] = 3;
 			}
-			else {
-				$module = \App\Libraries\Compile::getModule();
-			}
+			$arr3[] = $val['is_end'];
 
-			if ($module === false) {
-				$module = \App\Libraries\Compile::initModule();
-			}
-
-			$this->response(array('error' => 0, 'data' => $module ? $module : ''));
+			$val['end_date']=floor(($val['end_time']-time())/86400);
+			$arr2[] = $val['end_date'];
+		}
+		
+		foreach($arr as $k=>$v){
+			$res[$k]['goods_thumb'] = $v;
+		}
+		foreach($arr2 as $k=>$v){
+			$res[$k]['end_date'] = $v;
+		}
+		foreach($arr3 as $k=>$v){
+			$res[$k]['is_end'] = $v;
 		}
 
-		$popup_ads = S('popup_ads');
-
-		if ($popup_ads === false) {
-			$popup_ads = dao('touch_ad')->where(array('ad_name' => '首页红包广告'))->find();
-			S('popup_ads', $popup_ads, 600);
-		}
-
-		$time = gmtime();
-		$popup_enabled = 1;
-		$ad_link = '';
-		
-		if ($popup_ads['enabled'] == 1 && ($popup_ads['start_time'] <= $time && $time < $popup_ads['end_time'])) {
-			if (!cookie('popup_enabled')) {
-				$popup_enabled = get_data_path($popup_ads['ad_code'], 'afficheimg/');
-				$ad_link = $popup_ads['ad_link'];
-				cookie('ad_link', $ad_link);
-				cookie('popup_enabled', $popup_enabled);
-			}
-		}
-
-		$this->assign('ad_link', $ad_link);
-		
-		$this->assign('popup_ads', $popup_enabled);
-		
-		$topic_id = input('topic_id', 0, 'intval');
-		$pages = dao('touch_page_view')->field('title, thumb_pic, page_id')->where(array('id' => $topic_id))->find();
-
-		if (0 < $topic_id) {
-			if (0 < $pages['page_id']) {
-				$topic = dao('topic')->field('title, description')->where(array('topic_id' => $pages['page_id']))->find();
-				$pages['title'] = $topic['title'];
-				$pages['description'] = $topic['description'];
-			}
-
-			$pages['thumb_pic'] = get_image_path('data/gallery_album/original_img/' . $pages['thumb_pic']);
-		}
-
-		$position = assign_ur_here(0, $pages['title']);
-		$seo = get_seo_words('index');
-
-		foreach ($seo as $key => $value) {
-			$seo[$key] = html_in(str_replace(array('{sitename}', '{key}', '{description}'), array(C('shop.shop_name'), C('shop.shop_keywords'), C('shop.shop_desc')), $value));
-		}
-
-		$page_title = !empty($seo['title']) ? $seo['title'] : $position['title'];
-		
-		$keywords = !empty($seo['keywords']) ? $seo['keywords'] : C('shop.shop_keywords');
-		
-		$description = !empty($seo['description']) ? $seo['description'] : (!empty($pages['description']) ? $pages['description'] : C('shop.shop_desc'));
-		$share_img = !empty($pages['thumb_pic']) ? $pages['thumb_pic'] : '';
-		
-		$share_data = array('title' => $page_title, 'desc' => $description, 'link' => '', 'img' => $share_img);
-		
-		$this->assign('share_data', $this->get_wechat_share_content($share_data));
-		
-		$this->assign('page_title', $page_title);
-		
-		$this->assign('keywords', $keywords);
-		
-		$this->assign('description', $description);
-		
-		 $this->display();
+		// var_dump($res);
+		$this->assign('res', $res);	
+		$this->display();
 	}
 
 	public function actionAppNav()
@@ -104,6 +58,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$app = C('shop.wap_index_pro') ? 1 : 0;
 		$this->response(array('error' => 0, 'data' => $app));
 	}
+
 
 	public function actionNotice()
 	{

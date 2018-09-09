@@ -119,6 +119,7 @@ public function actionPaipaibuy()
 	}
 
 
+
 	public function actionIndex()
 	{
 		$user_id = $this->user_id;
@@ -131,9 +132,19 @@ public function actionPaipaibuy()
 		
 		
 		///
-		$where_pay = ' AND oi.pay_status = ' . PS_UNPAYED . ' AND oi.order_status not in(' . OS_CANCELED . ',' . OS_INVALID . ',' . OS_RETURNED . ')';
-		$pay_count = get_order_where_count($user_id, $type, $where_pay);		
-		$this->assign('pay_count', intval($pay_count));
+		// $where_pay = ' AND oi.pay_status = ' . PS_UNPAYED . ' AND oi.order_status not in(' . OS_CANCELED . ',' . OS_INVALID . ',' . OS_RETURNED . ')';
+		// $pay_count = get_order_where_count($user_id, $type, $where_pay);		
+		// $this->assign('pay_count', intval($pay_count));
+
+		$sql = "select count(*) from dsc_order_info where user_id = {$_SESSION['user_id']} and pay_status = 11";
+		$res = $GLOBALS['db']->getAll($sql);
+		$arrt = array();
+		foreach ($res as $key => $value) {
+			# code...
+			$arrt = $value;
+		}
+		$att = $arrt['count(*)'];
+		$this->assign('pay_count', intval($att));
 		
 		$where_confirmed = ' AND oi.pay_status = ' . PS_PAYED . ' AND oi.order_status in (' . OS_CONFIRMED . ', ' . OS_SPLITED . ', ' . OS_SPLITING_PART . ') AND (oi.shipping_status >= ' . SS_UNSHIPPED . ' AND oi.shipping_status <> ' . SS_RECEIVED . ')';			
 		$confirmed_count = get_order_where_count($user_id, $type, $where_confirmed);	
@@ -205,8 +216,7 @@ public function actionPaipaibuy()
 
 
 	public function actionHistory()
-	{   
-
+	{
 		$arr = explode(',', $_COOKIE['ECS']['history_goods']);
 
 		foreach ($arr as $key => $val) {

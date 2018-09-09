@@ -1886,18 +1886,17 @@ function ppj_order_list($list_type){
 		$record_count = $GLOBALS['db']->getOne($sql);
 
     	$where=" WHERE 1 ";
-        $sql=' SELECT pgs.ppjs_id,pgs.ppj_id,pgs.ppj_no,pgs.seller_min_fee,pgs.seller_max_fee,pgs.createtime,u.user_name,u.mobile_phone,u.flag,pl.ppj_name,pl.start_time,pl.end_time FROM ('. $GLOBALS['ecs']->table('paipai_goods_sellers'). 'as pgs'. ' LEFT JOIN ' . $GLOBALS['ecs']->table('users') . ' AS u ON pgs.user_id = u.user_id ) '. 'LEFT JOIN '. $GLOBALS['ecs']->table('paipai_list').' AS pl ON pgs.ppj_id=pl.ppj_id AND pgs.ppj_no=pl.ppj_no '. $where . ' ORDER BY ' . 'pgs.ppjs_id' . $filter['sort_order'] . "  LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ', ' . $filter['page_size']; 
+        $sql=' SELECT pgs.ppjs_id,pgs.ppj_id,pgs.ppj_no,pgs.createtime,u.user_name,u.mobile_phone,u.flag FROM '. $GLOBALS['ecs']->table('paipai_goods_sellers'). 'as pgs'. ' LEFT JOIN ' . $GLOBALS['ecs']->table('users') . ' AS u ON pgs.user_id = u.user_id' . $where . ' ORDER BY ' . 'pgs.ppjs_id' . $filter['sort_order'] . "  LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ', ' . $filter['page_size']; 
         $row = $GLOBALS['db']->getAll($sql);
         for($i=0;$i<count($row);$i++){
         	$row[$i]['id'] = $row[$i]['ppjs_id'];
-        	$row[$i]['createtime']=$row[$i]['createtime']?date('Y-m-d H:i:s',$row[$i]['createtime']):'0';
         }
     }else if( $list_type == '12'){  //买方出价订单
-        $sql = 'SELECT COUNT(*) FROM ' .$GLOBALS['ecs']->table('paipai_goods_bid_user').' AS gb LEFT JOIN '.$GLOBALS['ecs']->table('paipai_seller_pay_margin').' AS spm ON gb.ppj_id=spm.ppj_id AND gb.ppj_no=spm.ppj_no WHERE spm.ls_pay_ok=1 ';
+        $sql = 'SELECT COUNT(*) FROM ' .$GLOBALS['ecs']->table('paipai_goods_bid_user');
 		$record_count = $GLOBALS['db']->getOne($sql);
 
     	$where=" WHERE 1 ";
-        $sql=' SELECT gb.bid_id,gb.bid_price,gb.bid_time,gb.is_status,u.user_name,u.mobile_phone,u.flag FROM ('. $GLOBALS['ecs']->table('paipai_goods_bid_user'). 'as gb'. ' LEFT JOIN ' . $GLOBALS['ecs']->table('users') . ' AS u ON gb.user_id = u.user_id )' . ' LEFT JOIN '. $GLOBALS['ecs']->table('paipai_seller_pay_margin'). ' AS spm ON gb.ppj_id=spm.ppj_id AND gb.ppj_no=spm.ppj_no ' .$where . ' AND spm.ls_pay_ok=1 ' . ' ORDER BY ' . 'gb.bid_id' . $filter['sort_order'] . "  LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ', ' . $filter['page_size']; 
+        $sql=' SELECT gb.bid_id,gb.bid_price,gb.bid_time,gb.is_status,u.user_name,u.mobile_phone,u.flag FROM '. $GLOBALS['ecs']->table('paipai_goods_bid_user'). 'as gb'. ' LEFT JOIN ' . $GLOBALS['ecs']->table('users') . ' AS u ON gb.user_id = u.user_id' . $where . ' ORDER BY ' . 'gb.bid_id' . $filter['sort_order'] . "  LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ', ' . $filter['page_size']; 
         $row = $GLOBALS['db']->getAll($sql);
         for($i=0;$i<count($row);$i++){
         	$row[$i]['id'] = $row[$i]['bid_id'];
@@ -1908,7 +1907,6 @@ function ppj_order_list($list_type){
         	}else{
         		$row[$i]['is_status_ch'] = '匹配失败';
         	}
-        	$row[$i]['bid_time']=$row[$i]['bid_time']?date('Y-m-d H:i:s',$row[$i]['bid_time']):'0';
         }
         
     }else if( $list_type == '13'){   //保证金支付列表
@@ -1916,21 +1914,18 @@ function ppj_order_list($list_type){
 		$record_count = $GLOBALS['db']->getOne($sql);
 
     	$where=" WHERE 1 ";
-        $sql=' SELECT spm.spm_id,spm.ppj_id,spm.ppj_no,spm.pay_fee,spm.ls_pay_ok,spm.ls_refund,spm.createtime,spm.paytime,u.user_name,u.mobile_phone,u.flag,o.order_id FROM ('. $GLOBALS['ecs']->table('paipai_seller_pay_margin'). 'as spm'. ' LEFT JOIN ' . $GLOBALS['ecs']->table('users') . ' AS u ON spm.user_id = u.user_id)' . ' LEFT JOIN '. $GLOBALS['ecs']->table('order_info').' AS o ON spm.order_sn=o.order_sn'. $where  .' ORDER BY ' . 'spm.spm_id' . $filter['sort_order'] . "  LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ', ' . $filter['page_size']; 
+        $sql=' SELECT spm.spm_id,spm.ppj_id,spm.ppj_no,spm.pay_fee,spm.ls_pay_ok,spm.ls_refund,spm.createtime,u.user_name,u.mobile_phone,u.flag FROM '. $GLOBALS['ecs']->table('paipai_seller_pay_margin'). 'as spm'. ' LEFT JOIN ' . $GLOBALS['ecs']->table('users') . ' AS u ON spm.user_id = u.user_id' . $where . ' ORDER BY ' . 'spm.spm_id' . $filter['sort_order'] . "  LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ', ' . $filter['page_size']; 
         $row = $GLOBALS['db']->getAll($sql);
         for($i=0;$i<count($row);$i++){
         	$row[$i]['id'] = $row[$i]['spm_id'];
         	if($row[$i]['ls_pay_ok'] =='1'){
         		$row[$i]['ls_pay_ok_ch'] = '成功';
-        	}else{
-        		$row[$i]['ls_pay_ok_ch'] = '失败';
         	}
         	if($row[$i]['ls_refund'] == '1'){
         		$row[$i]['ls_refund_ch'] = '已退';
         	}else{
         		$row[$i]['ls_refund_ch'] = '未退';
         	}
-        	$row[$i]['paytime']=$row[$i]['paytime']?date('Y-m-d H:i:s',$row[$i]['paytime']):'0';
         }
     }else if( $list_type >= '14'){        //匹配订单
 

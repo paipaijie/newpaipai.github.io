@@ -59,6 +59,7 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 // 我的订单
 	public function actionIndex()
 	{
+
 		$size = 10;
 		$page = I('page', 1, 'intval');
 		$status = I('status', 0, 'intval');
@@ -69,19 +70,41 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
 		$all_order = get_order_where_count($this->user_id, 0, '');
-		$where_pay = ' AND oi.pay_status = ' . PS_UNPAYED . ' AND oi.order_status not in(' . OS_CANCELED . ',' . OS_INVALID . ',' . OS_RETURNED . ')';
-		$pay_count = get_order_where_count($this->user_id, 0, $where_pay);
+		// $where_pay = ' AND oi.pay_status = ' . PS_UNPAYED . ' AND oi.order_status not in(' . OS_CANCELED . ',' . OS_INVALID . ',' . OS_RETURNED . ')';
+		// $pay_count = get_order_where_count($this->user_id, 0, $where_pay);
 		$where_confirmed = ' AND oi.pay_status = ' . PS_PAYED . ' AND oi.order_status in (' . OS_CONFIRMED . ', ' . OS_SPLITED . ', ' . OS_SPLITING_PART . ') AND (oi.shipping_status >= ' . SS_UNSHIPPED . ' AND oi.shipping_status <> ' . SS_RECEIVED . ')';
 		$confirmed_count = get_order_where_count($this->user_id, 0, $where_confirmed);
-		$order_num = array('all_order' => $all_order, 'pay_count' => $pay_count, 'confirmed_count' => $confirmed_count);
+
+		//查询出没有支付保证金的订单
+		$sql = "select count(*) from dsc_order_info where user_id = {$_SESSION['user_id']} and pay_status = 11";
+		$res = $GLOBALS['db']->getAll($sql);
+		$arrt = array();
+		foreach ($res as $key => $value) {
+			# code...
+			$arrt = $value;
+		}
+		$att = $arrt['count(*)'];
+		
+		//查询出拍拍的订单
+		$sql1 = "select count(*) from dsc_order_info where user_id = {$_SESSION['user_id']} and extension_code = 'paipai_buy'";
+		$res1 = $GLOBALS['db']->getAll($sql1);
+		$arrt1 = array();
+		foreach ($res1 as $key => $value) {
+			# code...
+			$arrt1 = $value;
+		}
+		$att1 = $arrt1['count(*)'];
+		
+		//把数据放到页面上
+		$order_num = array('all_order' => $all_order, 'pay_count' => $pay_count, 'confirmed_count' => $confirmed_count,'paipai_pay_count' => $att,'paipai_count' => $att1);
 		$this->assign('order_num', $order_num);
 		$this->assign('status', $status);
 		$this->assign('page_title', L('order_list_lnk'));
 		$this->display();
-	}
+	}	
 
 
-///拍拍匹配中的订单
+	///拍拍匹配中的订单
 
 	public function actionDetailpaipai()
 	{

@@ -230,6 +230,7 @@ if ($_REQUEST['act'] == 'list') {
 	$store_list = get_common_store_list();
 	$smarty->assign('store_list', $store_list);
 	$user_list = user_list();
+	// var_dump($user_list);exit;
 	$smarty->assign('user_list', $user_list['user_list']);
 	$smarty->assign('filter', $user_list['filter']);
 	$smarty->assign('record_count', $user_list['record_count']);
@@ -251,6 +252,35 @@ else if ($_REQUEST['act'] == 'query') {
 	$smarty->assign($sort_flag['tag'], $sort_flag['img']);
 	make_json_result($smarty->fetch('users_list.dwt'), '', array('filter' => $user_list['filter'], 'page_count' => $user_list['page_count']));
 }
+
+
+//添加拍拍券功能======================================================================
+else if ($_REQUEST['act'] == 'quan') {
+	
+	admin_priv('users_manage');
+	$smarty->assign('menu_select', array('action' => '08_members', 'current' => '03_users_list'));
+	$sql = 'SELECT * FROM ' . $ecs->table('goods').'ORDER BY goods_id DESC';
+	$rs = $db->getAll($sql);
+
+	$smarty->assign('id', $_GET['id']);
+	$smarty->assign('rs', $rs);
+	$smarty->assign('user_ranks', $ranks);
+	$smarty->assign('ur_here', $_LANG['03_users_list']);
+	$smarty->assign('action_link', array('text' => $_LANG['04_users_add'], 'href' => 'users.php?act=add'));
+	$smarty->assign('action_link2', array('text' => $_LANG['12_users_export'], 'href' => 'javascript:download_userlist();'));
+	$store_list = get_common_store_list();
+	$smarty->assign('store_list', $store_list);
+	$user_list = user_list();
+	$smarty->assign('filter', $user_list['filter']);
+	$smarty->assign('record_count', $user_list['record_count']);
+	$smarty->assign('page_count', $user_list['page_count']);
+	$smarty->assign('full_page', 1);
+	$smarty->assign('sort_user_id', '<img src="images/sort_desc.gif">');
+	assign_query_info();
+	$smarty->display("users_quan.dwt");
+}
+
+
 else if ($_REQUEST['act'] == 'add') {
 	admin_priv('users_manage');
 	$user = array('rank_points' => $_CFG['register_points'], 'pay_points' => $_CFG['register_points'], 'sex' => 0, 'credit_line' => 0);
@@ -646,6 +676,32 @@ else if ($_REQUEST['act'] == 'batch_remove') {
 		sys_msg($_LANG['no_select_user'], 0, $lnk);
 	}
 }
+
+//======================================================================================
+// else if ($_REQUEST['act'] == 'batch_add') {
+// 	admin_priv('users_drop');
+// 	$arr['goods_id'] = intval($_POST['id']);
+// 	$arr['user_id'] = intval($_POST['user_id']);
+// 	$arr['usestatus'] = 0;
+// 	$arr['createtime'] = time();
+// 	$arr['endtime'] = time()+30*24*3600;
+// 	$arr['beizhu'] = '注册赠送';
+// 	$arr['ppj_no'] = 0;
+// 	// var_dump($arr);exit;
+
+
+// 	$sql = "INSERT INTO dsc_paipai_seller (`goods_id`,`createtime`,`usestaus`,`user_id`,`endtime`,`beizhu`,`ppj_no`) value ({},{$arr['createtime']},{$arr['usestatus']},{$arr['user_id']},{$arr['endtime']},'{$arr['beizhu']}',{$arr['ppj_no']}) ";
+// 	// var_dump($sql);exit;
+// 	$username = $db->query($sql);
+// 	if ($username>0) {
+// 		$lnk[] = array('text' => $_LANG['go_back'], 'href' => 'users.php?act=list');
+// 		sys_msg(sprintf($_LANG['add_success'], $count), 0, $lnk);
+// 	}
+// 	else {
+// 		$lnk[] = array('text' => $_LANG['go_back'], 'href' => 'users.php?act=list');
+// 		sys_msg($_LANG['no_select_user'], 0, $lnk);
+// 	}
+// }
 else if ($_REQUEST['act'] == 'main_user') {
 	require_once ROOT_PATH . '/includes/lib_base.php';
 	$data = read_static_cache('main_user_str');
@@ -700,6 +756,37 @@ else if ($_REQUEST['act'] == 'remove') {
 	$link[] = array('text' => $_LANG['go_back'], 'href' => 'users.php?act=list');
 	sys_msg(sprintf($_LANG['remove_success'], $username), 0, $link);
 }
+
+//添加拍拍券=================================================================================
+else if ($_REQUEST['act'] == 'add_quan') {
+	admin_priv('users_drop');
+	$arr['goods_id'] = intval($_GET['id']);
+	$arr['user_id'] = intval($_GET['user_id']);
+	$arr['usestatus'] = 0;
+	$arr['createtime'] = time();
+	$arr['endtime'] = time()+30*24*3600;
+	$arr['beizhu'] = '注册赠送';
+	$arr['ppj_no'] = 0;
+	// var_dump($arr);exit;
+
+
+	$sql = "INSERT INTO dsc_paipai_seller (`goods_id`,`createtime`,`usestaus`,`user_id`,`endtime`,`beizhu`,`ppj_no`) value ({$arr['goods_id']},{$arr['createtime']},{$arr['usestatus']},{$arr['user_id']},{$arr['endtime']},'{$arr['beizhu']}',{$arr['ppj_no']}) ";
+	// var_dump($sql);exit;
+	$username = $db->query($sql);
+
+	if ($username>0) {
+		$link[] = array('text' => $_LANG['go_back'], 'href' => 'users.php?act=list');
+		sys_msg(sprintf($_LANG['Add_success']), 0, $link);
+	}
+
+	// $users = &init_users();
+	// $users->remove_user($username);
+	// admin_log(addslashes($username), 'remove', 'users');
+	// $link[] = array('text' => $_LANG['go_back'], 'href' => 'users.php?act=list');
+	// sys_msg(sprintf($_LANG['remove_success'], $username), 0, $link);
+}
+
+
 else if ($_REQUEST['act'] == 'address_list') {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 	$sql = 'SELECT a.*, c.region_name AS country_name, p.region_name AS province, ct.region_name AS city_name, d.region_name AS district_name ' . ' FROM ' . $ecs->table('user_address') . ' as a ' . ' LEFT JOIN ' . $ecs->table('region') . ' AS c ON c.region_id = a.country ' . ' LEFT JOIN ' . $ecs->table('region') . ' AS p ON p.region_id = a.province ' . ' LEFT JOIN ' . $ecs->table('region') . ' AS ct ON ct.region_id = a.city ' . ' LEFT JOIN ' . $ecs->table('region') . ' AS d ON d.region_id = a.district ' . (' WHERE user_id=\'' . $id . '\'');
