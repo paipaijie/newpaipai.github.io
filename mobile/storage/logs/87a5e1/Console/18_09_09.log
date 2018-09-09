@@ -4329,3 +4329,1096 @@ SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31'
 SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
 SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
 
+[ 2018-09-09T17:55:54+08:00 ] 223.93.142.25 /mobile/index.php?m=console&c=view&a=default
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000975s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000975s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.007805s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.007805s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0010s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_touch_page_view` [ RunTime:0.0029s ]
+SQL: SELECT `id` FROM `dsc_touch_page_view` WHERE `ru_id` = 0 AND `type` = 'index' AND `default` = 1 LIMIT 1   [ RunTime:0.0010s ]
+
+[ 2018-09-09T17:55:55+08:00 ] 223.93.142.25 /mobile/index.php?m=console&c=view&a=view
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.010732s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.010732s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_touch_page_view` [ RunTime:0.0029s ]
+SQL: SELECT `type`,`title`,`thumb_pic`,`data`,`default` FROM `dsc_touch_page_view` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 521 行.
+NOTIC: [2] file_get_contents(D:/phpStudy/PHPTutorial/WWW/newppj/mobile/storage/framework/87a5e1/Data//navigation.php): failed to open stream: No such file or directory D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 522 行.
+
+[ 2018-09-09T17:55:55+08:00 ] 223.93.142.25 /mobile/index.php?m=console&c=view
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000975s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001951s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [2] session_start(): Cannot send session cache limiter - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1321 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1454 行.
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.009756s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.009756s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 10 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 11 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 12 行.
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0010s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 178 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 180 行.
+
+[ 2018-09-09T17:55:56+08:00 ] 223.93.142.25 /mobile/index.php?m=console&c=view&a=product
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000975s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000975s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.007804s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.007804s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0010s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0010s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+
+[ 2018-09-09T18:07:43+08:00 ] 112.12.255.88 /mobile/index.php?m=console&c=view&a=default
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000975s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000975s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0039s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.009756s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.009756s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0010s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_touch_page_view` [ RunTime:0.0029s ]
+SQL: SELECT `id` FROM `dsc_touch_page_view` WHERE `ru_id` = 0 AND `type` = 'index' AND `default` = 1 LIMIT 1   [ RunTime:0.0010s ]
+
+[ 2018-09-09T18:07:43+08:00 ] 112.12.255.88 /mobile/index.php?m=console&c=view&a=view
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0039s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.008780s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.008780s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0010s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_touch_page_view` [ RunTime:0.0029s ]
+SQL: SELECT `type`,`title`,`thumb_pic`,`data`,`default` FROM `dsc_touch_page_view` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 521 行.
+NOTIC: [2] file_get_contents(D:/phpStudy/PHPTutorial/WWW/newppj/mobile/storage/framework/87a5e1/Data//navigation.php): failed to open stream: No such file or directory D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 522 行.
+
+[ 2018-09-09T18:07:44+08:00 ] 112.12.255.88 /mobile/index.php?m=console&c=view
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [2] session_start(): Cannot send session cache limiter - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1321 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1454 行.
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0039s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.010731s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.010731s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 10 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 11 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 12 行.
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 178 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 180 行.
+
+[ 2018-09-09T18:07:45+08:00 ] 112.12.255.88 /mobile/index.php?m=console&c=view&a=product
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000975s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000975s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.009756s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.009756s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT goods_id FROM `paipai`.`dsc_goods_cat` AS g WHERE 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: where_area D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 58 行.
+SQL: SELECT g.goods_id, g.user_id, g.goods_name, wg.warehouse_price, wg.warehouse_promote_price, wag.region_price, wag.region_promote_price, g.model_price, g.model_attr,  g.goods_name_style, g.comments_number,g.sales_volume,g.market_price, g.is_new, g.is_best, g.is_hot,g.model_attr, IF(g.model_price < 1, g.goods_number, IF(g.model_price < 2, wg.region_number, wag.region_number)) AS goods_number, (SELECT IF((iw.goods_number + iw.user_number + iw.goods_comment_number + iw.merchants_comment_number + iw.user_attention_number) > iw.return_number, (iw.goods_number + iw.user_number + iw.goods_comment_number + iw.merchants_comment_number + iw.user_attention_number - iw.return_number), 0)  AS goods_sort FROM `paipai`.`dsc_intelligent_weight` AS iw WHERE iw.goods_id = g.goods_id LIMIT 1) AS goods_sort,  IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) AS org_price, g.model_price, IFNULL(IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1'), g.shop_price * '1')  AS shop_price, IFNULL(IF(g.model_price < 1, g.promote_price, IF(g.model_price < 2, wg.warehouse_promote_price, wag.region_promote_price)), g.promote_price) AS promote_price, g.goods_type, g.promote_start_date, g.promote_end_date, g.is_promote, g.goods_brief, g.goods_thumb , g.goods_img, msi.self_run , g.product_price, g.product_promote_price  FROM `paipai`.`dsc_goods` AS g  left join `paipai`.`dsc_warehouse_goods` as wg on g.goods_id = wg.goods_id and wg.region_id = '2'  left join `paipai`.`dsc_warehouse_area_goods` as wag on g.goods_id = wag.goods_id and wag.region_id = '24'  LEFT JOIN `paipai`.`dsc_merchants_shop_information` as msi on msi.user_id = g.user_id  LEFT JOIN `paipai`.`dsc_seller_shopinfo` as ssi on ssi.ru_id = g.user_id LEFT JOIN `paipai`.`dsc_member_price` AS mp ON mp.goods_id = g.goods_id  AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND ssi.shop_close = 1 AND  g.is_hot = '1'   ORDER BY g.last_update LIMIT 8 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='948' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '948' LIMIT 0, 1 [ RunTime:0.0000s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='948' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1019' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1019' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1019' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1018' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1018' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1018' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1015' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1015' LIMIT 0, 1 [ RunTime:0.0000s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1015' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1011' AND status = 1 AND parent_id = 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1011' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1011' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1005' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1005' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1005' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1001' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1001' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1001' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='986' AND status = 1 AND parent_id = 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '986' LIMIT 0, 1 [ RunTime:0.0000s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='986' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0010s ]
+
+[ 2018-09-09T18:13:15+08:00 ] 115.206.113.8 /mobile/index.php?m=console&c=view&a=default
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000975s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001951s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.008780s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.008780s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0010s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0010s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_touch_page_view` [ RunTime:0.0029s ]
+SQL: SELECT `id` FROM `dsc_touch_page_view` WHERE `ru_id` = 0 AND `type` = 'index' AND `default` = 1 LIMIT 1   [ RunTime:0.0010s ]
+
+[ 2018-09-09T18:13:15+08:00 ] 115.206.113.8 /mobile/index.php?m=console&c=view&a=view
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000975s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000975s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.007805s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.007805s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_touch_page_view` [ RunTime:0.0029s ]
+SQL: SELECT `type`,`title`,`thumb_pic`,`data`,`default` FROM `dsc_touch_page_view` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 521 行.
+NOTIC: [2] file_get_contents(D:/phpStudy/PHPTutorial/WWW/newppj/mobile/storage/framework/87a5e1/Data//navigation.php): failed to open stream: No such file or directory D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 522 行.
+
+[ 2018-09-09T18:13:16+08:00 ] 115.206.113.8 /mobile/index.php?m=console&c=view&a=product
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000975s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.008781s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.008781s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0010s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT goods_id FROM `paipai`.`dsc_goods_cat` AS g WHERE 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: where_area D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 58 行.
+SQL: SELECT g.goods_id, g.user_id, g.goods_name, wg.warehouse_price, wg.warehouse_promote_price, wag.region_price, wag.region_promote_price, g.model_price, g.model_attr,  g.goods_name_style, g.comments_number,g.sales_volume,g.market_price, g.is_new, g.is_best, g.is_hot,g.model_attr, IF(g.model_price < 1, g.goods_number, IF(g.model_price < 2, wg.region_number, wag.region_number)) AS goods_number, (SELECT IF((iw.goods_number + iw.user_number + iw.goods_comment_number + iw.merchants_comment_number + iw.user_attention_number) > iw.return_number, (iw.goods_number + iw.user_number + iw.goods_comment_number + iw.merchants_comment_number + iw.user_attention_number - iw.return_number), 0)  AS goods_sort FROM `paipai`.`dsc_intelligent_weight` AS iw WHERE iw.goods_id = g.goods_id LIMIT 1) AS goods_sort,  IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) AS org_price, g.model_price, IFNULL(IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1'), g.shop_price * '1')  AS shop_price, IFNULL(IF(g.model_price < 1, g.promote_price, IF(g.model_price < 2, wg.warehouse_promote_price, wag.region_promote_price)), g.promote_price) AS promote_price, g.goods_type, g.promote_start_date, g.promote_end_date, g.is_promote, g.goods_brief, g.goods_thumb , g.goods_img, msi.self_run , g.product_price, g.product_promote_price  FROM `paipai`.`dsc_goods` AS g  left join `paipai`.`dsc_warehouse_goods` as wg on g.goods_id = wg.goods_id and wg.region_id = '2'  left join `paipai`.`dsc_warehouse_area_goods` as wag on g.goods_id = wag.goods_id and wag.region_id = '24'  LEFT JOIN `paipai`.`dsc_merchants_shop_information` as msi on msi.user_id = g.user_id  LEFT JOIN `paipai`.`dsc_seller_shopinfo` as ssi on ssi.ru_id = g.user_id LEFT JOIN `paipai`.`dsc_member_price` AS mp ON mp.goods_id = g.goods_id  AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND ssi.shop_close = 1 AND  g.is_hot = '1'   ORDER BY g.last_update LIMIT 8 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='948' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '948' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='948' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1019' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1019' LIMIT 0, 1 [ RunTime:0.0000s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1019' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1018' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1018' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1018' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1015' AND status = 1 AND parent_id = 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1015' LIMIT 0, 1 [ RunTime:0.0000s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1015' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1011' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1011' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1011' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1005' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1005' LIMIT 0, 1 [ RunTime:0.0000s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1005' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1001' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1001' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1001' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='986' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '986' LIMIT 0, 1 [ RunTime:0.0000s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='986' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+
+[ 2018-09-09T18:13:16+08:00 ] 115.206.113.8 /mobile/index.php?m=console&c=view
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [2] session_start(): Cannot send session cache limiter - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1321 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1454 行.
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.007805s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.007805s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 10 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 11 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 12 行.
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0010s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 178 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 180 行.
+
+[ 2018-09-09T18:13:34+08:00 ] 115.206.113.8 /mobile/index.php?m=console&c=view&a=default
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.009756s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.009756s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0010s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_touch_page_view` [ RunTime:0.0029s ]
+SQL: SELECT `id` FROM `dsc_touch_page_view` WHERE `ru_id` = 0 AND `type` = 'index' AND `default` = 1 LIMIT 1   [ RunTime:0.0010s ]
+
+[ 2018-09-09T18:13:34+08:00 ] 115.206.113.8 /mobile/index.php?m=console&c=view
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000975s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001951s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [2] session_start(): Cannot send session cache limiter - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1321 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1454 行.
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.009756s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.009756s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 10 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 11 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 12 行.
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0010s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 178 行.
+NOTIC: [2] Cannot modify header information - headers already sent D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Controller\RestController.class.php 第 180 行.
+
+[ 2018-09-09T18:13:34+08:00 ] 115.206.113.8 /mobile/index.php?m=console&c=view&a=view
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.010731s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.010731s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_touch_page_view` [ RunTime:0.0059s ]
+SQL: SELECT `type`,`title`,`thumb_pic`,`data`,`default` FROM `dsc_touch_page_view` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 521 行.
+NOTIC: [2] file_get_contents(D:/phpStudy/PHPTutorial/WWW/newppj/mobile/storage/framework/87a5e1/Data//navigation.php): failed to open stream: No such file or directory D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 522 行.
+
+[ 2018-09-09T18:13:34+08:00 ] 115.206.113.8 /mobile/index.php?m=console&c=view&a=product
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.007805s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.007805s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '' order by order_id DESC [ RunTime:0.0010s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 600 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 606 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 612 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 614 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 619 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 624 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 627 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 632 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Controllers\ViewController.php 第 660 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT goods_id FROM `paipai`.`dsc_goods_cat` AS g WHERE 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: where_area D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 58 行.
+SQL: SELECT g.goods_id, g.user_id, g.goods_name, wg.warehouse_price, wg.warehouse_promote_price, wag.region_price, wag.region_promote_price, g.model_price, g.model_attr,  g.goods_name_style, g.comments_number,g.sales_volume,g.market_price, g.is_new, g.is_best, g.is_hot,g.model_attr, IF(g.model_price < 1, g.goods_number, IF(g.model_price < 2, wg.region_number, wag.region_number)) AS goods_number, (SELECT IF((iw.goods_number + iw.user_number + iw.goods_comment_number + iw.merchants_comment_number + iw.user_attention_number) > iw.return_number, (iw.goods_number + iw.user_number + iw.goods_comment_number + iw.merchants_comment_number + iw.user_attention_number - iw.return_number), 0)  AS goods_sort FROM `paipai`.`dsc_intelligent_weight` AS iw WHERE iw.goods_id = g.goods_id LIMIT 1) AS goods_sort,  IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) AS org_price, g.model_price, IFNULL(IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1'), g.shop_price * '1')  AS shop_price, IFNULL(IF(g.model_price < 1, g.promote_price, IF(g.model_price < 2, wg.warehouse_promote_price, wag.region_promote_price)), g.promote_price) AS promote_price, g.goods_type, g.promote_start_date, g.promote_end_date, g.is_promote, g.goods_brief, g.goods_thumb , g.goods_img, msi.self_run , g.product_price, g.product_promote_price  FROM `paipai`.`dsc_goods` AS g  left join `paipai`.`dsc_warehouse_goods` as wg on g.goods_id = wg.goods_id and wg.region_id = '2'  left join `paipai`.`dsc_warehouse_area_goods` as wag on g.goods_id = wag.goods_id and wag.region_id = '24'  LEFT JOIN `paipai`.`dsc_merchants_shop_information` as msi on msi.user_id = g.user_id  LEFT JOIN `paipai`.`dsc_seller_shopinfo` as ssi on ssi.ru_id = g.user_id LEFT JOIN `paipai`.`dsc_member_price` AS mp ON mp.goods_id = g.goods_id  AND mp.user_rank = '6' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND ssi.shop_close = 1 AND  g.is_hot = '1'   ORDER BY g.last_update LIMIT 8 [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='948' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '948' LIMIT 0, 1 [ RunTime:0.0000s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='948' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1019' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1019' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1019' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1018' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1018' LIMIT 0, 1 [ RunTime:0.0000s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1018' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1015' AND status = 1 AND parent_id = 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1015' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1015' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1011' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1011' LIMIT 0, 1 [ RunTime:0.0000s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1011' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1005' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1005' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1005' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='1001' AND status = 1 AND parent_id = 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '1001' LIMIT 0, 1 [ RunTime:0.0000s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='1001' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 142 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` where id_value ='986' AND status = 1 AND parent_id = 0 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_shipping D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 159 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '986' LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL: select * from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: rz_shopName D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Console\Helpers\function_helper.php 第 188 行.
+SQL: select count(og.goods_number) as count from `paipai`.`dsc_order_goods` as og , `paipai`.`dsc_goods` as g , `paipai`.`dsc_order_info` as oi  where og.goods_id = g.goods_id and og.goods_id ='986' AND og.order_id = oi.order_id AND (oi.order_status = '1' OR oi.order_status = '5') AND (oi.pay_status = '2' OR oi.pay_status = '1') AND (oi.shipping_status = '1' OR oi.shipping_status = '2') group by g.goods_id [ RunTime:0.0010s ]
+

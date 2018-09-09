@@ -7597,3 +7597,704 @@ SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31'
 SQL: DESC `paipai`.`dsc_cart` [ RunTime:0.0000s ]
 SQL: INSERT INTO `paipai`.`dsc_cart` (user_id, session_id, goods_id, goods_sn, product_id, goods_name, market_price, goods_price, goods_number, goods_attr, is_real, extension_code, parent_id, rec_type, is_gift, goods_attr_id, ru_id, warehouse_id, area_id, sellers_fee, ppj_no, ppj_id) VALUES ('3331', '', '979', 'PPJ000979', '0', '智能遥控机器人玩具', '0.10', '0.02', '1', '', '1', '', '0', '1', '0', '', '0', '2', '24', '0', '1', '128') [ RunTime:0.0000s ]
 
+[ 2018-09-09T17:56:03+08:00 ] 223.93.142.25 /mobile/index.php?m=groupbuy
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000975s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001951s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0039s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.008780s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.008780s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '0' order by order_id DESC [ RunTime:0.0010s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 727 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 733 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 739 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 741 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 746 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 751 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 754 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 759 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0010s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 787 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2] Cookie names cannot contain any of the following '=,; \t\r\n\013\014' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: sort D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 160 行.
+SQL: SHOW COLUMNS FROM `dsc_seo` [ RunTime:0.0020s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.007804s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.007804s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000975s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.001952s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.003903s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000976s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.004878s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.006830s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.007805s ]
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000976s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000976s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034146s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.034146s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000975s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000975s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000976s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000976s ]
+
+[ 2018-09-09T17:56:03+08:00 ] 223.93.142.25 /mobile/index.php?m=groupbuy&ts=0.07751380264999941
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000975s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001951s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.008780s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.008780s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '0' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 727 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 733 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 739 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 741 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 746 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 751 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 754 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 759 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 787 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2] Cookie names cannot contain any of the following '=,; \t\r\n\013\014' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: sort D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 160 行.
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 304 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_paipai_list` AS ga LEFT JOIN `paipai`.`dsc_goods` AS g ON ga.goods_id = g.goods_id WHERE ga.act_type = 'GAT_PAIPAI_BUY' AND ga.start_time <= '1536458163' AND ga.ppj_staus < 3 AND ga.review_status = 3  AND g.is_delete = 0  [ RunTime:0.0010s ]
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 137 行.
+SQL: SELECT b.*, IFNULL(g.goods_thumb, '') AS goods_thumb, b.ppj_id AS group_buy_id, g.market_price,b.start_time AS start_date, b.end_time AS end_date FROM `paipai`.`dsc_paipai_list` AS b LEFT JOIN `paipai`.`dsc_goods` AS g ON b.goods_id = g.goods_id WHERE b.act_type = 'GAT_PAIPAI_BUY'  AND g.is_delete = 0  AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY b.ppj_id DESC LIMIT 10 [ RunTime:0.0010s ]
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 1540 行.
+SQL: SELECT goods_id FROM `paipai`.`dsc_paipai_list`WHERE ppj_id = '128' AND act_type = 'GAT_PAIPAI_BUY'AND review_status = 3  [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods FROM `paipai`.`dsc_order_info` AS o, `paipai`.`dsc_order_goods` AS g  WHERE o.order_id = g.order_id AND o.extension_code = 'paipai_buy' AND o.extension_id = '128' AND o.ppj_no = '1' AND g.goods_id = '979' AND (order_status = '1' OR order_status = '0') [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods FROM `paipai`.`dsc_order_info` AS o, `paipai`.`dsc_order_goods` AS g  WHERE o.order_id = g.order_id AND o.extension_code = 'paipai_buy' AND o.extension_id = '128' AND o.ppj_no = '1' AND g.goods_id = '979' AND (order_status = '1' OR order_status = '0') AND (o.money_paid + o.surplus) >= '0.02' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: cur_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 208 行.
+NOTIC: [8] Undefined variable: cur_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 211 行.
+NOTIC: [8] Undefined offset: 0 D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 182 行.
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 1540 行.
+SQL: SELECT goods_id FROM `paipai`.`dsc_paipai_list`WHERE ppj_id = '126' AND act_type = 'GAT_PAIPAI_BUY'AND review_status = 3  [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods FROM `paipai`.`dsc_order_info` AS o, `paipai`.`dsc_order_goods` AS g  WHERE o.order_id = g.order_id AND o.extension_code = 'paipai_buy' AND o.extension_id = '126' AND o.ppj_no = '1' AND g.goods_id = '1000' AND (order_status = '1' OR order_status = '0') [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods FROM `paipai`.`dsc_order_info` AS o, `paipai`.`dsc_order_goods` AS g  WHERE o.order_id = g.order_id AND o.extension_code = 'paipai_buy' AND o.extension_id = '126' AND o.ppj_no = '1' AND g.goods_id = '1000' AND (order_status = '1' OR order_status = '0') AND (o.money_paid + o.surplus) >= '32' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: cur_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 208 行.
+NOTIC: [8] Undefined variable: cur_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 211 行.
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 1540 行.
+SQL: SELECT goods_id FROM `paipai`.`dsc_paipai_list`WHERE ppj_id = '125' AND act_type = 'GAT_PAIPAI_BUY'AND review_status = 3  [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods FROM `paipai`.`dsc_order_info` AS o, `paipai`.`dsc_order_goods` AS g  WHERE o.order_id = g.order_id AND o.extension_code = 'paipai_buy' AND o.extension_id = '125' AND o.ppj_no = '1' AND g.goods_id = '1003' AND (order_status = '1' OR order_status = '0') [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 1540 行.
+SQL: SELECT goods_id FROM `paipai`.`dsc_paipai_list`WHERE ppj_id = '124' AND act_type = 'GAT_PAIPAI_BUY'AND review_status = 3  [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods FROM `paipai`.`dsc_order_info` AS o, `paipai`.`dsc_order_goods` AS g  WHERE o.order_id = g.order_id AND o.extension_code = 'paipai_buy' AND o.extension_id = '124' AND o.ppj_no = '1' AND g.goods_id = '1023' AND (order_status = '1' OR order_status = '0') [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods FROM `paipai`.`dsc_order_info` AS o, `paipai`.`dsc_order_goods` AS g  WHERE o.order_id = g.order_id AND o.extension_code = 'paipai_buy' AND o.extension_id = '124' AND o.ppj_no = '1' AND g.goods_id = '1023' AND (order_status = '1' OR order_status = '0') AND (o.money_paid + o.surplus) >= '10' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 1540 行.
+SQL: SELECT goods_id FROM `paipai`.`dsc_paipai_list`WHERE ppj_id = '123' AND act_type = 'GAT_PAIPAI_BUY'AND review_status = 3  [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods FROM `paipai`.`dsc_order_info` AS o, `paipai`.`dsc_order_goods` AS g  WHERE o.order_id = g.order_id AND o.extension_code = 'paipai_buy' AND o.extension_id = '123' AND o.ppj_no = '1' AND g.goods_id = '953' AND (order_status = '1' OR order_status = '0') [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods FROM `paipai`.`dsc_order_info` AS o, `paipai`.`dsc_order_goods` AS g  WHERE o.order_id = g.order_id AND o.extension_code = 'paipai_buy' AND o.extension_id = '123' AND o.ppj_no = '1' AND g.goods_id = '953' AND (order_status = '1' OR order_status = '0') AND (o.money_paid + o.surplus) >= '32' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 1540 行.
+SQL: SELECT goods_id FROM `paipai`.`dsc_paipai_list`WHERE ppj_id = '122' AND act_type = 'GAT_PAIPAI_BUY'AND review_status = 3  [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods FROM `paipai`.`dsc_order_info` AS o, `paipai`.`dsc_order_goods` AS g  WHERE o.order_id = g.order_id AND o.extension_code = 'paipai_buy' AND o.extension_id = '122' AND o.ppj_no = '1' AND g.goods_id = '1007' AND (order_status = '1' OR order_status = '0') [ RunTime:0.0000s ]
+
+[ 2018-09-09T17:56:08+08:00 ] 223.93.142.25 /mobile/index.php?m=groupbuy&a=detail&id=128
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.009756s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.009756s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '0' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 727 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 733 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 739 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 741 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 746 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 751 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 754 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 759 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0010s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 787 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2] Cookie names cannot contain any of the following '=,; \t\r\n\013\014' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 1369 行.
+SQL: SELECT b.*,g.*, b.ppj_id AS group_buy_id, b.start_time AS start_date, b.end_time AS end_date FROM `paipai`.`dsc_paipai_list` AS b LEFT JOIN `paipai`.`dsc_goods` AS g ON b.goods_id = g.goods_id WHERE ppj_id = '128' AND act_type = 'GAT_PAIPAI_BUY'AND b.review_status = 3 [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 1540 行.
+SQL: SELECT goods_id FROM `paipai`.`dsc_paipai_list`WHERE ppj_id = '128' AND act_type = 'GAT_PAIPAI_BUY'AND review_status = 3  [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods FROM `paipai`.`dsc_order_info` AS o, `paipai`.`dsc_order_goods` AS g  WHERE o.order_id = g.order_id AND o.extension_code = 'paipai_buy' AND o.extension_id = '128' AND o.ppj_no = '1' AND g.goods_id = '979' AND (order_status = '1' OR order_status = '0') [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods FROM `paipai`.`dsc_order_info` AS o, `paipai`.`dsc_order_goods` AS g  WHERE o.order_id = g.order_id AND o.extension_code = 'paipai_buy' AND o.extension_id = '128' AND o.ppj_no = '1' AND g.goods_id = '979' AND (order_status = '1' OR order_status = '0') AND (o.money_paid + o.surplus) >= '0.02' [ RunTime:0.0000s ]
+SQL: select goods_desc from `paipai`.`dsc_goods` where goods_id = '979' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: is_finished D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 1588 行.
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0000s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: self_run D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0000s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: self_run D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_collect_goods` WHERE goods_id = '979' [ RunTime:0.0000s ]
+SQL: select gac.*, g.*, count(gac.act_id) as valid_goods, SUM(og.goods_number) AS v_goods_number from `paipai`.`dsc_goods_activity` as gac, `paipai`.`dsc_goods` as g, `paipai`.`dsc_order_goods` as og,  `paipai`.`dsc_order_info` as o where gac.goods_id = og.goods_id and og.order_id = o.order_id and gac.goods_id = g.goods_id  and o.add_time >= 1535702400 and o.add_time <= 1538294399 AND gac.act_id <> '128' AND gac.review_status = 3 AND (order_status = '1' OR order_status = '0') AND o.extension_code = 'group_buy'  group by gac.act_id order by v_goods_number desc limit 0,10 [ RunTime:0.0039s ]
+SQL: SELECT user_id FROM `paipai`.`dsc_paipai_list` WHERE ppj_id = '128' AND review_status = 3 [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 311 行.
+SQL: SELECT ga.ppj_id, ga.ext_info, ga.ppj_name, g.goods_thumb, g.sales_volume FROM `paipai`.`dsc_paipai_list` ga LEFT JOIN `paipai`.`dsc_goods` g ON ga.goods_id = g.goods_id  WHERE ga.user_id = '0' AND act_type = 'GAT_PAIPAI_BUY' AND ga.review_status = 3 LIMIT 4  [ RunTime:0.0000s ]
+NOTIC: [2] Illegal string offset 'cur_price' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 317 行.
+NOTIC: [2] Illegal string offset 'cur_price' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 317 行.
+NOTIC: [2] Illegal string offset 'cur_price' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 317 行.
+NOTIC: [2] Illegal string offset 'cur_price' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 317 行.
+NOTIC: [8] Undefined variable: user_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 339 行.
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 339 行.
+SQL: SELECT ga.*, g.sales_volume, g.goods_thumb, g.goods_id FROM `paipai`.`dsc_paipai_list` ga LEFT JOIN `paipai`.`dsc_goods` g ON ga.goods_id = g.goods_id  WHERE ga.user_id = '' AND g.goods_id > 0 AND act_type = 'GAT_PAIPAI_BUY' AND ga.review_status = 3 ORDER BY g.click_count LIMIT 5  [ RunTime:0.0029s ]
+NOTIC: [8] Undefined variable: cur_amount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 361 行.
+NOTIC: [8] Undefined variable: cur_amount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 361 行.
+NOTIC: [8] Undefined offset: 0 D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 358 行.
+NOTIC: [8] Undefined variable: cur_amount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 361 行.
+NOTIC: [8] Undefined variable: cur_amount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 361 行.
+NOTIC: [8] Undefined variable: cur_amount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 361 行.
+NOTIC: [8] Undefined variable: user_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 339 行.
+NOTIC: [8] Use of undefined constant GAT_PAIPAI_BUY - assumed 'GAT_PAIPAI_BUY' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 339 行.
+SQL: SELECT ga.*, g.sales_volume, g.goods_thumb, g.goods_id FROM `paipai`.`dsc_paipai_list` ga LEFT JOIN `paipai`.`dsc_goods` g ON ga.goods_id = g.goods_id  WHERE ga.user_id = '' AND g.goods_id > 0 AND act_type = 'GAT_PAIPAI_BUY' AND ga.review_status = 3 ORDER BY g.sales_volume LIMIT 5  [ RunTime:0.0039s ]
+NOTIC: [8] Undefined variable: cur_amount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 361 行.
+NOTIC: [8] Undefined variable: cur_amount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 361 行.
+NOTIC: [8] Undefined offset: 0 D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 358 行.
+NOTIC: [8] Undefined variable: cur_amount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 361 行.
+NOTIC: [8] Undefined variable: cur_amount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 361 行.
+NOTIC: [8] Undefined variable: cur_amount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Helpers\function_helper.php 第 361 行.
+SQL: SELECT g.*, b.brand_name, c.measure_unit, IF(g.model_inventory < 1, g.goods_number, IF(g.model_inventory < 2, wg.region_number, wag.region_number)) as goods_number FROM `paipai`.`dsc_goods` AS g LEFT JOIN `paipai`.`dsc_brand` AS b ON g.brand_id = b.brand_id LEFT JOIN `paipai`.`dsc_category` AS c ON g.cat_id = c.cat_id  left join `paipai`.`dsc_warehouse_goods` as wg on g.goods_id = wg.goods_id and wg.region_id = '2'  left join `paipai`.`dsc_warehouse_area_goods` as wag on g.goods_id = wag.goods_id and wag.region_id = '24'  WHERE g.goods_id = '979' [ RunTime:0.0020s ]
+SQL: SELECT `volume_number` , `volume_price` FROM `paipai`.`dsc_volume_price` WHERE `goods_id` = '979' AND `price_type` = '1' ORDER BY `volume_number` [ RunTime:0.0010s ]
+SQL: SELECT count(*) FROM `paipai`.`dsc_presale_activity` AS pa, `paipai`.`dsc_goods` AS g WHERE pa.goods_id = '979' AND pa.review_status = 3 AND pa.goods_id = g.goods_id AND g.is_on_sale = 0 [ RunTime:0.0010s ]
+SQL: SELECT IFNULL(IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1'), g.shop_price * '1')  AS shop_price, IFNULL(IF(g.model_price < 1, g.promote_price, IF(g.model_price < 2, wg.warehouse_promote_price, wag.region_promote_price)), g.promote_price) AS promote_price,  g.promote_start_date, g.promote_end_date, mp.user_price, g.user_id, g.model_price, g.model_attr  FROM `paipai`.`dsc_goods` AS g  LEFT JOIN `paipai`.`dsc_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '8'  LEFT JOIN `paipai`.`dsc_warehouse_goods` AS wg ON g.goods_id = wg.goods_id AND wg.region_id = '2'  LEFT JOIN `paipai`.`dsc_warehouse_area_goods` AS wag ON g.goods_id = wag.goods_id AND wag.region_id = '24'  WHERE g.goods_id = '979' AND g.is_delete = 0 LIMIT 1 [ RunTime:0.0010s ]
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0000s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: self_run D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0000s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: self_run D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+SQL: select province, city, kf_type, kf_ww, kf_qq, shop_name from `paipai`.`dsc_seller_shopinfo` where ru_id='0' [ RunTime:0.0000s ]
+SQL: SELECT count(*) FROM `paipai`.`dsc_collect_store` WHERE ru_id = 0 [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` WHERE id_value = '979' AND status = 1 AND parent_id = 0 and comment_rank in(1,2,3,4,5) [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` WHERE id_value = '979' AND status = 1 AND parent_id = 0 and comment_rank = '1' [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` WHERE id_value = '979' AND status = 1 AND parent_id = 0 and comment_rank = '2' [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` WHERE id_value = '979' AND status = 1 AND parent_id = 0 and comment_rank = '3' [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` WHERE id_value = '979' AND status = 1 AND parent_id = 0 and comment_rank = '4' [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_comment` WHERE id_value = '979' AND status = 1 AND parent_id = 0 and comment_rank = '5' [ RunTime:0.0000s ]
+SQL: select a.kf_im_switch, b.is_IM,a.ru_id,a.province, a.city, a.kf_type, a.kf_ww, a.kf_qq, a.meiqia, a.shop_name, a.kf_appkey,kf_secretkey from dsc_seller_shopinfo as a left join dsc_merchants_shop_information as b on a.ru_id=b.user_id where a.ru_id='0'  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_shop_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_shop_config` WHERE `code` = 'customer_service' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_seller_shopinfo` [ RunTime:0.0029s ]
+SQL: SELECT `kf_type`,`kf_qq`,`kf_ww` FROM `dsc_seller_shopinfo` WHERE `ru_id` = 0 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT kf_im_switch FROM dsc_seller_shopinfo WHERE ru_id = 0 [ RunTime:0.0010s ]
+SQL: SHOW TABLES LIKE "dsc_im_dialog" [ RunTime:0.0020s ]
+SQL: SELECT * FROM `paipai`.`dsc_comment` WHERE id_value = '979' and comment_type = 0 and status = 1 and parent_id = 0  AND  comment_rank in (4, 5) ORDER BY comment_id DESC LIMIT 0, 1 [ RunTime:0.0010s ]
+SQL:  SELECT value FROM `paipai`.`dsc_shop_config` WHERE code = 'goods_attr_price'  [ RunTime:0.0000s ]
+SQL: SELECT library, number FROM `paipai`.`dsc_template` WHERE theme = 'default' AND filename = 'index' AND remarks=''  [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: new D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 304 行.
+NOTIC: [8] Undefined index: best D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 304 行.
+NOTIC: [8] Undefined index: hot D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 304 行.
+NOTIC: [2] array_merge(): Argument #1 is not an array D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 304 行.
+NOTIC: [2] array_unique() expects parameter 1 to be array, null given D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 305 行.
+SQL: SELECT g.goods_id, g.goods_name, g.goods_name_style, g.comments_number, g.sales_volume, g.sales_volume_base, g.market_price, g.is_best, g.is_new, g.is_hot, g.user_id, g.model_attr, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) AS org_price, IFNULL(IF(g.model_price < 1, g.promote_price, IF(g.model_price < 2, wg.warehouse_promote_price, wag.region_promote_price)), g.promote_price) AS promote_price, IFNULL(IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1'), g.shop_price * '1')  AS shop_price, promote_start_date, promote_end_date, g.is_promote, g.goods_brief, g.goods_thumb, g.goods_img, RAND() AS rnd, g.product_price, g.product_promote_price FROM `paipai`.`dsc_goods` AS g  left join `paipai`.`dsc_warehouse_goods` as wg on g.goods_id = wg.goods_id and wg.region_id = '2'  left join `paipai`.`dsc_warehouse_area_goods` as wag on g.goods_id = wag.goods_id and wag.region_id = '24' LEFT JOIN `paipai`.`dsc_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '8'  WHERE g.goods_id  IN ('')  ORDER BY g.sort_order, g.last_update DESC [ RunTime:0.0010s ]
+SQL: SELECT * FROM dsc_goods_gallery WHERE goods_id = 979 [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_collect_goods` [ RunTime:0.0059s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `dsc_collect_goods` WHERE `user_id` = '3331' AND `goods_id` = '979' LIMIT 1   [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where region_type = '0' [ RunTime:0.0010s ]
+SQL: SELECT attr_group FROM `paipai`.`dsc_goods_type` AS gt, `paipai`.`dsc_goods` AS g WHERE g.goods_id='979' AND gt.cat_id=g.goods_type [ RunTime:0.0010s ]
+SQL: select model_attr from `paipai`.`dsc_goods` where goods_id = '979' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT a.attr_id, a.attr_name, a.attr_group, a.is_linked, a.attr_type, g.goods_attr_id, g.attr_value, g.attr_price, g.attr_img_flie, g.attr_img_site, g.attr_checked, g.attr_sort FROM `paipai`.`dsc_goods_attr` AS g LEFT JOIN `paipai`.`dsc_attribute` AS a ON a.attr_id = g.attr_id WHERE g.goods_id = '979' ORDER BY a.sort_order, a.attr_id, g.goods_attr_id ASC [ RunTime:0.0029s ]
+SQL: SHOW COLUMNS FROM `dsc_seo` [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: act_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 397 行.
+NOTIC: [8] Undefined index: act_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 397 行.
+NOTIC: [8] Undefined index: act_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 397 行.
+SQL: SELECT ld.goods_desc FROM dsc_link_desc_goodsid AS dg, dsc_link_goods_desc AS ld WHERE dg.goods_id = 979  AND dg.d_id = ld.id AND ld.review_status > 2 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 431 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.014634s ]
+INFO: [ template_replace ] --END-- [ RunTime:0.014634s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000975s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.000976s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000975s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.002927s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.004878s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000975s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.004878s ]
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 257 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 262 行.
+NOTIC: [2048] Only variables should be passed by reference D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 267 行.
+INFO: [ template_replace ] --START--
+INFO: Run App\Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ template_replace ] --END-- [ RunTime:-0.006829s ]
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000976s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000976s ]
+NOTIC: [8] Undefined index: act_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 237 行.
+NOTIC: [8] Undefined index: act_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 239 行.
+NOTIC: [8] Undefined index: act_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 239 行.
+NOTIC: [8] Undefined index: promote_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 241 行.
+NOTIC: [8] Undefined index: act_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 237 行.
+NOTIC: [8] Undefined index: act_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 239 行.
+NOTIC: [8] Undefined index: act_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 239 行.
+NOTIC: [8] Undefined index: promote_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 241 行.
+NOTIC: [8] Undefined index: act_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 237 行.
+NOTIC: [8] Undefined index: act_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 239 行.
+NOTIC: [8] Undefined index: act_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 239 行.
+NOTIC: [8] Undefined index: promote_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 241 行.
+NOTIC: [8] Undefined index: act_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 237 行.
+NOTIC: [8] Undefined index: act_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 239 行.
+NOTIC: [8] Undefined index: act_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 239 行.
+NOTIC: [8] Undefined index: promote_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 241 行.
+NOTIC: [8] Undefined index: exchange_integral D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 373 行.
+NOTIC: [8] Undefined index: is_gift D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 445 行.
+NOTIC: [8] Undefined index: parent_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 445 行.
+NOTIC: [8] Undefined variable: user_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 479 行.
+NOTIC: [8] Undefined index: is_end D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 482 行.
+NOTIC: [8] Undefined index: is_end D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 484 行.
+NOTIC: [8] Undefined variable: goods_collect D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 522 行.
+NOTIC: [8] Undefined index: is_end D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 526 行.
+NOTIC: [8] Undefined index: is_end D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 528 行.
+NOTIC: [8] Undefined variable: xiangou D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 775 行.
+NOTIC: [8] Undefined variable: xiangou D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 800 行.
+NOTIC: [8] Undefined index: is_end D:\phpStudy\PHPTutorial\WWW\newppj\mobile\storage\framework\87a5e1\Cache\Groupbuy\4cd237a0cd145cb1c33eac597a5c758c.php 第 856 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.041951s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041951s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000975s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000975s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000976s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000976s ]
+
+[ 2018-09-09T17:56:09+08:00 ] 223.93.142.25 /mobile/index.php?m=groupbuy&a=price&id=979&attr=&number=1&warehouse_id=2&area_id=24
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0010s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.009756s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.009756s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '0' order by order_id DESC [ RunTime:0.0010s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 727 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 733 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 739 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 741 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 746 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 751 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 754 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 759 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 787 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2] Cookie names cannot contain any of the following '=,; \t\r\n\013\014' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT g.*, wg.warehouse_price, wg.warehouse_promote_price, wag.region_price, wag.region_promote_price, g.model_price, g.model_attr,  IF(g.model_inventory < 1, g.goods_number, IF(g.model_inventory < 2, wg.region_number, wag.region_number)) as goods_number, IFNULL(IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1'), g.shop_price * '1')  AS shop_price, IFNULL(IF(g.model_price < 1, g.promote_price, IF(g.model_price < 2, wg.warehouse_promote_price, wag.region_promote_price)), g.promote_price) AS promote_price, c.measure_unit, g.brand_id as brand_id, b.brand_logo, g.comments_number, g.sales_volume,b.brand_name AS goods_brand, m.type_money AS bonus_money, IFNULL(AVG(r.comment_rank), 0) AS comment_rank, IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1') AS rank_price FROM `paipai`.`dsc_goods` AS g LEFT JOIN `paipai`.`dsc_category` AS c ON g.cat_id = c.cat_id  left join `paipai`.`dsc_warehouse_goods` as wg on g.goods_id = wg.goods_id and wg.region_id = '2'  left join `paipai`.`dsc_warehouse_area_goods` as wag on g.goods_id = wag.goods_id and wag.region_id = '24'  LEFT JOIN `paipai`.`dsc_comment` AS r ON r.id_value = g.goods_id AND comment_type = 0 AND r.parent_id = 0 AND r.status = 1 LEFT JOIN `paipai`.`dsc_bonus_type` AS m ON g.bonus_type_id = m.type_id AND m.send_start_date <= '1536458169' AND m.send_end_date >= '1536458169' LEFT JOIN `paipai`.`dsc_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '8' LEFT JOIN `paipai`.`dsc_brand` AS b ON b.brand_id = g.brand_id WHERE g.goods_id = '979' AND g.is_delete = 0 GROUP BY g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 549 行.
+SQL: select goods_attr_id from `paipai`.`dsc_goods_attr` where goods_id = '979' [ RunTime:0.0010s ]
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0000s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: self_run D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0010s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: self_run D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+SQL: SELECT * FROM `paipai`.`dsc_goods_consumption` WHERE goods_id = '979' [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_goods_conshipping` WHERE goods_id = '979' [ RunTime:0.0000s ]
+SQL: SELECT ld.goods_desc FROM `paipai`.`dsc_link_desc_goodsid` AS dg, `paipai`.`dsc_link_goods_desc` AS ld WHERE dg.goods_id = '979' AND dg.d_id = ld.id AND ld.review_status > 2 [ RunTime:0.0000s ]
+SQL: SELECT suppliers_id, suppliers_name FROM `paipai`.`dsc_suppliers` WHERE suppliers_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: suppliers_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 639 行.
+SQL: SELECT starttime, endtime FROM `paipai`.`dsc_auto_manage` WHERE type = 'goods' AND item_id = '979' [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_collect_goods` WHERE goods_id = '979' [ RunTime:0.0000s ]
+SQL: SELECT rec_id FROM `paipai`.`dsc_collect_goods` WHERE goods_id = '979' AND user_id = '3331' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: area_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 479 行.
+SQL: select model_attr from `paipai`.`dsc_goods` where goods_id = '979' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT product_id, product_number, product_sn , product_price, product_promote_price, product_market_price, bar_code FROM `paipai`.`dsc_products` WHERE goods_id = '979' ORDER BY product_id DESC LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: product_number D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 480 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '979' LIMIT 0, 1 [ RunTime:0.0000s ]
+
+[ 2018-09-09T17:56:22+08:00 ] 223.93.142.25 /mobile/index.php?m=groupbuy&a=price&id=979&attr=&number=1&warehouse_id=2&area_id=24
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001951s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0029s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.008780s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.008780s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '0' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 727 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 733 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 739 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 741 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 746 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 751 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 754 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 759 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0010s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 787 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2] Cookie names cannot contain any of the following '=,; \t\r\n\013\014' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT g.*, wg.warehouse_price, wg.warehouse_promote_price, wag.region_price, wag.region_promote_price, g.model_price, g.model_attr,  IF(g.model_inventory < 1, g.goods_number, IF(g.model_inventory < 2, wg.region_number, wag.region_number)) as goods_number, IFNULL(IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1'), g.shop_price * '1')  AS shop_price, IFNULL(IF(g.model_price < 1, g.promote_price, IF(g.model_price < 2, wg.warehouse_promote_price, wag.region_promote_price)), g.promote_price) AS promote_price, c.measure_unit, g.brand_id as brand_id, b.brand_logo, g.comments_number, g.sales_volume,b.brand_name AS goods_brand, m.type_money AS bonus_money, IFNULL(AVG(r.comment_rank), 0) AS comment_rank, IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1') AS rank_price FROM `paipai`.`dsc_goods` AS g LEFT JOIN `paipai`.`dsc_category` AS c ON g.cat_id = c.cat_id  left join `paipai`.`dsc_warehouse_goods` as wg on g.goods_id = wg.goods_id and wg.region_id = '2'  left join `paipai`.`dsc_warehouse_area_goods` as wag on g.goods_id = wag.goods_id and wag.region_id = '24'  LEFT JOIN `paipai`.`dsc_comment` AS r ON r.id_value = g.goods_id AND comment_type = 0 AND r.parent_id = 0 AND r.status = 1 LEFT JOIN `paipai`.`dsc_bonus_type` AS m ON g.bonus_type_id = m.type_id AND m.send_start_date <= '1536458182' AND m.send_end_date >= '1536458182' LEFT JOIN `paipai`.`dsc_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '8' LEFT JOIN `paipai`.`dsc_brand` AS b ON b.brand_id = g.brand_id WHERE g.goods_id = '979' AND g.is_delete = 0 GROUP BY g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 549 行.
+SQL: select goods_attr_id from `paipai`.`dsc_goods_attr` where goods_id = '979' [ RunTime:0.0000s ]
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0000s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: self_run D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0010s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: self_run D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+SQL: SELECT * FROM `paipai`.`dsc_goods_consumption` WHERE goods_id = '979' [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_goods_conshipping` WHERE goods_id = '979' [ RunTime:0.0000s ]
+SQL: SELECT ld.goods_desc FROM `paipai`.`dsc_link_desc_goodsid` AS dg, `paipai`.`dsc_link_goods_desc` AS ld WHERE dg.goods_id = '979' AND dg.d_id = ld.id AND ld.review_status > 2 [ RunTime:0.0000s ]
+SQL: SELECT suppliers_id, suppliers_name FROM `paipai`.`dsc_suppliers` WHERE suppliers_id = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: suppliers_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 639 行.
+SQL: SELECT starttime, endtime FROM `paipai`.`dsc_auto_manage` WHERE type = 'goods' AND item_id = '979' [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_collect_goods` WHERE goods_id = '979' [ RunTime:0.0000s ]
+SQL: SELECT rec_id FROM `paipai`.`dsc_collect_goods` WHERE goods_id = '979' AND user_id = '3331' LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: area_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 479 行.
+SQL: select model_attr from `paipai`.`dsc_goods` where goods_id = '979' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT product_id, product_number, product_sn , product_price, product_promote_price, product_market_price, bar_code FROM `paipai`.`dsc_products` WHERE goods_id = '979' ORDER BY product_id DESC LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: product_number D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 480 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '979' LIMIT 0, 1 [ RunTime:0.0010s ]
+
+[ 2018-09-09T17:56:25+08:00 ] 223.93.142.25 /mobile/index.php?m=groupbuy&a=price&id=979&attr=&number=1&warehouse_id=2&area_id=24
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0020s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0010s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.007805s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.007805s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '0' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 727 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 733 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 739 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 741 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 746 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 751 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 754 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 759 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 787 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0010s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2] Cookie names cannot contain any of the following '=,; \t\r\n\013\014' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT g.*, wg.warehouse_price, wg.warehouse_promote_price, wag.region_price, wag.region_promote_price, g.model_price, g.model_attr,  IF(g.model_inventory < 1, g.goods_number, IF(g.model_inventory < 2, wg.region_number, wag.region_number)) as goods_number, IFNULL(IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1'), g.shop_price * '1')  AS shop_price, IFNULL(IF(g.model_price < 1, g.promote_price, IF(g.model_price < 2, wg.warehouse_promote_price, wag.region_promote_price)), g.promote_price) AS promote_price, c.measure_unit, g.brand_id as brand_id, b.brand_logo, g.comments_number, g.sales_volume,b.brand_name AS goods_brand, m.type_money AS bonus_money, IFNULL(AVG(r.comment_rank), 0) AS comment_rank, IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1') AS rank_price FROM `paipai`.`dsc_goods` AS g LEFT JOIN `paipai`.`dsc_category` AS c ON g.cat_id = c.cat_id  left join `paipai`.`dsc_warehouse_goods` as wg on g.goods_id = wg.goods_id and wg.region_id = '2'  left join `paipai`.`dsc_warehouse_area_goods` as wag on g.goods_id = wag.goods_id and wag.region_id = '24'  LEFT JOIN `paipai`.`dsc_comment` AS r ON r.id_value = g.goods_id AND comment_type = 0 AND r.parent_id = 0 AND r.status = 1 LEFT JOIN `paipai`.`dsc_bonus_type` AS m ON g.bonus_type_id = m.type_id AND m.send_start_date <= '1536458185' AND m.send_end_date >= '1536458185' LEFT JOIN `paipai`.`dsc_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '8' LEFT JOIN `paipai`.`dsc_brand` AS b ON b.brand_id = g.brand_id WHERE g.goods_id = '979' AND g.is_delete = 0 GROUP BY g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 549 行.
+SQL: select goods_attr_id from `paipai`.`dsc_goods_attr` where goods_id = '979' [ RunTime:0.0000s ]
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0010s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: self_run D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0010s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: self_run D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+SQL: SELECT * FROM `paipai`.`dsc_goods_consumption` WHERE goods_id = '979' [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_goods_conshipping` WHERE goods_id = '979' [ RunTime:0.0000s ]
+SQL: SELECT ld.goods_desc FROM `paipai`.`dsc_link_desc_goodsid` AS dg, `paipai`.`dsc_link_goods_desc` AS ld WHERE dg.goods_id = '979' AND dg.d_id = ld.id AND ld.review_status > 2 [ RunTime:0.0000s ]
+SQL: SELECT suppliers_id, suppliers_name FROM `paipai`.`dsc_suppliers` WHERE suppliers_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: suppliers_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 639 行.
+SQL: SELECT starttime, endtime FROM `paipai`.`dsc_auto_manage` WHERE type = 'goods' AND item_id = '979' [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_collect_goods` WHERE goods_id = '979' [ RunTime:0.0010s ]
+SQL: SELECT rec_id FROM `paipai`.`dsc_collect_goods` WHERE goods_id = '979' AND user_id = '3331' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: area_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 479 行.
+SQL: select model_attr from `paipai`.`dsc_goods` where goods_id = '979' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT product_id, product_number, product_sn , product_price, product_promote_price, product_market_price, bar_code FROM `paipai`.`dsc_products` WHERE goods_id = '979' ORDER BY product_id DESC LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: product_number D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 480 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '979' LIMIT 0, 1 [ RunTime:0.0000s ]
+
+[ 2018-09-09T17:56:33+08:00 ] 223.93.142.25 /mobile/index.php?m=groupbuy&a=price&id=979&attr=&number=1&warehouse_id=2&area_id=24
+NOTIC: [8] date_default_timezone_set(): Timezone ID '' is invalid D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Library\Think\Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run App\Behavior\SaaSServiceBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000976s ]
+SQL: SELECT code, value FROM `paipai`.`dsc_shop_config` WHERE parent_id > 0 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 208 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 215 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region` where 1 AND parent_id = '' order by region_id asc limit 0, 1 [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 216 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: type_district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 217 行.
+SQL: select r1.parent_id, r2.region_name from `paipai`.`dsc_region` as r1, `paipai`.`dsc_region` as r2  where 1 AND r1.parent_id = r2.region_id AND r1.region_id = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: type_province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 218 行.
+SQL: select region_id,region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+NOTIC: [2] ltrim(): Invalid '..'-range, no character to the left of '..' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Base\Controllers\FrontendController.php 第 323 行.
+INFO: [ frontend_init ] --START--
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distribution' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `dsc_drp_config` [ RunTime:0.0020s ]
+SQL: SELECT `value` FROM `dsc_drp_config` WHERE `code` = 'custom_distributor' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run App\Behavior\ReplaceLangBehavior [ RunTime:0.008780s ]
+INFO: [ frontend_init ] --END-- [ RunTime:0.009756s ]
+SQL: select country, province, city, district from `paipai`.`dsc_order_info` where user_id = '0' order by order_id DESC [ RunTime:0.0000s ]
+SQL: select ut.province, ut.city, ut.district from `paipai`.`dsc_users` as u  left join `paipai`.`dsc_users_type` as ut on u.user_id = ut.user_id where u.user_id = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 727 行.
+NOTIC: [8] Undefined index: province D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 733 行.
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 739 行.
+SQL: select region_name from `paipai`.`dsc_region_warehouse` where regionId = '' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: province_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 741 行.
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where region_name = '北京仓库' and region_type = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 746 行.
+NOTIC: [8] Undefined variable: city_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 751 行.
+NOTIC: [8] Undefined index: district D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 754 行.
+NOTIC: [8] Undefined variable: district_info D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 759 行.
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '31' [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region` where parent_id = '383' [ RunTime:0.0000s ]
+SQL: select rw2.region_id, rw2.region_name from`paipai`.`dsc_region_warehouse` as rw1 left join `paipai`.`dsc_region_warehouse` as rw2 on rw1.parent_id = rw2.region_id where rw1.regionId = '31' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: region_id D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 787 行.
+SQL: select province, city, district from `paipai`.`dsc_seller_shopinfo` where ru_id = 0 [ RunTime:0.0000s ]
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select parent_id from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: select region_id from `paipai`.`dsc_region_warehouse` where regionId = '383' LIMIT 1 [ RunTime:0.0000s ]
+NOTIC: [2] Cookie names cannot contain any of the following '=,; \t\r\n\013\014' D:\phpStudy\PHPTutorial\WWW\newppj\mobile\vendor\Common\functions.php 第 1462 行.
+SQL: select region_id, region_name from `paipai`.`dsc_region_warehouse` where regionId = '31' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT g.*, wg.warehouse_price, wg.warehouse_promote_price, wag.region_price, wag.region_promote_price, g.model_price, g.model_attr,  IF(g.model_inventory < 1, g.goods_number, IF(g.model_inventory < 2, wg.region_number, wag.region_number)) as goods_number, IFNULL(IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1'), g.shop_price * '1')  AS shop_price, IFNULL(IF(g.model_price < 1, g.promote_price, IF(g.model_price < 2, wg.warehouse_promote_price, wag.region_promote_price)), g.promote_price) AS promote_price, c.measure_unit, g.brand_id as brand_id, b.brand_logo, g.comments_number, g.sales_volume,b.brand_name AS goods_brand, m.type_money AS bonus_money, IFNULL(AVG(r.comment_rank), 0) AS comment_rank, IFNULL(mp.user_price, IF(g.model_price < 1, g.shop_price, IF(g.model_price < 2, wg.warehouse_price, wag.region_price)) * '1') AS rank_price FROM `paipai`.`dsc_goods` AS g LEFT JOIN `paipai`.`dsc_category` AS c ON g.cat_id = c.cat_id  left join `paipai`.`dsc_warehouse_goods` as wg on g.goods_id = wg.goods_id and wg.region_id = '2'  left join `paipai`.`dsc_warehouse_area_goods` as wag on g.goods_id = wag.goods_id and wag.region_id = '24'  LEFT JOIN `paipai`.`dsc_comment` AS r ON r.id_value = g.goods_id AND comment_type = 0 AND r.parent_id = 0 AND r.status = 1 LEFT JOIN `paipai`.`dsc_bonus_type` AS m ON g.bonus_type_id = m.type_id AND m.send_start_date <= '1536458193' AND m.send_end_date >= '1536458193' LEFT JOIN `paipai`.`dsc_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '8' LEFT JOIN `paipai`.`dsc_brand` AS b ON b.brand_id = g.brand_id WHERE g.goods_id = '979' AND g.is_delete = 0 GROUP BY g.goods_id [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: goods_price D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 200 行.
+NOTIC: [8] Undefined index: discount D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 549 行.
+SQL: select goods_attr_id from `paipai`.`dsc_goods_attr` where goods_id = '979' [ RunTime:0.0010s ]
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0000s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: self_run D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+SQL: SELECT shop_name, check_sellername, shopname_audit, shop_logo, logo_thumb, brand_thumb FROM `paipai`.`dsc_seller_shopinfo` WHERE ru_id = '0' [ RunTime:0.0010s ]
+SQL: SELECT concat(shoprz_brandName, shopNameSuffix) as shop_name, shoprz_brandName, shopNameSuffix, rz_shopName, is_IM, self_run FROM `paipai`.`dsc_merchants_shop_information` WHERE user_id = '0' [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: self_run D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\ecmoban_helper.php 第 1799 行.
+SQL: SELECT * FROM `paipai`.`dsc_goods_consumption` WHERE goods_id = '979' [ RunTime:0.0010s ]
+SQL: SELECT * FROM `paipai`.`dsc_goods_conshipping` WHERE goods_id = '979' [ RunTime:0.0000s ]
+SQL: SELECT ld.goods_desc FROM `paipai`.`dsc_link_desc_goodsid` AS dg, `paipai`.`dsc_link_goods_desc` AS ld WHERE dg.goods_id = '979' AND dg.d_id = ld.id AND ld.review_status > 2 [ RunTime:0.0000s ]
+SQL: SELECT suppliers_id, suppliers_name FROM `paipai`.`dsc_suppliers` WHERE suppliers_id = '0' [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: suppliers_name D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Helpers\goods_helper.php 第 639 行.
+SQL: SELECT starttime, endtime FROM `paipai`.`dsc_auto_manage` WHERE type = 'goods' AND item_id = '979' [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) FROM `paipai`.`dsc_collect_goods` WHERE goods_id = '979' [ RunTime:0.0000s ]
+SQL: SELECT rec_id FROM `paipai`.`dsc_collect_goods` WHERE goods_id = '979' AND user_id = '3331' LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: area_city D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 479 行.
+SQL: select model_attr from `paipai`.`dsc_goods` where goods_id = '979' LIMIT 1 [ RunTime:0.0000s ]
+SQL: SELECT product_id, product_number, product_sn , product_price, product_promote_price, product_market_price, bar_code FROM `paipai`.`dsc_products` WHERE goods_id = '979' ORDER BY product_id DESC LIMIT 1 [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: product_number D:\phpStudy\PHPTutorial\WWW\newppj\mobile\app\Modules\Groupbuy\Controllers\IndexController.php 第 480 行.
+SQL: SELECT * FROM `paipai`.`dsc_products` WHERE goods_id = '979' LIMIT 0, 1 [ RunTime:0.0000s ]
+
