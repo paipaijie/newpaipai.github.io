@@ -172,7 +172,7 @@ function goods_paipai_activity($goods_id){
 }
 //查询产品的基本信息
 function goods_news($goods_id){
-    $sql="SELECT goods_id,goods_sn,cost_price FROM dsc_goods WHERE goods_id='{$goods_id}' ";
+    $sql="SELECT goods_id,goods_sn,cost_price,market_price,shop_price FROM dsc_goods WHERE goods_id='{$goods_id}' ";
     return $GLOBALS['db']->fetchRow($GLOBALS['db']->query($sql));
 }
 
@@ -296,19 +296,20 @@ else {
 		}
 		
 		else {    // 修改功能
-			//  测试提交功能
+			//  测试提交功能	
 			$group_buy_id = intval($_REQUEST['id']);
 
 			if ($group_buy_id <= 0) {
 				exit('invalid param');
-			}
-			
+			}		
 			//$group_buy = group_buy_info($group_buy_id,0,'seller');			
 			$sql = "SELECT * FROM dsc_paipai_list where ppj_id = '$group_buy_id'";
 			$result = $db->query($sql);
 			$shuju1 = $result->fetch_object();
 			//转换为数组
 			$group_buy = get_object_vars($shuju1); 
+			$goods=goods_news($group_buy['goods_id']);
+			$smarty->assign('goods', $goods);
 			//过滤
 			$ext_info = unserialize($group_buy['ext_info']);
 			//合并
@@ -351,6 +352,7 @@ else {
 	
 	// 添加和编辑拍拍活动
 	else if ($_REQUEST['act'] == 'insert_update') {
+
 		$group_buy_id = intval($_POST['act_id']);
 		if (isset($_POST['finish']) || isset($_POST['succeed']) || isset($_POST['fail']) || isset($_POST['mail'])) {
 			if ($group_buy_id <= 0) {
@@ -571,7 +573,7 @@ else {
 		
      //////////////////////////////////////////////////////////////////////////		// 新增活动开始
 		else {
-
+           
 			$goods_id = intval($_POST['goods_id']);  //获取变量的整数值
 
 			if ($goods_id <= 0) {
@@ -594,12 +596,9 @@ else {
 			
 			$ppj_name = empty($_POST['act_name']) ? $goods_name : sub_str($_POST['act_name'], 0, 255, false);
 
+
 			//保证金     
 			$deposit = floatval($_POST['ppl_margin_fee']);
-			$goods_news=goods_news($goods_id);
-			if ($deposit <= floatval($goods_news['cost_price'])) {    //保证金必须大于批发价 
-				sys_msg($_LANG['notice_goods_deposit']);
-			}
 			
 			// 起拍价
 			$ppj_start_fee=floatval($_POST['ppj_start_fee']);
@@ -627,7 +626,7 @@ else {
 			
 			$ppj_startpay_time = intval($_POST['ppj_startpay_time']);
 			
-			$ppj_endtapy_time = intval($_POST['ppj_endtapy_time']);
+			$ppj_endpay_time = intval($_POST['ppj_endpay_time']);
 
             $ppj_addfee_type=2;   //1，按固定增长比例增加，2.自定义方式增加 ,此处默认阶梯，后期扩展
            
@@ -713,7 +712,6 @@ else {
 			$review_status=3;
 			
 			$group_buy = array('ppj_name' => $ppj_name,'act_desc' => $_POST['act_desc'],'goods_id' => $goods_id,'goods_name' => $goods_name,'start_time' => $start_time,'end_time' => $end_time, 'review_status' => $review_status, 'is_hot' => $is_hot, 'is_new' => $is_new, 'ppj_margin_fee' => $deposit, 'ppj_no' =>$ppj_no_new,'goods_count' => $restrict_amount,'ppj_start_fee' => $ppj_start_fee,'ppj_buy_fee' =>$ppj_buy_fee,'ppj_addfee_type' => $ppj_addfee_type,'ppj_startpay_time' => $ppj_startpay_time,'ppj_endpay_time' => $ppj_endpay_time ,'ppj_staus' => $ppj_staus,'ppj_createtime' => $ppj_createtime, 'ext_info' => serialize(array('price_ladder' => $price_ladder, 'restrict_amount' => $restrict_amount)),'gift_integral'=>$_POST['gift_integral']);
-			
 			clear_cache_files();
 
 			/*
@@ -723,7 +721,7 @@ else {
 			
 			if (0 < $group_buy_id) {//
 				
-				//var_dump($group_buy_id);
+				
 				//exit;
 				if (isset($_POST['review_status'])) {
 					

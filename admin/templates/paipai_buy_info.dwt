@@ -174,13 +174,13 @@
 
 										<div class="item">
 											<div class="label">{$lang.lab_market_price}</div>
-											<div class="label_value" id="market_price">{$group_buy.market_price|default:0} 拍拍的价格不得高于此价格</div>	
+											<div class="label_value" id="market_price">{$goods.market_price|default:0} 拍拍的成交价格不得高于此价格</div>	
 																					
 										</div>
 
 										<div class="item">
 										    <div class="label">{$lang.lab_cost_price}</div>
-											<div class="label_value" id="cost_price">{$group_buy.cost_price|default:0} 保证金必须大于批发价</div>	
+											<div class="label_value" id="cost_price">{$goods.cost_price|default:0}</div>	
 										</div>
 										
 										<!--
