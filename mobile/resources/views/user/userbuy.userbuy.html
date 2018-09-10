@@ -113,7 +113,7 @@ function alertSet(e) {
 				"pjd": ppj_id,
 				"pjn":ppj_no
 			},
-			dataType: "JSON",
+//			dataType: "JSON",
 			success: function(re){	
 				if(t == 0){	
                     clearInterval(interval);				
@@ -121,7 +121,7 @@ function alertSet(e) {
 			        document.getElementById('p1').innerHTML='';					
 					if(re.match_bid == 1){
 					    layer.open({
-						  content: '价格匹配成功'
+						  content: '数据匹配成功'
 						  ,area:['200px', '100px']
 						  ,btn: ['去支付', '暂不支付']
 						  ,yes:function(success){
@@ -131,7 +131,7 @@ function alertSet(e) {
 				    }else if(re.match_bid == 3){
                         layer.open({
 						    content: '限购数量为空'
-						    ,area:['260px', '100px']
+						    ,area:['200px', '100px']
 						    ,btn: ['拍拍活动', '回到首页']
 						    ,yes:function(success){
 						  	  window.location.href="{url('groupbuy/index/index')}";
@@ -140,7 +140,7 @@ function alertSet(e) {
 				    }else{
 				    	layer.open({
 						    content: '匹配失败,请重新出价,'
-						    ,area:['260px', '100px']
+						    ,area:['200px', '100px']
 						    ,btn: ['拍拍活动', '回到首页']
 						    ,yes:function(success){
 						  	  window.location.href="{url('groupbuy/index/index')}";

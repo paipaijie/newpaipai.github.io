@@ -52,14 +52,17 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
 
     public function actionUserbuy()
     {
-        $ppj_id='123';
-        $ppj_no='2';
+//        $order_id=$_GET['id'];
+        $order_id='534';
+        $order_sql="SELECT * FROM ".$GLOBALS['ecs']->table('order_info')." WHERE order_id=".$order_id;
+        $order=$GLOBALS['db']->getRow($order_sql);       
+        $ppj_id=$order['ppj_id'];
+        $ppj_no=$order['ppj_no'];
         $user_id=$this->user_id;
 
         //单个买方出价信息
-        $user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id={$ppj_id} AND ppj_no={$ppj_no}"." AND user_id=".$user_id." AND is_status=2";       
+        $user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')."WHERE ppj_id={$ppj_id} AND ppj_no={$ppj_no}"." AND user_id=".$user_id." AND is_status=2";       
         $user_bid=$GLOBALS['db']->getRow($user_sql);
-
         $this->assign('user_bid', $user_bid);
 
         $this->display();
