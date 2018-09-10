@@ -457,11 +457,13 @@ function get_user_orders($user_id, $num = 10, $page = 1, $status = 0)
 	$where = '';
 
 	if ($status == 1) {
-		$where = 'and oi.pay_status in(' . PS_UNPAYED . ',' . PS_PAYED_PART . ') and oi.order_status not in(' . OS_CANCELED . ',' . OS_INVALID . ',' . OS_RETURNED . ')';
+		$where = 'and oi.pay_status in(' . PS_UNPAYED . ',' . PS_PAYED_PART . ',11) and oi.order_status not in(' . OS_CANCELED . ',' . OS_INVALID . ',' . OS_RETURNED . ')';
 	}
 	else if ($status == 2) {
-		$where .= ' AND oi.pay_status = ' . PS_PAYED . ' AND oi.order_status in (' . OS_CONFIRMED . ', ' . OS_SPLITED . ', ' . OS_SPLITING_PART . ') AND (oi.shipping_status >= ' . SS_UNSHIPPED . ' AND oi.shipping_status <> ' . SS_RECEIVED . ')';
+		$where .= ' AND oi.pay_status = ' . PS_PAYED . ' AND oi.order_status in (' . OS_CONFIRMED . ', ' . OS_SPLITED . ', ' . OS_SPLITING_PART . '3) AND (oi.shipping_status >= ' . SS_UNSHIPPED . ' AND oi.shipping_status <> ' . SS_RECEIVED . ')';
 		$cache_info = S('message_' . $_SESSION['user_id']);
+	}else if ($status == 4) {
+		$where .= ' AND oi.extension_code = \'paipai_buy\' ';
 	}
 
 	$select = ' (SELECT count(*) FROM ' . $GLOBALS['ecs']->table('comment') . (' AS c WHERE c.comment_type = 0 AND c.id_value = og.goods_id AND c.order_id = oi.order_id AND c.parent_id = 0 AND c.user_id = \'' . $user_id . '\') AS sign1, ') . '(SELECT count(*) FROM ' . $GLOBALS['ecs']->table('comment_img') . ' AS ci, ' . $GLOBALS['ecs']->table('comment') . ' AS c' . (' WHERE c.comment_type = 0 AND c.id_value = og.goods_id AND c.order_id = oi.order_id AND c.parent_id = 0 AND c.user_id = \'' . $user_id . '\' AND ci.comment_id = c.comment_id )  AS sign2, ');
@@ -478,6 +480,7 @@ function get_user_orders($user_id, $num = 10, $page = 1, $status = 0)
 	}
 
 	$res = $GLOBALS['db']->query($sql);
+	// var_dump($sql);exit;
 	$noTime = gmtime();
 	$os = L('os');
 	$ps = L('ps');
