@@ -89,15 +89,28 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
 	}
 
 	$log_id = intval($log_id);
+	
 
 	if (0 < $log_id) {
+		
 		$sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('pay_log') . (' WHERE log_id = \'' . $log_id . '\'');
 		$pay_log = $GLOBALS['db']->getRow($sql);
+		
+	    
+		
 		if ($pay_log && $pay_log['is_paid'] == 0) {
-			$sql = 'UPDATE ' . $GLOBALS['ecs']->table('pay_log') . (' SET is_paid = \'1\' WHERE log_id = \'' . $log_id . '\'');
+			
+			$sql = 'UPDATE ' . $GLOBALS['ecs']->table('pay_log') . (' SET is_paid = 1 WHERE log_id = ' . $log_id );
+						
 			$GLOBALS['db']->query($sql);
-
+			
+			
 			if ($pay_log['order_type'] == PAY_ORDER) {
+				
+				
+		
+            
+				
 				if (is_dir(APP_TEAM_PATH)) {
 					$sql = 'SELECT main_order_id, order_id, user_id, order_sn, consignee, address, tel, mobile, shipping_id, pay_status, extension_code, extension_id, goods_amount, is_zc_order, zc_goods_id,team_id,team_parent_id,team_user_id, ' . 'shipping_fee, insure_fee, pay_fee, tax, pack_fee, card_fee, surplus, money_paid, integral_money, bonus, order_amount, discount, pay_id, shipping_status ' . 'FROM ' . $GLOBALS['ecs']->table('order_info') . (' WHERE order_id = \'' . $pay_log['order_id'] . '\'');
 				}
@@ -105,10 +118,15 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
 					$sql = 'SELECT main_order_id, order_id, user_id, order_sn, consignee, address, tel, mobile, shipping_id, pay_status, extension_code, extension_id, goods_amount, is_zc_order, zc_goods_id, ' . 'shipping_fee, insure_fee, pay_fee, tax, pack_fee, card_fee, surplus, money_paid, integral_money, bonus, order_amount, discount, pay_id, shipping_status ' . 'FROM ' . $GLOBALS['ecs']->table('order_info') . (' WHERE order_id = \'' . $pay_log['order_id'] . '\'');
 				}
 
+
 				$order = $GLOBALS['db']->getRow($sql);
 				
+				
+				
 				$main_order_id = $order['main_order_id'];
+				
 				$order_id = $order['order_id'];
+				
 				$order_sn = $order['order_sn'];
 				$pay_fee = order_pay_fee($order['pay_id'], $pay_log['order_amount']);
 				$is_zc_order = $order['is_zc_order'];
@@ -137,6 +155,8 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
 					$GLOBALS['db']->query($sql);
 				}
 
+               
+
 				if ($order['extension_code'] == 'presale') {
 					$money_paid = $order['money_paid'] + $order['order_amount'];
 
@@ -157,6 +177,7 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
 					}
 				}
 				else if (0 < $order_id) {
+				
 					//判断是保证金支付，还是购买支付，11为保证金支付，支付成功为10，0为货款支付
 					//支付成功
 					if($order['pay_status']==11){
@@ -180,13 +201,13 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
 					}
 				    $ls_pay_ok='1';
 				     //is_pay_ok  0为失败  1为成功
-					if($order['pay_status']==11 && $pay_status == '10'){
-						$m_sql='UPDATE '. $GLOBALS['ecs']->table('dsc_paipai_seller_pay_margin') .' SET ls_pay_ok= '.$ls_pay_ok.' ,pay_time=\''.time().'\''; 
+					if( $pay_status == '10'){
+						$m_sql='UPDATE '. $GLOBALS['ecs']->table('paipai_seller_pay_margin') .' SET ls_pay_ok= '.$ls_pay_ok.' ,paytime=\''.time().'\''; 
 						$update_margin=$GLOBALS['db']->query($m_sql);
 						if($update_margin){
 							// 0 为失败   1为成功   2 为进行中。。。
 							$is_status='2';
-							$um_sql='UPDATE '. $GLOBALS['ecs']->table('dsc_paipai_goods_bid_user') .' SET is_status='.$is_status.',bid_time=\''.time().'\''; 
+							$um_sql='UPDATE '. $GLOBALS['ecs']->table('paipai_goods_bid_user') .' SET is_status='.$is_status.',bid_time=\''.time().'\''; 
 							$GLOBALS['db']->query($um_sql);
 						}
 					}

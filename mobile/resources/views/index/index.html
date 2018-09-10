@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
   <title>首页</title>
@@ -357,10 +357,11 @@
             </div>
             <div class="shijian">剩余<br>
                 <?php if($v['end_date']>0){
-                    echo $v['end_date'].'天';
+                    echo $v['end_date'];
                 }else{
                     echo 0;
                 }?>
+	天
             </div>
         </div>
         </a>
