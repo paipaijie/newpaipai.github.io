@@ -70,6 +70,9 @@
                             <%if order.delay == 1%>
                             <a class="btn-default-new br-5 min-btn delay-order"data-item="<%order.order_id%>">延迟收货</a>
                             <%/if%>
+                            <%if order.extension_code%>
+                            <a href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">匹配订单</a>
+                            <%/if%>
                             <%if order.handler_return && order.pay_status == 2%>
                             <a class="btn-default-new br-5 min-btn" href="<%order.handler_return%>">申请售后</a>
                             <%/if%>
