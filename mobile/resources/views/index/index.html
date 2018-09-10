@@ -352,7 +352,13 @@
             </div>
             <div class="ming">{$v['goods_name']}</div>
             <div class="gong">
-                <div class="renshu">0人已下单</div>
+                <div class="renshu">
+                    {if $v['order_number']>0}
+                        {$v['order_number']}人已下单
+                    {else}
+                        0人已下单
+                    {/if}
+                </div>
                 <div class="jiage">￥{$v['ppj_start_fee']}</div>
             </div>
             <div class="shijian">剩余<br>
