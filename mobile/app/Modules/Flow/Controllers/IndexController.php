@@ -1835,13 +1835,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
                 	$bid_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id='{$new_order['ppj_id']}' AND  ppj_no='{$new_order['ppj_no']}' ";    
                     $bid=$this->db->query($bid_sql);
 
-                    $bid_price=$_POST['bid_price'];
-                    //出价金额判断   （待商榷）
-                    if($bid){
-                        if($bid_price > $new_order['order_amount']){
-                             $bid_price = $bid_price-$new_order['order_amount'] ;
-                        }
-                    }                  
+                    $bid_price=$_POST['bid_price'];        
                     $bid_data=array(
                     	'user_id'=>$new_order['user_id'],
 	                    'ppj_id'=>$new_order['ppj_id'],
