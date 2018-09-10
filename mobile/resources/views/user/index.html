@@ -212,7 +212,7 @@
 					<p class="t-remark3">积分</p>
 				</li>
 			</a>
-			<a href="{url('user/account/text')}" class="box-flex">
+			<a href="{url('user/account/paipaijuan')}" class="box-flex">
 				<li>
 					<h4 class="ellipsis-one">{$coupons_num}</h4>
 					<p class="t-remark3">销售券</p>
@@ -229,7 +229,6 @@
 				<div class="swiper-pagination br-half text-c banner-second-pagination" style="bottom: 10px;"></div>
 			</div>
 	</section>
-
 	<!--function-nav-list-->
 	<nav class="b-color-f user-nav-box m-top08">
 		<div class="box ul-4 text-c b-color-f">
@@ -242,8 +241,6 @@
 			{/if}
 			
 			{if $share}
-
-			
 			<a href="{url('user/index/affiliate')}">
 				<label><i class="iconfont icon-fenxiang3 color-e72"></i></label>
 				<p class="f-02 col-7">邀请好友</p>
@@ -268,7 +265,8 @@
 			<a href="{url('user/index/storelist')}" class="">
 				<label><i class="iconfont icon-star-n color-f9c"></i></label>
 				<p class="f-02 col-7">关注的店铺</p>
-			</a>	
+			</a>
+			
 			
 			<!--<a href="{url('user/index/history')}">
 				<label><i class="iconfont icon-dianpu color-red"></i></label>
@@ -302,17 +300,11 @@
 				<label><i class="iconfont icon-zuji color-c78"></i></label>
 				<p class="f-02 col-7">浏览记录</p>
 			</a>
-
-			<a href="{url('user/userbuy/userbuy')}">
-				<label><i class="iconfont icon-zuji color-c78"></i></label>
-				<p class="f-02 col-7">测试数据</p>
-			</a>
 			
 			<!--<a href="{url('merchants/index/index')}">
 				<label><i class="iconfont icon-shangjiaruzhu- color-98"></i></label>
 				<p class="f-02 col-7">实体商家入驻</p>
 			</a>-->
-
 			
 
 			{if $bargain && $is_wechat == 1}

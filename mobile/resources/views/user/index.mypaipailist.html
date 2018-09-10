@@ -8,13 +8,12 @@
     bottom: 1.3rem;}
     .flow-accessories .product-list .product-div .a-accessories-clear i{font-size:1.8rem;}
 </style>
- <div class="store_info">
+ <div class="store_info" style="margin-top: 40px">
      
 <script id="j-product" type="text/html">
 			<div class="flow-accessories blur-div">
                               <%if goods_list !=''%>
-							 <%each goods_list as goods%>  
-							 
+                             <%each goods_list as goods%>  
 			<section class="product-list j-product-list product-list-small">
 					<ul>
 						<li>
@@ -32,7 +31,7 @@
 									<p class="dis-box p-t-remark"><span class="box-flex">保证金:<%goods.ppj_margin_fee%></span></p>
 									<p><span class="p-price t-first ">当前价格<%#goods.price%></span></p>
                                     <p class="dis-box p-t-remark"><span class="box-flex">已出价次数:<%goods.cur_amount%></span></p>
-									
+                           
 								</div>
 								                            
 							</div>
@@ -48,16 +47,10 @@
 										</div>
 									</section>
 						
-						<p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:102px;padding-top:12px;">
-							 <div class="shoudong">                         
-							<span style="width:150px; color: red;" class="btn-default-new br-5 min-btn"  id="nowsale" ppj_id="<%goods.ppj_id%>">手 动 售 出</span>
-							<input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="<%goods.ppj_id%>">
-						</div>  
+                        <p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:102px;padding-top:12px;">                            
+                            <span style="width:150px; color: red;" class="btn-default-new br-5 min-btn"  id="nowsale" ppjid="<%goods.ppj_id%>">手 动 售 出</span> 
                            
-                                <div class="zidong">
-									  <span style="width:150px;color: blue;" class="btn-default-new br-5 min-btn"  id="autosale">自 动 售 出</span>  
-									  <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="<%goods.ppj_id%>">
-								</div>
+                              <span style="width:150px;color: blue;" class="btn-default-new br-5 min-btn"  id="autosale">自 动 售 出</span>  
                         </p>
                     </footer>     
                             
@@ -112,14 +105,12 @@
 			
        $('.store_info').infinite({url: "{url('user/index/mypaipailist')}", template:'j-product'});
 		
-		var url = "{url('user/index/paipaibuy')}";	
-
-		$(".shoudong").click(function(){
-
-			var ppj_id = $(this).find(".ppj_id").val();
-
-			alert(ppj_id);
-
+		var url = "{url('user/index/paipaibuy')}";		
+		$("#nowsale").click(function(){
+			var ppj_id= $(this).attr("ppjid");
+			
+			//alert(ppj_no);
+			
             layer.open({           	
                 content: '<h4 class="t-remark">确认售出即可获得收益</h4>	',
                 btn: ['确定', '取消'],
@@ -164,96 +155,25 @@
 		
 		
 		
-		$(".zidong").click(function(){
-			
-			var ppj_id = $(this).find(".ppj_id").val();
-		alert(ppj_id);
+		$("#autosale").click(function(){
+        	
             layer.open({
-                type: 1,
-                title:'预售价格区间',
-                skin:'layui-layer-rim',
-                area:['300px', '80%'],
-                content: ' <div class="row" style="width: 420px;  margin-left:7px; margin-top:10px;">'
-                    +'<div class="col-sm-12">'
-                    +'<div class="input-group">'
-                    +'<span class="input-group-addon"> 最低价   :</span>'
-                    +'<input id="seller_min_fee" name="seller_min_fee" type="text" class="form-control" placeholder="不能少于成本价">'
-                    +'</div>'
-                    +'</div>'
-                    +'<div class="col-sm-12" style="margin-top: 10px">'
-                    +'<div class="input-group">'
-                    +'<span class="input-group-addon">最高价:</span>'
-                    +'<input id="seller_max_fee" name="seller_max_fee" type="text" class="form-control" placeholder="不能高于零售价">'
-                    +'</div>'
-                    +'</div>'
-                    +'</div>'
-                ,
-                btn:['保存','取消'],
-                yes: function (index, layero) {
-                    var max = $("#seller_max_fee").val();
-                    var min = $("#seller_min_fee").val();
-                    $.ajax({
-                        url:"{url('groupbuy/index/baoming')}",
-                        type:"post",
-                        data:{"max":max,"min":min,"ppj_id":ppj_id},
-                        dataType:'json',
-                        success:function(success){
-                            if(success == 1){
-                                layer.open({
-                                    content: '报名成功'
-                                    ,skin: 'msg'
-                                    ,time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }else if(success == 2){
-                                layer.open({
-                                    content: '报名失败'
-                                    ,skin: 'msg'
-                                    ,time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }else if(success == 3){
-                                layer.open({
-                                    content: '您没有优惠券'
-                                    ,skin: 'msg'
-                                    ,time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }else if(success == 4){
-                                layer.open({
-                                    content: '请重新出价'
-                                    ,skin: 'msg'
-                                    ,time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }else if(success == 5){
-                                layer.open({
-                                    content: '活动期数不匹配'
-                                    ,skin: 'msg'
-                                    ,time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }
-                        },
-                        error:function(e){
-                            layer.open({
-                                content: '您没有优惠券'
-                                ,skin: 'msg'
-                                ,time: 2 //2秒后自动关闭
-                            });
-                            layer.close(index);
-                        }
-                    });
-                },
-                btn2:function (index,layero) {
-                    layer.open({
-                        content: '您没有优惠券'
-                        ,skin: 'msg'
-                        ,time: 2 //2秒后自动关闭
-                    });
-                    layer.close(index); 
+
+                content: '<h4 class="t-remark">预计出售价</h4>	<div class="div-num dis-box m-top08"><input class="box-flex" type="text" value=""  name="sellers_fee" id="sellers_fee" /> </div>至	<div class="div-num dis-box m-top08"><input class="box-flex" type="text" value=""  name="sellers_fee" id="sellers_fee" /> </div>',
+                btn: ['确定', '取消'],
+                shadeClose: false,
+                yes: function() {
+                  $.post(url, {status:status},
+                     function(result){
+                         if(result.y == 1){
+                         	
+                            window.location.href = "{url('user/index/mypaipailist')}";
+                         }
+                     }, 'json');
+                 },
+                no: function() {
+
                 }
-			
             });
         });
 		
