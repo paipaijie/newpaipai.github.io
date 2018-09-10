@@ -95,6 +95,7 @@
     </div>
 </div>
 </center>
+<script src="https://res.layui.com/layui/release/layer/dist/mobile/layer.js?2.x"></script>
 <script>
 function alertSet(e) {
 	var ppj_id=document.getElementById("ppj_id").value; 
@@ -120,8 +121,8 @@ function alertSet(e) {
 			        document.getElementById('p1').innerHTML='';					
 					if(re.match_bid == 1){
 					    layer.open({
-						  content: '数据匹配成功'
-						  ,area:['260px', '100px']
+						  content: '价格匹配成功'
+						  ,area:['200px', '100px']
 						  ,btn: ['去支付', '暂不支付']
 						  ,yes:function(success){
 						  	  window.location.href="{url('user/userbuy/paipaibuy')}&ppj_id={$user_bid['ppj_id']}&ppj_no={$user_bid['ppj_no']}";
