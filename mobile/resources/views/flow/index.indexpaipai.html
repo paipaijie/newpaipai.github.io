@@ -254,7 +254,7 @@
 
                                                 <h4>{$goods.goods_name}</h4>
                                                 <p><span class="p-price t-first ">保证金：{$goodsRu.amount} </span></p>
-                                                <p><span class="p-price t-first ">本次出价： ￥<input  style=" width:20%; font-size:16px" name="bid_price" type="text" value="<?php echo floatval(substr($sellers_fee.sellers_fee,2) -substr($goodsRu.amount,2));  ?>"/> </span></p>
+                                                <p><span class="p-price t-first ">本次出价： ￥<input  style=" width:20%; font-size:16px" name="bid_price" type="text" value="<?php echo number_format(substr($sellers_fee.sellers_fee,2) -substr($goodsRu.amount,2),2);  ?>"/> </span></p>
                                                 <p class="dis-box p-t-remark">{nl2br($goods.goods_attr)}</p>
 
                                             </div>
