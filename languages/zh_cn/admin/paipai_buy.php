@@ -78,14 +78,14 @@ $_LANG['error_goods_exist'] = '您选择的商品目前有一个拍拍活动正�
 $_LANG['error_price_ladder'] = '您没有输入有效的价格阶梯！';
 $_LANG['error_restrict_amount'] = '限购数量不能小于价格阶梯中的最大数量';
 $_LANG['goods_start_fee'] = '起拍价不能为空,须填';
-$_LANG['notice_goods_deposit'] = '保证金必须大于批发价';
+$_LANG['notice_goods_deposit'] = '保证金必须不能为0';
 $_LANG['notice_goods_deposit_market'] = '保证金不能大于商品销售价';
 $_LANG['deposit_not_edit'] = '起拍价不可更改';
 $_LANG['error_goods_not_end'] = '您选择的商品目前有一个拍拍结束时间与添加的开始时间冲突！';
 
 $_LANG['js_languages']['error_goods_null'] = '请选择拍拍商品！';
 $_LANG['js_languages']['error_deposit'] = '您输入的保证金不是数字！';
-$_LANG['js_languages']['error_goods_deposit'] = '保证金必须大于批发价！';
+$_LANG['js_languages']['error_goods_deposit'] = '保证金必须大于0！';
 $_LANG['js_languages']['goods_start_fee'] = '请填写起拍价,可为0';
 $_LANG['js_languages']['error_deposit_null'] = '您输入的！';
 
