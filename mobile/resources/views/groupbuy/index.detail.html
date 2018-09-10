@@ -425,8 +425,9 @@
 							<input type="hidden" value="{$group_buy_id}" id="group_buy_id" name="group_buy_id">
 							{if $goods.is_end == 2 || $goods.is_end == 0}
 							<a class="btn-disab box-flex quehuo" href="javascript:void(0);"style="display:none">团购结束</a>
-							{else $goods.is_end == 1}
-							<button id="zhifu" type="sumbit" class="btn-submit box-flex add-to-cart" style="display:none">支付保证金</button>
+							{else}
+							<button id="zhifu" type="sumbit" class="btn-submit box-flex add-to-cart" style="display:block">支付保证金<button>
+
 							{/if}
 						</section>
 					</div>
