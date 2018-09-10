@@ -34,6 +34,14 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			}
 			$arr3[] = $val['is_end'];
 
+			$sql = "select sum(goods_number) from dsc_order_goods where ppj_no = {$val['ppj_no']} and goods_id = {$val['goods_id']}";
+			$r = $GLOBALS['db']->getAll($sql);
+			// $res[$k]['goods_number'] = $r;
+
+			foreach($r as $k => $v){
+				$res[$k]['order_number'] = $v['sum(goods_number)'];
+			}
+			
 			$val['end_date']=floor(($val['end_time']-time())/86400);
 			$arr2[] = $val['end_date'];
 		}
@@ -47,6 +55,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		foreach($arr3 as $k=>$v){
 			$res[$k]['is_end'] = $v;
 		}
+
 
 		// var_dump($res);
 		$this->assign('res', $res);	
