@@ -52,10 +52,13 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
 
     public function actionUserbuy()
     {
-//        $order_id=$_GET['id'];
-        $order_id='534';
+        $order_id=$_GET['id'];
         $order_sql="SELECT * FROM ".$GLOBALS['ecs']->table('order_info')." WHERE order_id=".$order_id;
-        $order=$GLOBALS['db']->getRow($order_sql);       
+        $order=$GLOBALS['db']->getRow($order_sql); 
+        if(empty($order)){
+            ecs_header('Location: ' . url('user/userbuy/buyerror'));
+            exit();
+        }      
         $ppj_id=$order['ppj_id'];
         $ppj_no=$order['ppj_no'];
         $user_id=$this->user_id;
@@ -350,6 +353,15 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         
 		
 	}
+
+
+
+
+    public function actionBuyerror(){
+
+        $this->display();
+
+    }
 
 
 
