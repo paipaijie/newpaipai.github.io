@@ -95,7 +95,7 @@
     </div>
 </div>
 </center>
-<script src="https://res.layui.com/layui/release/layer/dist/mobile/layer.js?2.x"></script>
+<script src="__ROOT__/public/vendor/layer/mobile/layer.buy.js"></script>
 <script>
 function alertSet(e) {
 	var ppj_id=document.getElementById("ppj_id").value; 
@@ -113,7 +113,7 @@ function alertSet(e) {
 				"pjd": ppj_id,
 				"pjn":ppj_no
 			},
-//			dataType: "JSON",
+			dataType: "JSON",
 			success: function(re){	
 				if(t == 0){	
                     clearInterval(interval);				
