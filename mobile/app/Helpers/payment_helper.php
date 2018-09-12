@@ -194,10 +194,6 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
 						
 					}
 
-						
-						
-						
-				    }
 									
 					
 									
