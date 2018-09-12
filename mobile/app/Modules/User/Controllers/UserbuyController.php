@@ -59,20 +59,18 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         if(empty($order)){
             ecs_header('Location: ' . url('user/userbuy/buyerror'));
             exit();
-        }      
-        $pl_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_list'). "WHERE ppj_id=".$order['ppj_id']." AND ppj_no=".$order['ppj_no'];
+        }      	
+        $pl_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_list'). " WHERE ppj_id=".$order['ppj_id']." AND ppj_no=".$order['ppj_no'];
+		
         $pl_data = $GLOBALS['db']->getRow($pl_sql);
         if($pl_data['end_time'] < time()){
             ecs_header('Location: ' . url('user/userbuy/ordererror'));
             exit();
         }
-        // if()
-        $ppj_id=$order['ppj_id'];
-        $ppj_no=$order['ppj_no'];
         $user_id=$this->user_id;
 
         //单个买方出价信息
-        $user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')."WHERE ppj_id={$ppj_id} AND ppj_no={$ppj_no}"." AND user_id=".$user_id." AND is_status=2";       
+        $user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id=".$order['ppj_id']. " AND ppj_no=".$order['ppj_no']." AND user_id=".$user_id." AND is_status=2";       
         $user_bid=$GLOBALS['db']->getRow($user_sql);
         $this->assign('user_bid', $user_bid);
 
@@ -215,6 +213,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         $order_data=array(
                 'order_sn'=> get_order_sn(),
                 'user_id' => $user_bid_data['user_id'],
+				'pay_status' => '0',
                 'consignee' => $user_order_data['consignee'],
                 'country' => $user_order_data['country'],
                 'province' => $user_order_data['province'],
@@ -236,7 +235,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
                 'order_amount' => $user_bid_data['bid_price'],
                 'referer' => $user_order_data['referer'],
                 'add_time' => time(),
-                'extension_code' => $user_order_data['extension_code'],
+                'extension_code' => 'two_price',
                 'extension_id' => $user_order_data['extension_id'],
                 'ppj_id' => $user_order_data['ppj_id'],
                 'ppj_no' => $user_order_data['ppj_no'],
@@ -297,7 +296,8 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
             foreach($all_user_bid as $key=> $value){  
                 $max_fee_array[]=$value['bid_price'];                 
             }
-            $max_bid=max($max_fee_array);
+            $max_bid=max($max_fee_array);         
+            
             if($max_bid == $user_bid['bid_price'] ){
                 foreach($all_user_bid as $key=> $value){  
                     if($value['bid_time'] < $user_bid['bid_time']){
@@ -311,8 +311,9 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
             }else{
             	    $bid_match='2';       //出价失败
             }
- 
-            if($bid_match == '1' || $bid_match == '3'){
+            
+   
+            if($bid_match == '1'){
                 //卖方
 				$sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers').$where.' AND ls_staus=1';
 			    $seller_data=$GLOBALS['db']->getAll($sql);
@@ -320,7 +321,6 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
 			            $min_fee_arr[]=$val['seller_min_fee'];
 				}
 				$min_bid=min($min_fee_arr);
-                
 				if($min_bid < $user_bid['bid_price'] ){
 	                foreach($seller_data as $key=> $val){  
 	                	if($min_bid == $val['seller_min_fee']){
@@ -334,7 +334,8 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
 	                $sell_news=$GLOBALS['db']->getRow($sell_sql);
 	                if($sell_news){	       
 	                    $sell_ok_data=array(
-                            'user_id' => $user_id,
+                            'user_id' => $sell_news['user_id'],
+							'buy_id' => $user_id,
                             'goods_id' => $goods_data['goods_id'],
                             'ppj_id' => $ppj_id,
                             'ppj_no' => $ppj_no,
@@ -351,9 +352,8 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
 	                }
                 }else{
                 	    echo json_encode(array('match_bid'=>2));  //匹配失败
-                }
-				
-          }
+                }				
+            }
             	        
        }else{
        	  echo json_encode(array('match_bid'=>2));  //出价失败
