@@ -551,8 +551,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			exit();
 		}
 
-         $sellers_fee =isset($_POST['sellers_fee']) ? intval($_POST['sellers_fee']) : 1; //买家出价
-         //echo $sellers_fee;
+         $sellers_fee =number_format(($_POST['sellers_fee']),2); //买家出价
+        //  echo $sellers_fee;
         // exit();
          
          //购买数量 
@@ -669,7 +669,6 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		
 		
 		$cart = array('ppj_id' => $group_buy['ppj_id'],'ppj_no' => $group_buy['ppj_no'],'sellers_fee' => $sellers_fee,'user_id' => $_SESSION['user_id'], 'session_id' => $sess, 'goods_id' => $group_buy['goods_id'], 'product_id' => $product_info['product_id'], 'goods_sn' => addslashes($goods['goods_sn']), 'goods_name' => addslashes($goods['goods_name']), 'market_price' => $goods['market_price'], 'goods_price' => $goods_price, 'goods_number' => $number, 'goods_attr' => addslashes($goods_attr), 'goods_attr_id' => $specs, 'ru_id' => $goods['user_id'], 'warehouse_id' => $this->region_id, 'area_id' => $this->area_id, 'is_real' => $goods['is_real'], 'extension_code' => addslashes($goods['extension_code']), 'parent_id' => 0, 'rec_type' => CART_GROUP_BUY_GOODS, 'is_gift' => 0);
-		
 		$this->db->autoExecute($GLOBALS['ecs']->table('cart'), $cart, 'INSERT');
 		
 		$_SESSION['flow_type'] = CART_GROUP_BUY_GOODS;

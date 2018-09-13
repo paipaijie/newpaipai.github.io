@@ -1801,6 +1801,11 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
 		$error_no = 0;
+        if($_POST['bid_price'] == '0.00'){
+                   show_message('金额不能为0！', '', '', 'warning');
+        }else{
+               $bid_price= number_format($_POST['bid_price'],2);
+        }
 
 		do {
 			$order['order_sn'] = get_order_sn();
@@ -1819,25 +1824,25 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
                     'pay_fee'=>$new_order['order_amount'],
                     'createtime'=>time()
 				);				
-                // $margin_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE ppj_id='{$new_order['ppj_id']}' AND  ppj_no='{$new_order['ppj_no']}' AND user_id='{$new_order['user_id']}' AND ls_pay_ok='1'";       
-                // $m_data=$this->db->query($margin_sql);  
-                
+
                 // // 保证金数据插入和更新 
                 // if($m_data){
                 // 	$margin_update_sql="UPDATE ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." SET order_id=".$new_order_id.", order_sn=".$new_order['order_sn']." WHERE ppj_id=".$new_order['ppj_id']." AND  ppj_no=".$new_order['ppj_no']." AND user_id=".$new_order['user_id'];
                 // 	$margin_update=$this->db->query($margin_update_sql);
                 // }else{
-                $margin_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_pay_margin'), $margin_date, 'INSERT');           	
+                $margin_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_pay_margin'), $margin_date, 'INSERT');        	
 //                }
                 // 出价金额添加与修改
                 if( $margin_id){
                 	// $bid_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id='{$new_order['ppj_id']}' AND  ppj_no='{$new_order['ppj_no']}' AND user_id='{$new_order['user_id']}' ";    
                  //    $bid=$this->db->query($bid_sql);
+                    $margin_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE  order_sn='{$margin_date['order_sn']}'";       
+                    $m_data=$this->db->query($margin_sql);  
 
                     $bid_price=$_POST['bid_price'];        
                     $bid_data=array(
                     	'user_id'=>$new_order['user_id'],
-                    	'spm_id' => $margin_id,
+                    	'spm_id' => $m_data['spm_id'],
 	                    'ppj_id'=>$new_order['ppj_id'],
 	                    'ppj_no'=>$new_order['ppj_no'],
 	                    'bid_price'=>$bid_price,
