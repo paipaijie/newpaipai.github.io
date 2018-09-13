@@ -53,19 +53,26 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
     public function actionUserbuy()
     {
         $order_id=$_GET['id'];
+
         $order_sql="SELECT * FROM ".$GLOBALS['ecs']->table('order_info')." WHERE order_id=".$order_id;
         $order=$GLOBALS['db']->getRow($order_sql); 
         if(empty($order)){
             ecs_header('Location: ' . url('user/userbuy/buyerror'));
             exit();
-        }      
-        $ppj_id=$order['ppj_id'];
-        $ppj_no=$order['ppj_no'];
+        }      	
+        $pl_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_list'). " WHERE ppj_id=".$order['ppj_id']." AND ppj_no=".$order['ppj_no'];
+		
+        $pl_data = $GLOBALS['db']->getRow($pl_sql);
+        if($pl_data['end_time'] < time()){
+            ecs_header('Location: ' . url('user/userbuy/ordererror'));
+            exit();
+        }
         $user_id=$this->user_id;
 
         //单个买方出价信息
-        $user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')."WHERE ppj_id={$ppj_id} AND ppj_no={$ppj_no}"." AND user_id=".$user_id." AND is_status=2";       
+        $user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id=".$order['ppj_id']. " AND ppj_no=".$order['ppj_no']." AND user_id=".$user_id." AND is_status=2";       
         $user_bid=$GLOBALS['db']->getRow($user_sql);
+		
         $this->assign('user_bid', $user_bid);
 
         $this->display();
@@ -198,8 +205,8 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         $pl_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_list'). "WHERE ppj_id=".$ppj_id." AND ppj_no=".$ppj_no;
         $pl_data = $GLOBALS['db']->getRow($pl_sql);
 
-        $user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE user_id=".$user_id." AND ppj_id=".$ppj_id." AND ppj_no=".$ppj_no;
-        $user_bid_data = $GLOBALS['db']->getRow($user_sql);
+        $user_bid_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE user_id=".$user_id." AND ppj_id=".$ppj_id." AND ppj_no=".$ppj_no." AND is_status=2";
+        $user_bid_data = $GLOBALS['db']->getRow($user_bid_sql);
         
         $user_order_sql="SELECT * FROM ".$GLOBALS['ecs']->table('order_info'). "WHERE user_id=".$user_id." AND ppj_id=".$ppj_id." AND ppj_no=".$ppj_no." AND goods_amount=".$pl_data['ppj_margin_fee']." AND pay_status='10' AND extension_code ='paipai_buy' ";
         $user_order_data = $GLOBALS['db']->getRow($user_order_sql);
@@ -207,6 +214,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         $order_data=array(
                 'order_sn'=> get_order_sn(),
                 'user_id' => $user_bid_data['user_id'],
+				'pay_status' => '0',
                 'consignee' => $user_order_data['consignee'],
                 'country' => $user_order_data['country'],
                 'province' => $user_order_data['province'],
@@ -228,7 +236,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
                 'order_amount' => $user_bid_data['bid_price'],
                 'referer' => $user_order_data['referer'],
                 'add_time' => time(),
-                'extension_code' => $user_order_data['extension_code'],
+                'extension_code' => 'two_price',
                 'extension_id' => $user_order_data['extension_id'],
                 'ppj_id' => $user_order_data['ppj_id'],
                 'ppj_no' => $user_order_data['ppj_no'],
@@ -238,6 +246,8 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
             $order_data['pay_name'] = addslashes($payment['pay_name']);
 
         }
+
+
 
        
         $order_insert=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('order_info'),$order_data,'INSERT'); 
@@ -266,9 +276,8 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
     	$ppj_no=$_POST['pjn'];
     	$where = ' WHERE 1 ';
     	$user_id=$this->user_id;
-        $goods_sql="SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price FROM ".$GLOBALS['ecs']->table('paipai_list')." AS pl LEFT JOIN ".$GLOBALS['ecs']->table('goods')." AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id={$ppj_id} AND pl.ppj_no={$ppj_no} ";		
-
-
+        $goods_sql="SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price,g.cost_price FROM ".$GLOBALS['ecs']->table('paipai_list')." AS pl LEFT JOIN ".$GLOBALS['ecs']->table('goods')." AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id={$ppj_id} AND pl.ppj_no={$ppj_no} ";		
+       
   	    $goods_data=$GLOBALS['db']->getRow($goods_sql);    
         if($goods_data['goods_count'] == '0'){
             exit(json_encode(array('match_bid' => 3)));
@@ -279,17 +288,18 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         $all_user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user').$where." AND user_id !=".$user_id." AND is_status=2 ";
 
         $all_user_bid=$GLOBALS['db']->getAll($all_user_sql);
-
+        
         //单个买方出价信息
-  		$user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id={$ppj_id} AND ppj_no={$ppj_no}"." AND user_id=".$user_id." AND is_status=2";		
+  		$user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id={$ppj_id} AND ppj_no={$ppj_no}"." AND user_id=".$user_id." AND is_status=2";	
+	
   	    $user_bid=$GLOBALS['db']->getRow($user_sql);
 
         if($user_bid['bid_price'] < $goods_data['shop_price'] && $user_bid['bid_price'] > $goods_data['ppj_buy_fee']  ){
-           
+         
             foreach($all_user_bid as $key=> $value){  
                 $max_fee_array[]=$value['bid_price'];                 
             }
-            $max_bid=max($max_fee_array);
+            $max_bid=max($max_fee_array);         
             if($max_bid == $user_bid['bid_price'] ){
                 foreach($all_user_bid as $key=> $value){  
                     if($value['bid_time'] < $user_bid['bid_time']){
@@ -303,16 +313,19 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
             }else{
             	    $bid_match='2';       //出价失败
             }
- 
-            if($bid_match == '1' || $bid_match == '3'){
+            
+            if($bid_match == '1'){
+
                 //卖方
-				$sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers').$where.' AND ls_staus=1';
+				$sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers') .$where.' AND ls_staus=1 AND ls_ok=1';
 			    $seller_data=$GLOBALS['db']->getAll($sql);
+				
 		        foreach($seller_data as $key=>$val){
 			            $min_fee_arr[]=$val['seller_min_fee'];
 				}
+				
 				$min_bid=min($min_fee_arr);
-                
+												
 				if($min_bid < $user_bid['bid_price'] ){
 	                foreach($seller_data as $key=> $val){  
 	                	if($min_bid == $val['seller_min_fee']){
@@ -322,30 +335,39 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
 	                $min_fee=min($min_fee_arr);
 	                $min_time=min($min_time_arr);
 
-	                $sell_sql=" SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers')." WHERE seller_min_fee={$min_fee} AND createtime={$min_time} ";
+					$sell_sql=" SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers')." WHERE seller_min_fee={$min_fee} AND createtime={$min_time} ";
+
 	                $sell_news=$GLOBALS['db']->getRow($sell_sql);
+                    $income=number_format(($sell_news['seller_min_fee']-$goods_data['cost_price'])*0.8,2);
 	                if($sell_news){	       
 	                    $sell_ok_data=array(
-                            'user_id' => $user_id,
+                            'user_id' => $sell_news['user_id'],
+							'buy_id' => $user_id,
                             'goods_id' => $goods_data['goods_id'],
                             'ppj_id' => $ppj_id,
                             'ppj_no' => $ppj_no,
                             'sellers_fee' => $user_bid['bid_price'],
-                            'goods_nowprice' => 'underfine',
+                            'goods_nowprice' => $user_bid['bid_price'],
                             'createtime' => time(),
-                            'status' => '0',
-                            'getmoney' => floatval($user_bid['bid_price']-$min_fee)
+                            'status' => 0,   // 匹配未付款
+                            'getmoney' => $income,
+							'spm_id' => $user_bid['spm_id']
 	                	);
-	                	//匹配成功数据加入卖家数据表
-	                	$slleer_ok_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_ok'),$sell_ok_data,'INSERT');   
-            	
+                        //匹配成功数据加入卖家数据表
+                        $sell_ok_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_ok')." WHERE user_id={$sell_news['user_id']} AND buy_id={$user_id} AND ppj_id={$ppj_id} AND ppj_no={$ppj_no} ";
+                        $sell_o_data=$GLOBALS['db']->getRow($sell_ok_sql);
+						$sell_ok_time=time();
+                        if($sell_o_data){
+                            $up_sell_ok="UPDATE  ".$GLOBALS['ecs']->table('paipai_seller_ok')."SET createtime=".$sell_ok_time." WHERE user_id=".$sell_news['user_id']." AND buy_id={$user_id} AND ppj_id=".$ppj_id." AND ppj_no=".$ppj_no;
+                        }else{
+                             $slleer_ok_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_ok'),$sell_ok_data,'INSERT');   
+                        }
                         echo json_encode(array('match_bid'=>1));  //匹配成功
 	                }
                 }else{
                 	    echo json_encode(array('match_bid'=>2));  //匹配失败
-                }
-				
-          }
+                }				
+            }
             	        
        }else{
        	  echo json_encode(array('match_bid'=>2));  //出价失败
@@ -358,6 +380,12 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
 
 
     public function actionBuyerror(){
+
+        $this->display();
+
+    }
+
+    public function actionOrdererror(){
 
         $this->display();
 

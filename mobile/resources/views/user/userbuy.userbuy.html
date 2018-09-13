@@ -95,7 +95,7 @@
     </div>
 </div>
 </center>
-<script src="https://res.layui.com/layui/release/layer/dist/mobile/layer.js?2.x"></script>
+<script src="__ROOT__/public/vendor/layer/mobile/layer.buy.js"></script>
 <script>
 function alertSet(e) {
 	var ppj_id=document.getElementById("ppj_id").value; 
@@ -113,16 +113,17 @@ function alertSet(e) {
 				"pjd": ppj_id,
 				"pjn":ppj_no
 			},
-//			dataType: "JSON",
+			dataType: "JSON",
 			success: function(re){	
 				if(t == 0){	
+				alert(re.match_bid);
                     clearInterval(interval);				
 				    document.getElementById('js-alert-head').innerHTML='匹配终止';
 			        document.getElementById('p1').innerHTML='';					
 					if(re.match_bid == 1){
 					    layer.open({
 						  content: '数据匹配成功'
-						  ,area:['200px', '100px']
+						  ,area:['200px', '150px']
 						  ,btn: ['去支付', '暂不支付']
 						  ,yes:function(success){
 						  	  window.location.href="{url('user/userbuy/paipaibuy')}&ppj_id={$user_bid['ppj_id']}&ppj_no={$user_bid['ppj_no']}";
@@ -131,20 +132,24 @@ function alertSet(e) {
 				    }else if(re.match_bid == 3){
                         layer.open({
 						    content: '限购数量为空'
-						    ,area:['200px', '100px']
+						    ,area:['200px', '150px']
 						    ,btn: ['拍拍活动', '回到首页']
 						    ,yes:function(success){
 						  	    window.location.href="{url('groupbuy/index/index')}";
-						    }
+						    },btn2: function() {
+                                window.location.href="{url('index/index/index')}";
+                            }
 						});
 				    }else{
 				    	layer.open({
 						    content: '匹配失败,请重新出价,'
-						    ,area:['200px', '100px']
-						    ,btn: ['拍拍活动', '回到首页']
+						    ,area:['200px', '150px']
+						    ,btn: ['再次匹配', '回到活动']
 						    ,yes:function(success){
-						  	  window.location.href="{url('groupbuy/index/index')}";
-						    }
+							    location.reload();
+						    },btn2: function() {
+                                window.location.href="{url('groupbuy/index/index')}";
+                            }
 						});
 				    }
 				}else{

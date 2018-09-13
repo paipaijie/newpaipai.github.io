@@ -1480,7 +1480,9 @@ public function actionAffiliatemeber()
 		$uid=$this->user_id;
 		$errorCorrectionLevel = 'M';
 		
-			
+		$count = count($affdb);
+		
+		$this->assign('count',$count);		
      	$this->assign('uid', $uid);
      	
 		$this->assign('ewm', $qrcode_url);

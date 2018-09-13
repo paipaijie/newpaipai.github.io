@@ -89,9 +89,6 @@
                                             <a href="users.php?act=users_log&id={$list.user_id}" class="btn_see"><i class="sc_icon sc_icon_see"></i>{$lang.log}</a>
 
 
-                                            <a href="users.php?act=quan&id={$list.user_id}" class="btn_see"><i class="sc_icon sc_icon_see"></i>添加优惠券</a>
-
-
                                             <a href="javascript:confirm_redirect('{if $user.user_money ne 0}{$lang.still_accounts}{/if}{$lang.remove_confirm}', 'users.php?act=remove&id={$list.user_id}')" title="{$lang.remove}" class="btn_trash"><i class="icon icon-trash"></i>{$lang.drop}</a>
                                         </div>
                                     </td>

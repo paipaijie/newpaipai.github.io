@@ -1355,7 +1355,6 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 	public function actionDone()
 	{
 		$order_hash = md5(serialize($_POST));
-
 		if (S('order_hash_' . $_SESSION['user_id']) === $order_hash) {
 			$this->redirect('user/order/index');
 		}
@@ -1802,14 +1801,17 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
 		$error_no = 0;
-
+        if($_POST['bid_price'] == '0.00'){
+                   show_message('金额不能为0！', '', '', 'warning');
+        }else{
+               $bid_price= number_format($_POST['bid_price'],2);
+        }
 		do {
 			$order['order_sn'] = get_order_sn();
 			
 			$new_order = $this->db->filter_field('order_info', $order);
 			
 			$new_order_id = $this->db->table('order_info')->data($new_order)->add();
-			
 			if($new_order_id){
  
 				$margin_date=array(
@@ -1820,36 +1822,36 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
                     'order_sn'=>$new_order['order_sn'],
                     'pay_fee'=>$new_order['order_amount'],
                     'createtime'=>time()
-				);
-                $margin_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE ppj_id='{$new_order['ppj_id']}' AND  ppj_no='{$new_order['ppj_no']}' ";       
-                $m_data=$this->db->query($margin_sql);  
-                // 保证金数据插入和更新 
-                if($m_data){
-                	$margin_update_sql="UPDATE ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." SET order_id=".$new_order_id.", order_sn=".$new_order['order_sn']." WHERE ppj_id='{$new_order['ppj_id']}' AND  ppj_no='{$new_order['ppj_no']}' ";
-                	$margin_update=$this->db->query($margin_update_sql);
-                }else{
-                	$margin_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_pay_margin'), $margin_date, 'INSERT');           	
-                }
-                // 出价金额添加与修改
-                if($margin_update || $margin_id){
-                	$bid_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id='{$new_order['ppj_id']}' AND  ppj_no='{$new_order['ppj_no']}' ";    
-                    $bid=$this->db->query($bid_sql);
+				);				
 
-                    $bid_price=$_POST['bid_price'];        
+                // // 保证金数据插入和更新 
+                // if($m_data){
+                // 	$margin_update_sql="UPDATE ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." SET order_id=".$new_order_id.", order_sn=".$new_order['order_sn']." WHERE ppj_id=".$new_order['ppj_id']." AND  ppj_no=".$new_order['ppj_no']." AND user_id=".$new_order['user_id'];
+                // 	$margin_update=$this->db->query($margin_update_sql);
+                // }else{
+                $margin_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_pay_margin'), $margin_date, 'INSERT');        	
+//                }
+                // 出价金额添加与修改
+                if( $margin_id){
+                	// $bid_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id='{$new_order['ppj_id']}' AND  ppj_no='{$new_order['ppj_no']}' AND user_id='{$new_order['user_id']}' ";    
+                 //    $bid=$this->db->query($bid_sql);
+                    $margin_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE  order_sn='{$margin_date['order_sn']}'";       
+                    $m_data=$this->db->getRow($margin_sql);  
+       
                     $bid_data=array(
                     	'user_id'=>$new_order['user_id'],
+                    	'spm_id' => $m_data['spm_id'],
 	                    'ppj_id'=>$new_order['ppj_id'],
 	                    'ppj_no'=>$new_order['ppj_no'],
 	                    'bid_price'=>$bid_price,
-	                    'bid_time'=>time(),
 	                    'createtime'=>time()
                 	);
-                    if($bid){
-                         $bid_update_sql="UPDATE ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." SET bid_price=".$bid_price.", bid_time=".time()." WHERE ppj_id='{$new_order['ppj_id']}' AND  ppj_no='{$new_order['ppj_no']}' ";
-                        $bid_update=$this->db->query($bid_update_sql);
-                    }else{
-                        $bid_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_goods_bid_user'), $bid_data, 'INSERT'); 
-                    }
+                    // if($bid){
+                    //      $bid_update_sql="UPDATE ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." SET bid_price=".$bid_price.", bid_time=".time()." WHERE ppj_id={$new_order['ppj_id']} AND  ppj_no={$new_order['ppj_no']} AND user_id={$new_order['user_id']} ";
+                    //     $bid_update=$this->db->query($bid_update_sql);
+                    // }else{
+                    $bid_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_goods_bid_user'), $bid_data, 'INSERT'); 
+//                    }
                 }
 				
 			}
