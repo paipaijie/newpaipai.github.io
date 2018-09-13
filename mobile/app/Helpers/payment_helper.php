@@ -185,10 +185,12 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
 						$m_sql="UPDATE dsc_paipai_seller_pay_margin SET ls_pay_ok=".$ls_pay_ok.",paytime=".$up_time." WHERE order_sn=".$order_sn; 
 						$up_margin=$GLOBALS['db']->query($m_sql);
 						if($up_margin){
+							//查询保证金信息
 						    $sel_margin="SELECT * FROM dsc_paipai_seller_pay_margin WHERE order_sn =".$order_sn;
-                            $m = $GLOBALS['db']->getRow($sel_margin);
-                            $is_status=2;		//用户出价状态更改    2:出价进行中					
-                 $um_sql="UPDATE dsc_paipai_goods_bid_user SET is_status=".$is_status.", bid_time=".$up_time." WHERE user_id=".$m['user_id']." AND ppj_id=".$m['ppj_id']." AND ppj_no=".$m['ppj_no']." AND spm_id=".$sel_margin['spm_id']; 
+                            $spm_data = $GLOBALS['db']->getRow($sel_margin);
+                            //用户出价状态更改    2:出价进行中	
+                            $is_status=2;						
+                 $um_sql="UPDATE dsc_paipai_goods_bid_user SET is_status=".$is_status.", bid_time=".$up_time." WHERE user_id=".$m['user_id']." AND ppj_id=".$m['ppj_id']." AND ppj_no=".$m['ppj_no']." AND spm_id=".$spm_data['spm_id']; 
 							$GLOBALS['db']->query($um_sql);							
 						}
 						
@@ -208,7 +210,7 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
                         //查询卖家表  更改卖家出价状态
 						$sql3="SELECT user_id FROM dsc_paipai_seller_ok WHERE order_id =".$order_id; 
 						$pgs_data = $GLOBALS['db']->getRow($sql3);
-						$sql4="UPDATE dsc_paipai_goods_sellers SET ls_ok=".'0'." WHERE user_id=".$pgs_data['user_id']." AND ppj_id=".$order_data['ppj_id']." AND ppj_no=".$order_data['ppj_no']；
+						$sql4="UPDATE dsc_paipai_goods_sellers SET ls_ok=".'0'." WHERE user_id=".$pgs_data['user_id']." AND ppj_id=".$order_data['ppj_id']." AND ppj_no=".$order_data['ppj_no'];
 						$GLOBALS['db']->query($sql4);				
 
 					}				
