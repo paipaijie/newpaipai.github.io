@@ -118,6 +118,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 								$this->db->autoExecute($GLOBALS['ecs']->table('paipai_goods_sellers'), $arr, 'INSERT');
 								$success = $GLOBALS['db']->query($sql1);
 								if($success > 0){
+									 
 									echo 1;
 								}else{
 									echo 2;
@@ -134,6 +135,36 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
 	}
+	
+	//的方法
+	public function actionChujia(){
+
+		$id = $_SESSION['user_id'];
+		$ppj_id = $_POST['ppj_id'];
+		$ppj_no = $_POST['ppj_no'];
+		//  $ppj_id = 109;
+		$seller_max_fee = $_POST['max'];
+		//  $seller_max_fee = 1000;
+		$time = time();
+		$arr = array();
+		
+		$arr['user_id']=$id;
+		$arr['ppj_id']=$ppj_id;
+		$arr['ppj_no']=$ppj_no;
+		$arr['bid_price']=$seller_max_fee;
+		$arr['bid_time']=$time;
+		$arr['ls_status']=2;
+		$arr['createtime']=$time;
+		//插入报名信息
+		$sql1 = "UPDATE dsc_paipai_goods_bid_user SET bid_price = {$arr['bid_price']},bid_time = {$arr['bid_time']} WHERE user_id = {$arr['user_id']} and ppj_id = {$arr['ppj_id']} and ppj_no {$arr['ppj_no']}";
+		$success = $GLOBALS['db']->query($sql1);
+		if($success>0){
+			echo 1;
+		}else{
+			echo 2;
+		}
+	}
+
 
 	//显示我报名的
 	public function actionSign()
@@ -337,7 +368,14 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 
 		
 		// var_dump($goods['goods_desc']);
-
+		$sql = "select * from dsc_paipai_list where ppj_id = {$_GET['id']}";
+		$re = $GLOBALS['db']->getRow($sql);
+		$sqla = "select pay_status from dsc_order_info where user_id = {$_SESSION['user_id']} and ppj_id={$re['ppj_id']} and ppj_no ={$re['ppj_no']} and pay_status = '10' and extension_code = 'paipai_buy'";
+		$rea = $GLOBALS['db']->getRow($sqla);
+		$goods['pay_status'] = $rea['pay_status'];
+		
+		//var_dump($goods);
+		
 		$this->assign('goods', $goods);
 
 		$sql = 'SELECT * FROM {pre}goods_gallery WHERE goods_id = ' . $this->goods_id;
