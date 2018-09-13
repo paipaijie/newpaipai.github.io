@@ -7,7 +7,6 @@
         <nav style="padding-top:10px" class="tab-title b-color-f of-hidden" style="position:fixed">
             <ul class="dis-box">
                 <li class="box-flex {if empty($status)}active{/if}"><a status="0" >全部订单({$order_num.all_order})</a></li>
-                <li class="box-flex {if $status ==4}active{/if}"><a  status="4" >拍拍订单({$order_num.paipai_count})</a></li>
                 <li class="box-flex {if $status ==1}active{/if}"><a  status="1" >待付款({$order_num.paipai_pay_count})</a></li>
                 <li class="box-flex {if $status == 2}active{/if}"><a status="2" >待收货({$order_num.confirmed_count})</a></li>
             </ul>
@@ -70,9 +69,7 @@
                             <%if order.delay == 1%>
                             <a class="btn-default-new br-5 min-btn delay-order"data-item="<%order.order_id%>">延迟收货</a>
                             <%/if%>
-                            <%if order.extension_code%>
-                            <a href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">匹配订单</a>
-                            <%/if%>
+                            
                             <%if order.handler_return && order.pay_status == 2%>
                             <a class="btn-default-new br-5 min-btn" href="<%order.handler_return%>">申请售后</a>
                             <%/if%>
@@ -82,7 +79,7 @@
                             <%if order.delete_yes == 1%>
                             <!--<a class="btn-default">删除</a>-->
                             <%/if%>
-
+                            
                             <%if order.order_del%>
                              <button class="btn-default-new br-5 min-btn del-order" data-item="<%order.order_id%>">删除</button>
                             <%/if%>
