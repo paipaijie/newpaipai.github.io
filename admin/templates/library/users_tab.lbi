@@ -12,5 +12,8 @@
         <li {if $menu_select.current eq '16_reg_fields'}class="curr"{/if}>
             <a href="reg_fields.php?act=list">{$lang.16_reg_fields}</a>
         </li>
+        <li {if $menu_select.current eq '16_reg_fields'}class="curr"{/if}>
+            <a href="users.php?act=quan">注册赠的惠券</a>
+        </li>
     </ul>
 </div>

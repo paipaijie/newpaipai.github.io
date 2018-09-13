@@ -1806,7 +1806,6 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
         }else{
                $bid_price= number_format($_POST['bid_price'],2);
         }
-
 		do {
 			$order['order_sn'] = get_order_sn();
 			
@@ -1837,16 +1836,14 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
                 	// $bid_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id='{$new_order['ppj_id']}' AND  ppj_no='{$new_order['ppj_no']}' AND user_id='{$new_order['user_id']}' ";    
                  //    $bid=$this->db->query($bid_sql);
                     $margin_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE  order_sn='{$margin_date['order_sn']}'";       
-                    $m_data=$this->db->query($margin_sql);  
-
-                    $bid_price=$_POST['bid_price'];        
+                    $m_data=$this->db->getRow($margin_sql);  
+       
                     $bid_data=array(
                     	'user_id'=>$new_order['user_id'],
                     	'spm_id' => $m_data['spm_id'],
 	                    'ppj_id'=>$new_order['ppj_id'],
 	                    'ppj_no'=>$new_order['ppj_no'],
 	                    'bid_price'=>$bid_price,
-	                    'bid_time'=>time(),
 	                    'createtime'=>time()
                 	);
                     // if($bid){

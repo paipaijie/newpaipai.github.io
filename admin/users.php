@@ -259,11 +259,15 @@ else if ($_REQUEST['act'] == 'quan') {
 	
 	admin_priv('users_manage');
 	$smarty->assign('menu_select', array('action' => '08_members', 'current' => '03_users_list'));
-	$sql = 'SELECT * FROM ' . $ecs->table('goods').'ORDER BY goods_id DESC';
+	$sql = 'SELECT goods_id FROM ' . $ecs->table('quan').'ORDER BY goods_id DESC';
 	$rs = $db->getAll($sql);
-
+	foreach($rs as $k => $v){
+			$sql1 = "SELECT * FROM dsc_goods where goods_id = ".$v['goods_id'];
+			$rs1[] = $db->getRow($sql1);
+	}
+	
 	$smarty->assign('id', $_GET['id']);
-	$smarty->assign('rs', $rs);
+	$smarty->assign('rs', $rs1);
 	$smarty->assign('user_ranks', $ranks);
 	$smarty->assign('ur_here', $_LANG['03_users_list']);
 	$smarty->assign('action_link', array('text' => $_LANG['04_users_add'], 'href' => 'users.php?act=add'));
@@ -278,6 +282,14 @@ else if ($_REQUEST['act'] == 'quan') {
 	$smarty->assign('sort_user_id', '<img src="images/sort_desc.gif">');
 	assign_query_info();
 	$smarty->display("users_quan.dwt");
+}
+
+else if ($_REQUEST['act'] == 'quan_list') {
+	$sql = "select * from dsc_goods";
+	$result = $GLOBALS['db']->getAll($sql);
+	//var_dump($re);
+	$smarty->assign('goods',$result);
+	$smarty->display('user_quan_list.dwt');
 }
 
 
@@ -761,21 +773,13 @@ else if ($_REQUEST['act'] == 'remove') {
 else if ($_REQUEST['act'] == 'add_quan') {
 	admin_priv('users_drop');
 	$arr['goods_id'] = intval($_GET['id']);
-	$arr['user_id'] = intval($_GET['user_id']);
-	$arr['usestatus'] = 0;
-	$arr['createtime'] = time();
-	$arr['endtime'] = time()+30*24*3600;
-	$arr['beizhu'] = '注册赠送';
-	$arr['ppj_no'] = 0;
-	// var_dump($arr);exit;
 
-
-	$sql = "INSERT INTO dsc_paipai_seller (`goods_id`,`createtime`,`usestaus`,`user_id`,`endtime`,`beizhu`,`ppj_no`) value ({$arr['goods_id']},{$arr['createtime']},{$arr['usestatus']},{$arr['user_id']},{$arr['endtime']},'{$arr['beizhu']}',{$arr['ppj_no']}) ";
+	$sql = "INSERT INTO dsc_quan (`goods_id`) value ({$arr['goods_id']}) ";
 	// var_dump($sql);exit;
 	$username = $db->query($sql);
 
 	if ($username>0) {
-		$link[] = array('text' => $_LANG['go_back'], 'href' => 'users.php?act=list');
+		$link[] = array('text' => $_LANG['go_back'], 'href' => 'users.php?act=quan');
 		sys_msg(sprintf($_LANG['Add_success']), 0, $link);
 	}
 
@@ -784,6 +788,21 @@ else if ($_REQUEST['act'] == 'add_quan') {
 	// admin_log(addslashes($username), 'remove', 'users');
 	// $link[] = array('text' => $_LANG['go_back'], 'href' => 'users.php?act=list');
 	// sys_msg(sprintf($_LANG['remove_success'], $username), 0, $link);
+}
+
+//删除赠送券
+else if ($_REQUEST['act'] == 'remove_quan') {
+	admin_priv('users_drop');
+	$arr['goods_id'] = intval($_GET['id']);
+
+	$sql = "DELETE FROM dsc_quan WHERE goods_id = ({$arr['goods_id']})";
+	// var_dump($sql);exit;
+	$username = $db->query($sql);
+
+	if ($username>0) {
+		$link[] = array('text' => $_LANG['go_back'], 'href' => 'users.php?act=quan');
+		sys_msg(sprintf($_LANG['remove_success']), 0, $link);
+	}
 }
 
 

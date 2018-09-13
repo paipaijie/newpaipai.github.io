@@ -116,6 +116,7 @@ function alertSet(e) {
 			dataType: "JSON",
 			success: function(re){	
 				if(t == 0){	
+				alert(re.match_bid);
                     clearInterval(interval);				
 				    document.getElementById('js-alert-head').innerHTML='匹配终止';
 			        document.getElementById('p1').innerHTML='';					

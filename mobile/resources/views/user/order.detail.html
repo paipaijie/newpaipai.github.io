@@ -1,7 +1,7 @@
 {include file="page_header"}
 
 <div class="con">
-    <div class="flow-checkout">
+    <div class="flow-checkout" style="margin-top:40px">
         {if $offline_store}
         <!--门店自提码  -->
         <section class="flow-checkout-adr padding-all">
@@ -441,7 +441,7 @@
     {if $order.order_amount > 0 && empty($order.hidden_pay_button)}
     <div class="n-right-width">
 
-        <a type="button" class="box-flex btn-submit min-two-btn" href="{$order.pay_online}">立即付款</a>
+        <a type="button" class="box-flex btn-submit min-two-btn" href="{url('onlinepay/index/index')}&order_sn={$order.order_sn}">立即付款</a>
     </div>
     
     {/if}

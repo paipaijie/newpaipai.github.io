@@ -39,10 +39,7 @@
                 <li class="box-flex {if $status ==10}active{/if}"><a status="10" >匹配中订单({$order_num.pay_count})</a></li>              
            
                     
-                <li class="box-flex {if $status ==10}active{/if}"><a status="10" >匹配成功订单({$order_num.paysucess_count})</a></li>              
-           
-                   
-                <li class="box-flex {if $status ==10}active{/if}"><a status="10" >匹配失败订单({$order_num.payfail_count})</a></li>              
+                <li class="box-flex {if $status == 2}active{/if}"><a status="2" >匹配成功订单({$order_num.paysucess_count})</a></li>                     
             </ul>
         </nav>
              
@@ -102,9 +99,13 @@
                             <%if order.handler_return && order.pay_status == 2%>
                             <a class="btn-default-new br-5 min-btn" href="<%order.handler_return%>">申请售后</a>
                             <%/if%>
+                            <%if order.extension_code%>
+                            <a href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">匹配状态</a>
+                            <%/if%>
                             <%if !order.handler%>
                             <a class="btn-default-new br-5 min-btn" href="<%order.order_url%>">查看订单</a>
                             <%/if%>
+                            
                             <%if order.delete_yes == 1%>
                             <!--<a class="btn-default">删除</a>-->
                             <%/if%>
@@ -140,7 +141,7 @@
         var infinite = $('.store_info').infinite({url: "{url('user/order/indexpaipai')}", template: 'j-product', params: 'status={$status}'});
         $(".tab-title a").click(function () {
             var status = $(this).attr('status');
-
+	alert(status);
             infinite.onload('status=' + status);
             $(this).parent().addClass("active").siblings().removeClass("active");
         })
