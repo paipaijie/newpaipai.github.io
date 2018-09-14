@@ -228,8 +228,8 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 		$where = 'and oi.pay_status in(' . PS_UNPAYED . ',' . PS_PAYED_PART . ') and oi.order_status not in(' . OS_CANCELED . ',' . OS_INVALID . ',' . OS_RETURNED . ')';
 		
 	}
-	else if ($status == 2) { //已支付
-		$where .= ' AND oi.pay_status = ' . PS_PAYED . ' AND oi.order_status in (' . OS_CONFIRMED . ', ' . OS_SPLITED . ', ' . OS_SPLITING_PART . ') AND (oi.shipping_status >= ' . SS_UNSHIPPED . ' AND oi.shipping_status <> ' . SS_RECEIVED . ')';
+	else if ($status == 0) { //已支付
+		$where .= ' AND oi.pay_status = 2 AND oi.order_status in (' . OS_CONFIRMED . ', ' . OS_SPLITED . ', ' . OS_SPLITING_PART . ') AND (oi.shipping_status >= ' . SS_UNSHIPPED . ' AND oi.shipping_status <> ' . SS_RECEIVED . ')';
 			
 		$cache_info = S('message_' . $_SESSION['user_id']);
 	}
