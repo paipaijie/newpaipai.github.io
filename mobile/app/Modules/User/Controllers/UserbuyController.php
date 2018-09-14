@@ -68,11 +68,13 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
             exit();
         }
         $user_id=$this->user_id;
+		
+		$margin_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE order_sn=".$order['order_sn']." AND ls_pay_ok=1";
+        $margin_data=$GLOBALS['db']->getRow($margin_sql); 
 
         //单个买方出价信息
-        $user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id=".$order['ppj_id']. " AND ppj_no=".$order['ppj_no']." AND user_id=".$user_id." AND is_status=2";       
+        $user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id=".$order['ppj_id']. " AND ppj_no=".$order['ppj_no']." AND user_id=".$user_id." AND is_status=2 AND spm_id={$margin_data['spm_id']}";       
         $user_bid=$GLOBALS['db']->getRow($user_sql);
-		
         $this->assign('user_bid', $user_bid);
 
         $this->display();
@@ -277,8 +279,8 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
     	$where = ' WHERE 1 ';
     	$user_id=$this->user_id;
         $goods_sql="SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price,g.cost_price FROM ".$GLOBALS['ecs']->table('paipai_list')." AS pl LEFT JOIN ".$GLOBALS['ecs']->table('goods')." AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id={$ppj_id} AND pl.ppj_no={$ppj_no} ";		
-       
-  	    $goods_data=$GLOBALS['db']->getRow($goods_sql);    
+  	    $goods_data=$GLOBALS['db']->getRow($goods_sql);  
+		
         if($goods_data['goods_count'] == '0'){
             exit(json_encode(array('match_bid' => 3)));
         }
@@ -293,13 +295,14 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
   		$user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id={$ppj_id} AND ppj_no={$ppj_no}"." AND user_id=".$user_id." AND is_status=2";	
 	
   	    $user_bid=$GLOBALS['db']->getRow($user_sql);
-
+		
         if($user_bid['bid_price'] < $goods_data['shop_price'] && $user_bid['bid_price'] > $goods_data['ppj_buy_fee']  ){
          
             foreach($all_user_bid as $key=> $value){  
                 $max_fee_array[]=$value['bid_price'];                 
             }
-            $max_bid=max($max_fee_array);         
+            $max_bid=max($max_fee_array);     
+			
             if($max_bid == $user_bid['bid_price'] ){
                 foreach($all_user_bid as $key=> $value){  
                     if($value['bid_time'] < $user_bid['bid_time']){
@@ -313,7 +316,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
             }else{
             	    $bid_match='2';       //出价失败
             }
-            
+           
             if($bid_match == '1'){
 
                 //卖方
@@ -353,6 +356,10 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
                             'getmoney' => $income,
 							'spm_id' => $user_bid['spm_id']
 	                	);
+						//用户出价状态更改    1:出价匹配成功	
+						$sql1="UPDATE dsc_paipai_goods_bid_user SET is_status=".'1'." WHERE user_id={$user_id} AND ppj_id={$ppj_id} AND ppj_no={$ppj_no} AND spm_id={$user_bid['spm_id']}";
+						$GLOBALS['db']->query($sql1);
+						
                         //匹配成功数据加入卖家数据表
                         $sell_ok_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_ok')." WHERE user_id={$sell_news['user_id']} AND buy_id={$user_id} AND ppj_id={$ppj_id} AND ppj_no={$ppj_no} ";
                         $sell_o_data=$GLOBALS['db']->getRow($sell_ok_sql);
@@ -370,7 +377,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
             }
             	        
        }else{
-       	  echo json_encode(array('match_bid'=>2));  //出价失败
+       	  echo json_encode(array('match_bid'=>$goods_data['shop_price']));  //出价失败
        }
         
 		

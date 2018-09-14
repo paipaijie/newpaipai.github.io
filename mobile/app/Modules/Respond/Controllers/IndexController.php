@@ -23,7 +23,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$msg_type = 2;
 		
 		$payment = $this->getPayment();
-      
+        
+		$log_id = parse_trade_no($_GET['out_trade_no']);
       
 		if ($payment === false) {
 			$msg = L('pay_disabled');
@@ -37,7 +38,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 
 			if ($payment->callback($this->data)) {
 				
-				//$msg = L('pay_success');
+				
+				$msg = L('pay_success');
 				$msg="出价成功，正在匹配卖家中...";
 				$msg_type = 0;
 			}

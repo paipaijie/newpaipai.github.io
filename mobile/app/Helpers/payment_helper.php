@@ -163,7 +163,7 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
 							$pay_status=10;
 					}else if($order['pay_status']==0){
 						    $pay_status=2;
-						    
+					    
 						    // 结算预收益
 						/* 
 						  $sql='select goods_id from {pre}order_goods where order_id='.$pay_log['order_id'];
@@ -182,35 +182,32 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
 					if( $pay_status == 10){
 						$ls_pay_ok=1;   //保证金支付成功
 						$up_time=time();
-						$m_sql="UPDATE dsc_paipai_seller_pay_margin SET ls_pay_ok=".$ls_pay_ok.",paytime=".$up_time." WHERE order_sn=".$order_sn; 
+				$m_sql="UPDATE dsc_paipai_seller_pay_margin SET ls_pay_ok={$ls_pay_ok},paytime={$up_time} WHERE order_sn={$order_sn}"; 
 						$up_margin=$GLOBALS['db']->query($m_sql);
 						if($up_margin){
 							//查询保证金信息
-						    $sel_margin="SELECT * FROM dsc_paipai_seller_pay_margin WHERE order_sn =".$order_sn;
+						    $sel_margin="SELECT * FROM dsc_paipai_seller_pay_margin WHERE order_sn ={$order_sn}";
                             $spm_data = $GLOBALS['db']->getRow($sel_margin);
                             //用户出价状态更改    2:出价进行中	
                             $is_status=2;						
-                 $um_sql="UPDATE dsc_paipai_goods_bid_user SET is_status=".$is_status.", bid_time=".$up_time." WHERE user_id=".$m['user_id']." AND ppj_id=".$m['ppj_id']." AND ppj_no=".$m['ppj_no']." AND spm_id=".$spm_data['spm_id']; 
+                 $um_sql="UPDATE dsc_paipai_goods_bid_user SET is_status={$is_status}, bid_time={$up_time} WHERE user_id={$spm_data['user_id']} AND ppj_id={$spm_data['ppj_id']} AND ppj_no={$spm_data['ppj_no']} AND spm_id={$spm_data['spm_id']}"; 
 							$GLOBALS['db']->query($um_sql);							
 						}
 						
 					}
                     //匹配成功出价支付 
-					if($order['extension_code']=='two_price' && $order['pay_status']=='2'){
-						$o_sql="SELECT o.user_id,o.ppj_id,o.ppj_no,pm.spm_id FROM dsc_order_info AS o LEFT JOIN dsc_paipai_seller_pay_margin as pm ON o.order_sn=pm.order_sn WHERE o.order_id =".$order_id; 
+					if($order['extension_code']=='two_price' && $pay_status=='2'){
+						$o_sql="SELECT o.user_id,o.ppj_id,o.ppj_no,pm.spm_id FROM dsc_order_info AS o LEFT JOIN dsc_paipai_seller_pay_margin as pm ON o.order_sn=pm.order_sn WHERE o.order_id ={$order_id}"; 
 						$order_data = $GLOBALS['db']->getRow($o_sql);
 
-						//用户出价状态更改    1:出价匹配成功	
-						$sql1="UPDATE dsc_paipai_goods_bid_user SET is_status=".'1'." WHERE user_id=".$order_data['user_id']." AND ppj_id=".$order_data['ppj_id']." AND ppj_no=".$order_data['ppj_no']." AND spm_id=".$order_data['spm_id'];
-						$GLOBALS['db']->query($sql1);
 						//更改卖家成交订单表
 						$sell_status=1;     //匹配已付款
-						$sql2="UPDATE dsc_paipai_seller_ok SET stauts=".$sell_status.",order_id=".$order_id." WHERE buy_id =".$order_data['user_id']." AND ppj_id=".$order_data['ppj_id']." AND ppj_no=".$order_data['ppj_no'];
+						$sql2="UPDATE dsc_paipai_seller_ok SET stauts=".$sell_status.",order_id=".$order_id." WHERE buy_id =".$order_data['user_id']." AND ppj_id=".$order_data['ppj_id']." AND ppj_no={$order_data['ppj_no']} AND spm_id={$order_data['spm_id']}";
 						$GLOBALS['db']->query($sql2);
                         //查询卖家表  更改卖家出价状态
-						$sql3="SELECT user_id FROM dsc_paipai_seller_ok WHERE order_id =".$order_id; 
+						$sql3="SELECT user_id FROM dsc_paipai_seller_ok WHERE user_id=".$order_data['user_id']." AND ppj_id=".$order_data['ppj_id']." AND ppj_no=".$order_data['ppj_no']." AND spm_id={$order_data['spm_id']}"; 
 						$pgs_data = $GLOBALS['db']->getRow($sql3);
-						$sql4="UPDATE dsc_paipai_goods_sellers SET ls_ok=".'0'." WHERE user_id=".$pgs_data['user_id']." AND ppj_id=".$order_data['ppj_id']." AND ppj_no=".$order_data['ppj_no'];
+						$sql4="UPDATE dsc_paipai_goods_sellers SET ls_ok=".'1'." WHERE user_id=".$pgs_data['user_id']." AND ppj_id=".$order_data['ppj_id']." AND ppj_no={$order_data['ppj_no']}";
 						$GLOBALS['db']->query($sql4);				
 
 					}				
