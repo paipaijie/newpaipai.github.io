@@ -10,7 +10,7 @@
 .alert-box {
 	display: none;
 	position: relative;
-	margin: 140px auto 0;
+	margin: 120px auto 0;
 	padding: 180px 85px 22px;
 	border-radius: 10px 10px 0 0;
 	background: #FFF;
@@ -115,17 +115,19 @@ function alertSet(e) {
 			},
 			dataType: "JSON",
 			success: function(re){		    
-				if(t == 0){				    
+				if(t == 0){		
+                    var sell=re.sell;			
                     clearInterval(interval);				
 				    document.getElementById('js-alert-head').innerHTML='匹配终止';
 			        document.getElementById('p1').innerHTML='';					
 					if(re.match_bid == 1){
+					    
 					    layer.open({
 						  content: '数据匹配成功'
 						  ,area:['200px', '150px']
-						  ,btn: ['去支付', '暂不支付']
+						  ,btn: ['确认订单', '重新匹配']
 						  ,yes:function(success){
-						  	  window.location.href="{url('user/userbuy/paipaibuy')}&ppj_id={$user_bid['ppj_id']}&ppj_no={$user_bid['ppj_no']}";
+						  	  window.location.href="{url('user/userbuy/paipaibuy')}&ppj_id={$user_bid['ppj_id']}&ppj_no={$user_bid['ppj_no']}&sell="+sell;
 						  }
 						});
 				    }else if(re.match_bid == 3){
@@ -154,8 +156,8 @@ function alertSet(e) {
 				}else{
 					t -= 1,
 			        document.getElementById("js-sec-text").innerHTML = t;
-			        var e = Math.round(t / 10 * 683);
-			        n.style.strokeDashoffset = e - 683
+			        var e = Math.round(t / 10 * 723);
+			        n.style.strokeDashoffset = e - 723
 		        }	
 			}
 		});

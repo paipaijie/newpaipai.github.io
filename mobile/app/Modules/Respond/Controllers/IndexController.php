@@ -20,12 +20,11 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 
 	public function actionIndex()
 	{
+ 
 		$msg_type = 2;
 		
 		$payment = $this->getPayment();
-        
-		$log_id = parse_trade_no($_GET['out_trade_no']);
-      
+ 
 		if ($payment === false) {
 			$msg = L('pay_disabled');
 		}
@@ -37,11 +36,28 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			}
 
 			if ($payment->callback($this->data)) {
+				$log_id = parse_trade_no($_GET['out_trade_no']);
+				$sql1 = 'SELECT * FROM ' . $GLOBALS['ecs']->table('pay_log') . (' WHERE log_id = \'' . $log_id . '\'');
+				$pay_log = $GLOBALS['db']->getRow($sql1);
+				$sql2 = 'SELECT main_order_id, order_id, user_id, order_sn, ppj_id, ppj_no, extension_code ' . 'FROM ' . $GLOBALS['ecs']->table('order_info') . (' WHERE order_id = \'' . $pay_log['order_id'] . '\'');
+				$order_data = $GLOBALS['db']->getRow($sql2);
+				if($order_data['extension_code'] == 'paipai_buy'){
+//					$this->redirect('user/userbuy/userbuy',array('id'=>$order_data['order_id']));
+					$msg="保证金支付成功，进入订单页";
+					$msg_type = 0;
+					$order_url = url('user/order/indexpaipai',array('status'=>10));
+				}else if($order_data['extension_code'] == 'two_price'){
+					//$msg = L('pay_success');
+					$msg="竞拍成功，进入订单页";
+					$msg_type = 0;
+					$order_url = url('user/order/indexpaipai',array('status'=>10));
+				}else{
+					$msg="支付成功，进入订单页";
+					$msg_type = 0;
+					$order_url = url('user/order/index',array('status'=>0));
+				}
 				
 				
-				$msg = L('pay_success');
-				$msg="出价成功，正在匹配卖家中...";
-				$msg_type = 0;
 			}
 			else {
 				$msg = L('pay_fail');
@@ -71,10 +87,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			}
 			
 		}
-		else {
-			
-			$order_url = url('user/order/indexpaipai',array('status'=>10));
-		}
+
 
 		$order_url = str_replace('respond', 'index', $order_url);
 		
