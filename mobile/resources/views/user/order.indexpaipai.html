@@ -37,12 +37,7 @@
         <nav style="padding-top:10px" class="tab-title b-color-f of-hidden" style="position:fixed">
             <ul class="dis-box">          
                 <li class="box-flex {if $status ==10}active{/if}"><a status="10" >匹配中订单({$order_num.pay_count})</a></li>              
-           
-                    
-                <li class="box-flex {if $status ==10}active{/if}"><a status="10" >匹配成功订单({$order_num.paysucess_count})</a></li>              
-           
-                   
-                <li class="box-flex {if $status ==10}active{/if}"><a status="10" >匹配失败订单({$order_num.payfail_count})</a></li>              
+                <li class="box-flex {if $status ==0}active{/if}"><a status="0" >匹配成功订单({$order_num.paysucess_count})</a></li>              
             </ul>
         </nav>
              
@@ -61,7 +56,13 @@
                             <%order.shop_name%>
                             <%/if%>
                         </span>
-                        <em class="j-goods-coupon t-first f-04">匹配卖家中</em>
+                        <em class="j-goods-coupon t-first f-04">
+                                <%if order.pay_status == 0%>
+                                匹配成功
+                                <%else%>
+                                <%order.shop_name%>
+                                <%/if%>
+                                </em>
                     </header>
                     
                     <div class="f-c-p-orderid padding-all m-top1px b-color-f">
@@ -99,12 +100,15 @@
                             <%if order.delay == 1%>
                             <a class="btn-default-new br-5 min-btn delay-order"data-item="<%order.order_id%>">延迟收货</a>
                             <%/if%>
-                            <%if order.handler_return && order.pay_status == 2%>
+                            <%if order.handler_return%>
                             <a class="btn-default-new br-5 min-btn" href="<%order.handler_return%>">申请售后</a>
                             <%/if%>
-                            <%if order.extension_code%>
-                            <a href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">匹配订单</a>
+                            <%if order.extension_code && order.pay_status != 0%>
+                            <a  href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">匹配订单</a>
+                            <%else%>
+                            <a class="btn-default-new br-5 min-btn received-order" data-item-received="<%order.order_id%>">确认收货</a>
                             <%/if%>
+                            
                             <%if !order.handler%>
                             <a class="btn-default-new br-5 min-btn" href="<%order.order_url%>">查看订单</a>
                             <%/if%>
@@ -196,6 +200,7 @@
         $(".goods-info").on('click','.received-order', function() {
             var order_id = $(this).attr('data-item-received');
             var url = "{url('user/order/affirmreceived')}";
+            //alert(order_id);
             layer.open({
                 content: '你确认已经收到货物了吗？',
                 btn: ['确定', '取消'],

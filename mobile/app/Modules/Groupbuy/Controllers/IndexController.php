@@ -141,6 +141,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$id = $_SESSION['user_id'];
 		$ppj_id = $_POST['ppj_id'];
 		$ppj_no = $_POST['ppj_no'];
+		
 		//  $ppj_id = 109;
 		$seller_max_fee = $_POST['max'];
 		//  $seller_max_fee = 1000;
@@ -154,8 +155,11 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$arr['bid_time']=$time;
 		$arr['ls_status']=2;
 		$arr['createtime']=$time;
+		$sql = "select spm_id from dsc_paipai_goods_bid_user where buy_id = {$id} and ppj_no = {$ppj_no} and ppj_id = {$ppj_id} is_status = 2";
+		$res = $GLOBALS['db']->getOne($sql);
+		
 		//插入报名信息
-		$sql1 = "UPDATE dsc_paipai_goods_bid_user SET bid_price = {$arr['bid_price']},bid_time = {$arr['bid_time']} WHERE user_id = {$arr['user_id']} and ppj_id = {$arr['ppj_id']} and ppj_no {$arr['ppj_no']}";
+		$sql1 = "UPDATE dsc_paipai_goods_bid_user SET bid_price = {$arr['bid_price']},bid_time = {$arr['bid_time']} WHERE spm_id = {$res['spm_id']} and user_id = {$arr['user_id']} and ppj_id = {$arr['ppj_id']} and ppj_no {$arr['ppj_no']}";
 		$success = $GLOBALS['db']->query($sql1);
 		if($success>0){
 			echo 1;

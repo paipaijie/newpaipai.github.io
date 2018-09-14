@@ -878,7 +878,7 @@
                     $.ajax({
                         url:"{url('groupbuy/index/chujia')}",
                         type:"post",
-                        data:{"max":max,"ppj_id":ppj_id},
+                        data:{"max":max,"ppj_id":ppj_id,'ppj_no':ppj_no},
                         dataType:'json',
                         success:function(success){
                             if(success == 1){
