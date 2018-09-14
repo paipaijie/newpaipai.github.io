@@ -377,7 +377,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
             }
             	        
        }else{
-       	  echo json_encode(array('match_bid'=>$goods_data['shop_price']));  //出价失败
+       	  echo json_encode(array('match_bid'=>2));  //出价失败
        }
         
 		
