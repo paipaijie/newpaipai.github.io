@@ -43,9 +43,10 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				$order_data = $GLOBALS['db']->getRow($sql2);
 				if($order_data['extension_code'] == 'paipai_buy'){
 //					$this->redirect('user/userbuy/userbuy',array('id'=>$order_data['order_id']));
-					$msg="保证金支付成功，进入订单页";
-					$msg_type = 0;
-					$order_url = url('user/order/indexpaipai',array('status'=>10));
+                    header("Location: http://www.paipaistreet.com/mobile/index.php?m=user&c=userbuy&a=userbuy&id={$order_data['order_id']}");
+					// $msg="保证金支付成功，进入订单页";
+					// $msg_type = 0;
+					// $order_url = url('user/order/indexpaipai',array('status'=>10));
 				}else if($order_data['extension_code'] == 'two_price'){
 					//$msg = L('pay_success');
 					$msg="竞拍成功，进入订单页";

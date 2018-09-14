@@ -1,4 +1,5 @@
 {include file="page_header"}
+
 <style>
 .u-top span{
 	display: block;
@@ -76,7 +77,7 @@
 }
 </style>
 <div class="u-top">
-    <span> 进度加载条 </span>
+    <span> 出价进度 </span>
 
 </div>
 <input type="hidden" name="ppj_id" id="ppj_id" value="{$user_bid['ppj_id']}">
@@ -95,7 +96,9 @@
     </div>
 </div>
 </center>
-<script src="__ROOT__/public/vendor/layer/mobile/layer.buy.js"></script>
+{include file="no_search_nav"}
+<script src="__ROOT__/public/vendor/layer/mobile/layer.js?2.x"></script>
+
 <script>
 function alertSet(e) {
 	var ppj_id=document.getElementById("ppj_id").value; 
@@ -113,6 +116,7 @@ function alertSet(e) {
 				"pjd": ppj_id,
 				"pjn":ppj_no
 			},
+			cache:false,
 			dataType: "JSON",
 			success: function(re){		    
 				if(t == 0){		
@@ -124,10 +128,12 @@ function alertSet(e) {
 					    
 					    layer.open({
 						  content: '数据匹配成功'
-						  ,area:['200px', '150px']
+						  ,area:['300px', '250px']
 						  ,btn: ['确认订单', '重新匹配']
 						  ,yes:function(success){
 						  	  window.location.href="{url('user/userbuy/paipaibuy')}&ppj_id={$user_bid['ppj_id']}&ppj_no={$user_bid['ppj_no']}&sell="+sell;
+						  },no:function(success){
+							   window.location.href="{url('groupbuy/index/index')}";
 						  }
 						});
 				    }else if(re.match_bid == 3){
@@ -137,20 +143,20 @@ function alertSet(e) {
 						    ,btn: ['拍拍活动', '回到首页']
 						    ,yes:function(success){
 						  	    window.location.href="{url('groupbuy/index/index')}";
-						    },btn2: function() {
+						    },no:function(success){
                                 window.location.href="{url('index/index/index')}";
                             }
 						});
 				    }else{
 				    	layer.open({
 						    content: '匹配失败,请重新出价,'
-						    ,area:['200px', '150px']
+						    ,area:['300px', '250px']
 						    ,btn: ['再次匹配', '回到活动']
 						    ,yes:function(success){
 							    location.reload();
-						    },btn2: function() {
-                                window.location.href="{url('groupbuy/index/index')}";
-                            }
+						    },no:function(success){
+							    window.location.href="{url('groupbuy/index/index')}";
+						    }
 						});
 				    }
 				}else{
