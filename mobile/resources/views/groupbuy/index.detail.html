@@ -42,6 +42,11 @@
                                 <div>
                                 	
                                     <div class="goods-photo goods-photo-images j-show-goods-img">
+                                    	<marquee class="group-price-box" id="affiche" align="left" behavior="scroll"  direction="up" hspace="50" vspace="20" loop="-1" scrollamount="1" scrolldelay="100" onMouseOut="this.start()" onMouseOver="this.stop()">
+                                    		 {foreach $price_list as $list}
+                                                  {substr($list.user_name,0,3)}****{substr($list.user_name,-3)}出价 <span style="color:red">{$list.bid_price}</span> 元<br/>
+                                    		 {/foreach}
+                                        </marquee>
                                     	<div id="fnTimeCountDown" class="group-time-box" data-end="{$group_buy.formated_end_date}">
 											<span class="day">00</span>天
 											<span class="hour">00</span>时
@@ -78,8 +83,8 @@
 										<!--{/if}-->
 
 										<p class=" dis-box g-p-tthree m-top06">
-											<span class="box-flex text-left">销量 {$goods.sales_volume} {$goods.measure_unit}</span>
-											<span class="box-flex text-center">库存 <font class="goods_attr_num data-item" >{$goods.goods_number}</font><span id="measure_unit">{$goods.measure_unit}</span></span>
+											<span class="box-flex text-left">销量 {$pm_data.count}</span>
+											<span class="box-flex text-center">库存 {$pl_data.goods_count}</span>
 										</p>
 										
 									</section>

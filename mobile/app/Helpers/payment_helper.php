@@ -197,8 +197,16 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
 					}
                     //匹配成功出价支付 
 					if($order['extension_code']=='two_price' && $pay_status=='2'){
-						$o_sql="SELECT user_id,ppj_id,ppj_no FROM dsc_order_info  WHERE order_id ={$order_id}"; 
+                        
+                        $now_time=time();
+
+						$o_sql="SELECT user_id,ppj_id,ppj_no,order_sn FROM dsc_order_info  WHERE order_id ={$order_id}"; 
 						$order_data = $GLOBALS['db']->getRow($o_sql);
+
+						//查询活动信息
+						$sql6="SELECT * FROM dsc_paipai_list WHERE  ppj_id={$order_data['ppj_id']} AND ppj_no={$order_data['ppj_no']} "; 
+						$pl_data = $GLOBALS['db']->getRow($sql6);
+
 						//买家出价信息
         $user_bid_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE user_id=".$order_data['user_id']." AND ppj_id=".$order_data['ppj_id']." AND ppj_no=".$order_data['ppj_no']." AND is_status=2";
         $user_bid_data = $GLOBALS['db']->getRow($user_bid_sql);
@@ -210,10 +218,15 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
 						//查询卖家表  更改卖家出价状态
 						$sql3="SELECT user_id FROM dsc_paipai_seller_ok WHERE buy_id={$order_data['user_id']} AND ppj_id={$order_data['ppj_id']} AND ppj_no={$order_data['ppj_no']} AND spm_id={$user_bid_data['spm_id']}"; 
 						$sell_data = $GLOBALS['db']->getRow($sql3);
-         
+
+						//查询卖家的销售券id 
+                        $sql7="SELECT * FROM dsc_paipai_seller WHERE user_id={$sell_data['user_id']} AND goods_id={$pl_data['goods_id']} AND ppj_no={$order_data['ppj_no']}";
+                        $pp_sell_data = $GLOBALS['db']->getRow($sql7);
+
 						// 更改卖家成交订单表
+						
 						$sell_status=1;     //匹配已付款
-		$sql2="UPDATE dsc_paipai_seller_ok SET status={$sell_status},order_id={$order_id} WHERE user_id ={$sell_data['user_id']} AND ppj_id={$order_data['ppj_id']} AND ppj_no={$order_data['ppj_no']}";
+		$sql2="UPDATE dsc_paipai_seller_ok SET status={$sell_status},order_id={$order_id},sell_id={$pp_sell_data['sell_id']},createtime={$now_time} WHERE user_id ={$sell_data['user_id']} AND ppj_id={$order_data['ppj_id']} AND ppj_no={$order_data['ppj_no']}";
 						$GLOBALS['db']->query($sql2);
                         //更改卖家出价状态
 						$sql4="UPDATE dsc_paipai_goods_sellers SET ls_ok=0 WHERE user_id={$sell_data['user_id']} AND ppj_id={$order_data['ppj_id']} AND ppj_no={$order_data['ppj_no']}";
@@ -221,7 +234,11 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
                         
                         //拍拍活动库存-1
                         $sql5="UPDATE dsc_paipai_list SET goods_count=goods_count-1 WHERE ppj_id=".$order_data['ppj_id']." AND ppj_no={$order_data['ppj_no']}";	
-                        $GLOBALS['db']->query($sql5);						
+                        $GLOBALS['db']->query($sql5);	
+
+                        //商城收益
+                        $sql8="UPDATE dsc_seller_profit SET is_status=1 WHERE order_sn={$order_data['order_sn']}";	
+                        $GLOBALS['db']->query($sql8);					
 
 					}				
 					

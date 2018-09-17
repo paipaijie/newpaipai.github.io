@@ -370,24 +370,37 @@ class AccountController extends \App\Modules\Base\Controllers\FrontendController
             
         $user = $GLOBALS['db']->getRow($sql); 
         
-      	
-         $sql = "SELECT sum(getmoney) FROM " . $GLOBALS['ecs']->table('paipai_seller_ok') .
-            " WHERE user_id = '$this->user_id'";
-            
-        $today_total = $GLOBALS['db']->getOne($sql); 
+
+        $user_id=$this->user_id;
         
-		$surplus_amount= $today_total;
-		$total_amount= $today_total;
-		$totals= $today_total;
-		  
-		$this->assign('total_amount', $total_amount);
-		$this->assign('totals', $totals);
-		$this->assign('surplus_amount', $surplus_amount);
-		$this->assign('today_total', $today_total);
+      	//累计收益   //总销售额(匹配的成交价)
+        $sql1="SELECT sum(sellers_fee) as total_sel_fee,sum(getmoney) as total_getmoney FROM {pre}paipai_seller_ok WHERE user_id = {$user_id}";
+        $total_amount=$GLOBALS['db']->getRow($sql1); 
+        $this->assign('total_amount', $total_amount);
+        //可提现余额 
+        $now_time=time();
+        $sql2="SELECT * FROM {pre}paipai_seller_ok WHERE user_id = {$user_id} AND status='2'";
+        $extract_amount=$GLOBALS['db']->getAll($sql2); 
+        foreach($extract_amount as $key=>$val){
+        	$new_time=$val['confirm_time']+7*24*3600;
+             if($new_time < $now_time){
+             	$extract_money+=$val['getmoney'];     
+             }
+        }     
+        var_dump($extract_money);
+        $this->assign('extract_money',number_format($extract_money,2));
+      	//今日收入
+      	$sql3="SELECT * FROM {pre}paipai_seller_ok WHERE user_id = {$user_id}";
+      	$today_amount_array=$GLOBALS['db']->getAll($sql3); 
+      	foreach($today_amount_array as $key=>$val){
+             if(date('Ymd',$val['createtime']) == date('Ymd',$now_time)){
+             	  $today_money+=$val['getmoney'];     
+             }
+        }  
+        $this->assign('today_money', number_format($today_money,2));
+
 		$this->assign('user', $user);
 		$this->assign('page_title', '拍拍小店');
-		//var_dump($user);
-		//exit;
 		$this->display();
 	}
 

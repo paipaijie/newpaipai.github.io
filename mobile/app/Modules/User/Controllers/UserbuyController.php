@@ -296,7 +296,27 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
 
         if($order_insert){
 			
-			
+			//商城利益
+            // 1：  手续费20%
+            $profit=number_format(($sell_news['seller_min_fee']-$goods_data['cost_price'])*0.2,2);   //20% 手续费
+            $mall_profit=array(
+                'order_sn'=>$order_data['order_sn'],
+                'ru_id' => $sell_news['user_id'],
+                'price' => $profit
+            );
+            $mall_profit=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('seller_profit'),$mall_profit,'INSERT'); 
+            if($mall_profit){
+                // 2: 差价
+                $spread=number_format($user_bid_data['bid_price']-$sell_news['seller_min_fee'],2);
+                $spread_profit=array(
+                    'order_sn'=>$order_data['order_sn'],
+                    'ru_id' => $sell_news['user_id'],
+                    'price' => $spread
+                );
+                $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('seller_profit'),$spread_profit,'INSERT'); 
+
+            }
+            
 						
             $order_id_sql="SELECT order_id FROM ".$GLOBALS['ecs']->table('order_info'). "WHERE order_sn=".$order_data['order_sn'];
             $order_id=$GLOBALS['db']->getRow($order_id_sql);
