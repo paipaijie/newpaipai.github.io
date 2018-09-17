@@ -56,6 +56,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
 
         $order_sql="SELECT * FROM ".$GLOBALS['ecs']->table('order_info')." WHERE order_id=".$order_id;
         $order=$GLOBALS['db']->getRow($order_sql); 
+		
         if(empty($order)){
             ecs_header('Location: ' . url('user/userbuy/buyerror'));
             exit();
@@ -323,53 +324,59 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
     	$user_id=$this->user_id;
         $goods_sql="SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price,g.cost_price FROM ".$GLOBALS['ecs']->table('paipai_list')." AS pl LEFT JOIN ".$GLOBALS['ecs']->table('goods')." AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id={$ppj_id} AND pl.ppj_no={$ppj_no} ";		
   	    $goods_data=$GLOBALS['db']->getRow($goods_sql);  
-		
+		 
         if($goods_data['goods_count'] == '0'){
             exit(json_encode(array('match_bid' => 3)));
         }
 
 		$where.=" AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}";       
-        //所有买方出价信息
-        $all_user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user').$where." AND user_id !=".$user_id." AND is_status=2 ";
-
-        $all_user_bid=$GLOBALS['db']->getAll($all_user_sql);
-        
+              
         //单个买方出价信息
   		$user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id={$ppj_id} AND ppj_no={$ppj_no}"." AND user_id=".$user_id." AND is_status=2";	
-	
   	    $user_bid=$GLOBALS['db']->getRow($user_sql);
+			
 		
         if($user_bid['bid_price'] < $goods_data['shop_price'] && $user_bid['bid_price'] > $goods_data['ppj_buy_fee']  ){
-         
-            foreach($all_user_bid as $key=> $value){  
+            //所有买方出价信息
+			$all_user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user').$where." AND user_id !=".$user_id." AND is_status=2 ";
+
+			$all_user_bid=$GLOBALS['db']->getAll($all_user_sql);
+		
+			if(empty($all_user_bid)){
+				$bid_match='1'; 				
+			}else{
+				foreach($all_user_bid as $key=> $value){  
                 $max_fee_array[]=$value['bid_price'];                 
-            }
-            $max_bid=max($max_fee_array);     
-			
-            if($max_bid == $user_bid['bid_price'] ){
-                foreach($all_user_bid as $key=> $value){  
-                    if($value['bid_time'] < $user_bid['bid_time']){
-                        $bid_match='1';       //出价最高者
-                    }else{
-                    	$bid_match='2';       //
-                    }                 
-                }
-            }elseif( $user_bid['bid_price'] > $max_bid ){
-                    $bid_match='1';       //出价最高者
-            }else{
-            	    $bid_match='2';       //出价失败
-            }
+				}
+				$max_bid=max($max_fee_array);     
+				
+				if($max_bid == $user_bid['bid_price'] ){
+					foreach($all_user_bid as $key=> $value){  
+						if($value['bid_time'] < $user_bid['bid_time']){
+							$bid_match='1';       //出价最高者
+						}else{
+							exit(json_encode(array('match_bid' => 2)));
+						}                 
+					}
+				}elseif( $user_bid['bid_price'] > $max_bid ){
+						$bid_match='1';       //出价最高者
+				}else{
+						exit(json_encode(array('match_bid' => 2)));
+				}
+			}         
            
             if($bid_match == '1'){
 
                 //卖方
 				$sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers') .$where.' AND ls_staus=1 AND ls_ok=1';
 			    $seller_data=$GLOBALS['db']->getAll($sql);
+				if(empty($seller_data)){
+				    exit(json_encode(array('match_bid' => 2)));	
+			    }
 				
 		        foreach($seller_data as $key=>$val){
 			            $min_fee_arr[]=$val['seller_min_fee'];
-				}
-				
+				}	
 				$min_bid=min($min_fee_arr);
 												
 				if($min_bid < $user_bid['bid_price'] ){
@@ -393,9 +400,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
                 }else{
                 	    echo json_encode(array('match_bid'=>2));  //匹配失败
                 }				
-            }else{
-				echo json_encode(array('match_bid'=>2));  //匹配失败    
-			}
+            }
             	    
         }else{
        	        echo json_encode(array('match_bid'=>2));  //出价失败
