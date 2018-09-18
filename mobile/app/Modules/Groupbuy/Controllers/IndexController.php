@@ -18,19 +18,147 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$this->init_params();
 		
 		L(require LANG_PATH . C('shop.lang') . '/other.php');
-		
+		 
 		$this->area_id = $this->area_info['region_id'];
 	}
 
 	//显示进行中的拍拍活动
 	public function actionUnderway(){
-		$this->display();
+		
+		$default_sort_order_method = C('sort_order_method') == '0' ? 'ASC' : 'DESC';
+
+		if ($_REQUEST['sort'] == 'comments_number') {
+			$default_sort_order_type = C('sort_order_type') == '0' ? 'start_time' : (C('sort_order_type') == '1' ? 'shop_price' : 'last_update');
+		}
+		else {
+			$default_sort_order_type = 'ppj_id';
+		}
+		
+			$this->sort = isset($_REQUEST['sort']) && in_array(trim(strtolower($_REQUEST['sort'])), array('ppj_id', 'start_time', 'sales_volume', 'comments_number')) ? trim($_REQUEST['sort']) : $default_sort_order_type;
+			
+		
+			$this->order = isset($_REQUEST['order']) && in_array(trim(strtoupper($_REQUEST['order'])), array('ASC', 'DESC')) ? trim($_REQUEST['order']) : $default_sort_order_method;
+			
+			$page = I('post.page', 1, 'intval');
+			
+			$keywords = I('keyword');
+			
+			$count = group_buy_count($keywords);
+			
+			$max_page = 0 < $count ? ceil($count / $this->size) : 1;
+
+			if ($max_page < $page) {
+				$page = $max_page;
+			}
+
+			$gb_list = paipai_buy_add_list($this->size, $page, $keywords, $this->sort, $this->order);
+//			 var_dump($gb_list);
+
+			foreach($gb_list as $k => $v){
+				
+					$this->groupbuyid = $v['ppj_id'];
+					if (!$this->groupbuyid) {
+						ecs_header("Location: ./\n");
+					}
+					//var_dump();
+					//var_dump($this->groupbuyid);
+					$group[] = paipai_buy_info($this->groupbuyid);
+
+					$sql_baoming = "select * from dsc_paipai_goods_sellers where ppj_id = {$v['ppj_id']} and ppj_no = {$v['ppj_no']} and user_id = {$_SESSION['user_id']}";
+//					var_dump($sql_baoming);
+					$res[] = $GLOBALS['db']->query($sql_baoming);
+				
+			}
+			
+			foreach($res as $k=>$v){
+				foreach($v as $a => $b){
+					$c[] = $b['ppjs_id'];
+				}
+			}
+			
+			foreach($c as $d => $e){
+				$gb_list[$k]['ppjs_id'] = $e;
+			}
+			foreach($group as $key=>$val){
+				$arr[] = $val['formated_cur_price'];
+			}
+	
+			foreach($arr as $k=>$v){
+				//var_dump($v);
+				$gb_list[$k]['formated_cur_price'] = $v;
+			}
+			
+			$this->assign('att',$gb_list);
+			$this->display();
 	}
 				
 	//显示未开始的方法
 	public function actionNotstarted(){
+		$default_sort_order_method = C('sort_order_method') == '0' ? 'ASC' : 'DESC';
 
-		$this->display();
+		if ($_REQUEST['sort'] == 'comments_number') {
+			$default_sort_order_type = C('sort_order_type') == '0' ? 'start_time' : (C('sort_order_type') == '1' ? 'shop_price' : 'last_update');
+		}
+		else {
+			$default_sort_order_type = 'ppj_id';
+		}
+		
+			$this->sort = isset($_REQUEST['sort']) && in_array(trim(strtolower($_REQUEST['sort'])), array('ppj_id', 'start_time', 'sales_volume', 'comments_number')) ? trim($_REQUEST['sort']) : $default_sort_order_type;
+			
+		
+			$this->order = isset($_REQUEST['order']) && in_array(trim(strtoupper($_REQUEST['order'])), array('ASC', 'DESC')) ? trim($_REQUEST['order']) : $default_sort_order_method;
+			
+			$page = I('post.page', 1, 'intval');
+			
+			$keywords = I('keyword');
+			
+			$count = group_buy_count($keywords);
+			
+			$max_page = 0 < $count ? ceil($count / $this->size) : 1;
+
+			if ($max_page < $page) {
+				$page = $max_page;
+			}
+
+			$gb_list = paipai_buy_add_list($this->size, $page, $keywords, $this->sort, $this->order);
+			
+			foreach($gb_list as $k => $v){
+				
+					$this->groupbuyid = $v['ppj_id'];
+					if (!$this->groupbuyid) {
+						ecs_header("Location: ./\n");
+					}
+					//var_dump();
+					//var_dump($this->groupbuyid);
+					$group[] = paipai_buy_info($this->groupbuyid);
+					$sql_baoming = "select * from dsc_paipai_goods_sellers where ppj_id = {$v['ppj_id']} and ppj_no = {$v['ppj_no']} and user_id = {$_SESSION['user_id']}";
+//					var_dump($sql_baoming);
+					$res[] = $GLOBALS['db']->query($sql_baoming);
+			}
+			
+			foreach($res as $k=>$v){
+				foreach($v as $a => $b){
+					$c[] = $b['ppjs_id'];
+				}
+			}
+			
+			foreach($c as $d => $e){
+				$gb_list[$k]['ppjs_id'] = $e;
+			}
+			
+			foreach($group as $key=>$val){
+				$arr[] = $val['formated_cur_price'];
+			}
+	
+			foreach($arr as $k=>$v){
+				//var_dump($v);
+				$gb_list[$k]['formated_cur_price'] = $v;
+			}
+
+//			var_dump($gb_list[$k]['ppjs_id']);
+			$this->assign('att',$gb_list);
+		
+			$this->display();
 	}
 
 	//参加报名的方法
@@ -38,105 +166,115 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 
 		$id = $_SESSION['user_id'];
 		$ppj_id = $_POST['ppj_id'];
-		//  $ppj_id = 109;
+		$ppj_no = $_POST['ppj_no'];
+		//$ppj_id = 143;
+		//$ppj_no = 2;
 		$seller_max_fee = $_POST['max'];
-		//  $seller_max_fee = 1000;
+		//$seller_max_fee = 10;
 		$seller_min_fee = $_POST['min'];
-		//  $seller_min_fee = 1100;
+		//$seller_min_fee = 1;
 		//echo json_encode(array('a'=>$seller_max_fee,'b'=>$seller_min_fee));
-
-		// echo json_encode($seller_max_fee);
 		
 		$time = time();
-		$arr = array();
 
 		//查询拍拍街的期数和商品id
-		$sql1 = "select * from dsc_paipai_list where ppj_id = {$ppj_id}";
-		$date = $GLOBALS['db']->query($sql1);
-		
-		//查询有没有匹配的优惠券
-		$sql = "select * from dsc_paipai_seller where  usestaus = 0 and goods_id = {$date[0]['goods_id']} and user_id = {$id}";
-		$result = $GLOBALS['db']->query($sql);
-		
-		$success = 0;
-		//判断是否有拍拍券
-		if($result == 0){
-			echo 3;   //返回提示没有券
-			exit;
-		}else{//不为0  开始匹配价格
-			foreach($result as $key=>$val){
-				if($val['ppj_no'] == 0){
-					if($val['endtime'] > $time){
+		$sql1 = "select * from dsc_paipai_list where ppj_id = {$ppj_id} and ppj_no = {$ppj_no}";
+		$date = $GLOBALS['db']->getAll($sql1);
+		//var_dump($date);
+		foreach($date as $key => $val){
+			//var_dump($val);
+			//查询有没有匹配的优惠券
+			$sql = "select * from dsc_paipai_seller where goods_id = {$val['goods_id']} and user_id = {$id} and usestaus = 0";
+			$result = $GLOBALS['db']->getAll($sql);
+			//var_dump($result);
+			//var_dump(!empty($result));
+			
+			//判断是否有拍拍券
+			if($result){
+				foreach($result as $ke=>$va){
+					//var_dump($va);
+					if($va['ppj_no'] == 0 && $va['endtime'] > $time){//随意使用
 						//查询goods商品的最低价格
-						$sql2 = "select * from dsc_goods where goods_id = {$date[0]['goods_id']} ";
-						$result1 = $GLOBALS['db']->query($sql2);
-						
-						// var_dump($result1[0]['cost_price']);
-						// var_dump($result1);exit;
-						//判断价格是否合理
-						if($seller_min_fee > $result1[0]['cost_price'] && $seller_max_fee < $result1[0]['shop_price']){
-								$arr['ppj_id']=$ppj_id;
-								$arr['user_id']=$id;
-								$arr['ppj_no']=$date[0]['ppj_no'];
-								$arr['seller_max_fee']=$seller_max_fee;
-								$arr['seller_min_fee']=$seller_min_fee;
-								$arr['ls_ok']=0;
-								$arr['ls_staus']=0;
-								$arr['createtime']=$time;
-								//插入报名信息
-								$this->db->autoExecute($GLOBALS['ecs']->table('paipai_goods_sellers'), $arr, 'INSERT');
-								$success = $GLOBALS['db']->query($sql1);
-								if($success > 0){
-									echo 1;
-								}else{
-									echo 2;
-								}
-						}else{
-							echo 4;
-							exit;
+						$sql2 = "select * from dsc_goods where goods_id = {$val['goods_id']} ";
+						$result1 = $GLOBALS['db']->getAll($sql2);
+						//var_dump($result1);
+						foreach($result1 as $k => $v){
+							//var_dump($v);
+							//判断价格是否合理
+							if($seller_min_fee >= $v['cost_price'] && $seller_max_fee <= $v['shop_price']){
+									$arr['ppj_id']=$ppj_id;
+									$arr['user_id']=$id;
+									$arr['ppj_no']=$ppj_no;
+									$arr['seller_max_fee']=$seller_max_fee;
+									$arr['seller_min_fee']=$seller_min_fee;
+									$arr['ls_ok']=0;
+									$arr['ls_staus']=0;
+									$arr['createtime']=$time;
+									$arr['baoming'] = 0;
+									//插入报名信息
+									$sqls = "INSERT INTO dsc_paipai_goods_sellers (`user_id`,`ppj_id`,`ppj_no`,`seller_min_fee`,`seller_max_fee`,`ls_ok`,`ls_staus`,`createtime`,`baoming`) VALUES ({$arr['user_id']},{$arr['ppj_id']},{$arr['ppj_no']},{$arr['seller_min_fee']},{$arr['seller_max_fee']},{$arr['ls_ok']},{$arr['ls_staus']},{$arr['createtime']},{$arr['baoming']})";
+									//var_dump($sqls);
+									$success = $GLOBALS['db']->query($sqls);
+									$sql5 = "update dsc_paipai_seller set usestaus = 1 where seller_id = {$va['seller_id']}";
+									$GLOBALS['db']->query($sql5);
+									//var_dump($sql5);
+									if($success > 0){
+										
+										echo 1;
+									}else{
+										echo 2;
+									}
+							}else{
+								echo 4;
+								exit;
+							}
 						}
-					}
-				}else if($val['ppj_no'] == $date[0]['ppj_no']){
-					if($val['endtime'] > $time){
+					}else if($va['ppj_no'] >= $ppj_no && $va['endtime'] > $time){
 						//查询goods商品的最低价格
-						$sql2 = "select * from dsc_goods where goods_id = {$date[0]['goods_id']} ";
-						$result1 = $GLOBALS['db']->query($sql2);
-						
-						// var_dump($result1[0]['cost_price']);
-						// var_dump($result1);exit;
-						//判断价格是否合理
-						if($seller_min_fee > $result1[0]['cost_price'] && $seller_max_fee < $result1[0]['shop_price']){
-								$arr['ppj_id']=$ppj_id;
-								$arr['user_id']=$id;
-								$arr['ppj_no']=$date[0]['ppj_no'];
-								$arr['seller_max_fee']=$seller_max_fee;
-								$arr['seller_min_fee']=$seller_min_fee;
-								$arr['ls_ok']=0;
-								$arr['ls_staus']=0;
-								$arr['createtime']=$time;
-								//插入报名信息
-								$this->db->autoExecute($GLOBALS['ecs']->table('paipai_goods_sellers'), $arr, 'INSERT');
-								$success = $GLOBALS['db']->query($sql1);
-								if($success > 0){
-									echo 1;
-								}else{
-									echo 2;
-								}
-						}else{
-							echo 4;
-							exit;
+						$sql3 = "select * from dsc_goods where goods_id = {$val['goods_id']} ";
+						$result3 = $GLOBALS['db']->query($sql3);
+						foreach($result3 as $a => $b){
+							//判断价格是否合理
+							if($seller_min_fee > $va['cost_price'] && $seller_max_fee < va['shop_price']){
+									$arr['ppj_id']=$ppj_id;
+									$arr['user_id']=$id;
+									$arr['ppj_no']=$date[0]['ppj_no'];
+									$arr['seller_max_fee']=$seller_max_fee;
+									$arr['seller_min_fee']=$seller_min_fee;
+									$arr['ls_ok']=0;
+									$arr['ls_staus']=0;
+									$arr['createtime']=$time;
+									//插入报名信息
+									$sql5 = "INSERT INTO dsc_paipai_goods_sellers (`user_id`,`ppj_id`,`ppj_no`,`seller_min_fee`,`seller_max_fee`,`ls_ok`,`ls_staus`,`createtime`,`baoming`) VALUES ({$arr['user_id']},{$arr['ppj_id']},{$arr['ppj_no']},{$arr['seller_min_fee']},{$arr['seller_min_fee']},{$arr['ls_ok']},{$arr['ls_staus']},{$arr['createtime']},{$arr['baoming']})";
+									$success = $GLOBALS['db']->query($sql5);
+									$sqls = "update dsc_paipai_seller set usestaus = 1 where seller_id = {$va['seller_id']}";
+									$GLOBALS['db']->query($sqls);
+									if($success > 0){
+										
+										echo 1;
+									}else{
+										echo 2;
+									}
+							}else{
+								echo 4;
+								exit;
+							}
 						}
+					}else{
+						echo 5;
 					}
-				}else{
-					echo 5;
 				}
+			}else{
+				echo 3;
+				exit;
 			}
 		}
-
 	}
 	
-	//的方法
-	public function actionChujia(){
+
+	
+	//重新出价的方法
+	public function actionNewprice(){
 
 		$id = $_SESSION['user_id'];
 		$ppj_id = $_POST['ppj_id'];
@@ -144,22 +282,19 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		
 		//  $ppj_id = 109;
 		$seller_max_fee = $_POST['max'];
+		$seller_min_fee = $_POST['min'];
 		//  $seller_max_fee = 1000;
 		$time = time();
-		$arr = array();
 		
 		$arr['user_id']=$id;
 		$arr['ppj_id']=$ppj_id;
 		$arr['ppj_no']=$ppj_no;
-		$arr['bid_price']=$seller_max_fee;
-		$arr['bid_time']=$time;
-		$arr['ls_status']=2;
-		$arr['createtime']=$time;
-		$sql = "select spm_id from dsc_paipai_goods_bid_user where buy_id = {$id} and ppj_no = {$ppj_no} and ppj_id = {$ppj_id} is_status = 2";
-		$res = $GLOBALS['db']->getOne($sql);
+		$arr['seller_max_fee']=$seller_max_fee;
+		$arr['seller_min_fee']=$seller_min_fee;
 		
 		//插入报名信息
-		$sql1 = "UPDATE dsc_paipai_goods_bid_user SET bid_price = {$arr['bid_price']},bid_time = {$arr['bid_time']} WHERE spm_id = {$res['spm_id']} and user_id = {$arr['user_id']} and ppj_id = {$arr['ppj_id']} and ppj_no {$arr['ppj_no']}";
+		$success = 0;
+		$sql1 = "UPDATE dsc_paipai_goods_sellers SET seller_max_fee = {$arr['seller_max_fee']},seller_min_fee = {$arr['seller_min_fee']} WHERE ppj_id = {$arr['ppj_id']} and user_id = {$arr['user_id']} and ppj_no = {$arr['ppj_no']}";
 		$success = $GLOBALS['db']->query($sql1);
 		if($success>0){
 			echo 1;
@@ -173,16 +308,45 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 	public function actionSign()
 	{
 		$id = $_SESSION['user_id'];
-		$sql = "select * from dsc_paipai_goods_sellers where user_id = {$id}";
-		$arr = $GLOBALS['db']->query($sql);
-		$att = '';
-		foreach ($arr as $key => $value) {
-			# code...
-			$att = $value;
+		$time = time();
+		//查询我报名的表
+		$sql = "select ppj_id,ppj_no from dsc_paipai_goods_sellers where user_id={$id}";
+		$re = $GLOBALS['db']->query($sql);
+		//var_dump($re);
+		foreach($re as $k=>$v){
+			$sql1 = "select * from dsc_paipai_list where ppj_id = {$v['ppj_id']} and ppj_no = {$v['ppj_no']}";
+			$res = $GLOBALS['db']->query($sql1);
+			foreach($res as $r=>$e){
+				$sql2 = "select * from dsc_goods where goods_id = {$e['goods_id']}";
+				$resu = $GLOBALS['db']->query($sql2);
+				foreach($resu as $l => $a){
+					$arr[] = array_merge($a,$res);
+				}
+			}
 		}
-		// var_dump($att);
-		$this->assign('att',$att);
-		//var_dump(11);
+		
+		
+		foreach($arr as $key =>$val ){
+			
+			$arr[$key]['goods_thumb'] = __STATIC__.'/'.$val['goods_thumb'];
+			$arr[$key]['end_time'] = $val[0]['end_time'];
+			$arr[$key]['start_time'] = $val[0]['start_time'];
+			if($arr[$key]['end_time'] > $time && $arr[$key]['start_time'] < $time){
+				$arr[$key]['is_end'] = 1;
+			}else if($arr[$key]['start_time'] > $time){
+				$arr[$key]['is_end'] = 0;
+			}else{
+				$arr[$key]['is_end'] = 2;
+			}
+			$arr[$key]['url'] = __STATIC__.'/mobile/index.php?m=groupbuy&a=detail&id='.$val[0]['ppj_id'];
+			$this->groupbuyid = $val[0]['ppj_id'];
+			//var_dump($this->groupbuyid);
+			$group = paipai_buy_info($this->groupbuyid);
+			$arr[$key]['formated_cur_price'] = $group['formated_cur_price'];
+			//var_dump($group_buy);
+		}
+		
+		$this->assign('att',$arr);
 		$this->display();
 	}
 
@@ -253,7 +417,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			ecs_header("Location: ./\n");
 		}
 		
-
+		//var_dump($this->groupbuyid);
 		$group_buy = paipai_buy_info($this->groupbuyid);	
 
 		if (empty($group_buy)) {

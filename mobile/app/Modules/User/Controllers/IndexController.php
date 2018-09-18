@@ -26,96 +26,151 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 //匹配拍拍卖方算法
 
 public function actionPaipaibuy()
-	{
-		$ppj_id = input('ppj_id');
-		
-		if (IS_AJAX) {
-			
-			//获取当前拍拍活动的详情
-			//$sql='select * from {pre}paipai_list where ppj_id='.$ppj_id;
-			//$paipaires = $GLOBALS['db']->getRow($sql);
-			
-			$paipaires = paipai_buy_info($ppj_id);
-			
-			$ppj_no= $paipaires["ppj_no"];
-					
-			$goods_id= $paipaires["goods_id"];
-			
-			$goods_nowprice=$paipaires['cur_price'];  // 当前价格
-			
-									
-			//获取该拍拍活动的订单
-				$sql1='select oi.*,og.* from {pre}order_info as oi,{pre}order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id='.$ppj_id;
-			$orderres = $GLOBALS['db']->getAll($sql1);
-			
-			//获取订单中出价最高的一条
-			$sql12='select oi.*,og.sellers_fee  from {pre}order_info as oi,{pre}order_goods as og where oi.order_id=og.order_id and oi.pay_status=10 and oi.ppj_id='.$ppj_id.' order by og.sellers_fee desc limit 1' ;
-			$maxorderres = $GLOBALS['db']->getRow($sql12);
-			
-			
-			$order_id=$maxorderres["order_id"];
-			
-			$sellers_fee=$maxorderres["sellers_fee"]; // 该用户的最高出价，匹配成功后，即为支付的价格
-								
-			//获取该用户的销售券
-			$sql2='select * from {pre}paipai_seller where usestaus=0 and goods_id = '.$goods_id.' and user_id='.$this->user_id;
-			$sellerres = $GLOBALS['db']->getRow($sql2);
-			
-			if(empty($sellerres)){
-				
-				echo json_encode(array('y' => 5));
-				
-			}else if(intval($sellerres["ppj_no"])!=0&& intval($sellerres["ppj_no"])==intval($paipaires["ppj_no"]))
-			{					
-				echo json_encode(array('y' => 4));
-				
-			}else if(intval($sellers_fee) < intval($paipaires["ppj_buy_fee"])){
-				
-				echo json_encode(array('y' => 3));
-				
-			}else if (empty($orderres)){
-				
-				echo json_encode(array('y' => 2));
-				
-			}else if (intval($sellers_fee) < (intval($goods_nowprice)-3)){
-				
-				echo json_encode(array('y' => 0));
+{		
+		$ppj_id = $_POST['ppd'];
+		$ppj_no = $_POST['ppn'];
+		$goods_id = $_POST['g_id'];
+		$user_id = $_SESSION['user_id'];
+		$time = time();
+	
+		//查询卖家是否有销售券
+		$sql_quan = "select * from dsc_paipai_seller where user_id = {$user_id} and goods_id = {$goods_id}";		
+		$result = $GLOBALS['db']->query($sql_quan);
+        if(empty($result[0])){
+        	echo json_encode(array('re'=>1));
+        }else{
+          	foreach($result as $k => $v){          		
+				//判断是否有可用的销售券
+				if($v['usestaus'] == 0){
+					if($v['ppj_no'] == 0 || $v['ppj_no'] == $ppj_no){
+						//获取价格最大的数据；
+						$sql1  = "SELECT * FROM dsc_paipai_goods_bid_user WHERE ppj_id = {$ppj_id} and ppj_no = {$ppj_no}";
+						$r = $GLOBALS['db']->getAll($sql1);
+						$max_price = 0;
+						foreach($r as $key=>$val){
+							$max_price = max($max_price,$val['bid_price']);
+							//$min_bid_time = min($min_bid_time,$val['bid_time']);
+						}
+				        
+						//获取价格最大但是时间最早的	
+						$sql = "SELECT * FROM dsc_paipai_goods_bid_user WHERE bid_price={$max_price} and ppj_id = {$ppj_id} and ppj_no = {$ppj_no}";
+						$re = $GLOBALS['db']->getAll($sql);
+						foreach($re as $key=>$val){
+							//$max_price = max($max_price,$val['bid_price']);
+							$min_bid_time[] = $val['bid_time'];
+						}
+						$min_bid_time = min($min_bid_time);
+						
+						//获取所有条件符合的
+						$sql2 = "select * from dsc_paipai_goods_bid_user where bid_price={$max_price} and ppj_id = {$ppj_id} and ppj_no = {$ppj_no} and bid_time = {$min_bid_time}";
+						$res = $GLOBALS['db']->getRow($sql2);
+
+						
+						$this->groupbuyid = $ppj_id;
+						$group = paipai_buy_info($this->groupbuyid);
+						$price = ltrim($group['formated_cur_price'],'¥');
+
+						$sql3 = "insert into dsc_paipai_seller_ok (`user_id`,`buy_id`,`goods_id`,`ppj_id`,`ppj_no`,`sellers_fee`,`goods_nowprice`,`createtime`,`status`,`spm_id`) VALUES ({$res['user_id']},{$user_id},{$goods_id},{$ppj_id},{$ppj_no},{$max_price},{$price},{$time},0,{$res['spm_id']})";
+						$success = $GLOBALS['db']->query($sql3);	
+						$sql5 = "update dsc_paipai_seller set usestaus = 1 where seller_id = {$v['seller_id']}";
+						$GLOBALS['db']->query($sql5);					
+						if($success > 0){
+							echo json_encode(array('re'=>4));				
+						}else{
+							echo json_encode(array('re'=>6));				
+						}
+					}else{
+						echo json_encode(array('re'=>6));	
+					}
+				}else{
+					echo json_encode(array('re'=>3));	
+				}
 			}
-			
-			else 
-			
-			{
-				//处理匹配买方价格，匹配买方出价最高的设置成可支付状态
-				$GLOBALS['db']->query( 'update {pre}order_info set pay_status =0 ,order_status=0, shipping_status=0, order_amount='.$sellers_fee.',goods_amount='.$sellers_fee.' where order_id='.$order_id);
-				
-				$GLOBALS['db']->query( 'update {pre}order_goods set goods_price='.$sellers_fee.' where order_id='.$order_id);
-				
-				
-				//插入卖方已卖出记录
-				$nowtime=gmtime();
-				
-			$sqlg='select cost_price from {pre}goods where goods_id='.$goods_id;
-			
-			$cost_price = $GLOBALS['db']->getOne($sqlg);
-			
-				$getmoney =intval($sellers_fee)- intval($cost_price);  //计算 卖方提成
-				
-				$GLOBALS['db']->query( 'insert into {pre}paipai_seller_ok (user_id,seller_id,goods_id,ppj_id,ppj_no,sellers_fee,goods_nowprice,order_id,createtime,stauts,getmoney) values('.$this->user_id.','.$sellerres["seller_id"].','.$goods_id.','.$ppj_id.','.$ppj_no.','.$sellers_fee.','.$goods_nowprice.','.$order_id.','.$nowtime.',0,'.$getmoney.')' );
-				
-				
-				
-				
-				//消券
-				$GLOBALS['db']->query( 'update {pre}paipai_seller set usestaus =1  where seller_id='.$sellerres["seller_id"]);
-				
-				
-				echo json_encode(array('y' => 1));
-				
-			}
-			
+        }
+
 		
-			
-		}
+		
+//		if (IS_AJAX) {
+//			
+//			//获取当前拍拍活动的详情
+//			//$sql='select * from {pre}paipai_list where ppj_id='.$ppj_id;
+//			//$paipaires = $GLOBALS['db']->getRow($sql);
+//			
+//			$paipaires = paipai_buy_info($ppj_id);
+//			
+//			$ppj_no= $paipaires["ppj_no"];
+//					
+//			$goods_id= $paipaires["goods_id"];
+//			
+//			$goods_nowprice=$paipaires['cur_price'];  // 当前价格
+//			
+//									
+//			//获取该拍拍活动的订单
+//			$sql1='select oi.*,og.* from {pre}order_i nfo as oi,{pre}order_goods as og where oi.order_id=og.order_id  and oi.pay_status=10 and oi.ppj_id='.$ppj_id;
+//			$orderres = $GLOBALS['db']->getAll($sql1);
+//			
+//			//获取订单中出价最高的一条
+//			$sql12='select oi.*,og.sellers_fee  from {pre}order_info as oi,{pre}order_goods as og where oi.order_id=og.order_id and oi.pay_status=10 and oi.ppj_id='.$ppj_id.' order by og.sellers_fee desc limit 1' ;
+//			$maxorderres = $GLOBALS['db']->getRow($sql12);
+//			
+//			
+//			$order_id=$maxorderres["order_id"];
+//			
+//			$sellers_fee=$maxorderres["sellers_fee"]; // 该用户的最高出价，匹配成功后，即为支付的价格
+//								
+//			//获取该用户的销售券
+//			$sql2='select * from {pre}paipai_seller where usestaus=0 and goods_id = '.$goods_id.' and user_id='.$this->user_id;
+//			$sellerres = $GLOBALS['db']->getRow($sql2);
+//			
+//			if(empty($sellerres)){
+//				
+//				echo json_encode(array('y' => 5));
+//				
+//			}else if(intval($sellerres["ppj_no"])!=0&& intval($sellerres["ppj_no"])==intval($paipaires["ppj_no"]))
+//			{					
+//				echo json_encode(array('y' => 4));
+//				
+//			}else if(intval($sellers_fee) < intval($paipaires["ppj_buy_fee"])){
+//				
+//				echo json_encode(array('y' => 3));
+//				
+//			}else if (empty($orderres)){
+//				
+//				echo json_encode(array('y' => 2));
+//				
+//			}else if (intval($sellers_fee) < (intval($goods_nowprice)-3)){
+//				
+//				echo json_encode(array('y' => 0));
+//			}
+//			
+//			else 
+//			
+//			{
+//				//处理匹配买方价格，匹配买方出价最高的设置成可支付状态
+//				$GLOBALS['db']->query( 'update {pre}order_info set pay_status =0 ,order_status=0, shipping_status=0, order_amount='.$sellers_fee.',goods_amount='.$sellers_fee.' where order_id='.$order_id);
+//				
+//				$GLOBALS['db']->query( 'update {pre}order_goods set goods_price='.$sellers_fee.' where order_id='.$order_id);
+//				
+//				
+//				//插入卖方已卖出记录
+//				$nowtime=gmtime();
+//				
+//			$sqlg='select cost_price from {pre}goods where goods_id='.$goods_id;
+//			
+//			$cost_price = $GLOBALS['db']->getOne($sqlg);
+//			
+//				$getmoney =intval($sellers_fee)- intval($cost_price);  //计算 卖方提成
+//				
+//				$GLOBALS['db']->query( 'insert into {pre}paipai_seller_ok (user_id,seller_id,goods_id,ppj_id,ppj_no,sellers_fee,goods_nowprice,order_id,createtime,stauts,getmoney) values('.$this->user_id.','.$sellerres["seller_id"].','.$goods_id.','.$ppj_id.','.$ppj_no.','.$sellers_fee.','.$goods_nowprice.','.$order_id.','.$nowtime.',0,'.$getmoney.')');
+//				//消券
+//				$GLOBALS['db']->query( 'update {pre}paipai_seller set usestaus =1  where seller_id='.$sellerres["seller_id"]);
+//				echo json_encode(array('y' => 1));
+//				
+//			}
+//			
+//		
+//			
+//		}
 	}
 
 

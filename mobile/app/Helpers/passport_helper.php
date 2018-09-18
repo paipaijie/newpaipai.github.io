@@ -82,7 +82,7 @@ function register($username, $password, $email, $other = array())
         */
         $selle_have =true;
         $quan = "select goods_id from dsc_quan";
-        $re = $GLOBALS['db']->getAll($sql); 
+        $re = $GLOBALS['db']->getAll($quan); 
         foreach($re as $k => $v ){
         
 	        $goods_id=$v['goods_id'];
@@ -94,8 +94,8 @@ function register($username, $password, $email, $other = array())
 		     
 		    if($selle_have){
 		  		
-			   	$sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('paipai_seller') . ' (goods_id,createtime,usestaus,user_id,endtime,beizhu,ppj_no) values(\''.$goods_id.'\' ,\''.gmtime().'\',0,\''.$_SESSION['user_id'].'\',\''.$endtime.'\' ,\''.$beizhu.'\',0)' ;      					
-			 	$GLOBALS['db']->query($sql); 
+			   	$sql_quan = 'INSERT INTO ' . $GLOBALS['ecs']->table('paipai_seller') . ' (goods_id,createtime,usestaus,user_id,endtime,beizhu,ppj_no) values(\''.$goods_id.'\' ,\''.gmtime().'\',0,\''.$_SESSION['user_id'].'\',\''.$endtime.'\' ,\''.$beizhu.'\',0)' ;      					
+			 	$GLOBALS['db']->query($sql_quan);
 			}    	
 	    }
        

@@ -37,17 +37,22 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		$all_order = get_order_where_count($this->user_id, 0, '');
 		
 		$where_pay = ' AND oi.pay_status = 10';
+		$where_paysuccess = ' AND oi.pay_status = 0 AND oi.extension_code = "paipai_buy"';
 		
 		$pay_count = get_order_where_count($this->user_id, 0, $where_pay);
+		$paysuccess_count = get_order_where_count($this->user_id, 0, $where_paysuccess);
 		
 		$where_confirmed = ' AND oi.pay_status = ' . PS_PAYED . ' AND oi.order_status in (' . OS_CONFIRMED . ', ' . OS_SPLITED . ', ' . OS_SPLITING_PART . ') AND (oi.shipping_status >= ' . SS_UNSHIPPED . ' AND oi.shipping_status <> ' . SS_RECEIVED . ')';
 			
 		$confirmed_count = get_order_where_count($this->user_id, 0, $where_confirmed);
 		
 		$order_num = array('all_order' => $all_order, 'pay_count' => $pay_count, 'confirmed_count' => $confirmed_count);
+		$ordersuccess_num = array('all_order' => $all_order, 'pay_count' => $paysuccess_count, 'confirmed_count' => $confirmed_count);
 		
 		
 		$this->assign('order_num', $order_num);
+		
+		$this->assign('ordersuccess_num', $ordersuccess_num);
 		
 		$this->assign('status', $status);
 		
