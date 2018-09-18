@@ -37,7 +37,7 @@
         <nav style="padding-top:10px" class="tab-title b-color-f of-hidden" style="position:fixed">
             <ul class="dis-box">          
                 <li class="box-flex {if $status ==10}active{/if}"><a status="10" >匹配中订单({$order_num.pay_count})</a></li>              
-                <li class="box-flex {if $status ==0}active{/if}"><a status="0" >匹配成功订单({$order_num.paysucess_count})</a></li>              
+                <li class="box-flex {if $status ==0}active{/if}"><a status="0" >匹配成功订单({$ordersuccess_num.pay_count})</a></li>              
             </ul>
         </nav>
              
@@ -103,9 +103,10 @@
                             <%if order.handler_return%>
                             <a class="btn-default-new br-5 min-btn" href="<%order.handler_return%>">申请售后</a>
                             <%/if%>
-                            <%if order.extension_code && order.pay_status != 0%>
+                            <%if order.pay_status != 0%>
                             <a  href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">匹配订单</a>
-                            <%else%>
+                            <%else %>
+							
                             <a class="btn-default-new br-5 min-btn received-order" data-item-received="<%order.order_id%>">确认收货</a>
                             <%/if%>
                             

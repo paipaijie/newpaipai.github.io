@@ -1,128 +1,180 @@
 {include file="page_header"}
+<style>
+    .flow-accessories .product-list .product-div{position:relative;}
+    .flow-accessories .product-list .product-div .a-accessories-clear{position: absolute;
+    font-size: 1.8rem;
+    color: #888;
+    right: 1.3rem;
+    bottom: 1.3rem;}
+    .flow-accessories .product-list .product-div .a-accessories-clear i{font-size:1.8rem;}
+</style>
 
-<section class="search new-group-search" style="margin-top: 40px">
-    <div class="text-all dis-box j-text-all text-all-back">
-        <div class="box-flex input-text">
-            <div class="box-flex">
-                <input class="j-input-text" type="text" name="infokeyword" placeholder="商品名称"/>
-                <i class="iconfont icon-guanbi1 close-common j-is-null"></i>
-            </div>
-        </div>
-        <a type="button" class="btn-submit">搜索</a>
-    </div>
-</section>
-
-<section class="goods-evaluation">
-	
-    <div class="con">
-        <div class="user-center-1 user-register-1 of-hidden">
-        	
-            <section class="product-sequence dis-box">
-                <a class="box-flex active " sort="act_id" order="DESC">默认<i class="iconfont icon-xiajiantou"></i></a>
-                <a class="box-flex" sort="start_time" order="DESC">最新<i class="iconfont icon-xiajiantou"></i></a>
-                <a class="box-flex" sort="comments_number" order="DESC">评论数<i class="iconfont icon-xiajiantou"></i></a>
-            </section>
-            
-           
-            
-            <div id="j-tab-con" class="article_info">
-            	
-                <script id="j-product" type="text/html">
-            
-                    <%if totalPage > 0%>
-                    
-                <div class="swiper-wrapper">
-                	
-                    <section class="swiper-slide swiper-no-swiping product-list j-product-list product-list-medium" data="1">
-                        <ul>
-                            <%each gb_list as list%>
-                            <%if list.is_end == 0%>
-                            <li>
-                                <div class="product-div">
-                                    <div class="group-bq-box">  <span></span> </div>
-                                    <div class="group-img-box">
-                                        <div class="group-over-box"
-                                        <%if list.is_end == 0%> style="display:block" <%else%>
-                                        style="display:none" <%/if%> >
-                                        
-                                        <div><p class="group-cont-box">未开始</p></div>
-                                    </div>   
-                                  <a href="<%list.url%>">  <img class="product-list-img" src="<%list.goods_thumb%>"></a>                                
-                                </div>
-                                <!-- 已结束标识  结束-->
-                                
-                                <div class="product-text-group">
-                                	
-                                    <h4><%list.ppj_name%></h4>
-                                    
-                                    <p style="color:#999;font-size:1rem;"><em><%list.cur_amount%></em>人已下单</p>
-                                    
-                                    <p style="width:92px;"><span class="p-price t-first "><%#list.price%><small>
-                                    	
-                                        <del><%#list.market_price%></del>
-                                    </small></span></p>
-                                    
-                                    <!-- <div class="zidong">
-                                    <p class="ect-button-more ect-button-more-dete n-br-5" style="width:150px;margin-left:110px;margin-top:-36px;">
-                                        <input type="hidden" id="ppj_id" name="ppj_id" value="<%list.ppj_id%>">
-                                        <span style="color: red;" class="btn-default-new br-5 min-btn" id="autosale">立 即 报 名</span>
-                                    </p>
-                                    </div> -->
-
-                                    <div class="zidong">
-                                            <span style="width:90px;color: blue; margin-left:80px;margin-top:-36px;position: absolute;" p class="btn-default-new br-5 min-btn" id="autosale">自 动 售 出</span>  
-                                            <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="<%list.ppj_id%>">
-                                      </div>
-                                </div>
-                                
-                            </li>
-                            <%/if%>
-                            <%/each%>
+ <div class="store_info" style="margin-top: 40px">
+{if $att != ''}
+		<div class="flow-accessories blur-div">
+                              
+			<section class="product-list j-product-list product-list-small">
+					<ul>
+						{foreach $att as $k =>$v}
+						{if $v['is_end'] == 0}
+						<li>
+							<div class="product-div">
+                               <a href="{$v['url']}">
+                               	    {if $v['is_end'] == 1}
+										<div class="group-bq-box" style="display:block">  <span>进行中</span> </div>
+									{elseif $v['is_end'] == 2}
+										<div class="group-bq-box" style="display:block">  <span>已结束</span> </div>
+									{else}
+										<div class="group-bq-box" style="display:block;background:#FFF0F0;color:red">  <span>未开始</span> </div>
+									{/if}
+                               	    	
+								<img class="product-list-img" src="{$v['goods_thumb']}" />
+								<div class="product-text index-product-text">
+									<a href="{$v['url']}"><h4>{$v['goods_name']}</h4>
+										<em class="em-promotion"> 第 {$v['ppj_no']}期</em>
+									</a>																		
+									<p class="dis-box p-t-remark"><span class="box-flex">保证金:{$v['ppj_margin_fee']}</span></p>
+									<p><span class="p-price t-first ">当前价格:{$v['formated_cur_price']}</span></p>
+                           
+								</div>
+								                            
+							</div>
+							
+                          <footer class="padding-all b-color-f m-top1px of-hidden dis-box">
+						  <section class="m-top1px padding-all b-color-f goods-service j-show-div j-service">
+										<div class="dis-box">
+											<div class="box-flex">
+												<div class="dis-box">
+													<i class="iconfont icon-102 goods-min-icon">说明</i>
+												</div>
+											</div>
+										</div>
+									</section>
+                            {if $v['ppjs_id'] == ''}
                             
-                        </ul>
-                        
-                    </section>
-                    
-                </div>
-                    <%else%>
-                    <div class="no-div-message">
-                        <i class="iconfont icon-biaoqingleiben"></i>
-                        <p>亲，此处没有内容～！</p>
-                    </div>
-                    <%/if%>
-                </script>
-            </div>
-       
-            </div>
-    </div>
-</section>
-     
-     	
-     <!--快捷导航-->
-    {include file="float_nav"}
-    {include file="float_nav_footer"}
-    
-<script>
-    var url = ROOT_URL + 'index.php?m=groupbuy';
-      
-    var infinite = $('.article_info').infinite({url: url, template: 'j-product'});
-    
-       // alert(infinite.length);
-    //搜
-    $(".btn-submit").click(function (){
-        keyword = $("input[name=infokeyword]").val();
-        if (keyword ||typeof(keyword) == "undefined")
-        {
-            infinite.onload('keyword='+keyword);
-        }else{
-            d_messages('请输入搜索关键字');
-        }
-    })
-    
+                            	<div style="padding-top: 11px;">
+                              		<span style="width:150px;color: blue;margin-left:190px;" class="btn-default-new br-5 min-btn">已 经 报 名</span> 
+                            	</div>
+                            	<!--已经报名-->
+                           		
+                            {else}
+						    	<div class="zidong" style="padding-top: 11px;">
+	                                <span style="width:150px;color: blue;margin-left:190px;" class="btn-default-new br-5 min-btn"  id="autosale">立 即 报 名</span> 
+								    <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="{$v['ppj_id']}">
+								    <input type="hidden" id="ppj_no" class="ppj_no" name="ppj_no" value="{$v['ppj_no']}">
+								</div>
+                            	
+							{/if}
+                        </p>
+                    </footer>     
+                            
+						</li>
+					{/if}
+						{/foreach}
+					</ul>
+					
+				</section>
+				{else}
+                                 
+                                 <div class="no-div-message">
+				   <i class="iconfont icon-biaoqingleiben"></i>
+				<p>亲，还没有拍拍商品哦～！</p>
+				{/if}
+			</div>
+                                    
+		</div>
+<div class="show-goods-service j-filter-show-div ts-3 b-color-1 service-box">
+	<section class="goods-show-title of-hidden padding-all b-color-f">
+		<h3 class="fl g-c-title-h3">零售说明</h3>
+		<i class="iconfont icon-guanbi2 show-div-guanbi fr"></i>
+	</section>
+	<section class="goods-show-con goods-big-service swiper-scroll">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<ul>
+					<li class="m-top1px b-color-f padding-all of-hidden">
+						<p class="dis-box t-remark3">
+							<em class="em-promotion"><i class="iconfont icon-daifukuan"></i></em>
+							<span class="box-flex">手动售出</span>
+						</p>
+						<p class="g-b-s-con m-top08"><p>把握价格，敬请关注实时浮动的当前价，选择确认是否售出哦</p></p>
+					</li>
+					<li class="m-top1px b-color-f padding-all of-hidden">
+						<p class="dis-box t-remark3">
+							<em class="em-promotion"><i class="iconfont icon-7tianwuliyoutuihuo"></i></em>
+							<span class="box-flex">自动售出</span>
 
-    $(".zidong").click(function(){
-        var ppj_id = $(this).find(".ppj_id").val();
-        // alert(ppj_id);
+						</p>
+						<p class="g-b-s-con m-top08"><p>方便省心，设定预售价格区间，系统会根据买方出价自动售出呢</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</div>
+		<script>
+//			/*店铺信息商品滚动*/
+//			var swiper = new Swiper('.j-f-n-c-prolist', {
+//				scrollbarHide: true,
+//				slidesPerView: 'auto',
+//				centeredSlides: false,
+//				grabCursor: true
+//			});
+			var url = "{url('user/index/paipaibuy')}";	
+		$(".shoudong").click(function(){
+			var ppj_id= $(this).attr("ppjid");
+			
+			//alert(ppj_no);
+			
+            layer.open({           	
+                content: '<h4 class="t-remark">确认售出即可获得收益</h4>	',
+                btn: ['确定', '取消'],
+                shadeClose: false,
+                yes: function() {
+                  $.post(url, {ppj_id:ppj_id},
+                     function(result){
+                     	
+                         if(result.y == 1){     
+                         	d_messages('出售成功，买家支付收货后您将获收益！');	
+                         	 setTimeout(function () {
+         window.location.href = "{url('user/index/mypaipailist')}";
+    }, 1000);
+                           
+                         }else if(result.y ==2){
+                         	
+                         	d_messages('当前还没有人出价，暂时不能卖');
+				            return false;
+				            
+                         }else if(result.y == 3){
+                         	d_messages('当前价格低于该商口最低成交价，暂时不能卖');
+				            return false;
+                         }else if(result.y == 4){
+                         	d_messages('您的销售券只能在下一期才能用，暂时不能卖');
+				            return false;
+                         }else if(result.y == 5){
+                         	d_messages('您的销售券为空，暂时不能卖');
+				            return false;
+                         }else if(result.y == 0){
+                         	d_messages('没有匹配的价格，暂时不能卖，请继续等待！');
+				            return false;
+                         }
+                         
+                         
+                     }, 'json');
+                 },
+                no: function() {
+
+                }
+            });
+        });
+		
+		
+		
+		$(".zidong").click(function(){
+			var ppj_id = $(this).find(".ppj_id").val();  
+			var ppj_no = $(this).find(".ppj_no").val(); 		
+			//alert(ppj_id);
+			//alert(ppj_no);
             layer.open({
                 type: 1,
                 title:'预售价格区间',
@@ -143,14 +195,17 @@
                     +'</div>'
                     +'</div>'
                 ,
-                btn:['保存','取消'],
+                btn:['确认','取消'],
                 yes: function (index, layero) {
                     var max = $("#seller_max_fee").val();
                     var min = $("#seller_min_fee").val();
+					//alert(max);
+					//alert(min);exit;
                     $.ajax({
                         url:"{url('groupbuy/index/baoming')}",
+						
                         type:"post",
-                        data:{"max":max,"min":min,"ppj_id":ppj_id},
+                        data:{"max":max,"min":min,"ppj_id":ppj_id,"ppj_no":ppj_no},
                         dataType:'json',
                         success:function(success){
                             if(success == 1){
@@ -167,16 +222,19 @@
                                     ,time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
-                            }else if(success == 3){
+                            
+                            }
+							else if(success == 3){
                                 layer.open({
                                     content: '您没有优惠券'
                                     ,skin: 'msg'
                                     ,time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
+                            
                             }else if(success == 4){
                                 layer.open({
-                                    content: '请重新出价'
+                                    content: '价格不匹配，请重新出价'
                                     ,skin: 'msg'
                                     ,time: 2 //2秒后自动关闭
                                 });
@@ -190,7 +248,8 @@
                                 layer.close(index);
                             }
                         },
-                        error:function(e){
+                        error:function(success){
+						if(success == 3){
                             layer.open({
                                 content: '您没有优惠券'
                                 ,skin: 'msg'
@@ -198,6 +257,7 @@
                             });
                             layer.close(index);
                         }
+						}
                     });
                 },
                 btn2:function (index,layero) {
@@ -211,47 +271,18 @@
 
             });
         });
-    
-    $(".product-sequence a").on('click', function(e) {
-        var sort = $(this).attr('sort');
-        var order = $(this).attr('order');
-        $(this).addClass("active").siblings().removeClass("active");
-        if (order == 'DESC') {
-            $(this).attr("order", "ASC");
-            $(this).removeClass("a-change");
-        } else {
-            $(this).attr("order", "DESC");
-            $(this).addClass("a-change");
-        }
-        infinite.onload('sort=' + sort + '&order=' + order);
-    })
-    
-    
-</script>
+		
+		
+   		
+		
+		$(function(){
+	        //服务
+	        $(".j-service").click(function() {
+	            $(".service-box").addClass('show')
+	        });
+		})
+		
+		</script>
+	</body>
 
-
-<script>
-    /*切换*/
-    var tabsSwiper = new Swiper('#j-tab-con', {
-        speed: 0,
-        noSwiping: true,
-        autoHeight: true
-    })
-    
-    
-    
-    $(".j-tab-title li").on('touchstart mousedown', function (e) {
-        e.preventDefault()
-        $(".j-tab-title .active").removeClass('active')
-        $(this).addClass('active')
-        tabsSwiper.slideTo($(this).index())
-    })
-    
-    
-    $(".j-tab-title li").click(function (e) {
-        e.preventDefault()
-    })
-    
-</script>
-
-{include file="page_footer"}
+</html>

@@ -34,20 +34,30 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			}
 			$arr3[] = $val['is_end'];
 
-			$sql = "select sum(goods_number) from dsc_order_goods where ppj_no = {$val['ppj_no']} and goods_id = {$val['goods_id']}";
-			$r = $GLOBALS['db']->getAll($sql);
-			// $res[$k]['goods_number'] = $r;
+			$sql1 = "select sum(goods_number) from dsc_order_goods where ppj_no = {$val['ppj_no']} and goods_id = {$val['goods_id']}";
+			$r = $GLOBALS['db']->getAll($sql1);
 
 			foreach($r as $k => $v){
+				//var_dump($v);
 				$res[$k]['order_number'] = $v['sum(goods_number)'];
 			}
 			
 			$val['end_date']=floor(($val['end_time']-time())/86400);
 			$arr2[] = $val['end_date'];
+			
+			$sql = "select count(*) from dsc_order_info where ppj_id ={$val['ppj_id']} and ppj_no = {$val['ppj_no']} and pay_status != 11";
+			$result = $GLOBALS['db']->query($sql);
+			foreach($result as $ke => $ek){
+				//var_dump($ek);
+				$b[] = $ek['count(*)'];
+			}
 		}
 		
 		foreach($arr as $k=>$v){
 			$res[$k]['goods_thumb'] = $v;
+		}
+		foreach($b as $k=>$v){
+			$res[$k]['count'] = $v;
 		}
 		foreach($arr2 as $k=>$v){
 			$res[$k]['end_date'] = $v;
@@ -56,8 +66,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			$res[$k]['is_end'] = $v;
 		}
 
-
-		// var_dump($res);
+		//var_dump($res);
 		$this->assign('res', $res);	
 		$this->display();
 	}
