@@ -540,6 +540,9 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$sqla = "select pay_status from dsc_order_info where user_id = {$_SESSION['user_id']} and ppj_id={$re['ppj_id']} and ppj_no ={$re['ppj_no']} and pay_status = '10' and extension_code = 'paipai_buy'";
 		$rea = $GLOBALS['db']->getRow($sqla);
 		$goods['pay_status'] = $rea['pay_status'];
+
+		//查询当前用户是否购买一次以及第一次购买
+		// $musql="SELECT * FROM (dsc_order_info AS o LEFT JOIN dsc_paipai_seller_pay_margin AS pm) "
 		
 		//var_dump($goods);
 		
@@ -663,6 +666,14 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			$goods_desc = preg_replace('/style=.+?[*|"]/i', '', $goods_desc);
 		}
 
+		$pmsql = "SELECT count(user_id) as count FROM dsc_paipai_seller_pay_margin WHERE ppj_id={$re['ppj_id']} AND ppj_no ={$re['ppj_no']}";
+		$pm_data = $GLOBALS['db']->getRow($pmsql);
+		$this->assign('pm_data', $pm_data);
+        
+        //循环播放出价金额
+        $sqlu = "SELECT bu.bid_price,u.user_name FROM dsc_paipai_goods_bid_user AS bu LEFT JOIN dsc_users AS u ON bu.user_id=u.user_id  where bu.ppj_id={$re['ppj_id']} and bu.ppj_no ={$re['ppj_no']} and bu.is_status= '2' ";
+		$price_list = $GLOBALS['db']->getAll($sqlu);
+		$this->assign('price_list', $price_list);
 
 		$this->assign('goods_desc', $goods_desc);
 		$this->display();

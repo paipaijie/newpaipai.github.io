@@ -41,17 +41,17 @@
 		<div class="money-list padding-t-1  dis-box my-dingdan purse-f dis-s">
 			<a href="javascript:;" onclick="transferred()" class="box-flex">
 				<p class="f-02 col-8 p-t"><i class="iconfont icon-money color-red"></i>&nbsp;可提现收益(元)<i class="iconfont icon-jiantou tf-180 p-a is-jt"></i></p>
-				<h4 class="ellipsis-one color-red">{$today_total}</h4>
+				<h4 class="ellipsis-one color-red">{$extract_money}</h4>
 
 			</a>
 
 			<a href="javascript:;" class="box-flex">
-				<p class="f-02 col-8 p-t pt-2">今日收入(元)<span class="col-4 f-03"> {$today_total}</span></p>
-				<p class="f-02 col-8">总销售额(元)<span class="col-4 f-03">  {$total_amount}</span></p>
+				<p class="f-02 col-8 p-t pt-2">今日收入(元)<span class="col-4 f-03"> {$today_money}</span></p>
+				<p class="f-02 col-8">总销售额(元)<span class="col-4 f-03">  {$total_amount['total_sel_fee']}</span></p>
 			</a>
 		</div>
 		<div class="padding-t">
-			<p class="f-02 col-8 dis-t-2">累计获得收益(元)<span class="col-4 f-02"> {$totals}</span></p>
+			<p class="f-02 col-8 dis-t-2">累计获得收益(元)<span class="col-4 f-02"> {$total_amount['total_getmoney']}</span></p>
 		</div>
 
 	</section>

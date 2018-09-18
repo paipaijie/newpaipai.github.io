@@ -2053,6 +2053,8 @@ transform: rotate(45deg);-ms-transform: rotate(45deg);-webkit-transform: rotate(
 /*团购详情*/
 .group-time-box{background-color:rgba(0,0,0,0.5);padding:0rem 1.5rem;position:absolute;bottom:1.3rem;z-index:2;color:#fff;left:1.3rem;border-radius:1.3rem;font-size:1.5rem;height: 2.6rem;
   line-height: 2.6rem;}
+.group-price-box{padding:0rem 1.5rem;position:absolute;bottom:5.3rem;z-index:2;color:#fff;left:18.3rem;font-size:1.5rem;height: 5rem;
+  line-height: 2.6rem;}
 
 /*拍卖活动*/
 .auction-cont-box{padding-top:0.15rem;font-size:1.6rem;}
