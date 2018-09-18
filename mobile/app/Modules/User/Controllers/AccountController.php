@@ -387,7 +387,7 @@ class AccountController extends \App\Modules\Base\Controllers\FrontendController
              	$extract_money+=$val['getmoney'];     
              }
         }     
-        var_dump($extract_money);
+
         $this->assign('extract_money',number_format($extract_money,2));
       	//今日收入
       	$sql3="SELECT * FROM {pre}paipai_seller_ok WHERE user_id = {$user_id}";
