@@ -103,11 +103,25 @@
                             <%if order.handler_return%>
                             <a class="btn-default-new br-5 min-btn" href="<%order.handler_return%>">申请售后</a>
                             <%/if%>
-                            <%if order.pay_status != 0%>
-                            <a  href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">匹配订单</a>
-                            <%else %>
-							
-                            <a class="btn-default-new br-5 min-btn received-order" data-item-received="<%order.order_id%>">确认收货</a>
+
+                            <%if order.extension_code=='paipai_buy' && order.pay_status != 0%>
+                              <% each order.sell_data as val %>
+                                <% if val.status == 0 %>
+                                     <a  href="{url('')}&id=<%order.order_id%>">待付款</a>   
+                                <%else%>
+                                     <a  href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">匹配订单</a>
+                                <%/if%>
+                               <%/each%>
+                            <%else%>
+                               <% each order.sell_data as val %>
+                                <% if val.status == 1 %>
+                                     <a  href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">待收货</a>   
+                                <%else if val.status == 2%>
+                                     <a  href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">已收货</a>
+                                <%else%>
+                                      <a class="btn-default-new br-5 min-btn received-order" data-item-received="<%order.order_id%>">确认收货</a>
+                                <%/if%>
+                               <%/each%>       
                             <%/if%>
                             
                             <%if !order.handler%>
