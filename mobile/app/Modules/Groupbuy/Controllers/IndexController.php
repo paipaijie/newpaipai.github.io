@@ -248,9 +248,16 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$ppj_id = $_POST['ppj_id'];
 		$ppj_no = $_POST['ppj_no'];
 		$max = $_POST['max'];
-		$time = time();
+		$shop_price = $_POST['shop_price'];
 		
-		$sql = "UPDATE dsc_paipai_goods_bid_user SET bid_price = {$max},bid_time = {$time} where ppj_id = {$ppj_id} and user_id = {$id} and ppj_no = {$ppj_no} and is_status =2";
+		if($shop_price < $max){
+			echo json_encode(array('re'=>3));  exit;
+		}
+		$time = time();
+		$spm_sql="SELECT * FROM dsc_paipai_seller_pay_margin WHERE ppj_id = {$ppj_id} and user_id = {$id} and ppj_no = {$ppj_no} ORDER BY spm_id DESC LIMIT 1";
+		$spm_data = $GLOBALS['db']->getRow($spm_sql);
+	    
+		$sql = "UPDATE dsc_paipai_goods_bid_user SET bid_price = {$max},bid_time = {$time} where ppj_id = {$ppj_id} and user_id = {$id} and ppj_no = {$ppj_no} and is_status =2 AND spm_id={$spm_data['spm_id']}";
 		$success = $GLOBALS['db']->query($sql);
 		if($success > 0){
 			echo json_encode(array('re'=>1));

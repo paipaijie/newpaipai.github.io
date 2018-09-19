@@ -76,7 +76,7 @@
 										<p class="p-price"><span class="t-first">当前价格 {$group_buy.formated_cur_price}</span> <em class="em-promotion">第{$group_buy.ppj_no}期</em> </p>
 										
 										<p class="p-market">商城价 <del>{$goods.shop_price}</del> &nbsp;&nbsp;&nbsp;&nbsp;市场价 <del>{$goods.market_price}</del></p>
-									
+									    <input type="hidden" id="shop_price" name="shop_price" value="{$goods.shop_price}">
 										
 										<!-- {if $group_buy.ppj_margin_fee > 0} 保证金额-->
 										<p class="p-market">保证金 {$group_buy.formated_deposit}</p>
@@ -478,7 +478,6 @@
 				{if $goods.is_end == 2}
 				 <a class="btn-disab box-flex quehuo" href="javascript:void(0);" style="display:block">团购结束</a>
 				{elseif $goods.is_end == 1}
-				  {if empty($ok_data.ok_id)}
 					{if $goods.pay_status == 10}
 					<div class="zidong" style="color:red">
 						<span style="width:277px;color: red; position: absolute;" p class="btn-default-new br-5 min-btn" id="autosale">重 新 出 价</span>  
@@ -488,9 +487,6 @@
 					{else}
 						<div  class="btn-submit box-flex j-goods-attr j-show-div j-property" style="display:block">立即抢购</div>
 					{/if}
-				  {else}
-				        <div  class="btn-submit box-flex j-goods-attr j-show-div j-property" style="display:block">立即抢购</div>
-				  {/if}
 				{elseif $goods.is_end ==0}
 				<a class=" btn-disab box-flex quehuo" href="javascript:void(0);" style="display:block">未开始</a>
 				
@@ -883,14 +879,14 @@
                 btn:['确认','取消'],
                 yes: function (index, layero) {
                     var max = $("#seller_max_fee").val();
-					//alert(max);
+					var shopp = $("#shop_price").val();
                     $.ajax({
                         url:"{url('groupbuy/index/chujia')}",
                         type:"post",
-                        data:{"ppj_id":ppj_id,"ppj_no":ppj_no,"max":max},
+                        data:{"ppj_id":ppj_id,"ppj_no":ppj_no,"max":max,"shop_price":shopp},
                         dataType:"JSON",
                         success:function(y){
-							// console.log(y.re);
+						
                             if(y.re == 1){
                                 layer.open({
                                     content: '出价成功'
@@ -906,9 +902,9 @@
                                 });
                                 layer.close(index);
                             }
-							else if(y.a == 3){
+							else if(y.re == 3){
                                 layer.open({
-                                    content: '您出的价格小于之前的价格'
+                                    content: '您出的价格不能大于商城价'
                                     ,skin: 'msg'
                                     ,time: 2 //2秒后自动关闭
                                 });
