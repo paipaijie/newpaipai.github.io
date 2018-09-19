@@ -125,65 +125,6 @@
         </section>
     </div>
     <script>
-        //			/*店铺信息商品滚动*/
-        //			var swiper = new Swiper('.j-f-n-c-prolist', {
-        //				scrollbarHide: true,
-        //				slidesPerView: 'auto',
-        //				centeredSlides: false,
-        //				grabCursor: true
-        //			});
-        //			var url = "{url('user/index/paipaibuy')}";	
-        //		$(".shoudong").click(function(){
-        //			var ppj_id = $(this).find(".ppj_id").val();  
-        //			var ppj_no = $(this).find(".ppj_no").val();
-        //			
-        //          layer.open({           	
-        //              content: '<h4 class="t-remark">确认售出即可获得收益</h4>	',
-        //              btn: ['确定', '取消'],
-        //              shadeClose: false,
-        //              yes: function() {
-        //                $.ajax({
-        //                      url:"{url('groupbuy/index/baoming')}",
-        //						
-        //                      type:"post",
-        //                      data:{"max":max,"min":min,"ppj_id":ppj_id,"ppj_no":ppj_no},
-        //                      dataType:'json',
-        //                   	
-        //                       if(result.y == 1){     
-        //                       	 d_messages('出售成功，买家支付收货后您将获收益！');	
-        //                       	 setTimeout(function () {
-        //                           window.location.href = "{url('user/index/mypaipailist')}";}, 1000);
-        //                         
-        //                       }else if(result.y ==2){
-        //                       	
-        //                       	d_messages('当前还没有人出价，暂时不能卖');
-        //				            return false;
-        //				            
-        //                       }else if(result.y == 3){
-        //                       	d_messages('当前价格低于该商口最低成交价，暂时不能卖');
-        //				            return false;
-        //                       }else if(result.y == 4){
-        //                       	d_messages('您的销售券只能在下一期才能用，暂时不能卖');
-        //				            return false;
-        //                       }else if(result.y == 5){
-        //                       	d_messages('您的销售券为空，暂时不能卖');
-        //				            return false;
-        //                       }else if(result.y == 0){
-        //                       	d_messages('没有匹配的价格，暂时不能卖，请继续等待！');
-        //				            return false;
-        //                       }
-        //                       
-        //                       
-        //                   }, 'json');
-        //               },
-        //              no: function() {
-        //
-        //              }
-        //          });
-        //      });
-
-
-
         $(".shoudong").click(function () {
 			var ppj_id = $(this).find(".ppj_id").val();
             var ppj_no = $(this).find(".ppj_no").val();
@@ -198,7 +139,6 @@
                         data: { "ppd": ppj_id, "ppn": ppj_no, "g_id": goods_id },
                         dataType: "JSON",
                         success: function (y) {
-						  console.log(y.re);
                             if (y.re == 1) {
                                 layer.open({
                                     content: '没有券'
@@ -297,14 +237,14 @@
                         data: { "max": max, "min": min, "ppj_id": ppj_id, "ppj_no": ppj_no },
                         dataType: 'json',
                         success: function (res) {
-                            if (success.re == 1) {
+                            if (res.re == 1) {
                                 layer.open({
                                     content: '报名成功'
                                     , skin: 'msg'
                                     , time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
-                            } else if (success.re == 2) {
+                            } else if (res.re == 2) {
                                 layer.open({
                                     content: '报名失败'
                                     , skin: 'msg'
@@ -313,7 +253,7 @@
                                 layer.close(index);
 
                             }
-                            else if (success.re == 3) {
+                            else if (res.re == 3) {
                                 layer.open({
                                     content: '您没有优惠券'
                                     , skin: 'msg'
@@ -321,14 +261,14 @@
                                 });
                                 layer.close(index);
 
-                            } else if (success.re == 4) {
+                            } else if (res.re == 4) {
                                 layer.open({
                                     content: '价格不匹配，请重新出价'
                                     , skin: 'msg'
                                     , time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
-                            } else if (success.re == 5) {
+                            } else if (res.re == 5) {
                                 layer.open({
                                     content: '活动期数不匹配'
                                     , skin: 'msg'

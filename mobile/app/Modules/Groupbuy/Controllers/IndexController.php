@@ -172,6 +172,10 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$seller_max_fee = $_POST['max'];
 		$seller_min_fee = $_POST['min'];
 		$time = time();
+		
+		if(empty($seller_max_fee) && empty($seller_min_fee)){
+			echo json_encode(array('re'=>4)); exit;   //没有优惠券	
+		}
 
 		//查询拍拍街的期数和商品id
 		$sql1 = "select * from dsc_paipai_list where ppj_id = {$ppj_id} and ppj_no = {$ppj_no}";
@@ -180,11 +184,27 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		//查询有没有匹配的优惠券
 		$sql2 = "select * from dsc_paipai_seller where goods_id = {$date['goods_id']} and user_id = {$user_id} and usestaus = 0";
 		$result = $GLOBALS['db']->getAll($sql2);       
-		
+			
 		if(empty($result)){
 			echo json_encode(array('re'=>3)); exit;   //没有优惠券	
 		}
-
+        
+		//查询goods商品的最低价格
+		$sql3 = "select * from dsc_goods where goods_id = {$date['goods_id']} ";
+		$result3 = $GLOBALS['db']->getRow($sql3);
+		
+	    //判断价格是否合理
+		if($seller_min_fee > $seller_max_fee){
+			echo json_encode(array('re'=>4)); exit;   //价格不价格合理 
+		}
+		if($seller_min_fee < $result3['cost_price'] || $seller_min_fee > $result3['shop_price'] ){
+			echo json_encode(array('re'=>4)); exit;   //价格不价格合理 
+		}
+		if($seller_max_fee < $result3['cost_price'] || $seller_max_fee > $result3['shop_price']){
+			echo json_encode(array('re'=>4)); exit;   //价格不价格合理 
+		}
+		
+				
 		foreach($result as $ke=>$va){
 			
 			if($va['ppj_no'] == 0 && $va['endtime'] > $time){// 期数为0 且结束时间大于当前时间 为可用
@@ -195,13 +215,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				echo json_encode(array('re'=>5)); exit;  //期数不可用
 			}
 			if($success_data ==1 ){
-				//查询goods商品的最低价格
-				$sql3 = "select * from dsc_goods where goods_id = {$date['goods_id']} ";
-				$result3 = $GLOBALS['db']->getRow($sql3);
-					//判断价格是否合理
-				if($seller_min_fee < $va['cost_price'] && $seller_max_fee > $va['shop_price']){
-				    echo json_encode(array('re'=>4)); exit;  //价格不价格合理 
-				}	
+								
                 $gs_ins_data=array(
 				    'ppj_id'=>$ppj_id,
 					'user_id'=>$user_id,
@@ -211,7 +225,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 					'ls_ok'=>0,
 					'ls_staus'=>0,
 					'createtime'=>$time
-				);		
+				);	
+				
                 //插入报名信息				
                 $ins_suc =$GLOBALS['db']->autoExecute('dsc_paipai_goods_sellers', $gs_ins_data, 'INSERT');
 				if($ins_suc){
