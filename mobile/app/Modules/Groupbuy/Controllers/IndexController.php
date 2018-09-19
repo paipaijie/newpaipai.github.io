@@ -77,7 +77,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			}
 			
 			foreach($c as $d => $e){
-				$gb_list[$k]['ppjs_id'] = $e;
+				$gb_list[$k]['baoming'] = $e;
 			}
 			foreach($group as $key=>$val){
 				$arr[] = $val['formated_cur_price'];
@@ -87,6 +87,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				//var_dump($v);
 				$gb_list[$k]['formated_cur_price'] = $v;
 			}
+			
+//			var_dump($gb_list); 
 			
 			$this->assign('att',$gb_list);
 			$this->display();
@@ -173,7 +175,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		//$seller_max_fee = 10;
 		$seller_min_fee = $_POST['min'];
 		//$seller_min_fee = 1;
-		//echo json_encode(array('a'=>$seller_max_fee,'b'=>$seller_min_fee));
+//		echo json_encode(array('a'=>$seller_max_fee,'b'=>$seller_min_fee));exit;
 		
 		$time = time();
 
@@ -212,20 +214,19 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 									$arr['createtime']=$time;
 									$arr['baoming'] = 0;
 									//插入报名信息
-									$sqls = "INSERT INTO dsc_paipai_goods_sellers (`user_id`,`ppj_id`,`ppj_no`,`seller_min_fee`,`seller_max_fee`,`ls_ok`,`ls_staus`,`createtime`,`baoming`) VALUES ({$arr['user_id']},{$arr['ppj_id']},{$arr['ppj_no']},{$arr['seller_min_fee']},{$arr['seller_max_fee']},{$arr['ls_ok']},{$arr['ls_staus']},{$arr['createtime']},{$arr['baoming']})";
+									$sqls = "INSERT INTO dsc_paipai_goods_sellers (`user_id`,`ppj_id`,`ppj_no`,`seller_min_fee`,`seller_max_fee`,`ls_ok`,`ls_staus`,`createtime`) VALUES ({$arr['user_id']},{$arr['ppj_id']},{$arr['ppj_no']},{$arr['seller_min_fee']},{$arr['seller_max_fee']},{$arr['ls_ok']},{$arr['ls_staus']},{$arr['createtime']})";
 									//var_dump($sqls);
 									$success = $GLOBALS['db']->query($sqls);
 									$sql5 = "update dsc_paipai_seller set usestaus = 1 where seller_id = {$va['seller_id']}";
 									$GLOBALS['db']->query($sql5);
 									//var_dump($sql5);
 									if($success > 0){
-										
-										echo 1;
+										echo json_encode(array('a'=>1));
 									}else{
-										echo 2;
+										echo json_encode(array('a'=>2));
 									}
 							}else{
-								echo 4;
+								echo json_encode(array('a'=>3));
 								exit;
 							}
 						}
@@ -251,27 +252,56 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 									$GLOBALS['db']->query($sqls);
 									if($success > 0){
 										
-										echo 1;
+										echo json_encode(array('a'=>1));
 									}else{
-										echo 2;
+										echo json_encode(array('a'=>2));
 									}
 							}else{
-								echo 4;
+								echo json_encode(array('a'=>4));
 								exit;
 							}
 						}
 					}else{
-						echo 5;
+						echo json_encode(array('a'=>5));
 					}
 				}
 			}else{
-				echo 3;
+				echo json_encode(array('a'=>3));
 				exit;
-			}
+			} 
 		}
 	}
 	
 
+	public function actionChujia()
+	{
+
+		$id = $_SESSION['user_id'];
+		$ppj_id = $_POST['ppd'];
+		$ppj_no = $_POST['ppn'];
+		$seller_max_fee = $_POST['max'];
+
+		$time = time();
+		$arr = array();
+		
+		$sql = "select * from dsc_paipai_goods_bid_user where user_id = {$id} and ppj_no ={$ppj_no} and ppj_id = {$ppj_id} and is_status =2";
+		$res = $GLOBALS['db']->getRow($sql);
+//		echo json_encode(array('a'=>$res));exit;
+		
+		if($res['bid_price'] < $seller_max_fee){
+			//插入报名信息
+			$sql1 = "UPDATE dsc_paipai_goods_bid_user SET bid_price = {$seller_max_fee},bid_time = {$time} WHERE spm_id = {$res['spm_id']}";
+			$success = $GLOBALS['db']->query($sql1);
+			if($success>0){
+				echo json_encode(array('a'=>1));
+			}else{
+				echo json_encode(array('a'=>2));
+			}
+		}else{
+			echo json_encode(array('a'=>3));
+		}
+	}
+	
 	
 	//重新出价的方法
 	public function actionNewprice(){
@@ -545,7 +575,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		// $musql="SELECT * FROM (dsc_order_info AS o LEFT JOIN dsc_paipai_seller_pay_margin AS pm) "
 		
 		//var_dump($goods);
-		
+		$this->assign('re', $re);
 		$this->assign('goods', $goods);
 
 		$sql = 'SELECT * FROM {pre}goods_gallery WHERE goods_id = ' . $this->goods_id;
@@ -665,7 +695,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			$goods_desc = preg_replace('/width\\="[0-9]+?"/', '', $goods_desc);
 			$goods_desc = preg_replace('/style=.+?[*|"]/i', '', $goods_desc);
 		}
-
+        
+		//保证金支付人数
 		$pmsql = "SELECT count(user_id) as count FROM dsc_paipai_seller_pay_margin WHERE ppj_id={$re['ppj_id']} AND ppj_no ={$re['ppj_no']}";
 		$pm_data = $GLOBALS['db']->getRow($pmsql);
 		$this->assign('pm_data', $pm_data);

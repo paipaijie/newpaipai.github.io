@@ -51,10 +51,10 @@
 											</div>
 										</div>
 								</section>
-						{if $v['ppjs_id'] == ''}
+						{if $v['baoming'] == ''}
 							<div class="shoudong">
 	                        	<p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:102px;padding-top:12px;">                            
-	                            	<span style="width:150px; color: red;" class="btn-default-new br-5 min-btn"  id="nowsale">手 动 售 出</span> 
+	                            	<span style="width:150px; color:red;" class="btn-default-new br-5 min-btn"  id="nowsale">手 动 售 出</span> 
 									<input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="{$v['ppj_id']}">
 									<input type="hidden" id="ppj_no" class="ppj_no" name="ppj_no" value="{$v['ppj_no']}">
 									<input type="hidden" id="goods_id" class="goods_id" name="goods_id" value="{$v['goods_id']}">
@@ -294,7 +294,8 @@
                         data:{"max":max,"min":min,"ppj_id":ppj_id,"ppj_no":ppj_no},
                         dataType:'json',
                         success:function(success){
-                            if(success == 1){
+                        	
+                            if(success.a == 1){
                                 layer.open({
                                     content: '报名成功'
                                     ,skin: 'msg'
