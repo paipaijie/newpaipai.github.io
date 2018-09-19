@@ -883,28 +883,30 @@
                 btn:['确认','取消'],
                 yes: function (index, layero) {
                     var max = $("#seller_max_fee").val();
-					//alert(max);exit;
+					//alert(max);
                     $.ajax({
                         url:"{url('groupbuy/index/chujia')}",
                         type:"post",
-                        data:{"ppd":ppj_id,"ppn":ppj_no,"max":max},
+                        data:{"ppj_id":ppj_id,"ppj_no":ppj_no,"max":max},
                         dataType:"JSON",
                         success:function(y){
-                            if(y.a == 1){
+							// console.log(y.re);
+                            if(y.re == 1){
                                 layer.open({
                                     content: '出价成功'
                                     ,skin: 'msg'
                                     ,time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
-                            }else if(y.a == 2){
+                            }else if(y.re == 2){
                                 layer.open({
                                     content: '出价失败'
                                     ,skin: 'msg'
                                     ,time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
-                            }else if(y.a == 3){
+                            }
+							else if(y.a == 3){
                                 layer.open({
                                     content: '您出的价格小于之前的价格'
                                     ,skin: 'msg'

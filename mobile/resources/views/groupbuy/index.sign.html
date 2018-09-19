@@ -204,14 +204,14 @@
                         data:{"max":max,"min":min,"ppj_id":ppj_id,"ppj_no":ppj_no},
                         dataType:'json',
                         success:function(success){
-                            if(success == 1){
+                            if(success.re == 1){
                                 layer.open({
                                     content: '修改成功'
                                     ,skin: 'msg'
                                     ,time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
-                            }else if(success == 2){
+                            }else if(success.re == 2){
                                 layer.open({
                                     content: '修改失败'
                                     ,skin: 'msg'

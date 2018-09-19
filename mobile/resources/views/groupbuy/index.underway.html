@@ -53,8 +53,7 @@
                                 </div>
                             </div>
                         </section>
-                        {if $v['ppjs_id'] == ''}
-                        <div class="shoudong">
+						 <div class="shoudong">
                             <p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:102px;padding-top:12px;">
                                 <span style="width:150px; color: red;" class="btn-default-new br-5 min-btn" id="nowsale">手
                                     动 售 出</span>
@@ -63,23 +62,14 @@
                                 <input type="hidden" id="goods_id" class="goods_id" name="goods_id" value="{$v['goods_id']}">
                             </p>
                         </div>
+                        {if $v['ppjs_id'] == ''}
                         <div class="zidong" style="padding-top: 11px;">
                             <span style="width:150px;color: blue;margin-left: 14px;" class="btn-default-new br-5 min-btn"
                                 id="autosale">立 即 报 名</span>
                             <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="{$v['ppj_id']}">
                             <input type="hidden" id="ppj_no" class="ppj_no" name="ppj_no" value="{$v['ppj_no']}">
                         </div>
-
-                        {else}
-                        <div class="shoudong">
-                            <p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:102px;padding-top:12px;">
-                                <span style="width:150px; color: red;" class="btn-default-new br-5 min-btn" id="nowsale">手
-                                    动 售 出</span>
-                                <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="{$v['ppj_id']}">
-                                <input type="hidden" id="ppj_no" class="ppj_no" name="ppj_no" value="{$v['ppj_no']}">
-                                <input type="hidden" id="goods_id" class="goods_id" name="goods_id" value="{$v['goods_id']}">
-                            </p>
-                        </div>
+                        {else}                       
                         <div style="padding-top: 11px;">
                             <span style="width:150px;color: blue;margin-left:190px;" class="btn-default-new br-5 min-btn">已
                                 经 报 名</span>
@@ -277,8 +267,6 @@
             var ppj_id = $(this).find(".ppj_id").val();
             var ppj_no = $(this).find(".ppj_no").val();
 
-            //alert(ppj_id);
-            //alert(ppj_no);
             layer.open({
                 type: 1,
                 title: '预售价格区间',
@@ -303,23 +291,20 @@
                 yes: function (index,  layero) {
                     var max = $("#seller_max_fee").val();
                     var min = $("#seller_min_fee").val();
-                    //alert(max);
-                    //alert(min);exit;
                     $.ajax({
                         url: "{url('groupbuy/index/baoming')}",
-
                         type: "post",
                         data: { "max": max, "min": min, "ppj_id": ppj_id, "ppj_no": ppj_no },
                         dataType: 'json',
-                        success: function (success) {
-                            if (success == 1) {
+                        success: function (res) {
+                            if (success.re == 1) {
                                 layer.open({
                                     content: '报名成功'
                                     , skin: 'msg'
                                     , time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
-                            } else if (success == 2) {
+                            } else if (success.re == 2) {
                                 layer.open({
                                     content: '报名失败'
                                     , skin: 'msg'
@@ -328,7 +313,7 @@
                                 layer.close(index);
 
                             }
-                            else if (success == 3) {
+                            else if (success.re == 3) {
                                 layer.open({
                                     content: '您没有优惠券'
                                     , skin: 'msg'
@@ -336,14 +321,14 @@
                                 });
                                 layer.close(index);
 
-                            } else if (success == 4) {
+                            } else if (success.re == 4) {
                                 layer.open({
                                     content: '价格不匹配，请重新出价'
                                     , skin: 'msg'
                                     , time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
-                            } else if (success == 5) {
+                            } else if (success.re == 5) {
                                 layer.open({
                                     content: '活动期数不匹配'
                                     , skin: 'msg'
@@ -353,7 +338,7 @@
                             }
                         },
                         error: function (success) {
-                            if (success == 3) {
+                            if (success.re == 3) {
                                 layer.open({
                                     content: '您没有优惠券'
                                     , skin: 'msg'
