@@ -77,21 +77,25 @@
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 				<ul>
-					<li class="m-top1px b-color-f padding-all of-hidden">
-						<p class="dis-box t-remark3">
-							<em class="em-promotion"><i class="iconfont icon-daifukuan"></i></em>
-							<span class="box-flex">手动售出</span>
-						</p>
-						<p class="g-b-s-con m-top08"><p>把握价格，敬请关注实时浮动的当前价，选择确认是否售出哦</p></p>
-					</li>
-					<li class="m-top1px b-color-f padding-all of-hidden">
-						<p class="dis-box t-remark3">
-							<em class="em-promotion"><i class="iconfont icon-7tianwuliyoutuihuo"></i></em>
-							<span class="box-flex">自动售出</span>
+                    <div class="shoudong">
+                        <li class="m-top1px b-color-f padding-all of-hidden">
+                            <p class="dis-box t-remark3">
+                                <em class="em-promotion"><i class="iconfont icon-daifukuan"></i></em>
+                                <span class="box-flex">手动售出</span>
+                            </p>
+                            <p class="g-b-s-con m-top08"><p>把握价格，敬请关注实时浮动的当前价，选择确认是否售出哦</p></p>
+                        </li>
+                    </div>
+                    <div class="zidong">
+                        <li class="m-top1px b-color-f padding-all of-hidden">
+                            <p class="dis-box t-remark3">
+                                <em class="em-promotion"><i class="iconfont icon-7tianwuliyoutuihuo"></i></em>
+                                <span class="box-flex">自动售出</span>
 
-						</p>
-						<p class="g-b-s-con m-top08"><p>方便省心，设定预售价格区间，系统会根据买方出价自动售出呢</p>
-					</li>
+                            </p>
+                            <p class="g-b-s-con m-top08"><p>方便省心，设定预售价格区间，系统会根据买方出价自动售出呢</p>
+                        </li>
+                    </div>
 				</ul>
 			</div>
 		</div>
@@ -109,51 +113,120 @@
 			
        $('.store_info').infinite({url: "{url('user/index/mypaipailist')}", template:'j-product'});
 		
-		var url = "{url('user/index/paipaibuy')}";		
-		$("#nowsale").click(function(){
-			var ppj_id= $(this).attr("ppjid");
+	// 	var url = "{url('user/index/paipaibuy')}";		
+	// 	$("#nowsale").click(function(){
+	// 		var ppj_id= $(this).attr("ppjid");
 			
-			//alert(ppj_no);
+	// 		//alert(ppj_no);
 			
-            layer.open({           	
+    //         layer.open({           	
+    //             content: '<h4 class="t-remark">确认售出即可获得收益</h4>	',
+    //             btn: ['确定', '取消'],
+    //             shadeClose: false,
+    //             yes: function() {
+    //               $.post(url, {ppj_id:ppj_id},
+    //                  function(result){
+                     	
+    //                      if(result.y == 1){     
+    //                      	d_messages('出售成功，买家支付收货后您将获收益！');	
+    //                      	 setTimeout(function () {
+    //      window.location.href = "{url('user/index/mypaipailist')}";
+    // }, 1000);
+                           
+    //                      }else if(result.y ==2){
+                         	
+    //                      	d_messages('当前还没有人出价，暂时不能卖');
+	// 			            return false;
+				            
+    //                      }else if(result.y == 3){
+    //                      	d_messages('当前价格低于该商口最低成交价，暂时不能卖');
+	// 			            return false;
+    //                      }else if(result.y == 4){
+    //                      	d_messages('您的销售券只能在下一期才能用，暂时不能卖');
+	// 			            return false;
+    //                      }else if(result.y == 5){
+    //                      	d_messages('您的销售券为空，暂时不能卖');
+	// 			            return false;
+    //                      }else if(result.y == 0){
+    //                      	d_messages('没有匹配的价格，暂时不能卖，请继续等待！');
+	// 			            return false;
+    //                      }
+                         
+                         
+    //                  }, 'json');
+    //              },
+    //             no: function() {
+
+    //             }
+    //         });
+    //     });
+
+
+        $(".shoudong").click(function () {
+            var ppj_id = document.getElementById('ppj_id').value;
+            var ppj_no = document.getElementById('ppj_no').value;
+            var goods_id = document.getElementById('goods_id').value;
+            layer.open({
                 content: '<h4 class="t-remark">确认售出即可获得收益</h4>	',
                 btn: ['确定', '取消'],
-                shadeClose: false,
-                yes: function() {
-                  $.post(url, {ppj_id:ppj_id},
-                     function(result){
-                     	
-                         if(result.y == 1){     
-                         	d_messages('出售成功，买家支付收货后您将获收益！');	
-                         	 setTimeout(function () {
-         window.location.href = "{url('user/index/mypaipailist')}";
-    }, 1000);
-                           
-                         }else if(result.y ==2){
-                         	
-                         	d_messages('当前还没有人出价，暂时不能卖');
-				            return false;
-				            
-                         }else if(result.y == 3){
-                         	d_messages('当前价格低于该商口最低成交价，暂时不能卖');
-				            return false;
-                         }else if(result.y == 4){
-                         	d_messages('您的销售券只能在下一期才能用，暂时不能卖');
-				            return false;
-                         }else if(result.y == 5){
-                         	d_messages('您的销售券为空，暂时不能卖');
-				            return false;
-                         }else if(result.y == 0){
-                         	d_messages('没有匹配的价格，暂时不能卖，请继续等待！');
-				            return false;
-                         }
-                         
-                         
-                     }, 'json');
-                 },
-                no: function() {
-
+                yes: function (index,  layero) {
+                    $.ajax({
+                        url: "{url('user/index/paipaibuy')}",
+                        type: "post",
+                        data: { "ppd": ppj_id, "ppn": ppj_no, "g_id": goods_id },
+                        dataType: "JSON",
+                        success: function (y) {
+                            if (y.re == 1) {
+                                layer.open({
+                                    content: '没有券'
+                                    , skin: 'msg'
+                                    , time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            } else if (y.re == 2) {
+                                layer.open({
+                                    content: '销售券期数不匹配'
+                                    , skin: 'msg'
+                                    , time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            } else if (y.re == 3) {
+                                layer.open({
+                                    content: '销售券已使用'
+                                    , skin: 'msg'
+                                    , time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            } else if (y.re == 4) {
+                                layer.open({
+                                    content: '出售成功，买家支付收货后您将获收益！'
+                                    , skin: 'msg'
+                                    , time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            }
+                        },
+                        error: function (success) {
+                            if (success == 3) {
+                                layer.open({
+                                    content: '您没有优惠券'
+                                    , skin: 'msg'
+                                    , time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            }
+                        }
+                    });
+                },
+                btn2: function (index, layero) {
+                    layer.open({
+                        content: '您没有优惠券'
+                        , skin: 'msg'
+                        , time: 2 //2秒后自动关闭
+                    });
+                    layer.close(index);
                 }
+
             });
         });
 		
