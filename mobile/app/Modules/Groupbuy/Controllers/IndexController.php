@@ -70,6 +70,15 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				
 			}
 			
+			foreach($group as $key=>$val){
+				$arr[] = $val['formated_cur_price'];
+			}
+	
+			foreach($arr as $k=>$v){
+				//var_dump($v);
+				$gb_list[$k]['formated_cur_price'] = $v;
+			}
+
 			foreach($res as $k=>$v){
 				foreach($v as $a => $b){
 					$c[] = $b['ppjs_id'];
@@ -79,15 +88,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			foreach($c as $d => $e){
 				$gb_list[$k]['ppjs_id'] = $e;
 			}
-			foreach($group as $key=>$val){
-				$arr[] = $val['formated_cur_price'];
-			}
-	
-			foreach($arr as $k=>$v){
-				//var_dump($v);
-				$gb_list[$k]['formated_cur_price'] = $v;
-			}
-			
+			// var_dump($gb_list[$k]['ppjs_id']);
 			$this->assign('att',$gb_list);
 			$this->display();
 	}
