@@ -84,7 +84,7 @@
 
 										<p class=" dis-box g-p-tthree m-top06">
 											<span class="box-flex text-left">销量 {$pm_data.count}</span>
-											<span class="box-flex text-center">库存 {$pl_data.goods_count}</span>
+											<span class="box-flex text-center">库存 {$re.goods_count}</span>
 										</p>
 										
 									</section>
@@ -883,34 +883,50 @@
                     $.ajax({
                         url:"{url('groupbuy/index/chujia')}",
                         type:"post",
-                        data:{"max":max,"ppj_id":ppj_id,'ppj_no':ppj_no},
-                        dataType:'json',
-                        success:function(success){
-                            if(success == 1){
+                        data:{"ppd":ppj_id,"ppn":ppj_no,"max":max},
+                        dataType:"JSON",
+                        success:function(y){
+                            if(y.a == 1){
                                 layer.open({
                                     content: '出价成功'
                                     ,skin: 'msg'
                                     ,time: 2 //2秒后自动关闭
                                 });
-                                 window.location.href="{url('user/order/indexpaipai')}";
-
-                            }else if(success == 2){
+                                layer.close(index);
+                            }else if(y.a == 2){
                                 layer.open({
-                                    content: '您出价失败'
+                                    content: '出价失败'
+                                    ,skin: 'msg'
+                                    ,time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            }else if(y.a == 3){
+                                layer.open({
+                                    content: '您出的价格小于之前的价格'
                                     ,skin: 'msg'
                                     ,time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
                             }
+//							else if(y.re == 4){
+//                              layer.open({
+//                                  content: '出售成功，买家支付收货后您将获收益！'
+//                                  ,skin: 'msg'
+//                                  ,time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          }
                         },
-                        error:function(e){
+                        error:function(success){
+						if(success == 3){
                             layer.open({
-                                content: '出价失败'
+                                content: '您没有优惠券'
                                 ,skin: 'msg'
                                 ,time: 2 //2秒后自动关闭
                             });
                             layer.close(index);
                         }
+						}
                     });
                 },
                 btn2:function (index,layero) {
