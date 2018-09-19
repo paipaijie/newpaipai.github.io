@@ -250,7 +250,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$max = $_POST['max'];
 		$shop_price = $_POST['shop_price'];
 		
-		if($shop_price < $max){
+		if($shop_price < $max || $max==0){
 			echo json_encode(array('re'=>3));  exit;
 		}
 		$time = time();
