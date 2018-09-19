@@ -47,13 +47,14 @@
 										</div>
 									</section>
 						
-                        <p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:102px;padding-top:12px;">                            
+                        <p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:102px;padding-top:12px;">   
+  					
                             <span style="width:150px; color: red;" class="btn-default-new br-5 min-btn"  id="nowsale" ppjid="<%goods.ppj_id%>">手 动 售 出</span> 
-                           
-						   <div class="zidong" style="padding-top: 11px;">
+   
+						    <div class="zidong" style="padding-top: 11px;">
                               <span style="width:150px;color: blue;     margin-left: 14px;" class="btn-default-new br-5 min-btn"  id="autosale">自 动 售 出</span> 
 							  <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="<%goods.ppj_id%>">
-							  </div>
+						    </div>
                         </p>
                     </footer>     
                             
@@ -77,25 +78,29 @@
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 				<ul>
-                    <div class="shoudong">
-                        <li class="m-top1px b-color-f padding-all of-hidden">
+                    
+                    <li class="m-top1px b-color-f padding-all of-hidden" id="shoudong">
+						 <div class="shoudong">
                             <p class="dis-box t-remark3">
                                 <em class="em-promotion"><i class="iconfont icon-daifukuan"></i></em>
                                 <span class="box-flex">手动售出</span>
                             </p>
                             <p class="g-b-s-con m-top08"><p>把握价格，敬请关注实时浮动的当前价，选择确认是否售出哦</p></p>
-                        </li>
-                    </div>
-                    <div class="zidong">
-                        <li class="m-top1px b-color-f padding-all of-hidden">
+						</div>
+                    </li>
+                    
+                    
+                    <li class="m-top1px b-color-f padding-all of-hidden" id="zidong">
+						<div class="zidong">
                             <p class="dis-box t-remark3">
                                 <em class="em-promotion"><i class="iconfont icon-7tianwuliyoutuihuo"></i></em>
                                 <span class="box-flex">自动售出</span>
 
                             </p>
                             <p class="g-b-s-con m-top08"><p>方便省心，设定预售价格区间，系统会根据买方出价自动售出呢</p>
-                        </li>
-                    </div>
+						</div>
+                    </li>
+                    
 				</ul>
 			</div>
 		</div>
@@ -162,7 +167,7 @@
     //     });
 
 
-        $(".shoudong").click(function () {
+        $(".shoudong").click(function(){
             var ppj_id = document.getElementById('ppj_id').value;
             var ppj_no = document.getElementById('ppj_no').value;
             var goods_id = document.getElementById('goods_id').value;
@@ -176,6 +181,7 @@
                         data: { "ppd": ppj_id, "ppn": ppj_no, "g_id": goods_id },
                         dataType: "JSON",
                         success: function (y) {
+						console.log(y.re);
                             if (y.re == 1) {
                                 layer.open({
                                     content: '没有券'
@@ -204,7 +210,15 @@
                                     , time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
+                            }else if (y.re == 8) {
+                                layer.open({
+                                    content: '暂时没有买家出价！'
+                                    , skin: 'msg'
+                                    , time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
                             }
+							
                         },
                         error: function (success) {
                             if (success == 3) {

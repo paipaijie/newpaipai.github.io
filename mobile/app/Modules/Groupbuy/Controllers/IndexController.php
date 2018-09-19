@@ -538,14 +538,15 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		// var_dump($goods['goods_desc']);
 		$sql = "select * from dsc_paipai_list where ppj_id = {$_GET['id']}";
 		$re = $GLOBALS['db']->getRow($sql);
+		$this->assign('re', $re);
 		$sqla = "select pay_status from dsc_order_info where user_id = {$_SESSION['user_id']} and ppj_id={$re['ppj_id']} and ppj_no ={$re['ppj_no']} and pay_status = '10' and extension_code = 'paipai_buy'";
 		$rea = $GLOBALS['db']->getRow($sqla);
 		$goods['pay_status'] = $rea['pay_status'];
 
 		//查询当前用户是否购买一次以及第一次购买
-		// $musql="SELECT * FROM (dsc_order_info AS o LEFT JOIN dsc_paipai_seller_pay_margin AS pm) "
-		
-		//var_dump($goods);
+		$musql="SELECT * FROM dsc_paipai_seller_ok WHERE buy_id = {$_SESSION['user_id']} and ppj_id={$re['ppj_id']} and ppj_no ={$re['ppj_no']} ORDER BY ok_id LIMIT 1 ";
+		$ok_data = $GLOBALS['db']->getRow($musql);
+		$this->assign('ok_data', $ok_data);
 		
 		$this->assign('goods', $goods);
 

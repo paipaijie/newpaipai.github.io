@@ -478,6 +478,7 @@
 				{if $goods.is_end == 2}
 				 <a class="btn-disab box-flex quehuo" href="javascript:void(0);" style="display:block">团购结束</a>
 				{elseif $goods.is_end == 1}
+				  {if empty($ok_data.ok_id)}
 					{if $goods.pay_status == 10}
 					<div class="zidong" style="color:red">
 						<span style="width:277px;color: red; position: absolute;" p class="btn-default-new br-5 min-btn" id="autosale">重 新 出 价</span>  
@@ -487,6 +488,9 @@
 					{else}
 						<div  class="btn-submit box-flex j-goods-attr j-show-div j-property" style="display:block">立即抢购</div>
 					{/if}
+				  {else}
+				        <div  class="btn-submit box-flex j-goods-attr j-show-div j-property" style="display:block">立即抢购</div>
+				  {/if}
 				{elseif $goods.is_end ==0}
 				<a class=" btn-disab box-flex quehuo" href="javascript:void(0);" style="display:block">未开始</a>
 				

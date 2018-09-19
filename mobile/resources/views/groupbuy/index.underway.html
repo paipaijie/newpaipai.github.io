@@ -195,9 +195,9 @@
 
 
         $(".shoudong").click(function () {
-            var ppj_id = document.getElementById('ppj_id').value;
-            var ppj_no = document.getElementById('ppj_no').value;
-            var goods_id = document.getElementById('goods_id').value;
+			var ppj_id = $(this).find(".ppj_id").val();
+            var ppj_no = $(this).find(".ppj_no").val();
+			var goods_id = $(this).find(".goods_id").val();
             layer.open({
                 content: '<h4 class="t-remark">确认售出即可获得收益</h4>	',
                 btn: ['确定', '取消'],
@@ -208,6 +208,7 @@
                         data: { "ppd": ppj_id, "ppn": ppj_no, "g_id": goods_id },
                         dataType: "JSON",
                         success: function (y) {
+						  console.log(y.re);
                             if (y.re == 1) {
                                 layer.open({
                                     content: '没有券'
@@ -232,6 +233,14 @@
                             } else if (y.re == 4) {
                                 layer.open({
                                     content: '出售成功，买家支付收货后您将获收益！'
+                                    , skin: 'msg'
+                                    , time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            }
+							else if (y.re == 8) {
+                                layer.open({
+                                    content: '暂时没有买家出价'
                                     , skin: 'msg'
                                     , time: 2 //2秒后自动关闭
                                 });
@@ -267,6 +276,7 @@
         $(".zidong").click(function () {
             var ppj_id = $(this).find(".ppj_id").val();
             var ppj_no = $(this).find(".ppj_no").val();
+
             //alert(ppj_id);
             //alert(ppj_no);
             layer.open({

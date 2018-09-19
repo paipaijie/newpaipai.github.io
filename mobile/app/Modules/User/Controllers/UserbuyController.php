@@ -96,7 +96,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         $price=substr($sell,10,strlen($sell)); //截取匹配的价格
         $this->assign('svalt', $time);
         $this->assign('svalp', $price);
-        
+       
         //地址 
         $consignee = get_consignee($_SESSION['user_id']);
         
@@ -223,7 +223,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         $user_bid_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE user_id=".$user_id." AND ppj_id=".$ppj_id." AND ppj_no=".$ppj_no." AND is_status=2";
         $user_bid_data = $GLOBALS['db']->getRow($user_bid_sql);
         //卖家出价信息
-        $sell_sql=" SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers')." WHERE seller_min_fee={$match_price} AND createtime={$match_time} AND ls_ok=1 AND ls_staus=1 ";
+        $sell_sql=" SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers')." WHERE seller_min_fee={$match_price} AND createtime={$match_time} AND ls_ok=1";
         $sell_news=$GLOBALS['db']->getRow($sell_sql);   
         
         if($sell_news){           
