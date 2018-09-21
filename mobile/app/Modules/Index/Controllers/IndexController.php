@@ -37,13 +37,28 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			$sql1 = "select sum(goods_number) from dsc_order_goods where ppj_no = {$val['ppj_no']} and goods_id = {$val['goods_id']}";
 			$r = $GLOBALS['db']->getAll($sql1);
 
+			$strlen = strlen($res[$k]['goods_name']);
+			$res[$k]['goods_name'] = $strlen>20?mb_substr($res[$k]['goods_name'],0,12,'utf-8'):$res[$k]['goods_name'];
+
 			foreach($r as $k => $v){
 				//var_dump($v);
 				$res[$k]['order_number'] = $v['sum(goods_number)'];
 			}
-			
 			$val['end_date']=floor(($val['end_time']-time())/86400);
+			if($val['end_date']>0){
+				$val['end_date']=floor(($val['end_time']-time())/86400);
+			}else{
+				$countdown = ($val['end_date'] - $now)-8*60*60;
+				$date_count = date('H:i:s',$countdown);
+				$val['end_date'] = $date_count;
+			}
 			$arr2[] = $val['end_date'];
+
+			// $val['end_ti'] = $val['end_time']-$now;
+		
+			// $arr2[] = $val['end_ti'];
+			// 	// $res[$k]['end_time_daojishi'] = $val['end_date'];
+		
 			
 			$sql = "select count(*) from dsc_order_info where ppj_id ={$val['ppj_id']} and ppj_no = {$val['ppj_no']} and pay_status != 11";
 			$result = $GLOBALS['db']->query($sql);
@@ -59,14 +74,13 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		foreach($b as $k=>$v){
 			$res[$k]['count'] = $v;
 		}
+		
 		foreach($arr2 as $k=>$v){
-			$res[$k]['end_date'] = $v;
+			$res[$k]['end_ti'] = $v;
 		}
 		foreach($arr3 as $k=>$v){
 			$res[$k]['is_end'] = $v;
 		}
-
-		//var_dump($res);
 		$this->assign('res', $res);	
 		$this->display();
 	}

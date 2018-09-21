@@ -3,13 +3,22 @@
 <head>
   <title>首页</title>
   <meta charset="utf-8">
+  {global_assets('css')}
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="__ROOT__/public/css/index.css">
+  <link rel="stylesheet" href="__ROOT__/public/css/app.min.css?v=v2.7.1">
   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  {global_assets('js')}
   <style>
+      .section-swiper-box{background:#FCF3CD;position:relative;top: 0;width: 100%;left: 0;right: 0;}
+  .section-swiper-box a{color:#EDA407;}
+  .section-swiper-one{height:3rem;overflow:hidden;white-space:nowrap;margin:0 4rem 0 1.1rem;list-style:none;line-height:3rem;font-size:12px;color:#EDA407;}
+  .section-swiper-two {width:auto;height:auto;font-size:12px;float:left;overflow:hidden;}
+  .section-swiper-box .icon-guanbi2{position:absolute;right:1.1rem; font-size:1.6rem;top:50%;margin-top:-.7rem;color:#EDA407;}
   /* Make the image fully responsive */
   .carousel-inner img {
       width: 100%;
@@ -58,7 +67,6 @@
   }
   .kuang .input{
       padding-top: 2%;
-
       /* text-align:center;   */
   }
   .kuang .glyphicon{
@@ -80,9 +88,10 @@
   }
   .gonggao .tubiao{
     /* border:1px solid red; */
-    width: 3.2rem;
-    height: 4rem;
+    width: 2.2rem;
+    height: 2.2rem;
     float: left;
+    margin-top: 1rem;
   }
   .gonggao .neirong{
     float: left;
@@ -105,7 +114,7 @@
   }
   .zhong .tupian .img{
     /* border:1px solid red; */
-    width: 100%;
+    width: 110%;
     height: 8rem;
     float: left;
   }
@@ -116,65 +125,58 @@
     float: left;
     text-align: center;
     padding-top: 0.7rem;
+    color: #444;
   }
   .dibu{
-    margin-top: 5px;
+    margin-top: 2rem;
     /* border:1px solid red; */
     width: 100%;
   }
   .dibu .shangpin{
-    float: left;
-    /* border:0.1px solid #DCDCDC; */
-    width: 48%;
-    height: 350px;
+    /* border:1px solid red); */
+    width: 100%;
+    height: 120px;
     background-color: rgb(255, 255, 255);
-    margin-left: 5px;
+    margin-bottom: 2rem;
   }
   .dibu .shangpin .tu{
-    /* border:1px solid #DCDCDC; */
-    width: 100%;
-    height: 60%;
-  }
-  .dibu .shangpin .tu img{
-    /* border:1px solid red; */
-    width: 100%;
+    /* border:1px solid green ; */
+    width: 120px;
     height: 100%;
+    float: left;
   }
   .dibu .shangpin .ming{
-    /* border:1px solid red; */
+      /* border: 1px solid yellow; */
+    float: left;
+    width: 65%;
+    height: 100%;
+  }
+  .ming .shijian{
     width: 100%;
-    height: 20%;
-    /* text-align: center; */
-    padding-top: 7%;
+    height:25%;
+    margin-left: 50%;
   }
-  .dibu .shangpin .gong{
-    /* border:1px solid red; */
-    width: 50%;
-    height: 20%;
-    float: left;
-  }
-  .dibu .shangpin .shijian{
-    /* border:1px solid red; */
-    width: 50%;
-    height: 20%;
-    float: left;
-    text-align: center;
-    padding-top: 7%;
-  }
-  .dibu .shangpin .jiage{
-    /* border:1px solid red; */
+  .ming .mingcheng{
     width: 100%;
     height: 50%;
-    padding-top: 2%;
-    color: red;
-    font-weight:bold
+    margin-left: 5%;
   }
-  .dibu .shangpin .renshu{
-    /* border:1px solid red; */
+  .xinxi{
     width: 100%;
-    height: 50%;
-    padding-top: 2%;
+    height: 25%;
+    overflow: hidden;
+    margin-left: 5%;
   }
+  .xinxi #renshu{
+      float: left;
+      width:40%;
+  }
+  .xinxi #jiage{
+     float: left;
+     width:60%;
+     color:red;
+  }
+
   .fo{
     /* border:1px solid red; */
     width:100%;
@@ -331,75 +333,71 @@
         </div>
         <div class="clear"></div>
     </div>
-    
+
     <div class="dibu">
         {foreach $res as $y=>$v}
         {if $v['is_end'] == 1 || $v['is_end'] == 0}
-        <!-- {$v['end_date']} -->
         <a style="color:#333" href="{url('groupbuy/index/detail')}&id={$v['ppj_id']}">
-        <div class="shangpin" style="float: left;">
-            <div class="tu">
-                <img src="{$v['goods_thumb']}" alt="">
-            </div>
-            <div class="ming">{$v['goods_name']}</div>
-            <div class="gong">
-                <div class="renshu">
-                    {if $v['count']>0}
-                        {$v['count']}人已下单
-                    {else}
-                        0人已下单
-                    {/if}
+            <div class="shangpin">
+                <div class="tu">
+                    <img style="width: 100%;height: 100%;" src="{$v['goods_thumb']}" alt="">
                 </div>
-                <div class="jiage">￥{$v['ppj_start_fee']}</div>
+                <div class="ming">
+                    <div class="shijian">距活动结束：
+                        <samp>{$v['end_ti']}</samp>    
+                    </div>
+                    <div class="mingcheng" style="font-size:16px;">
+                        {$v['goods_name']}
+                    </div>
+                    <div class="xinxi">
+                        <span id="renshu">
+                            {if $v['count']>0}
+                                {$v['count']}人已下单
+                            {else}
+                                0人已下单
+                            {/if}
+                        </span>
+                        <span id="jiage">￥{$v['ppj_start_fee']}</span>
+                    </div>
+                    
+                </div>
             </div>
-            <div class="shijian">剩余<br>
-                <?php if($v['end_date']>0){
-                    echo $v['end_date'];
-                }else{
-                    echo 0;
-                }?>
-	天
-            </div>
-        </div>
         </a>
+        <hr/>
         {/if}
         {/foreach}
-        <div class="clear"></div>
     </div>
+
     <div class="fo">
-            <div class="f">
-                <a style="color:#333" href="{url('index/index/index')}">
-                <div class="glyphicon glyphicon-home"></div>
-                <div class="span" style="color: red;">首页</div>
-                </a>
-            </div>
-            <div class="f">
-                <a style="color:#333" href="{url('category/index/index')}">
-                <div class="glyphicon glyphicon-th-list"></div>
-                <div class="span">分类</div>
-                </a>
-            </div>
-            <div class="f">
-                <a style="color:#333" href="{url('search/index/index')}">
-                <div class="glyphicon glyphicon-search"></div>
-                <div class="span">搜索</div>
-                </a>
-            </div>
-            <div class="f">
-                <a style="color:#333" href="{url('cart/index/index')}">
-                <div class="glyphicon glyphicon-shopping-cart"></div>
-                <div class="span">购物车</div>
-                </a>
-            </div>
-            <div class="f">
-                <a style="color:#333" href="{url('user/index/index')}">
-                <div class="glyphicon glyphicon-user"></div>
-                <div class="span" >我</div>
-                </a>
-            </div>
-            
-        </div>
-        <div class="ding" style="width: 100%;height: 100px;"></div>
+        <footer class="footer-nav dis-box">
+            <a href="{url('/')}" class="box-flex nav-list" style="color: #ec5151;">
+                <i style="background-position: .02rem -3rem" class="nav-box i-home"></i><span>首页</span>
+            </a>
+            <a href="{url('category/index/index')}" class="box-flex nav-list">
+                <i class="nav-box i-cate"></i><span>分类</span>
+            </a>
+            <a href="{url('search/index/index')}" class="box-flex nav-list">
+                <i class="nav-box i-shop"></i><span>搜索</span>
+            </a>
+            <a href="{url('cart/index/index')}" class="box-flex position-rel nav-list">
+                <i class="nav-box i-flow"></i><span>购物车</span>
+            </a>
+            {if $filter}
+            <a href="{url('drp/user/index')}" class="box-flex nav-list active">
+                <i class="nav-box i-user"></i><span>{$custom}中心</span>
+            </a>
+            {elseif $community}
+            <a href="{url('community/index/index')}" class="box-flex nav-list active">
+                <i class="nav-box i-user"></i><span>社区</span>
+            </a>
+            {else}
+            <a href="{url('user/index/index')}" class="box-flex nav-list active" style="color: #595959;">
+                <i class="nav-box i-user" style="background-position: -8.38rem 0" ></i><span>我</span>
+            </a>
+            {/if}
+        </footer>
+    </div>
+    <div class="ding" style="width: 100%;height: 200px;"></div>    
 </div>
 
 </body>
