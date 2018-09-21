@@ -88,7 +88,7 @@
                             <%/each%>
                         </ul>
                         <span class="t-jiantou">
-                        	本次出价：<%order.sellers_fee%>
+                        	本次出价：<%order.sellers_fee%>元 
                             <span class="f-c-a-count">共拍下<%order.order_goods_num%>件</span><i class="iconfont icon-jiantou tf-180"></i>
                         </span>
                     </div>
@@ -108,7 +108,7 @@
                               <% each order.sell_data as val %>
                                 <% if val.status == 0 %>
                                      <a  href="{url('user/userbuy/paipaibuy')}&ppj_id=<%val.ppj_id%>&ppj_no=<%val.ppj_no%>&sell=<%order.sell_user_data%>">待付款</a>   
-                                <%else%>
+                                <%else if val.status != 1 && val.status != 2%>
                                      <a  href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">匹配订单</a>
                                 <%/if%>
                                <%/each%>

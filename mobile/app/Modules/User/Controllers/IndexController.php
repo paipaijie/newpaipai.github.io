@@ -36,48 +36,60 @@ public function actionPaipaibuy()
 		//查询卖家是否有销售券
 		$sql_quan = "select * from dsc_paipai_seller where user_id = {$user_id} and goods_id = {$goods_id}";		
 		$result = $GLOBALS['db']->query($sql_quan);
+		
         if(empty($result[0])){
-        	echo json_encode(array('re'=>1));
-        }else{
+        	echo json_encode(array('re'=>1)); exit;
+        }
+		else{
+			
           	foreach($result as $k => $v){          		
 				//判断是否有可用的销售券
 				if($v['usestaus'] == 0){
-					if($v['ppj_no'] == 0 || $v['ppj_no'] == $ppj_no){
+					if($v['ppj_no'] == 0 || $v['ppj_no'] >= $ppj_no){
 						//获取价格最大的数据；
-						$sql1  = "SELECT * FROM dsc_paipai_goods_bid_user WHERE ppj_id = {$ppj_id} and ppj_no = {$ppj_no}";
+						$sql1  = "SELECT * FROM dsc_paipai_goods_bid_user WHERE ppj_id = {$ppj_id} and ppj_no = {$ppj_no} and is_status= 2";
 						$r = $GLOBALS['db']->getAll($sql1);
-						$max_price = 0;
-						foreach($r as $key=>$val){
-							$max_price = max($max_price,$val['bid_price']);
-							//$min_bid_time = min($min_bid_time,$val['bid_time']);
-						}
-				        
-						//获取价格最大但是时间最早的	
-						$sql = "SELECT * FROM dsc_paipai_goods_bid_user WHERE bid_price={$max_price} and ppj_id = {$ppj_id} and ppj_no = {$ppj_no}";
-						$re = $GLOBALS['db']->getAll($sql);
-						foreach($re as $key=>$val){
-							//$max_price = max($max_price,$val['bid_price']);
-							$min_bid_time[] = $val['bid_time'];
-						}
-						$min_bid_time = min($min_bid_time);
 						
-						//获取所有条件符合的
-						$sql2 = "select * from dsc_paipai_goods_bid_user where bid_price={$max_price} and ppj_id = {$ppj_id} and ppj_no = {$ppj_no} and bid_time = {$min_bid_time}";
-						$res = $GLOBALS['db']->getRow($sql2);
-
-						
-						$this->groupbuyid = $ppj_id;
-						$group = paipai_buy_info($this->groupbuyid);
-						$price = ltrim($group['formated_cur_price'],'¥');
-
-						$sql3 = "insert into dsc_paipai_seller_ok (`user_id`,`buy_id`,`goods_id`,`ppj_id`,`ppj_no`,`sellers_fee`,`goods_nowprice`,`createtime`,`status`,`spm_id`) VALUES ({$res['user_id']},{$user_id},{$goods_id},{$ppj_id},{$ppj_no},{$max_price},{$price},{$time},0,{$res['spm_id']})";
-						$success = $GLOBALS['db']->query($sql3);	
-						$sql5 = "update dsc_paipai_seller set usestaus = 1 where seller_id = {$v['seller_id']}";
-						$GLOBALS['db']->query($sql5);					
-						if($success > 0){
-							echo json_encode(array('re'=>4));				
+						if(empty($r)){
+							echo json_encode(array('re'=>8));
 						}else{
-							echo json_encode(array('re'=>6));				
+							$max_price = 0;
+							foreach($r as $key=>$val){
+								$max_price = max($max_price,$val['bid_price']);
+								//$min_bid_time = min($min_bid_time,$val['bid_time']);
+							}
+							
+							//获取价格最大但是时间最早的	
+							$sql = "SELECT * FROM dsc_paipai_goods_bid_user WHERE bid_price={$max_price} and ppj_id = {$ppj_id} and ppj_no = {$ppj_no}";
+							$re = $GLOBALS['db']->getAll($sql);
+							
+							foreach($re as $key=>$val){
+								$min_bid_time[] = $val['bid_time'];
+							}
+							$min_bid_time = min($min_bid_time);
+							
+							//获取所有条件符合的
+							$sql2 = "select * from dsc_paipai_goods_bid_user where bid_price={$max_price} and ppj_id = {$ppj_id} and ppj_no = {$ppj_no} and bid_time = {$min_bid_time}";
+							$res = $GLOBALS['db']->getRow($sql2);
+                            
+							
+							$this->groupbuyid = $ppj_id;
+							$group = paipai_buy_info($this->groupbuyid);
+							$price = ltrim($group['formated_cur_price'],'¥');
+
+							$sqls = "INSERT INTO dsc_paipai_goods_sellers (`user_id`,`ppj_id`,`ppj_no`,`seller_min_fee`,`seller_max_fee`,`ls_ok`,`ls_staus`,`createtime`) VALUES ({$user_id},{$ppj_id},{$ppj_no},{$max_price},0,1,0,{$time})";
+
+							$GLOBALS['db']->query($sqls);
+							
+							$sql3 = "insert into dsc_paipai_seller_ok (`user_id`,`buy_id`,`goods_id`,`ppj_id`,`ppj_no`,`sellers_fee`,`goods_nowprice`,`createtime`,`status`,`spm_id`) VALUES ({$user_id},{$res['user_id']},{$goods_id},{$ppj_id},{$ppj_no},{$max_price},{$price},{$time},0,{$res['spm_id']})";
+							$success = $GLOBALS['db']->query($sql3);	
+							$sql5 = "update dsc_paipai_seller set usestaus = 1 where seller_id = {$v['seller_id']}";
+							$GLOBALS['db']->query($sql5);					
+							if($success > 0){
+								echo json_encode(array('re'=>4));				
+							}else{
+								echo json_encode(array('re'=>6));				
+							}
 						}
 					}else{
 						echo json_encode(array('re'=>6));	
@@ -86,7 +98,7 @@ public function actionPaipaibuy()
 					echo json_encode(array('re'=>3));	
 				}
 			}
-        }
+       }
 
 		
 		

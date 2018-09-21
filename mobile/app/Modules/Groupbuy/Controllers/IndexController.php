@@ -70,6 +70,15 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				
 			}
 			
+			foreach($group as $key=>$val){
+				$arr[] = $val['formated_cur_price'];
+			}
+	
+			foreach($arr as $k=>$v){
+				//var_dump($v);
+				$gb_list[$k]['formated_cur_price'] = $v;
+			}
+
 			foreach($res as $k=>$v){
 				foreach($v as $a => $b){
 					$c[] = $b['ppjs_id'];
@@ -79,15 +88,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			foreach($c as $d => $e){
 				$gb_list[$k]['ppjs_id'] = $e;
 			}
-			foreach($group as $key=>$val){
-				$arr[] = $val['formated_cur_price'];
-			}
-	
-			foreach($arr as $k=>$v){
-				//var_dump($v);
-				$gb_list[$k]['formated_cur_price'] = $v;
-			}
-			
+			// var_dump($gb_list[$k]['ppjs_id']);
 			$this->assign('att',$gb_list);
 			$this->display();
 	}
@@ -164,116 +165,109 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 	//参加报名的方法
 	public function actionBaoming(){
 
-		$id = $_SESSION['user_id'];
+		$user_id = $_SESSION['user_id'];
 		$ppj_id = $_POST['ppj_id'];
 		$ppj_no = $_POST['ppj_no'];
-		//$ppj_id = 143;
-		//$ppj_no = 2;
+
 		$seller_max_fee = $_POST['max'];
-		//$seller_max_fee = 10;
 		$seller_min_fee = $_POST['min'];
-		//$seller_min_fee = 1;
-		//echo json_encode(array('a'=>$seller_max_fee,'b'=>$seller_min_fee));
-		
 		$time = time();
+		
+		if(empty($seller_max_fee) && empty($seller_min_fee)){
+			echo json_encode(array('re'=>4)); exit;   //没有优惠券	
+		}
 
 		//查询拍拍街的期数和商品id
 		$sql1 = "select * from dsc_paipai_list where ppj_id = {$ppj_id} and ppj_no = {$ppj_no}";
-		$date = $GLOBALS['db']->getAll($sql1);
-		//var_dump($date);
-		foreach($date as $key => $val){
-			//var_dump($val);
-			//查询有没有匹配的优惠券
-			$sql = "select * from dsc_paipai_seller where goods_id = {$val['goods_id']} and user_id = {$id} and usestaus = 0";
-			$result = $GLOBALS['db']->getAll($sql);
-			//var_dump($result);
-			//var_dump(!empty($result));
+		$date = $GLOBALS['db']->getRow($sql1);
+       
+		//查询有没有匹配的优惠券
+		$sql2 = "select * from dsc_paipai_seller where goods_id = {$date['goods_id']} and user_id = {$user_id} and usestaus = 0";
+		$result = $GLOBALS['db']->getAll($sql2);       
 			
-			//判断是否有拍拍券
-			if($result){
-				foreach($result as $ke=>$va){
-					//var_dump($va);
-					if($va['ppj_no'] == 0 && $va['endtime'] > $time){//随意使用
-						//查询goods商品的最低价格
-						$sql2 = "select * from dsc_goods where goods_id = {$val['goods_id']} ";
-						$result1 = $GLOBALS['db']->getAll($sql2);
-						//var_dump($result1);
-						foreach($result1 as $k => $v){
-							//var_dump($v);
-							//判断价格是否合理
-							if($seller_min_fee >= $v['cost_price'] && $seller_max_fee <= $v['shop_price']){
-									$arr['ppj_id']=$ppj_id;
-									$arr['user_id']=$id;
-									$arr['ppj_no']=$ppj_no;
-									$arr['seller_max_fee']=$seller_max_fee;
-									$arr['seller_min_fee']=$seller_min_fee;
-									$arr['ls_ok']=0;
-									$arr['ls_staus']=0;
-									$arr['createtime']=$time;
-									$arr['baoming'] = 0;
-									//插入报名信息
-									$sqls = "INSERT INTO dsc_paipai_goods_sellers (`user_id`,`ppj_id`,`ppj_no`,`seller_min_fee`,`seller_max_fee`,`ls_ok`,`ls_staus`,`createtime`,`baoming`) VALUES ({$arr['user_id']},{$arr['ppj_id']},{$arr['ppj_no']},{$arr['seller_min_fee']},{$arr['seller_max_fee']},{$arr['ls_ok']},{$arr['ls_staus']},{$arr['createtime']},{$arr['baoming']})";
-									//var_dump($sqls);
-									$success = $GLOBALS['db']->query($sqls);
-									$sql5 = "update dsc_paipai_seller set usestaus = 1 where seller_id = {$va['seller_id']}";
-									$GLOBALS['db']->query($sql5);
-									//var_dump($sql5);
-									if($success > 0){
-										
-										echo 1;
-									}else{
-										echo 2;
-									}
-							}else{
-								echo 4;
-								exit;
-							}
-						}
-					}else if($va['ppj_no'] >= $ppj_no && $va['endtime'] > $time){
-						//查询goods商品的最低价格
-						$sql3 = "select * from dsc_goods where goods_id = {$val['goods_id']} ";
-						$result3 = $GLOBALS['db']->query($sql3);
-						foreach($result3 as $a => $b){
-							//判断价格是否合理
-							if($seller_min_fee > $va['cost_price'] && $seller_max_fee < va['shop_price']){
-									$arr['ppj_id']=$ppj_id;
-									$arr['user_id']=$id;
-									$arr['ppj_no']=$date[0]['ppj_no'];
-									$arr['seller_max_fee']=$seller_max_fee;
-									$arr['seller_min_fee']=$seller_min_fee;
-									$arr['ls_ok']=0;
-									$arr['ls_staus']=0;
-									$arr['createtime']=$time;
-									//插入报名信息
-									$sql5 = "INSERT INTO dsc_paipai_goods_sellers (`user_id`,`ppj_id`,`ppj_no`,`seller_min_fee`,`seller_max_fee`,`ls_ok`,`ls_staus`,`createtime`,`baoming`) VALUES ({$arr['user_id']},{$arr['ppj_id']},{$arr['ppj_no']},{$arr['seller_min_fee']},{$arr['seller_min_fee']},{$arr['ls_ok']},{$arr['ls_staus']},{$arr['createtime']},{$arr['baoming']})";
-									$success = $GLOBALS['db']->query($sql5);
-									$sqls = "update dsc_paipai_seller set usestaus = 1 where seller_id = {$va['seller_id']}";
-									$GLOBALS['db']->query($sqls);
-									if($success > 0){
-										
-										echo 1;
-									}else{
-										echo 2;
-									}
-							}else{
-								echo 4;
-								exit;
-							}
-						}
-					}else{
-						echo 5;
-					}
-				}
+		if(empty($result)){
+			echo json_encode(array('re'=>3)); exit;   //没有优惠券	
+		}
+        
+		//查询goods商品的最低价格
+		$sql3 = "select * from dsc_goods where goods_id = {$date['goods_id']} ";
+		$result3 = $GLOBALS['db']->getRow($sql3);
+		
+	    //判断价格是否合理
+		if($seller_min_fee > $seller_max_fee){
+			echo json_encode(array('re'=>4)); exit;   //价格不价格合理 
+		}
+		if($seller_min_fee < $result3['cost_price'] || $seller_min_fee > $result3['shop_price'] ){
+			echo json_encode(array('re'=>4)); exit;   //价格不价格合理 
+		}
+		if($seller_max_fee < $result3['cost_price'] || $seller_max_fee > $result3['shop_price']){
+			echo json_encode(array('re'=>4)); exit;   //价格不价格合理 
+		}
+		
+				
+		foreach($result as $ke=>$va){
+			
+			if($va['ppj_no'] == 0 && $va['endtime'] > $time){// 期数为0 且结束时间大于当前时间 为可用
+				$success_data=1;
+			}else if($va['ppj_no'] >= $ppj_no && $va['endtime'] > $time){  //购买赠送期数大于当前期 且结束时间大于当前时间 为可用
+				$success_data=1;
 			}else{
-				echo 3;
-				exit;
+				echo json_encode(array('re'=>5)); exit;  //期数不可用
 			}
+			if($success_data ==1 ){
+								
+                $gs_ins_data=array(
+				    'ppj_id'=>$ppj_id,
+					'user_id'=>$user_id,
+					'ppj_no'=>$date['ppj_no'],
+					'seller_max_fee'=>$seller_max_fee,
+					'seller_min_fee'=>$seller_min_fee,
+					'ls_ok'=>0,
+					'ls_staus'=>0,
+					'createtime'=>$time
+				);	
+				
+                //插入报名信息				
+                $ins_suc =$GLOBALS['db']->autoExecute('dsc_paipai_goods_sellers', $gs_ins_data, 'INSERT');
+				if($ins_suc){
+					$sqls = "update dsc_paipai_seller set usestaus = 1 where seller_id = {$va['seller_id']}";
+				    $GLOBALS['db']->query($sqls);
+					echo json_encode(array('re'=>1)); exit;
+				}else{
+					echo json_encode(array('re'=>2)); exit;
+				}
+
+			}
+		}
+
+	}
+	
+    //买家出价
+	public function actionChujia(){
+		$id = $_SESSION['user_id'];
+		$ppj_id = $_POST['ppj_id'];
+		$ppj_no = $_POST['ppj_no'];
+		$max = $_POST['max'];
+		$shop_price = $_POST['shop_price'];
+		
+		if($shop_price < $max || $max==0){
+			echo json_encode(array('re'=>3));  exit;
+		}
+		$time = time();
+		$spm_sql="SELECT * FROM dsc_paipai_seller_pay_margin WHERE ppj_id = {$ppj_id} and user_id = {$id} and ppj_no = {$ppj_no} ORDER BY spm_id DESC LIMIT 1";
+		$spm_data = $GLOBALS['db']->getRow($spm_sql);
+	    
+		$sql = "UPDATE dsc_paipai_goods_bid_user SET bid_price = {$max},bid_time = {$time} where ppj_id = {$ppj_id} and user_id = {$id} and ppj_no = {$ppj_no} and is_status =2 AND spm_id={$spm_data['spm_id']}";
+		$success = $GLOBALS['db']->query($sql);
+		if($success > 0){
+			echo json_encode(array('re'=>1));
+		}else{
+			echo json_encode(array('re'=>2));			
 		}
 	}
 	
-
 	
-	//重新出价的方法
+	//拍拍小店卖家重新出价
 	public function actionNewprice(){
 
 		$id = $_SESSION['user_id'];
@@ -297,9 +291,9 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$sql1 = "UPDATE dsc_paipai_goods_sellers SET seller_max_fee = {$arr['seller_max_fee']},seller_min_fee = {$arr['seller_min_fee']} WHERE ppj_id = {$arr['ppj_id']} and user_id = {$arr['user_id']} and ppj_no = {$arr['ppj_no']}";
 		$success = $GLOBALS['db']->query($sql1);
 		if($success>0){
-			echo 1;
+			echo json_encode(array('re'=>1));
 		}else{
-			echo 2;
+			echo json_encode(array('re'=>2));
 		}
 	}
 
@@ -537,14 +531,15 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		// var_dump($goods['goods_desc']);
 		$sql = "select * from dsc_paipai_list where ppj_id = {$_GET['id']}";
 		$re = $GLOBALS['db']->getRow($sql);
+		$this->assign('re', $re);
 		$sqla = "select pay_status from dsc_order_info where user_id = {$_SESSION['user_id']} and ppj_id={$re['ppj_id']} and ppj_no ={$re['ppj_no']} and pay_status = '10' and extension_code = 'paipai_buy'";
 		$rea = $GLOBALS['db']->getRow($sqla);
 		$goods['pay_status'] = $rea['pay_status'];
 
 		//查询当前用户是否购买一次以及第一次购买
-		// $musql="SELECT * FROM (dsc_order_info AS o LEFT JOIN dsc_paipai_seller_pay_margin AS pm) "
-		
-		//var_dump($goods);
+		$musql="SELECT * FROM dsc_paipai_seller_ok WHERE buy_id = {$_SESSION['user_id']} and ppj_id={$re['ppj_id']} and ppj_no ={$re['ppj_no']} ORDER BY ok_id LIMIT 1 ";
+		$ok_data = $GLOBALS['db']->getRow($musql);
+		$this->assign('ok_data', $ok_data);
 		
 		$this->assign('goods', $goods);
 

@@ -76,7 +76,7 @@
 										<p class="p-price"><span class="t-first">当前价格 {$group_buy.formated_cur_price}</span> <em class="em-promotion">第{$group_buy.ppj_no}期</em> </p>
 										
 										<p class="p-market">商城价 <del>{$goods.shop_price}</del> &nbsp;&nbsp;&nbsp;&nbsp;市场价 <del>{$goods.market_price}</del></p>
-									
+									    <input type="hidden" id="shop_price" name="shop_price" value="{$goods.shop_price}">
 										
 										<!-- {if $group_buy.ppj_margin_fee > 0} 保证金额-->
 										<p class="p-market">保证金 {$group_buy.formated_deposit}</p>
@@ -84,7 +84,7 @@
 
 										<p class=" dis-box g-p-tthree m-top06">
 											<span class="box-flex text-left">销量 {$pm_data.count}</span>
-											<span class="box-flex text-center">库存 {$pl_data.goods_count}</span>
+											<span class="box-flex text-center">库存 {$re.goods_count}</span>
 										</p>
 										
 									</section>
@@ -879,38 +879,56 @@
                 btn:['确认','取消'],
                 yes: function (index, layero) {
                     var max = $("#seller_max_fee").val();
-					//alert(max);exit;
+					var shopp = $("#shop_price").val();
                     $.ajax({
                         url:"{url('groupbuy/index/chujia')}",
                         type:"post",
-                        data:{"max":max,"ppj_id":ppj_id,'ppj_no':ppj_no},
-                        dataType:'json',
-                        success:function(success){
-                            if(success == 1){
+                        data:{"ppj_id":ppj_id,"ppj_no":ppj_no,"max":max,"shop_price":shopp},
+                        dataType:"JSON",
+                        success:function(y){
+						
+                            if(y.re == 1){
                                 layer.open({
                                     content: '出价成功'
                                     ,skin: 'msg'
                                     ,time: 2 //2秒后自动关闭
                                 });
-                                 window.location.href="{url('user/order/indexpaipai')}";
-
-                            }else if(success == 2){
+                                layer.close(index);
+                            }else if(y.re == 2){
                                 layer.open({
-                                    content: '您出价失败'
+                                    content: '出价失败'
                                     ,skin: 'msg'
                                     ,time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
                             }
+							else if(y.re == 3){
+                                layer.open({
+                                    content: '您出的价格不能大于商城价或者为0'
+                                    ,skin: 'msg'
+                                    ,time: 2 //2秒后自动关闭
+                                });
+                                layer.close(index);
+                            }
+//							else if(y.re == 4){
+//                              layer.open({
+//                                  content: '出售成功，买家支付收货后您将获收益！'
+//                                  ,skin: 'msg'
+//                                  ,time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          }
                         },
-                        error:function(e){
+                        error:function(success){
+						if(success == 3){
                             layer.open({
-                                content: '出价失败'
+                                content: '您没有优惠券'
                                 ,skin: 'msg'
                                 ,time: 2 //2秒后自动关闭
                             });
                             layer.close(index);
                         }
+						}
                     });
                 },
                 btn2:function (index,layero) {
