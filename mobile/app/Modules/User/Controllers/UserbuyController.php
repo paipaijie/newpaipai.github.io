@@ -247,6 +247,10 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
             //匹配成功数据加入卖家数据表
             $sell_ok_time=time();
             $slleer_ok_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_ok'),$sell_ok_data,'INSERT');   
+
+            //更改卖家出价状态
+            $sql4="UPDATE dsc_paipai_goods_sellers SET ls_ok=0 WHERE user_id={$sell_news['user_id']} AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}";
+            $GLOBALS['db']->query($sql4);
         
         }else{
             ecs_header('Location: ' . url('user/userbuy/buyerror'));
@@ -333,8 +337,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         //单个买方出价信息
   		$user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id={$ppj_id} AND ppj_no={$ppj_no}"." AND user_id=".$user_id." AND is_status=2";	
   	    $user_bid=$GLOBALS['db']->getRow($user_sql);
-			
-		
+
         if($user_bid['bid_price'] < $goods_data['shop_price'] && $user_bid['bid_price'] > $goods_data['ppj_buy_fee']  ){
             //所有买方出价信息
 			$all_user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user').$where." AND user_id !=".$user_id." AND is_status=2 ";
@@ -402,7 +405,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
             }
 
         }else{
-                echo json_encode(array('match_bid'=>2));  //出价失败
+                echo json_encode(array('match_bid'=>4));  //出价失败
         }
         
         

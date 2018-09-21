@@ -117,7 +117,8 @@ function alertSet(e) {
 				"pjn":ppj_no
 			},
 			dataType: "JSON",
-			success: function(re){		    
+			success: function(re){	
+
 				if(t == 0){		
                     var sell=re.sell;			
                     clearInterval(interval);				
@@ -161,8 +162,8 @@ function alertSet(e) {
 				}else{
 					t -= 1,
 			        document.getElementById("js-sec-text").innerHTML = t;
-			        var e = Math.round(t / 10 * 723);
-			        n.style.strokeDashoffset = e - 723
+			        var e = Math.round(t / 10 * 703);
+			        n.style.strokeDashoffset = e - 703
 		        }	
 			}
 		});
