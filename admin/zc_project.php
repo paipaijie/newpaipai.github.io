@@ -224,7 +224,7 @@ else {
 		}
 		else {
 			$links[0]['text'] = $GLOBALS['_LANG']['go_back'];
-			$links[0]['href'] = 'javascript:history.go(-1)';
+			$links[0]['href'] = 'javascript:window.location.replace(document.referrer)';
 			sys_msg($_LANG['add_failure'], 1, $links);
 		}
 	}
@@ -267,7 +267,7 @@ else {
 		}
 		else {
 			$links[0]['text'] = $GLOBALS['_LANG']['go_back'];
-			$links[0]['href'] = 'javascript:history.go(-1)';
+			$links[0]['href'] = 'javascript:window.location.replace(document.referrer)';
 			sys_msg($_LANG['edit_fail'], 1, $links);
 		}
 	}
@@ -279,7 +279,7 @@ else {
 
 		if ($res) {
 			$links[0]['text'] = $GLOBALS['_LANG']['go_back'];
-			$links[0]['href'] = 'javascript:history.go(-1)';
+			$links[0]['href'] = 'javascript:window.location.replace(document.referrer)';
 			sys_msg($_LANG['zc_project_del_fail'], 1, $links);
 		}
 		else {
@@ -373,7 +373,7 @@ else {
 			}
 			else {
 				$links[0]['text'] = $GLOBALS['_LANG']['go_back'];
-				$links[0]['href'] = 'javascript:history.go(-1)';
+				$links[0]['href'] = 'javascript:window.location.replace(document.referrer)';
 				sys_msg($_LANG['add_failure'], 1, $links);
 			}
 		}
@@ -420,7 +420,7 @@ else {
 			}
 			else {
 				$links[0]['text'] = $GLOBALS['_LANG']['go_back'];
-				$links[0]['href'] = 'javascript:history.go(-1)';
+				$links[0]['href'] = 'javascript:window.location.replace(document.referrer)';
 				sys_msg($_LANG['edit_fail'], 1, $links);
 			}
 		}
@@ -433,7 +433,7 @@ else {
 
 			if ($res) {
 				$links[0]['text'] = $GLOBALS['_LANG']['go_back'];
-				$links[0]['href'] = 'javascript:history.go(-1)';
+				$links[0]['href'] = 'javascript:window.location.replace(document.referrer)';
 				sys_msg($_LANG['zc_goods_del_fail'], 1, $links);
 			}
 			else {
@@ -525,7 +525,7 @@ else {
 				}
 				else {
 					$links[0]['text'] = $GLOBALS['_LANG']['go_back'];
-					$links[0]['href'] = 'javascript:history.go(-1)';
+					$links[0]['href'] = 'javascript:window.location.replace(document.referrer)';
 					sys_msg($_LANG['add_failure'], 1, $links);
 				}
 			}
@@ -571,7 +571,7 @@ else {
 				}
 				else {
 					$links[0]['text'] = $GLOBALS['_LANG']['go_back'];
-					$links[0]['href'] = 'javascript:history.go(-1)';
+					$links[0]['href'] = 'javascript:window.location.replace(document.referrer)';
 					sys_msg($_LANG['edit_fail'], 1, $links);
 				}
 			}

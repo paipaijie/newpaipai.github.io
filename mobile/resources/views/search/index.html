@@ -4,7 +4,7 @@
     <section class="search common-search">
         <form action="{url('category/index/search')}" method="post" id="search-form">
         <div class="text-all dis-box j-text-all text-all-back">
-            <a class="a-icon-back"  href="javascript:history.go(-1);"><i class="iconfont icon-back"></i></a>
+            <a class="a-icon-back"  href="javascript:window.location.replace(document.referrer);"><i class="iconfont icon-back"></i></a>
             <div class="box-flex input-text">
                 <label class="search-check j-search-check" data="2">
                     <!-- <span>商品</span><i class="iconfont icon-xiajiantou"></i> -->
@@ -62,11 +62,11 @@
         </div>
     </section>
     <div class="other-login search-footer">
-            <h4 class="title-hrbg"><a href="javascript:history.go(-1);"><span class="col-6">点击关闭搜索</span></a>
+            <h4 class="title-hrbg"><a href="javascript:window.location.replace(document.referrer);"><span class="col-6">点击关闭搜索</span></a>
                 <hr>
             </h4>
     </div>
-    <!--<a href="javascript:history.go(-1);">
+    <!--<a href="javascript:window.location.replace(document.referrer);">
      <footer class="close-search">
       关闭
     </footer>

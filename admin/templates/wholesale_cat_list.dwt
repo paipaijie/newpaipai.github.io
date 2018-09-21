@@ -28,7 +28,7 @@
 						<a href="{$action_link.href}"><div class="fbutton"><div class="add" title="{$action_link.text}"><span><i class="icon icon-plus"></i>{$action_link.text}</span></div></div></a>
 					</div>
 					{if $parent_id > 0}
-                    	<a href="javascript:history.go(-1)"><div class="fbutton"><div class="add" title="返回上一级"><span><i class="icon icon-reply"></i>返回上一级</span></div></div></a>
+                    	<a href="javascript:window.location.replace(document.referrer)"><div class="fbutton"><div class="add" title="返回上一级"><span><i class="icon icon-reply"></i>返回上一级</span></div></div></a>
 					{/if}
                 </div>
                 <div class="common-content">
