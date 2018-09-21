@@ -2978,7 +2978,7 @@
         <div class="user-mod">
             <div class="user-title">
                 <h2>{$lang.service_note}</h2>
-                <a href="javascript:history.go(-1);" class="more">{$lang.back}</a>
+                <a href="javascript:window.location.replace(document.referrer);" class="more">{$lang.back}</a>
             </div>
             <table class="user-table user-table-detail-goods">
                 <colgroup>

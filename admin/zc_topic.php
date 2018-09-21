@@ -109,7 +109,7 @@ else if ($_REQUEST['act'] == 'del') {
 
 	if (0 < $child_topic_num) {
 		$links[0]['text'] = $GLOBALS['_LANG']['go_back'];
-		$links[0]['href'] = 'javascript:history.go(-1)';
+		$links[0]['href'] = 'javascript:window.location.replace(document.referrer)';
 		sys_msg($_LANG['zc_child_exist'], 0, $links);
 		exit();
 	}

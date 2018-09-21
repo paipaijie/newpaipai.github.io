@@ -34,7 +34,7 @@ var defaultUrl = "{$default_url}";
 {literal}
 onload = function()
 {
-  if (defaultUrl == 'javascript:history.go(-1)' && window.history.length == 0)
+  if (defaultUrl == 'javascript:window.location.replace(document.referrer)' && window.history.length == 0)
   {
     document.getElementById('redirectionMsg').innerHTML = '';
     return;

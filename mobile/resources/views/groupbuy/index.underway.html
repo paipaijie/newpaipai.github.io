@@ -9,6 +9,9 @@
     .flow-accessories .product-list .product-div .a-accessories-clear i{font-size:1.8rem;}
 </style>
 
+
+		
+		
 <div class="store_info" style="margin-top: 40px">
     {if $att != ''}
     <div class="flow-accessories blur-div">
@@ -139,6 +142,7 @@
                         data: { "ppd": ppj_id, "ppn": ppj_no, "g_id": goods_id },
                         dataType: "JSON",
                         success: function (y) {
+						console.log(y.re);
                             if (y.re == 1) {
                                 layer.open({
                                     content: '没有券'

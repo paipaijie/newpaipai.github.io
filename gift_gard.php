@@ -152,7 +152,7 @@ if ($_REQUEST['act'] == 'check_gift') {
 
 	if (isset($_POST['captcha'])) {
 		if (empty($captcha_str)) {
-			show_message($_LANG['cmt_lang']['captcha_not_null'], $_LANG['relogin_lnk'], 'javascript:history.go(-1);', 'error');
+			show_message($_LANG['cmt_lang']['captcha_not_null'], $_LANG['relogin_lnk'], 'javascript:window.location.replace(document.referrer);', 'error');
 		}
 
 		if ($captcha_str & CAPTCHA_LOGIN && (!($captcha & CAPTCHA_LOGIN_FAIL) || $captcha_str & CAPTCHA_LOGIN_FAIL && 2 < $_SESSION['login_fail']) && 0 < gd_version()) {
@@ -160,7 +160,7 @@ if ($_REQUEST['act'] == 'check_gift') {
 			$captcha_code = $verify->check($captcha_str, 'captcha_login');
 
 			if (!$captcha_code) {
-				show_message($_LANG['invalid_captcha'], $_LANG['relogin_lnk'], 'javascript:history.go(-1);', 'error');
+				show_message($_LANG['invalid_captcha'], $_LANG['relogin_lnk'], 'javascript:window.location.replace(document.referrer);', 'error');
 			}
 		}
 	}

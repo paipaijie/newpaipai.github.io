@@ -12,7 +12,7 @@
 </head>
 <body>
 	<header class="head-menu bg-black color-f">
-		<a href="javascript:history.go(-1)" class="fl"><span class="fa fa-angle-left">&nbsp;返回</span></a>
+		<a href="javascript:window.location.replace(document.referrer)" class="fl"><span class="fa fa-angle-left">&nbsp;返回</span></a>
 		<h3 class="box-flex color-f">消息列表</h3>
 		<a href="{url('index', array('uid'=>$user_id))}" class="fr"><span class="fa fa-ellipsis-h"></span></a>
 	</header>

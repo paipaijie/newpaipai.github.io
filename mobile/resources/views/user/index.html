@@ -1,4 +1,5 @@
 {include file="page_header"}
+
 <style type="text/css" media="all">
 	.section-swiper-box{background:#FCF3CD;position:relative;top: 0;width: 100%;left: 0;right: 0;}
 	.section-swiper-box a{color:#EDA407;}
@@ -6,6 +7,13 @@
 	.section-swiper-two {width:auto;height:auto;font-size:12px;float:left;overflow:hidden;}
 	.section-swiper-box .icon-guanbi2{position:absolute;right:1.1rem; font-size:1.6rem;top:50%;margin-top:-.7rem;color:#EDA407;}
 </style>
+<!--
+	作者：xul@chuove.com
+	时间：2018-09-21
+	描述：
+
+-->
+	<script> window.location.Reload()</script>
 {if $auction}
 <section class="section-swiper-box">
 	<div class="section-swiper-one" id="section-swiper-one" onmouseover="clearInterval(timer)" onmouseout="timer=setInterval(mar,30)">
@@ -23,7 +31,9 @@
 	</div>
 	<i class="iconfont icon-guanbi2" ></i>
 </section>
+
 {/if}
+
 <div style='top:0;' class="con mb-7">
 	<header  class="user-header-box position-rel">
 		<div  class="padding-all">
@@ -336,6 +346,7 @@
 	</nav>
 
 </div>
+
 <footer class="footer-nav dis-box">
 	<a href="{url('/')}" class="box-flex nav-list">
 		<i class="nav-box i-home"></i><span>首页</span>
@@ -396,6 +407,7 @@
         });
     })
 </script>
+
 <script language="javascript" type="text/javascript">
 	var s,s2,s3,s4,timer;
 	function init(){

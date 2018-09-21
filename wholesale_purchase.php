@@ -154,7 +154,7 @@ elseif ($action == 'do_release') {
         }
         show_message('求购单发布成功', '返回首页', 'wholesale_purchase.php', 'info');
     } else {
-        show_message('求购单发布失败', '返回上页', 'javascript:history.go(-1);', 'info');
+        show_message('求购单发布失败', '返回上页', 'javascript:window.location.replace(document.referrer);', 'info');
     }
 }
 

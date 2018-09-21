@@ -662,7 +662,7 @@
                         {if $order.extension_code eq ''}
                         <a href="flow.php" class="extra-r">{$lang.back_cart}</a>
                         {else}
-                        <a href="javascript:history.go(-1);" class="extra-r">{$lang.back_up_page}</a>
+                        <a href="javascript:window.location.replace(document.referrer);" class="extra-r">{$lang.back_up_page}</a>
                         {/if}
                     </div>
                     <div class="ck-step-cont">

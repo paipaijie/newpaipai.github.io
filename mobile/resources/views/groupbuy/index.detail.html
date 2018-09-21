@@ -15,7 +15,7 @@
     {include file="jssdk"}
 </head>
 
-<body class="goods-body">
+<body class="goods-body"> 
 	
 <p style="text-align:right; display:none;">{C('shop.stats_code')}</p>
 
@@ -30,7 +30,7 @@
                 <div class="swiper-wrapper goods_detail">
                     <div class="swiper-slide goods-swiper-slide">
 					<div id="fanhui" class="text-all dis-box j-text-all text-all-back">
-            <a class="a-icon-back"  href="javascript:history.go(-1);"><i class="iconfont icon-back"></i></a>
+            <a class="a-icon-back"  href="javascript:window.location.replace(document.referrer);"><i class="iconfont icon-back"></i></a>
             <div class="box-flex input-text">
                 <label class="search-check j-search-check" data="2">
                     <!-- <span>商品</span><i class="iconfont icon-xiajiantou"></i> -->
@@ -42,11 +42,11 @@
                                 <div>
                                 	
                                     <div class="goods-photo goods-photo-images j-show-goods-img">
-                                    	<marquee class="group-price-box" id="affiche" align="left" behavior="scroll"  direction="up" hspace="50" vspace="20" loop="-1" scrollamount="1" scrolldelay="100" onMouseOut="this.start()" onMouseOver="this.stop()">
-                                    		 {foreach $price_list as $list}
-                                                  {substr($list.user_name,0,3)}****{substr($list.user_name,-3)}出价 <span style="color:red">{$list.bid_price}</span> 元<br/>
-                                    		 {/foreach}
-                                        </marquee>
+                                    	<!-- <marquee class="group-price-box" id="affiche" align="left" behavior="scroll"  direction="up" hspace="50" vspace="20" loop="-1" scrollamount="1" scrolldelay="100" onMouseOut="this.start()" onMouseOver="this.stop()"> -->
+                                    		 <!-- {foreach $price_list as $list} -->
+                                                  <!-- {substr($list.user_name,0,3)}****{substr($list.user_name,-3)}出价 <span style="color:red">{$list.bid_price}</span> 元<br/> -->
+                                    		 <!-- {/foreach} -->
+                                        <!-- </marquee> -->
                                     	<div id="fnTimeCountDown" class="group-time-box" data-end="{$group_buy.formated_end_date}">
 											<span class="day">00</span>天
 											<span class="hour">00</span>时

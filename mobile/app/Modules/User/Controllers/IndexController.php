@@ -86,16 +86,16 @@ public function actionPaipaibuy()
 							$sql5 = "update dsc_paipai_seller set usestaus = 1 where seller_id = {$v['seller_id']}";
 							$GLOBALS['db']->query($sql5);					
 							if($success > 0){
-								echo json_encode(array('re'=>4));				
+								echo json_encode(array('re'=>4));	exit;			
 							}else{
-								echo json_encode(array('re'=>6));				
+								echo json_encode(array('re'=>6));exit;				
 							}
 						}
 					}else{
-						echo json_encode(array('re'=>6));	
+						echo json_encode(array('re'=>6));exit;	
 					}
 				}else{
-					echo json_encode(array('re'=>3));	
+					echo json_encode(array('re'=>3));exit;	
 				}
 			}
        }

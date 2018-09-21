@@ -8,7 +8,7 @@ a.a-sequence {width: 3rem; height:3rem;line-height: 3rem;}
 	<div class="category">
         <section class="search category-search common-search">
             <div class="text-all dis-box j-text-all text-all-back">
-                <a class="a-icon-back j-close-search" href="javascript:history.go(-1);"><i class="iconfont icon-back"></i></a>
+                <a class="a-icon-back j-close-search" href="javascript:window.location.replace(document.referrer);"><i class="iconfont icon-back"></i></a>
 
                 <div class="box-flex input-text n-input-text i-search-input">
                     <form action="{url('brand/index/nav', array('cat_id' => $cat_id))}" method="post" id="serach-brand">

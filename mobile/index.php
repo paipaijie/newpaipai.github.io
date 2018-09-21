@@ -7,7 +7,7 @@
  * @author   carson <wanganlin@ecmoban.com>
  */
 
-define('APP_DEBUG', true);
+define('APP_DEBUG', false);
 
 /*
 |--------------------------------------------------------------------------

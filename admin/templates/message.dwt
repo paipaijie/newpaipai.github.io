@@ -32,7 +32,7 @@ var seconds = 3;
 var defaultUrl = "{$default_url}";
 
 $(function(){
-	if(document.getElementById('redirectionMsg') && defaultUrl == 'javascript:history.go(-1)' && window.history.length == 0){
+	if(document.getElementById('redirectionMsg') && defaultUrl == 'javascript:window.location.replace(document.referrer)' && window.history.length == 0){
 		document.getElementById('redirectionMsg').innerHTML = '';
 		return;
 	}
