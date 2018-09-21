@@ -87,28 +87,39 @@
                                 <tr>
                                 {if $list_type eq 14 OR  $list_type eq 15}
                                     <th width="25%"><div class="tDiv">{$lang.order_sn}</div></th>
-                                    <th width="6%"><div class="tDiv">{$lang.goods_price}</div></th>
+                                    <th width="6%"><div class="tDiv">商品{$lang.goods_price}</div></th>
                                     <th width="5%"><div class="tDiv">{$lang.goods_number}</div></th>
                                     <th width="6%"><div class="tDiv">{$lang.goods_steps_name}</div></th>
                                     <th width="7%"><div class="tDiv">{$lang.user_name}</div></th>
                                     <th width="16%"><div class="tDiv">{$lang.consignee}</div></th>
-                                    <th width="12%"><div class="tDiv">{$lang.amount_label}</div></th>
+                                    <th width="12%"><div class="tDiv">支付金额</div></th>
+                                    <th width="8%"><div class="tDiv">匹配数据</div></th>
                                     <th width="6%"><div class="tDiv">{$lang.all_status}</div></th>
                                 {else}
-                                    <th width="4%" ><div class="tDiv">{$lang.ppj_sign_id}</div></th>
-                                    <th width="10%"><div class="tDiv">{$lang.ppj_user_name}</div></th>
-                                    <th width="10%"><div class="tDiv">{$lang.ppj_mobile_phone}</div></th>
-                                    <th width="10%"><div class="tDiv">{$lang.ppj_user_flag}</div></th>
+                                    <th width="3%" ><div class="tDiv">{$lang.ppj_sign_id}</div></th>
+                                    <th width="8%"><div class="tDiv">{$lang.ppj_user_name}</div></th>
+                                    <th width="8%"><div class="tDiv">{$lang.ppj_mobile_phone}</div></th>
+                                    <th width="8%"><div class="tDiv">{$lang.ppj_user_flag}</div></th> 
                                     {if $list_type eq 12}
-                                    <th width="10%"><div class="tDiv">{$lang.ppj_bid_no}</div></th>
+                                    <th width="15%"><div class="tDiv">拍拍活动名称</div></th>
+                                    <th width="5%"><div class="tDiv">活动期数</div></th>
+                                    <th width="8%"><div class="tDiv">出价金额</div></th>
+                                    <th width="8%"><div class="tDiv">是否成交</div></th>
                                     <th width="10%"><div class="tDiv">{$lang.ppj_bid_date}</div></th>
-                                    {elseif $list_type eq 13}    
+                                    {elseif $list_type eq 13}  
+                                    <th width="15%"><div class="tDiv">拍拍活动名称</div></th>
+                                    <th width="5%"><div class="tDiv">活动期数</div></th>  
                                     <th width="10%"><div class="tDiv">{$lang.ppj_margin_no}</div></th>
                                     <th width="10%"><div class="tDiv">{$lang.ppj_margin_pay_date}</div></th>
                                     <th width="10%"><div class="tDiv">{$lang.ppj_margin_status}</div></th>
                                     <th width="10%"><div class="tDiv">{$lang.ppj_margin_refund}</div></th>
                                     {else}
-                                    <th width="20%"><div class="tDiv">{$lang.ppj_sign_date}</div></th>
+                                    <th width="20%"><div class="tDiv">拍拍活动名称</div></th>
+                                    <th width="5%"><div class="tDiv">拍拍期数</div></th>
+                                    <th width="8%"><div class="tDiv">最低金额</div></th>
+                                    <th width="8%"><div class="tDiv">最高金额</div></th>
+                                    <th width="10%"><div class="tDiv">是否成交</div></th>
+                                    <th width="10%"><div class="tDiv">{$lang.ppj_sign_date}</div></th>
                                     {/if}         
                                 {/if}
                                     <th width="10%"><div class="tDiv">操作</div></th>                                
@@ -126,22 +137,33 @@
                                 <col width="7%">
                                 <col width="16%">
                                 <col width="12%">
+                                 <col width="8%">
                                 <col width="6%">                            
                             {else}
-                                <col width="4%">
-                                <col width="10%">
-                                <col width="10%">
-                                <col width="10%">
+                                <col width="3%">
+                                <col width="8%">
+                                <col width="8%">
+                                <col width="8%">                              
                                 {if $list_type eq 12}
+                                    <col width="15%">
+                                    <col width="5%">
+                                    <col width="8%">
+                                    <col width="8%">
                                     <col width="10%">
-                                    <col width="10%">
-                                {elseif $list_type eq 13}    
+                                {elseif $list_type eq 13} 
+                                    <col width="15%">
+                                    <col width="5%">   
                                     <col width="10%">
                                     <col width="10%">
                                     <col width="10%">
                                     <col width="10%">
                                 {else}
                                     <col width="20%">
+                                    <col width="5%">
+                                    <col width="8%">
+                                    <col width="8%">
+                                    <col width="10%">
+                                    <col width="10%">
                                 {/if}    
                             {/if}
                                 <col width="10%">
@@ -159,8 +181,9 @@
                                             <span class="words">{$lang.order_time}：{$order.short_order_time}</span>
                                         </div>
                                     </td>
-                                </tr>
-                                <tr>
+                                    </tr>
+                                    <tr>
+                            <!--产品信息 start-->
                                     <td class="td-product">
                                     {foreach from=$order.goods_list item=list name=foo}
                                         <div class="tDiv relative tpinfo {if $smarty.foreach.foo.last}last{/if}">
@@ -259,52 +282,38 @@
                                         </div>
                                     {/foreach}
                                     </td>
+                            <!--产品信息 end-->
+                            <!--价格 start-->
                                     <td class="td-price" style="vertical-align: top;">
                                     {foreach from=$order.goods_list item=list name=foo}
                                         <div class="tDiv tpinfo {if $smarty.foreach.foo.last}last{/if}">{$list.goods_price}</div>
                                     {/foreach}
                                     </td>
+                            <!--价格 end-->
+                            <!--数量 start-->
                                     <td class="td-number">
                                     {foreach from=$order.goods_list item=list name=foo}
                                         <div class="tDiv tpinfo {if $smarty.foreach.foo.last}last{/if}">{$list.goods_number}</div>
                                     {/foreach}
                                     </td>
-                                   
+                            <!--价格 end-->   
+                            <!--商户名 start-->    
                                     <td>
-                                        <div class="tDiv" style="height: 100px;">
-                                            {if $order.order_child eq 0}
-                                            {if $order.user_name}
-                                                <font>{$order.user_name}{if $order.self_run}（{$lang.self_run}）{/if}</font>
-                                            {else}
-                                                <font>{$lang.self}</font>
-                                            {/if}
-                                            {else}
-                                            <div class="exh">
-                                                <span class="blue3">{$lang.to_order_sn2}</span>
-                                                <div class="exh_info">
-                                                    <i class="jt_r"></i>
-                                                    {if $order.order_child > 0}
-                                                        <font class="to_order_sn red">
-                                                            {$lang.to_order_sn3}
-                                                            <div id="div_order_{$order.order_id}" class="div_order_id">
-                                                            {foreach from=$order.child_list item=list}
-                                                            {$lang.sub_order_sn}：{$list.order_sn}
-                                                            <br/> 
-                                                            {/foreach}
-                                                            </div>
-                                                        </font>
-                                                    {/if}
-                                                </div>
-                                            </div>
-                                            {/if}
-                                        </div>
+                                        <div class="tDiv" style="height: 100px;">{$order.shop_name} </div>
                                     </td>
+                            <!--商户名 end-->
+                            <!--用户名 start-->
                                     <td>
                                     <div class="tDiv" style="height: 100px;">
                                         <a href="users.php?act=edit&id={$order.user_id}">{$order.buyer|escape}</a>
-                                    </div>
+                                    </div>                          
                                     </td>
-                                    <td><div class="tDiv" style="height: 100px;text-align: left;">{$order.consignee|escape}<br>{if $order.mobile} TEL: {$order.mobile|escape}{/if}<br>{$order.region} {$order.address|escape}</div></td>
+                            <!--用户名 end-->
+                            <!--收货人 start-->
+                                    <td><div class="tDiv" style="height: 100px;text-align: left;">{$order.consignee|escape}<br>{if $order.mobile} TEL: {$order.mobile|escape}{/if}<br>{$order.region} {$order.address|escape}</div>
+                                    </td>
+                            <!--收货人 end-->
+                            <!--金额 start-->
                                     <td>
                                         <div class="tDiv" style="height: 100px;">
                                             <span class="order-price">{$order.formated_total_fee_order}</span>
@@ -315,6 +324,18 @@
                                             </div>        
                                         </div>    
                                     </td>
+                            <!--金额 end-->
+                            <!--匹配状态 start-->
+                                    <td>
+                                        <div class="tDiv" style="height: 100px;">
+                                            <span class="order-price">金额：￥{$order.ok_sellers_fee}</span>
+                                            <div class="price-shipping">状态：{$order.ok_status_ch}</div>
+                                            <div class="price-shipping">活动id：{$order.ok_ppj_id}</div>
+                                            <div class="price-shipping">活动期数：{$order.ok_ppj_no}</div>    
+                                        </div>    
+                                    </td>
+                            <!--匹配状态 end-->
+                            <!--订单状态 start-->
                                     <td>
                                         <div class="tDiv" style="height: 100px;">
                                             <div>{$lang.os[$order.order_status]}<br />{$lang.ps[$order.pay_status]}<br />{$lang.ss[$order.shipping_status]}</div>
@@ -331,6 +352,7 @@
                                                 </div>
                                             </td>
                                         </tr>
+                            <!--订单状态 end-->
                                     {else}
                                         <td>
                                             <div class="tDiv ml10">
@@ -355,7 +377,22 @@
                                         {if $list_type eq 12}
                                             <td >
                                                 <div class="tDiv ml10">
-                                                    <span class="words">{$order.bid_price}</span>
+                                                    <span class="words">{$order.ppj_name} ({$order.ppj_id})</span>
+                                                </div>
+                                            </td>
+                                            <td >
+                                                <div class="tDiv ml10">
+                                                    <span class="words">{$order.ppj_no}</span>
+                                                </div>
+                                            </td>
+                                            <td >
+                                                <div class="tDiv ml10">
+                                                    <span class="words">￥{$order.bid_price}</span>
+                                                </div>
+                                            </td>
+                                            <td >
+                                                <div class="tDiv ml10">
+                                                    <span class="words">{$order.is_status_ch}</span>
                                                 </div>
                                             </td>
                                             <td >
@@ -363,7 +400,17 @@
                                                     <span class="words">{$order.bid_time}</span>
                                                 </div>
                                             </td>
-                                        {elseif $list_type eq 13}    
+                                        {elseif $list_type eq 13}  
+                                            <td >
+                                                <div class="tDiv ml10">
+                                                    <span class="words">{$order.ppj_name} ({$order.ppj_id})</span>
+                                                </div>
+                                            </td>
+                                            <td >
+                                                <div class="tDiv ml10">
+                                                    <span class="words">{$order.ppj_no}</span>
+                                                </div>
+                                            </td>  
                                             <td >
                                                 <div class="tDiv ml10">
                                                     <span class="words">{$order.pay_fee}</span>
@@ -371,7 +418,7 @@
                                             </td>
                                             <td >
                                                 <div class="tDiv ml10">
-                                                    <span class="words">{$order.createtime}</span>
+                                                    <span class="words">{$order.paytime}</span>
                                                 </div>
                                             </td>
                                             <td >
@@ -386,6 +433,31 @@
                                             </td>
                                         
                                         {else}
+                                            <td >
+                                                <div class="tDiv ml10">
+                                                    <span class="words">{$order.ppj_name} ({$order.ppj_id})</span>
+                                                </div>
+                                            </td>
+                                            <td >
+                                                <div class="tDiv ml10">
+                                                    <span class="words">{$order.ppj_no}</span>
+                                                </div>
+                                            </td>
+                                            <td >
+                                                <div class="tDiv ml10">
+                                                    <span class="words">￥{$order.seller_min_fee}</span>
+                                                </div>
+                                            </td>
+                                            <td >
+                                                <div class="tDiv ml10">
+                                                    <span class="words">￥{$order.seller_max_fee}</span>
+                                                </div>
+                                            </td>
+                                            <td >
+                                                <div class="tDiv ml10">
+                                                    <span class="words">{$order.ls_ok}</span>
+                                                </div>
+                                            </td>
                                             <td >
                                                 <div class="tDiv ml10">
                                                     <span class="words">{$order.createtime}</span>
@@ -635,9 +707,9 @@
 										</div>
 									</td>
                                     <td>
-                                    <div class="tDiv" style="height: 100px;">
-                                    	<a href="users.php?act=edit&id={$order.user_id}">{$order.buyer|escape}</a>
-                                    </div>
+                                        <div class="tDiv" style="height: 100px;">
+                                        	<a href="users.php?act=edit&id={$order.user_id}">{$order.buyer|escape}</a>
+                                        </div>
                                     </td>
                                     <td><div class="tDiv" style="height: 100px;text-align: left;">{$order.consignee|escape}<br>{if $order.mobile} TEL: {$order.mobile|escape}{/if}<br>{$order.region} {$order.address|escape}</div></td>
                                     <td>
