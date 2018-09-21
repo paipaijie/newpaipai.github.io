@@ -9,28 +9,32 @@
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="description" content="{$description}" />
 		<meta name="keywords" content="{$keywords}" />
-		<meta http-equiv="refresh" content="20">
+		<!--
+        	作者：xul@chuove.com
+        	时间：2018-09-21
+        	描述：		<meta http-equiv="refresh" content="20">
+        -->
+
 		<title>{$page_title}</title>
-		
+
 		{global_assets('css')}
 		<script type="text/javascript">
 			var ROOT_URL = '__ROOT__/';
 		</script>
-		
+
 		{global_assets('js')} {include file="jssdk"}
 		<script src="public/js/mshare.js"></script>
-		
+
 	</head>
 
 	<body>
-		
+
 		<p style="text-align:right; display:none;">{C('shop.stats_code')}</p>
 		<div id="loading"><img src="{elixir('img/loading.gif')}" /></div>
-		
-		
+
 		<div id="fanhui" class="text-all dis-box j-text-all text-all-back" style="position:fixed">
-			
-			<a class="a-icon-back" href="javascript:window.location.replace(document.referrer);"><i class="iconfont icon-back"></i> 
-			<span>返回</span></a>
-			
+
+			<a class="a-icon-back" href="javascript:window.location.replace(document.referrer);"><i class="iconfont icon-back"></i>
+				<span>返回                    </span></a>
+
 		</div>

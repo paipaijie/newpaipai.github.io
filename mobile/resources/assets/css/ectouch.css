@@ -478,8 +478,8 @@ a.btn-disab{background: #bbb;border:1px solid #bbb}
 .text-all .text-all-span{height:3rem; line-height: 3rem; font-size:1.6rem; color:#666;}
 .text-all span.t-jiantou{margin-top:.8rem;}
 .text-all-back .a-icon-back{display:-webkit-box; display:box; display:-moz-box; position:relative; width:9.6rem;}
-.text-all-back .icon-back{font-size: 2.6rem; margin-left: -.4rem;margin-right: .4rem;color: #999;position: absolute; top: 50%; margin-top: -1.53rem;}
-.text-all-back span{ font-size: 2.6rem; margin-left: 4rem;color: #999;position: absolute; top: 50%; margin-top: -1.53rem;}
+.text-all-back .icon-back{font-size: 2.6rem; margin-left: 2rem;margin-right: .4rem;color: #999;position: absolute; top: 50%; margin-top: -1.53rem;}
+.text-all-back span{ font-size: 2.6rem; margin-left: 6rem;color: #999;position: absolute; top: 50%; margin-top: -1.53rem;width:5.6rem}
 .input-text {position: relative;}
 .input-text .nav-soso,.input-text input {border: 0;height: 3rem;line-height: 3rem;padding:0;box-sizing: border-box;width: 100%;color: #777;font-size: 1.6rem;padding-right: 3rem;}
 .text-area1 {border-bottom:1px solid #f6f6f9; position:relative;  padding-bottom:1.6rem;}

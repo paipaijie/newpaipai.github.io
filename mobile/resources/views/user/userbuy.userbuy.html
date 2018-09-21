@@ -77,7 +77,7 @@
 }
 </style>
 <div class="u-top">
-    <span> 出价进度 </span>
+    <span> 匹配卖家中 </span>
 
 </div>
 <input type="hidden" name="ppj_id" id="ppj_id" value="{$user_bid['ppj_id']}">
@@ -92,7 +92,7 @@
   <div class="alert-body">
     <div id="js-alert-head" class="alert-head"></div>
     <div class="alert-concent">
-      <p id='p1'>出价信息匹配中,请稍后</p>
+      <p id='p1'>根据您 的出价,正在匹配卖家中，请稍后</p>
     </div>
 </div>
 </center>
@@ -140,7 +140,7 @@ function alertSet(e) {
                         layer.open({
 						    content: '限购数量为空'
 						    ,area:['200px', '150px']
-						    ,btn: ['拍拍活动', '回到首页']
+						    ,btn: ['重新出价', '回到首页']
 						    ,yes:function(success){
 						  	    window.location.href="{url('groupbuy/index/index')}";
 						    },no:function(success){
@@ -151,7 +151,7 @@ function alertSet(e) {
 				    	layer.open({
 						    content: '匹配失败,请重新出价,'
 						    ,area:['300px', '250px']
-						    ,btn: ['再次匹配', '回到活动']
+						    ,btn: ['再次匹配', '重新出价']
 						    ,yes:function(success){
 							    location.reload();
 						    },no:function(success){
