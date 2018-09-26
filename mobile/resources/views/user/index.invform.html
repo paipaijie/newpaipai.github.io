@@ -1,6 +1,14 @@
 {include file="page_header"}
+<p style="text-align:right; display:none;">{C('shop.stats_code')}</p>
+		<div id="loading"><img src="{elixir('img/loading.gif')}" /></div>
 
-<div class="con mb-7" id="checkPage">
+		<div id="fanhui" class="text-all dis-box j-text-all text-all-back" style="position:fixed;z-index:999;background:#f3f3f3;">
+
+			<a class="a-icon-back" href="javascript:history.go(-1) "><i class="iconfont icon-back"></i>
+			<span style="margin-left:2rem;padding-top:1.1rem;">&nbsp;&nbsp;返回                    </span>	</a>
+
+		</div>	
+<div class="con mb-7" id="checkPage" style="margin-top:50px">
     <form action="{url('user/index/inv_form')}" method="post" class="validation">
         <section class="user-return-list-box padding-all b-color-f m-top08">
             <div id="tuicause">

@@ -253,13 +253,17 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 
 	$res = $GLOBALS['db']->query($sql);
 
-	
+//	var_dump($sql);
+//	exit;
+//	
 	$noTime = gmtime();
 	$os = L('os');
 	$ps = L('ps');
 	$ss = L('ss');
 	$sign_time = C('shop.sign');
-
+	
+	
+    //遍历订单，重置订单数据，
 	foreach ($res as $key => $row) {
 
 		
@@ -300,6 +304,8 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 		else {
 			$row['handler'] = '<a class="btn-default-new br-5">' . $os[$row['order_status']] . '</a>';
 		}
+		
+		///
 
 		if ($row['order_status'] == OS_CONFIRMED && $row['shipping_status'] == SS_RECEIVED && $row['pay_status'] == PS_UNPAYED) {
 			$row['handler_return'] = url('user/order/goodsorder', array('order_id' => $row['order_id']));
@@ -328,6 +334,7 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 		$row['user_order'] = $row['order_status'];
 		$row['user_shipping'] = $row['shipping_status'];
 		$row['user_pay'] = $row['pay_status'];
+		
 		if ($row['user_order'] == OS_SPLITED && $row['user_shipping'] == SS_RECEIVED && $row['user_pay'] == PS_PAYED) {
 			$row['delete_yes'] = 1;
 		}
@@ -417,6 +424,7 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 
 		$sql = 'SELECT store_id  FROM ' . $GLOBALS['ecs']->table('store_order') . ' WHERE order_id = \'' . $row['order_id'] . '\'';
 		$store_id = $GLOBALS['db']->getOne($sql);
+		
 		if (0 < $store_id && $row['shipping_status'] == SS_SHIPPED && $row['pay_status'] == PS_PAYED) {
 			@$row['handler'] = '<a class="btn-default-new br-5 min-btn" href="' . url('user/order/affirmreceived', array('order_id' => $row['order_id'])) . '" onclick="if (!confirm(\'' . L('confirm_received') . '\')) return false;">' . L('received') . '</a>';
 		}
@@ -440,21 +448,51 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 		$address_detail = $province['region_name'] . '&nbsp;' . $city['region_name'] . '市' . '&nbsp;' . $district_name;
 		$delivery['delivery_time'] = local_date($GLOBALS['_CFG']['time_format'], $delivery['update_time']);
 
+
 		if($row['pay_status'] == 10){
+			
+			/*
+			 * 获取商品的当前价格
+			 */
+		   $group_buy = paipai_buy_info($row['ppj_id'] );
+		   	
+		   $row['cur_price'] =$group_buy['cur_price'];
+		   
+		   $row['price'] =$group_buy['formated_cur_price'];
+		   
+			
+			/*
+			 * 
+			 */
 			$ps_sql="SELECT spm.spm_id,spm.ppj_id,spm.ppj_no,spm.ls_pay_ok,spm.ls_refund,so.user_id,so.buy_id,so.status FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." AS spm LEFT JOIN ".$GLOBALS['ecs']->table('paipai_seller_ok')." AS so ON spm.spm_id=so.spm_id WHERE spm.user_id={$user_id} AND spm.ls_pay_ok=1 AND spm.order_sn={$row['order_sn']} LIMIT 1";
+			
 			$ps_data=$GLOBALS['db']->query($ps_sql);
 			
+			if($ps_data){
+							
 	        if($ps_data[0]['user_id']){
 	             $sgsql=" SELECT * FROM dsc_paipai_goods_sellers WHERE user_id={$ps_data[0]['user_id']} AND ppj_id={$ps_data[0]['ppj_id']} AND  ppj_no={$ps_data[0]['ppj_no']}   ";
 				$sg_data=$GLOBALS['db']->getRow($sgsql);
 	        }
-			$psql=" SELECT * FROM dsc_paipai_goods_bid_user WHERE user_id={$user_id} AND spm_id={$ps_data[0]['spm_id']}  ";
+	                
+			$psql=" SELECT * FROM dsc_paipai_goods_bid_user WHERE user_id={$user_id} AND spm_id= {$ps_data[0]['spm_id']}  ";
+			
 			$user_bid_price=$GLOBALS['db']->getRow($psql);
+			
+			}
+			
+			
+			
 		}
-
-
-		$arr[] = array('order_id' => $row['order_id'],'ppj_no' => $row['ppj_no'],'sellers_fee' => number_format($user_bid_price['bid_price'],2), 'order_sn' => $row['order_sn'], 'order_time' => local_date($GLOBALS['_CFG']['time_format'], $row['add_time']), 'order_status' => $row['order_status'], 'order_del' => $row['order_del'], 'online_pay' => $row['online_pay'], 'status' => $row['status'], 'status_number' => $status_number, 'consignee' => $row['consignee'], 'main_order_id' => $row['main_order_id'], 'user_name' => get_shop_name($ru_id, 1), 'order_goods' => $row['order_goods'], 'order_goods_num' => count($row['order_goods']), 'order_child' => $order_child, 'no_picture' => $GLOBALS['_CFG']['no_picture'], 'order_child' => $order_child, 'delete_yes' => $row['delete_yes'], 'invoice_no' => $row['invoice_no'], 'shipping_name' => $row['shipping_name'], 'email' => $row['email'], 'address_detail' => $row['address_detail'], 'address' => $row['address'], 'address_detail' => $address_detail, 'tel' => $row['tel'], 'delivery_time' => $delivery['delivery_time'], 'order_count' => $order_count, 'kf_type' => $basic_info['kf_type'], 'kf_ww' => $basic_info['kf_ww'], 'kf_qq' => $basic_info['kf_qq'], 'total_fee' => price_format($row['total_fee'], false), 'handler_return' => $row['handler_return'], 'pay_status' => $row['pay_status'], 'handler' => $row['handler'], 'team_id' => $row['team_id'], 'extension_code' => $row['extension_code'], 'order_url' => url('user/order/detailpaipai', array('order_id' => $row['order_id'])), 'delay' => $delay,'sell_data'=>$ps_data,'sell_user_data'=>$sg_data['createtime'].$sg_data['seller_min_fee']*100);
 		
+//	var_dump($row);
+//	exit;
+
+
+		$arr[] = array('bid_price' => $user_bid_price['bid_price'],'cur_price' => $row['cur_price'],'price' => $row['price'],'order_id' => $row['order_id'],'ppj_id' => $row['ppj_id'],'ppj_no' => $row['ppj_no'],'sellers_fee' => number_format($user_bid_price['bid_price'],2), 'order_sn' => $row['order_sn'], 'order_time' => local_date($GLOBALS['_CFG']['time_format'], $row['add_time']), 'order_status' => $row['order_status'], 'order_del' => $row['order_del'], 'online_pay' => $row['online_pay'], 'status' => $row['status'], 'status_number' => $status_number, 'consignee' => $row['consignee'], 'main_order_id' => $row['main_order_id'], 'user_name' => get_shop_name($ru_id, 1), 'order_goods' => $row['order_goods'], 'order_goods_num' => count($row['order_goods']), 'order_child' => $order_child, 'no_picture' => $GLOBALS['_CFG']['no_picture'], 'order_child' => $order_child, 'delete_yes' => $row['delete_yes'], 'invoice_no' => $row['invoice_no'], 'shipping_name' => $row['shipping_name'], 'email' => $row['email'], 'address_detail' => $row['address_detail'], 'address' => $row['address'], 'address_detail' => $address_detail, 'tel' => $row['tel'], 'delivery_time' => $delivery['delivery_time'], 'order_count' => $order_count, 'kf_type' => $basic_info['kf_type'], 'kf_ww' => $basic_info['kf_ww'], 'kf_qq' => $basic_info['kf_qq'], 'total_fee' => price_format($row['total_fee'], false), 'handler_return' => $row['handler_return'], 'pay_status' => $row['pay_status'], 'handler' => $row['handler'], 'team_id' => $row['team_id'], 'extension_code' => $row['extension_code'], 'order_url' => url('user/order/detailpaipai', array('order_id' => $row['order_id'])), 'delay' => $delay,'sell_data'=>$ps_data,'sell_user_data'=>$sg_data['createtime'].$sg_data['seller_min_fee']*100);
+		
+
+//	
 
 	}
 
@@ -464,6 +502,7 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 
 
 
+////////////////////////////////////////////////////////////////////////////
 
 function get_user_orders($user_id, $num = 10, $page = 1, $status = 0)
 {

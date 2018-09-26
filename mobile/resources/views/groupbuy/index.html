@@ -1,10 +1,12 @@
 {include file="page_header"}
-<div id="back" class="text-all dis-box j-text-all text-all-back" style="position:fixed">		
-			<a class="a-icon-back" href="{url('user/index/index')}"><i class="iconfont icon-back"></i> 
-			<span>返回</span></a>			
+
+<div id="back" class="text-all dis-box j-text-all text-all-back" style="position:fixed;z-index:999;background:#f3f3f3;">		
+			<a class="a-icon-back" href="{url('index/index/index')}"><i class="iconfont icon-back"></i> 
+			<span style="margin-left:2rem;padding-top:1.1rem;">&nbsp;返回</span></a>			
 		</div>
+
 		
-<section class="search new-group-search" style="    margin-top: 40px;">
+<section class="search new-group-search" style="    margin-top: 50px;">
     <div class="text-all dis-box j-text-all text-all-back">
         <div class="box-flex input-text">
             <div class="box-flex">
@@ -41,12 +43,15 @@
                     <section class="swiper-slide swiper-no-swiping product-list j-product-list product-list-medium" data="1">
                         <ul>
                             <%each gb_list as list%>
+                            
+                                      
                             <%if list.is_end == 1 || list.is_end == 2%>
+                            
                             <li>
                                 <div class="product-div">
                                 
 
-                                    <div class="group-bq-box"   <%if list.is_end == 1%> style="display:none" <%else%>  style="display:block" <%/if%>>  <span>进行中</span> </div>
+                                    <div class="group-bq-box"   <%if list.is_end == 1%> style="display:block" <%else%>  style="display:none" <%/if%>>  <span>第<%list.ppj_no%>期</span> <span>进行中</span>  </div>
                                                                         
                                     <a class="product-div-link" href="<%list.url%>"></a>
                                     
@@ -90,6 +95,7 @@
                                 
                             </li>
                             <%/if%>
+                         
                             <%/each%>
                             
                         </ul>
@@ -116,6 +122,8 @@
     {include file="float_nav_footer"}
     
 <script>
+	
+	$("#fanhui").hide();
     var url = ROOT_URL + 'index.php?m=groupbuy';
     
     var infinite = $('.article_info').infinite({url: url, template: 'j-product'});

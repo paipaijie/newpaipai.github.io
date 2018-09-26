@@ -19,27 +19,34 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		$this->assign('team', is_dir(APP_TEAM_PATH) ? 1 : 0);
 	}
 	
+	
+	
 	//匹配中的拍拍订单
 		public function actionIndexpaipai()
 	{
 		$size = 10;
+		
 		$page = I('page', 1, 'intval');
+		
 		$status = I('status', 0, 'intval');
+		
 
 		if (IS_POST) {	
 					
 			$order_list = get_user_paipaiorders($this->user_id, $size, $page, $status);
-			
+
 			exit(json_encode(array('order_list' => $order_list['list'], 'totalPage' => $order_list['totalpage'])));
 			
-			
 		}
+		
 		$all_order = get_order_where_count($this->user_id, 0, '');
 		
 		$where_pay = ' AND oi.pay_status = 10';
+		
 		$where_paysuccess = ' AND oi.pay_status = 0 AND oi.extension_code = "paipai_buy"';
 		
 		$pay_count = get_order_where_count($this->user_id, 0, $where_pay);
+		
 		$paysuccess_count = get_order_where_count($this->user_id, 0, $where_paysuccess);
 		
 		$where_confirmed = ' AND oi.pay_status = ' . PS_PAYED . ' AND oi.order_status in (' . OS_CONFIRMED . ', ' . OS_SPLITED . ', ' . OS_SPLITING_PART . ') AND (oi.shipping_status >= ' . SS_UNSHIPPED . ' AND oi.shipping_status <> ' . SS_RECEIVED . ')';
@@ -47,6 +54,7 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		$confirmed_count = get_order_where_count($this->user_id, 0, $where_confirmed);
 		
 		$order_num = array('all_order' => $all_order, 'pay_count' => $pay_count, 'confirmed_count' => $confirmed_count);
+		
 		$ordersuccess_num = array('all_order' => $all_order, 'pay_count' => $paysuccess_count, 'confirmed_count' => $confirmed_count);
 		
 		
@@ -365,7 +373,7 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 				$order['failure'] = $failure;
 			}
 		}
-
+ 
 		$im_dialog = M()->query('SHOW TABLES LIKE "{pre}im_dialog"');
 		$zkf = dao('seller_shopinfo')->field('kf_type, kf_qq, kf_ww, meiqia, kf_im_switch')->where(array('ru_id' => '0'))->find();
 		if ($zkf['kf_im_switch'] == 1 && $im_dialog) {
@@ -383,7 +391,7 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		else {
 			$kefu = 'https://wpa.qq.com/msgrd?v=3&uin=' . preg_replace('/^[^\\-]*\\|/is', '', $zkf['kf_qq']) . '&site=qq&menu=yes';
 		}
-
+        
 		$this->assign('kefu', $kefu);
 		$this->assign('order', $order);
 		$this->assign('goods_list', $goods_list);

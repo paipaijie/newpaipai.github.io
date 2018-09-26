@@ -11,7 +11,7 @@
 .alert-box {
 	display: none;
 	position: relative;
-	margin: 120px auto 0;
+	margin: 90px auto 0;
 	padding: 180px 85px 22px;
 	border-radius: 10px 10px 0 0;
 	background: #FFF;
@@ -42,18 +42,19 @@
 	font-size: 68px
 }
 .alert-sec-unit {
-	font-size: 34px
+	font-size: 24px
 }
 .alert-body {
-	margin: 35px 0;
+	margin: 15px 0;
 	width:140px;
+	height:80px
 }
 .alert-head {
 	color: #242424;
 	font-size: 28px
 }
 .alert-concent {
-	margin: 25px 0 14px;
+	margin: 14px 0 14px;
 	color: #7B7B7B;
 	font-size: 18px
 }
@@ -73,12 +74,33 @@
 	letter-spacing: 2px
 }
 .alert-btn:hover {
+    height:300px;
 	background-color: #6BC2FF
+}
+.goods_bg{
+    width:286px;
+    height:206px;
+	margin:auto;
+}
+.goods_bg img{
+    width:100%;
+    height:100%;
+}
+.price{
+	position: fixed;
+    right: -52%;
+    top: 7%;
+    width: 82%;
+    z-index: 12;
+    margin-right: 4.5rem;
 }
 </style>
 <div class="u-top">
     <span> 匹配卖家中 </span>
 
+</div>
+<div class="price">
+	当前出价：{$user_bid['bid_price']}元
 </div>
 <input type="hidden" name="ppj_id" id="ppj_id" value="{$user_bid['ppj_id']}">
 <input type="hidden" name="ppj_no" id="ppj_no" value="{$user_bid['ppj_no']}">
@@ -86,16 +108,19 @@
 <div id="js-alert-box" class="alert-box"> <svg class="alert-circle" width="234" height="234">
   <circle cx="117" cy="117" r="108" fill="#FFF" stroke="#43AEFA" stroke-width="17"></circle>
   <circle id="js-sec-circle" class="alert-sec-circle" cx="117" cy="117" r="108" fill="transparent" stroke="#F4F1F1" stroke-width="18" transform="rotate(-90 117 117)"></circle>
-  <text class="alert-sec-unit" x="82" y="172" fill="#BDBDBD">secs</text>
+  <text class="alert-sec-unit" x="82" y="172" fill="#BDBDBD">倒计时</text>
   </svg>
   <div id="js-sec-text" class="alert-sec-text"></div>
   <div class="alert-body">
     <div id="js-alert-head" class="alert-head"></div>
     <div class="alert-concent">
-      <p id='p1'>根据您 的出价,正在匹配卖家中，请稍后</p>
+      <a href=""><p id='p1'>根据您 的出价,正在匹配卖家中，请稍后</p></a>
     </div>
 </div>
 </center>
+<div class="goods_bg">  
+<img src="/{$goods_data['original_img']}" />
+</div>
 {include file="no_search_nav"}
 <script src="__ROOT__/public/vendor/layer/mobile/layer.js?2.x"></script>
 
@@ -123,7 +148,7 @@ function alertSet(e) {
                     var sell=re.sell;			
                     clearInterval(interval);				
 				    document.getElementById('js-alert-head').innerHTML='匹配终止';
-			        document.getElementById('p1').innerHTML='';					
+			        document.getElementById('p1').innerHTML='重新匹配';					
 					if(re.match_bid == 1){
 					    
 					    layer.open({
@@ -140,7 +165,7 @@ function alertSet(e) {
                         layer.open({
 						    content: '限购数量为空'
 						    ,area:['200px', '150px']
-						    ,btn: ['重新出价', '回到首页']
+						    ,btn: ['返回活动', '回到首页']
 						    ,yes:function(success){
 						  	    window.location.href="{url('groupbuy/index/index')}";
 						    },no:function(success){
@@ -155,7 +180,7 @@ function alertSet(e) {
 						    ,yes:function(success){
 							    location.reload();
 						    },no:function(success){
-							    window.location.href="{url('groupbuy/index/index')}";
+							    window.location.href="{url('groupbuy/index/detail')}&id={$user_bid['ppj_id']}";
 						    }
 						});
 				    }
@@ -174,4 +199,4 @@ function alertSet(e) {
 </script>
 </body>
 </html>
-<script>alertSet('数据匹配中');</script>
+<script>alertSet('');</script>

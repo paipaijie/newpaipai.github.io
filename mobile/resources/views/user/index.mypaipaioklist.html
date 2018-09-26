@@ -8,7 +8,16 @@
     bottom: 1.3rem;}
     .flow-accessories .product-list .product-div .a-accessories-clear i{font-size:1.8rem;}
 </style>
- <div class="store_info" style="margin-top: 40px;">
+<p style="text-align:right; display:none;">{C('shop.stats_code')}</p>
+		<div id="loading"><img src="{elixir('img/loading.gif')}" /></div>
+
+		<div id="fanhui" class="text-all dis-box j-text-all text-all-back" style="position:fixed;z-index:999;background:#f3f3f3;">
+
+			<a class="a-icon-back" href="javascript:history.go(-1) "><i class="iconfont icon-back"></i>
+			<span style="margin-left:2rem;padding-top:1.1rem;">&nbsp;&nbsp;返回                    </span>	</a>
+
+		</div>	
+ <div class="store_info" style="margin-top: 50px;">
      
 <script id="j-product" type="text/html">
 			<div class="flow-accessories blur-div">
@@ -17,7 +26,7 @@
 			<section class="product-list j-product-list product-list-small">
 					<ul>
 						<li>
-							<div class="product-div">
+							<div class="product-div" style="height: 14rem;">
                                <a href="<%goods.url%>">
                                	
                                	    <div class="group-bq-box"   <%if goods.is_end == 1%> style="display:none" <%else%>  style="display:block" <%/if%>>  <span>已成交</span> </div>
@@ -28,8 +37,10 @@
 									<a href="<%goods.url%>"><h4><%goods.goods_name%></h4>
 										<em class="em-promotion"> 第 <%goods.ppj_no %>期</em>
 									</a>																		
-									<p><span class="p-price t-first ">卖出价格<%#goods.goods_nowprice%></span></p>
-                                    <p><span class="p-price t-first ">此单收益<%#goods.getmoney%></span></p>                          
+									<p ><span style="font-size: 10px;" class="p-price t-first ">卖出价格<%#goods.goods_nowprice%></span></p>
+                                    <p style="margin-top: -4rem;margin-left: 10rem;"><span style="font-size: 10px;" class="p-price t-first ">此单收益<%#goods.getmoney%></span></p>
+                                    <p style="margin-top: -1rem;"><span style="font-size: 10px;" class="p-price t-first ">成交时间<%#goods.createtime%></span></p> 
+                                    <p style="margin-top: -1.2rem;"><span style="font-size: 10px;" class="p-price t-first ">订单状态<%#goods.getmoney%></span></p> 
 								</div>
 								                            
 							</div>
@@ -46,8 +57,8 @@
 										</div>
 									</section>
 						
-                        <p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:102px;padding-top:12px;">                            
-                            <span style="width:150px; color: red;" class="btn-default-new br-5 min-btn"  id="" ppjid="<%goods.ppj_id%>">已成功卖出</span> 
+                        <p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:27rem;">                            
+                            <span style="width:300px; color: red;" class="btn-default-new br-5 min-btn"  id="" ppjid="<%goods.ppj_id%>">已成功卖出</span> 
                            
                             
                         </p>

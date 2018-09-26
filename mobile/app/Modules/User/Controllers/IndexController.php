@@ -1008,21 +1008,25 @@ public function actionMypaipaiokList()
 			
 			$offset = 10;
 			
-			$sql='select count(*) from {pre}goods as g,{pre}paipai_seller_ok as pl where g.goods_id =pl.goods_id and pl.user_id=' . $user_id ;
+			$sql='select * from {pre}goods as g,{pre}paipai_seller_ok as pl where g.goods_id =pl.goods_id and pl.user_id=' . $user_id ;
 			
 			//$sql = 'SELECT count(rec_id) as max FROM {pre}collect_goods WHERE user_id=' . $user_id . ' ';
-			$count = $this->db->getOne($sql);			
+			$count = $this->db->getOne($sql);
+			$count_ok = count($count);			
 			$page_size = ceil($count / $offset);			
-			$limit = ' LIMIT ' . ($page - 1) * $offset . ',' . $offset;	
-								
-			$collection_goods = get_paipai_sellegoods($user_id, $count, $limit);
+			$limit = ' LIMIT ' . ($page - 1) * $offset . ',' . $offset;
+			$collection_goods = get_paipai_sellegoods($user_id, $count_ok, $limit);
 					
 			$show = 0 < $count ? 1 : 0;
-				
-			exit(json_encode(array('goods_list' => $collection_goods['goods_list'], 'show' => $show, 'totalPage' => $page_size)));
-			
+				foreach($collection_goods['goods_list'] as $v=>$k){
+					$sql1 = "SELECT createtime FROM dsc_paipai_seller_ok where user_id = {$user_id}";
+					$result = $GLOBALS['db']->getOne($sql1);
+					$collection_goods['goods_list'][$v]['createtime']=date('Y-m-d H:i:s',$result+8*60*60);
+				}
+//				var_dump($collection_goods['goods_list']);
+			exit(json_encode(array('goods_list' => $collection_goods['goods_list'],'show' => $show, 'totalPage' => $page_size)));
 		}
-
+		
 		$this->assign('paper', $collection_goods['paper']);
 		$this->assign('record_count', $collection_goods['record_count']);
 		$this->assign('size', $collection_goods['size']);
