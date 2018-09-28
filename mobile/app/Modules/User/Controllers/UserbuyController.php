@@ -104,6 +104,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         $ppj_no=$_GET['ppj_no'];
         
         $sell=$_GET['sell'];
+		
         $time=substr($sell,0,10); //截取匹配的时间
         $price=substr($sell,10,strlen($sell)); //截取匹配的价格
         $this->assign('svalt', $time);
@@ -157,7 +158,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         $goods_data = $GLOBALS['db']->getRow($goods_sql);
         $this->assign('goods', $goods_data);
 
-        $user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE user_id=".$user_id." AND ppj_id=".$ppj_id." AND ppj_no=".$ppj_no;
+        $user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE user_id=".$user_id." AND ppj_id=".$ppj_id." AND ppj_no=".$ppj_no." ORDER BY bid_id DESC LIMIT 1";
         $user_bid_data = $GLOBALS['db']->getRow($user_sql);
         $this->assign('user_bid', $user_bid_data);
         
