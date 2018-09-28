@@ -910,10 +910,9 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 			$goods_desc = preg_replace('/width\\="[0-9]+?"/', '', $goods_desc);
 			$goods_desc = preg_replace('/style=.+?[*|"]/i', '', $goods_desc);
 		}
-<<<<<<< HEAD
-        
+
         //当前期保证金支付人数
-=======
+
 		if($_SESSION['user_id'] != ''){
 			//用户出价记录
 			$fsql="SELECT gbu.bid_price FROM dsc_paipai_seller_pay_margin AS spm LEFT JOIN dsc_paipai_goods_bid_user AS gbu ON spm.spm_id = gbu.spm_id  WHERE spm.ppj_id={$re['ppj_id']} AND spm.ppj_no ={$re['ppj_no']} AND spm.user_id={$_SESSION['user_id']}";
@@ -927,7 +926,7 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 		}
 		
 		//统计保证金支付人数
->>>>>>> 53839bf28262b2003443b29f357a3a1a0510535d
+
 		$pmsql = "SELECT count(user_id) as count FROM dsc_paipai_seller_pay_margin WHERE ppj_id={$re['ppj_id']} AND ppj_no ={$re['ppj_no']}";
 		$pm_data = $GLOBALS['db']->getRow($pmsql);
 		$this->assign('pm_data', $pm_data);
