@@ -15,11 +15,16 @@
     {include file="jssdk"}
 </head>
 
-<body class="goods-body"> 
-	
+<body class="goods-body">
 <p style="text-align:right; display:none;">{C('shop.stats_code')}</p>
-
 <div id="loading"><img src="{elixir('img/loading.gif')}" /></div>
+<div id="fanhui" class="text-all dis-box j-text-all text-all-back" style="position:fixed;z-index:999;background:#f3f3f3;">
+	<a class="a-icon-back" href="javascript:history.go(-1) "><i class="iconfont icon-back"></i>
+		<span style="margin-left:2rem;padding-top:1.1rem;">
+			&nbsp;&nbsp;返回
+		</span>
+	</a>
+</div> 
 
 <form name="ECS_FORMBUY" action="{url('buy')}" id="ECS_FORMBUY" method="post" onsubmit="return get_groupbuy();" class="goods-body">
 	
@@ -30,10 +35,7 @@
                 <div class="swiper-wrapper goods_detail">
                     <div class="swiper-slide goods-swiper-slide">
                     	
-					<div id="fanhui" class="text-all dis-box j-text-all text-all-back">
-            <a class="a-icon-back"  href="{url('groupbuy/index/index')}"><i class="iconfont icon-back"></i> <span>返回                    </span></a>
-           
-        </div>
+					
                         <div class="con goods" id="checkPage">
                                 <div>
                                 	
@@ -79,8 +81,9 @@
 										<!--{/if}-->
 
 										<p class=" dis-box g-p-tthree m-top06">
-											<span class="box-flex text-left">销量 {$pm_data.count}</span>
-											<span class="box-flex text-center">库存 {$re.goods_count}</span>
+											<!--<span class="box-flex text-left">销量 {$pm_data.count}</span>-->
+											<span class="box-flex text-left">销量 {$group_buy.cur_amount}</span>
+											<span class="box-flex text-center">数量{$goods.goods_number}</span>
 										</p>
 										
 									</section>
@@ -474,10 +477,12 @@
 				{if $goods.is_end == 2}
 				 <a class="btn-disab box-flex quehuo" href="javascript:void(0);" style="display:block">团购结束</a>
 				{elseif $goods.is_end == 1}
+
 					{if $goods.pay_status == 10}					
 					<div class="zidong" style="color:red">
 						{if $goods.ok_status=='5'}
-						<span style="width:277px;color: red; position: absolute;" p class="btn-default-new br-5 min-btn" id="autosale">重 新 出 价</span>{/if}
+						<span style="width:277px;color: red; position: absolute;" p class="btn-default-new br-5 min-btn" id="autosale">重 新 出 价</span>
+						{/if}
 						<input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="{$_GET['id']}">
 						<input type="hidden" id="ppj_no" class="ppj_no" name="ppj_no" value="{$group_buy.ppj_no}">
 					</div>
@@ -488,7 +493,7 @@
 						{/if}
 					{else}
 						<div  class="btn-submit box-flex j-goods-attr j-show-div j-property" style="display:block">立即抢购</div>
-					{/if}
+					{/if}				
 				{elseif $goods.is_end ==0}
 				<a class=" btn-disab box-flex quehuo" href="javascript:void(0);" style="display:block">未开始</a>
 				
@@ -713,7 +718,7 @@
 		
 			function get_groupbuy(){
 				var qty = $("#goods_number").val();
-				
+
 				var number = Number($('.data-item').html()); //库存
 				
 				var restrict_amount = Number({$group_buy.restrict_amount}); //限购数量
@@ -869,11 +874,18 @@
                 title:'重新出价',
                 skin:'layui-layer-rim',
                 area:['300px', '80%'],
-                content: ' <div class="row" style="width: 300px;height:80px;  margin-left:px; margin-top:40px;">'
+                content: ' <div class="row" style="width: 300px;height:100px;  margin-left:px; margin-top:10px;">'
+				    +'<div class="col-sm-12">'
+                    +'<div class="input-group">'
+                    +'<span class="input-group-addon">上次出价:</span>'
+                    +'<input class="form-control" value="{$user_bid_one['bid_price']}元" readonly>'
+                    +'</div>'
+                    +'</div>'
+					 +'<br/>'
                     +'<div class="col-sm-12">'
                     +'<div class="input-group">'
-                    +'<span class="input-group-addon">价格:</span>'
-                    +'<input id="seller_max_fee" name="seller_max_fee" type="text" class="form-control" placeholder="本次出价大于前一次的出价">'
+                    +'<span class="input-group-addon">本次出价:</span>'
+                    +'<input class="form-control" style="border:1px solid #ccc; background-color:#f3f3f3;"  id="seller_max_fee" name="seller_max_fee" type="text" placeholder="请填写大于前一次的出价">'
                     +'</div>'
                     +'</div>'
                     +'</div>'
@@ -893,9 +905,11 @@
                                 layer.open({
                                     content: '出价成功'
                                     ,skin: 'msg'
-                                    ,time: 2 //2秒后自动关闭
+                                    ,time: 2 //
+									,end:function(){
+                                    location.href="{url('user/userbuy/userbuy')}&id={$user_order['order_id']}";
+									}
                                 });
-                                layer.close(index);
                             }else if(y.re == 2){
                                 layer.open({
                                     content: '出价失败'

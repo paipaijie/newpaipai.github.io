@@ -13,7 +13,7 @@ function paipai_buy_list($size, $page, $keywords, $sort, $order)
 	$now = time();
 	
 	$where = '';
-	$where .= ' AND g.is_delete = 0';
+	$where .= ' AND g.is_delete = 0 ';
 
 	if ($keywords) {
 		$where .= ' AND (b.ppj_name LIKE \'%' . $keywords . '%\' OR g.goods_name LIKE \'%' . $keywords . '%\') ';
@@ -27,6 +27,7 @@ function paipai_buy_list($size, $page, $keywords, $sort, $order)
 	}
 
 	$res = $GLOBALS['db']->selectLimit($sql, $size, ($page - 1) * $size);
+	
 
 	foreach ($res as $key => $val) {
 		
@@ -56,14 +57,19 @@ function paipai_buy_list($size, $page, $keywords, $sort, $order)
 		
 		
 		$price_ladder = $val['price_ladder'];
+		
+		
 		if (!is_array($price_ladder) || empty($price_ladder)) {
+			
 			$price_ladder = array(
 				array('amount' => 0, 'price' => 0)
 				);
 		}
 		else {
 			foreach ($price_ladder as $key => $amount_price) {
+				
 				$price_ladder[$key]['formated_price'] = price_format($amount_price['price']);
+				
 			}
 		}
 
@@ -79,18 +85,26 @@ function paipai_buy_list($size, $page, $keywords, $sort, $order)
 		
 		$val = array_merge($val, $stat);
 			
-		$cur_amount = $stat['valid_goods'];
+		$cur_amount = $stat['valid_order'];
+		
 
-	foreach ($price_ladder as $amount_price) {
+	foreach ($price_ladder as $key => $amount_price) {
+		
 		if ($amount_price['amount'] <= $cur_amount) {
+			
 			$cur_price = $amount_price['price'];
+			
 		}
 		else {
+						
+			$cur_price=0;
 			break;
-		}
-	}
+		}		
+	     }
+	     
+	     
+		$val['cur_amount'] = $cur_amount;
 		
-		$val['cur_amount'] = $stat['valid_goods'];
 		
 		$val['goods_thumb'] = get_image_path($val['goods_thumb']);
 		
@@ -102,11 +116,11 @@ function paipai_buy_list($size, $page, $keywords, $sort, $order)
 	
 	    $val['price'] = price_format($cur_price, false);// 当前价格
 		
-		//$val['price'] = price_format($nowprice, false);
-				
-		$group_buy[] = $val;
 		
 		
+			$group_buy[] = $val;
+		
+						
 	}
 
  //  var_dump ($val['url']);
@@ -114,7 +128,9 @@ function paipai_buy_list($size, $page, $keywords, $sort, $order)
 	return $group_buy;
 }
 
-
+/*
+ * 
+ */
 
 
 function paipai_buy_add_list($size, $page, $keywords, $sort, $order)
@@ -149,6 +165,9 @@ function paipai_buy_add_list($size, $page, $keywords, $sort, $order)
 		$val['formated_end_date'] = groupbuydate($val['end_date']);
 
 
+
+		
+		//$val['is_end'] = $val['end_date'] < $now ? 1 : 0;
 	
 		if($val['end_date'] > $now && $val['start_date'] < $now){
 			$val['is_end'] = 1;
@@ -164,14 +183,19 @@ function paipai_buy_add_list($size, $page, $keywords, $sort, $order)
 		
 		
 		$price_ladder = $val['price_ladder'];
+		
+		
 		if (!is_array($price_ladder) || empty($price_ladder)) {
+			
 			$price_ladder = array(
 				array('amount' => 0, 'price' => 0)
 				);
 		}
 		else {
 			foreach ($price_ladder as $key => $amount_price) {
+				
 				$price_ladder[$key]['formated_price'] = price_format($amount_price['price']);
+				
 			}
 		}
 
@@ -187,18 +211,26 @@ function paipai_buy_add_list($size, $page, $keywords, $sort, $order)
 		
 		$val = array_merge($val, $stat);
 			
-		$cur_amount = $stat['valid_goods'];
+		$cur_amount = $stat['valid_order'];
+		
 
-	foreach ($price_ladder as $amount_price) {
+	foreach ($price_ladder as $key => $amount_price) {
+		
 		if ($amount_price['amount'] <= $cur_amount) {
+			
 			$cur_price = $amount_price['price'];
+			
 		}
 		else {
+						
+			$cur_price=0;
 			break;
-		}
-	}
+		}		
+	     }
+	     
+	     
+		$val['cur_amount'] = $cur_amount;
 		
-		$val['cur_amount'] = $stat['valid_goods'];
 		
 		$val['goods_thumb'] = get_image_path($val['goods_thumb']);
 		
@@ -210,10 +242,9 @@ function paipai_buy_add_list($size, $page, $keywords, $sort, $order)
 	
 	    $val['price'] = price_format($cur_price, false);// 当前价格
 		
-		//$val['price'] = price_format($nowprice, false);
-				
-		$group_buy[] = $val;
 		
+		
+			$group_buy[] = $val;
 		
 	}
 

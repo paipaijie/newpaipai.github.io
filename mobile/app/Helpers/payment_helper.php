@@ -220,7 +220,7 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '', $module_name = 
 	                        $sell_data = $GLOBALS['db']->getRow($sql3);
 
 	                        //查询卖家的销售券id 
-	        $sql7="SELECT * FROM dsc_paipai_seller WHERE user_id={$sell_data['user_id']} AND goods_id={$pl_data['goods_id']} AND usestaus=1 ORDER BY seller_id LIMIT 1 ";
+	        $sql7="SELECT * FROM dsc_paipai_seller WHERE user_id={$sell_data['user_id']} AND goods_id={$pl_data['goods_id']} AND usestaus=1 ORDER BY seller_id DESC LIMIT 1 ";
 	                        $pp_sell_data = $GLOBALS['db']->getRow($sql7);
 
 	                        // 更改卖家成交订单表

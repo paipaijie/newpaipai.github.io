@@ -18,13 +18,18 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 	{	
 		//查询商品信息
 		$sql = 'SELECT b.*, IFNULL(g.goods_thumb, \'\') AS goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date,g.goods_number ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . (' AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY ppj_id DESC');
+			
 		$res = $GLOBALS['db']->query($sql);
 		$arr = array();
 		// var_dump($res);
 		$now = time();
+		
 		foreach($res as $k => $val){
+			
 			$val['goods_thumb']  = __STATIC__ .'/'. $val['goods_thumb'];
+			
 			$arr[] = $val['goods_thumb'];
+			
 			if($val['end_time'] > $now && $val['start_time'] < $now){
 				$val['is_end'] = 1;
 			}else if($val['start_time'] > $now){
@@ -32,18 +37,24 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			}else if($val['end_time']<$now){
 				$val['is_end'] = 3;
 			}
+			
+			
 			$arr3[] = $val['is_end'];
 
 			$sql1 = "select sum(goods_number) from dsc_order_goods where ppj_no = {$val['ppj_no']} and goods_id = {$val['goods_id']}";
 			$r = $GLOBALS['db']->getAll($sql1);
 
+
 			$strlen = strlen($res[$k]['goods_name']);
+			
+			
 			$res[$k]['goods_name'] = $strlen>20?mb_substr($res[$k]['goods_name'],0,12,'utf-8'):$res[$k]['goods_name'];
 
 			foreach($r as $k => $v){
 				//var_dump($v);
 				$res[$k]['order_number'] = $v['sum(goods_number)'];
 			}
+			
 			$val['end_date']=floor(($val['end_time']-time())/86400);
 			if($val['end_date']>0){
 				$val['end_date']=floor(($val['end_time']-time())/86400);
@@ -52,6 +63,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				$date_count = date('H:i:s',$countdown);
 				$val['end_date'] = $date_count;
 			}
+			
 			$arr2[] = $val['end_date'];
 
 			// $val['end_ti'] = $val['end_time']-$now;
@@ -62,15 +74,43 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			
 			$sql = "select count(*) from dsc_order_info where ppj_id ={$val['ppj_id']} and ppj_no = {$val['ppj_no']} and pay_status != 11";
 			$result = $GLOBALS['db']->query($sql);
+			
 			foreach($result as $ke => $ek){
 				//var_dump($ek);
 				$b[] = $ek['count(*)'];
 			}
+			
+			$cur_amount = $stat['valid_order'];
+			
+			$ext_info = unserialize($val['ext_info']);
+			$val = array_merge($val, $ext_info);
+			
+			$price_ladder = $val['price_ladder'];
+		
+		
+		if (!is_array($price_ladder) || empty($price_ladder)) {
+			
+			$price_ladder = array(
+				array('amount' => 0, 'price' => 0)
+				);
+		}
+		else {
+			foreach ($price_ladder as $key => $amount_price) {
+				
+				$price_ladder[$key]['formated_price'] = price_format($amount_price['price']);
+				
+			}
+		}
+
+		$val['price_ladder'] = $price_ladder;
+			
+			
 		}
 		
 		foreach($arr as $k=>$v){
 			$res[$k]['goods_thumb'] = $v;
 		}
+		
 		foreach($b as $k=>$v){
 			$res[$k]['count'] = $v;
 		}
@@ -81,9 +121,13 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		foreach($arr3 as $k=>$v){
 			$res[$k]['is_end'] = $v;
 		}
+		
 		$this->assign('res', $res);	
 		$this->display();
 	}
+	
+	
+	
 
 	public function actionAppNav()
 	{

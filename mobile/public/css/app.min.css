@@ -18203,7 +18203,7 @@ a.temark-4-text {
 .goods-service .goods-min-icon {
 	display: box;
 	display: -webkit-box;
-	margin-top: .2rem
+	margin-top: -1.8rem
 }
 
 .g-r-rule .em-promotion {
@@ -23268,6 +23268,17 @@ a.a-accessories {
 	font-size: 1rem;
 	padding-left: .2rem;
 	margin-top: -.5rem
+}
+
+.group-bq-box2 {
+	position: absolute;
+	width: 100%;
+	top: .5rem;
+
+	z-index: 2;
+	font-size: 1rem;
+	padding-left: .2rem;
+	margin-top: -.1rem
 }
 
 .group-cont {
