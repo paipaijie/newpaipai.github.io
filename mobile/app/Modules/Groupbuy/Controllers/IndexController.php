@@ -532,16 +532,30 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$sql = "select * from dsc_paipai_list where ppj_id = {$_GET['id']}";
 		$re = $GLOBALS['db']->getRow($sql);
 		$this->assign('re', $re);
-		$sqla = "select pay_status from dsc_order_info where user_id = {$_SESSION['user_id']} and ppj_id={$re['ppj_id']} and ppj_no ={$re['ppj_no']} and pay_status = '10' and extension_code = 'paipai_buy'";
+        //查询订单表保证金支付
+		$sqla = "select order_id,order_sn,pay_status from dsc_order_info where user_id = {$_SESSION['user_id']} and ppj_id={$re['ppj_id']} and ppj_no ={$re['ppj_no']} and pay_status = '10' and extension_code = 'paipai_buy' ORDER BY order_id DESC LIMIT 1";
 		$rea = $GLOBALS['db']->getRow($sqla);
-		$goods['pay_status'] = $rea['pay_status'];
+		if($rea){
+           //查询保证金详情
+           $spmsql="SELECT * FROM {pre}paipai_seller_pay_margin WHERE order_id={$rea['order_id']} ";
+           $spm_data = $GLOBALS['db']->getRow($spmsql);
+		   if($spm_data){
+                //查询是否有交易成功一笔
+                $ok_sql="SELECT * FROM {pre}paipai_seller_ok WHERE spm_id={$spm_data['spm_id']}";
+                $ok_data = $GLOBALS['db']->getRow($ok_sql);
+                if($ok_data){
+                     $goods['ok_status'] = $ok_data['status'];
+                }else{
+                	 $goods['ok_status'] = 5;   //没有订单
+                }
+		   }
+		}		
 
-		//查询当前用户是否购买一次以及第一次购买
-		$musql="SELECT * FROM dsc_paipai_seller_ok WHERE buy_id = {$_SESSION['user_id']} and ppj_id={$re['ppj_id']} and ppj_no ={$re['ppj_no']} ORDER BY ok_id LIMIT 1 ";
-		$ok_data = $GLOBALS['db']->getRow($musql);
-		$this->assign('ok_data', $ok_data);
-		
+		$goods['pay_status'] = $rea['pay_status'];
+        
 		$this->assign('goods', $goods);
+        
+
 
 		$sql = 'SELECT * FROM {pre}goods_gallery WHERE goods_id = ' . $this->goods_id;
 		$goods_img = $this->db->query($sql);
@@ -660,7 +674,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			$goods_desc = preg_replace('/width\\="[0-9]+?"/', '', $goods_desc);
 			$goods_desc = preg_replace('/style=.+?[*|"]/i', '', $goods_desc);
 		}
-
+        
+        //当前期保证金支付人数
 		$pmsql = "SELECT count(user_id) as count FROM dsc_paipai_seller_pay_margin WHERE ppj_id={$re['ppj_id']} AND ppj_no ={$re['ppj_no']}";
 		$pm_data = $GLOBALS['db']->getRow($pmsql);
 		$this->assign('pm_data', $pm_data);

@@ -479,6 +479,21 @@ a.btn-disab{background: #bbb;border:1px solid #bbb}
 .btn-default-new:active,
 .btn-default-new:hover {background:#f9f9f9;border:1px solid #efefef;}/*按下颜色*/
 a.btn-default-new{background:#fff;}
+.match_pay{
+    background: #EC5151;
+    font-size: 1.6rem;
+    color: #fff;
+    border: 0;
+    text-align: center;
+    padding: 1.2rem 0;
+    width: 100%;
+}
+.match_pay a{   
+    color: #fff;
+    display: block;
+    width: 80%;
+    text-align: center;
+}
 /*footer*/
 .footer-nav{ background-color: rgba(254, 253, 252, 1);   left: 0;right: 0;position: fixed;margin: 0 auto;bottom: 0;z-index: 11;box-shadow: 1px 5px 15px rgba(50,50,50,0.3);border-top:1px solid #f6f6f9;padding:0.3rem 0}
 .footer-nav .nav-list{font-size:1.1rem;display:block;text-align:center;padding-top:0rem;color:#595959}

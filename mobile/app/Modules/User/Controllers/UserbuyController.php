@@ -68,6 +68,12 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
             ecs_header('Location: ' . url('user/userbuy/ordererror'));
             exit();
         }
+        
+        $g_sql="SELECT * FROM ".$GLOBALS['ecs']->table('goods')."WHERE goods_id={$pl_data['goods_id']}";
+        $goods_data=$GLOBALS['db']->getRow($g_sql);
+        $this->assign('goods_data', $goods_data);
+
+
         $user_id=$this->user_id;
         
         $margin_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE order_sn=".$order['order_sn']." AND ls_pay_ok=1";
