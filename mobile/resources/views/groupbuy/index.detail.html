@@ -393,10 +393,9 @@
 									{if $goods.goods_id > 0 && $goods.is_gift == 0 && $goods.parent_id == 0}
 									
 									<div class="div-num dis-box m-top08">
-										<a class="num-less" onClick="changePrice('1')"></a>
 										
-										<input class="box-flex" type="text" value="1" onblur="changePrice('2')" name="number" id="goods_number" />
-										<a class="num-plus" onClick="changePrice('3')"></a>
+										<input class="box-flex" type="text" value="1" disabled="disabled" name="number" id="goods_number" />
+										
 									</div>
 									
 									{else}
