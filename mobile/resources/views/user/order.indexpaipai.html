@@ -27,9 +27,11 @@
             <script id="j-product" type="text/html">
             
             <% if order_list!=""%>
-                <%each order_list as order%>
+                <%each order_list as order%>              
                 <section class="flow-checkout-pro  m-top08">
-                	
+                    <%if order.ppj_end_time < order.time%> 
+                      <img style="position: absolute;width: 7rem;margin-left: 27rem;z-index: 999;" src="__ROOT__/public/img/overdue.png">
+                	<%/if%>
                     <header class="b-color-f dis-box padding-all">
                         <span class=" box-flex">
                             <%if order.user_name%>
@@ -78,9 +80,13 @@
 					<div class="padding-all f-05 user-order-money b-color-f">
 												
 						<% if order.pay_status ==10 %>
+                          <%if order.two_status == 1%>
+                             <span style="color:orangered;">成交价格：<%order.sellers_fee%> </span>
+                          <%else%>
 							<span style="color:orangered;">当前价格：<%order.price%> </span>
-						  <span  style="color:burlywood;">
-                        	最后一次出价：<%order.sellers_fee%>元        
+						    <span  style="color:burlywood;">
+                        	最后一次出价：<%order.sellers_fee%>元 
+                          <%/if%>       
                         </span>
 						 <%else%>					 
 						 <span style="color:orangered;">成交价格：<%order.sellers_fee%> </span>
@@ -91,16 +97,26 @@
                     <footer class="padding-all b-color-f m-top1px of-hidden dis-box">
                         <h4 class="t-remark2 box-flex"></h4>
                         <p class="ect-button-more ect-button-more-dete n-br-5">
-                        	
-                        	<% if order.pay_status ==10 %>
-                        	
-                        	<% if order.cur_price  < order.bid_price %>                      	 	
-                        	<span style="color: rosybrown;"> 正在匹配适合的卖家...</span>
-                         <%else%>
-                        		
-                        		<span style="color:orangered;">匹配失败，请重新出价</span>
-                        		<%/if%>
-                        	<a class="btn-default-new br-5 min-btn" href="{url('groupbuy/index/detail')}&id=<%order.ppj_id%>">再次出价</a>
+                    <%if order.ppj_start_time < order.time && order.ppj_end_time >= order.time%> 
+                        <% if order.pay_status ==10 %>                        
+                            <%if order.two_status ==1%>
+                                    <% if order.ls_refund == 0 %>
+                                    <a class="btn-default-new br-5 min-btn" href="{url('user/order/refundmargin')}&id=<%order.ppj_id%>">申请保证金退款</a>
+                                    <%else if order.ls_refund == 1 %>
+                                    <a class="btn-default-new br-5 min-btn" href="">保证金已退</a>
+                                    <%else%>
+                                    <a class="btn-default-new br-5 min-btn" href="">退款中</a>
+                                    <%/if%>
+                                    <a class="btn-default-new br-5 min-btn received-order" data-item-received="<%order.order_id%>">确认收货</a>
+                            <%else if order.two_status ==0 %>
+                                <a class="btn-default-new br-5 min-btn" href="{url('user/userbuy/paipaibuy')}&ppj_id=&ppj_no=&sell=<%order.sell_user_data%>">待付款</a> 
+                            <%else%>
+                                <% if order.cur_price  < order.bid_price %>                             
+                                <span style="color: rosybrown;"> 正在匹配适合的卖家...</span>
+                                <%else%>
+                                <span style="color:orangered;">匹配失败，请重新出价</span>
+                                <%/if%>
+                                <a class="btn-default-new br-5 min-btn" href="{url('groupbuy/index/detail')}&id=<%order.ppj_id%>">再次出价</a>
                         	<%/if%>
                         	
                             <%if order.delay == 1%>
@@ -111,52 +127,35 @@
                             <a class="btn-default-new br-5 min-btn" href="<%order.handler_return%>">申请售后</a>
                             <%/if%>
 
-                            <%if order.extension_code=='paipai_buy' && order.pay_status != 0%>
-                            
-                              <% each order.sell_data as val %>
-                                <% if val.status == 0 %>
-                                     <a class="btn-default-new br-5 min-btn" href="{url('user/userbuy/paipaibuy')}&ppj_id=<%val.ppj_id%>&ppj_no=<%val.ppj_no%>&sell=<%order.sell_user_data%>">待付款</a>   
-                                     
-                                <%else if val.status != 1 && val.status != 2%>                
-                                <!--
-                                	作者：xul@chuove.com
-                                	时间：2018-09-24
-                                	描述：
-                                	
-                                	 <a  href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">匹配订单</a>
-                                -->                                                                        
-                                                                   
-                                <%/if%>
-                                
-                               <%/each%>
-                            <%else%>
-                               <% each order.sell_data as val %>
-                                <% if val.status == 2%>
-                                     <a  href="{url('user/userbuy/userbuy')}&id=<%order.order_id%>">已收货</a>
-                                <%else%>
-                                      <a class="btn-default-new br-5 min-btn received-order" data-item-received="<%order.order_id%>">确认收货</a>
-                                <%/if%>
-                               <%/each%>       
-                            <%/if%>
-                            
                             <%if !order.handler%>
                             
                             <a class="btn-default-new br-5 min-btn" href="<%order.order_url%>">查看订单</a>
                             
                             <%/if%>
-                            <%if order.delete_yes == 1%>
-                            <!--<a class="btn-default">删除</a>-->
-                            <%/if%>
 
                             <%if order.order_del%>
                              <button class="btn-default-new br-5 min-btn del-order" data-item="<%order.order_id%>">删除</button>
                             <%/if%>
-                            <!-- 
-                            <%if order.online_pay%>
-                            <a class="btn-default-new br-5 min-btn" href="<%#order.online_pay%>">立即支付</a>
-                            <%/if%>
-                            -->
+
                             <%#order.handler%>
+                        <%/if%>
+                    <%else%>
+                            <%if order.two_status ==0 &&  order.time < order.ppj_end_time+order.ppj_endpay_time %>
+                                <a class="btn-default-new br-5 min-btn" href="{url('user/userbuy/paipaibuy')}&ppj_id=&ppj_no=&sell=<%order.sell_user_data%>">待付款</a> 
+                            <%/if%>
+                            <a class="btn-default-new br-5 min-btn" href="">活动已过期</a>  
+                            <% if order.ls_refund == 0 %>
+                            <a class="btn-default-new br-5 min-btn" href="{url('user/order/refundmargin')}&id=<%order.ppj_id%>">申请保证金退款</a>
+                            <%else if order.ls_refund == 1 %>
+                            <a class="btn-default-new br-5 min-btn" href="">保证金已退</a>
+                            <%else%>
+                            <a class="btn-default-new br-5 min-btn" href="">退款中</a>
+                            <%/if%>
+                            
+                            <%if !order.handler%>
+                            <a class="btn-default-new br-5 min-btn" href="<%order.order_url%>">查看订单</a>                           
+                            <%/if%>
+                    <%/if%>
                         </p>
                     </footer>
                 </section>
