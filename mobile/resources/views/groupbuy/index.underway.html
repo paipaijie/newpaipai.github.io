@@ -68,35 +68,35 @@
                         {if $v['is_baoming'] == 0}
 						 <div class="shoudong">
                             <p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:130px;">
-                                <span style="width:150px; color: red;" class="btn-default-new br-5 min-btn" id="nowsale">马上卖出</span>
+                                <span style="width:150px; color: black;" class="btn-default-new br-5 min-btn" id="nowsale">马上卖出</span>
                                 <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="{$v['ppj_id']}">
                                 <input type="hidden" id="ppj_no" class="ppj_no" name="ppj_no" value="{$v['ppj_no']}">
                                 <input type="hidden" id="goods_id" class="goods_id" name="goods_id" value="{$v['goods_id']}">
                             </p>
                         </div>
                         <div class="zidong" >
-                            <span style="width:150px;color: blue;margin-left: 14px;" class="btn-default-new br-5 min-btn"
+                            <span style="width:150px;color: black;margin-left: 14px;" class="btn-default-new br-5 min-btn"
                                 id="autosale">自动出价</span>
                             <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="{$v['ppj_id']}">
                             <input type="hidden" id="ppj_no" class="ppj_no" name="ppj_no" value="{$v['ppj_no']}">
                         </div>
                         {elseif $v['is_baoming'] == 1}
                         <div style="padding-top: 11px;">
-                            <span style="width:150px;color: blue;margin-left: 57px;" class="btn-default-new br-5 min-btn"
+                            <span style="width:150px;color: black;margin-left: 57px;" class="btn-default-new br-5 min-btn"
                                 id="autosale">已设置手动出售</span>
                         </div>
                         <div class="zidong" style="padding-top:11px;">
-                            <span style="width:150px;color: blue;margin-left:10px;" class="btn-default-new br-5 min-btn">修改自动出售</span>
+                            <span style="width:150px;color: black;margin-left:10px;" class="btn-default-new br-5 min-btn">修改自动出售</span>
                             <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="{$v['ppj_id']}">
                             <input type="hidden" id="ppj_no" class="ppj_no" name="ppj_no" value="{$v['ppj_no']}">
                         </div>
                         {elseif $v['is_baoming'] == 2}   
                         <div style="padding-top: 11px;">
-                            <span style="width:150px;color: blue;margin-left: 100px;" class="btn-default-new br-5 min-btn"
+                            <span style="width:150px;color: black;margin-left: 100px;" class="btn-default-new br-5 min-btn"
                                 id="autosale">已自动出价</span>
                         </div>
                         <div class="xiugai" style="padding-top:11px;">
-                            <span style="width:150px;color: blue;margin-left:10px;" class="btn-default-new br-5 min-btn">修改价格区间</span>
+                            <span style="width:150px;color: black;margin-left:10px;" class="btn-default-new br-5 min-btn">修改价格区间</span>
                             <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="{$v['ppj_id']}">
                             <input type="hidden" id="ppj_no" class="ppj_no" name="ppj_no" value="{$v['ppj_no']}">
                             <input type="hidden" id="seller_min_price" class="seller_min_price" name="seller_min_price" value="{$v['seller_min_fee']}">
@@ -105,7 +105,7 @@
                         </div>
                         {elseif $v['is_baoming'] == 3}  
                         <div style="padding-top: 11px;">
-                            <span style="width:150px;color: blue;margin-left:17rem;" class="btn-default-new br-5 min-btn">已成功售出</span>
+                            <span style="width:150px;color: red;margin-left:17rem;" class="btn-default-new br-5 min-btn">已成功售出</span>
                         </div>
                         {/if}
                     </footer>
