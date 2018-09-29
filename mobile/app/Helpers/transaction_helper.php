@@ -236,13 +236,12 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 	else if ($status == 10) { //已支付保证金，匹配卖家中，PS_UNPAYED		
 		$where = 'and oi.pay_status = 10';		
 	}
-
 	$select = ' (SELECT count(*) FROM ' . $GLOBALS['ecs']->table('comment') . (' AS c WHERE c.comment_type = 0 AND c.id_value = og.goods_id AND c.order_id = oi.order_id AND c.parent_id = 0 AND c.user_id = \'' . $user_id . '\') AS sign1, ') . '(SELECT count(*) FROM ' . $GLOBALS['ecs']->table('comment_img') . ' AS ci, ' . $GLOBALS['ecs']->table('comment') . ' AS c' . (' WHERE c.comment_type = 0 AND c.id_value = og.goods_id AND c.order_id = oi.order_id AND c.parent_id = 0 AND c.user_id = \'' . $user_id . '\' AND ci.comment_id = c.comment_id )  AS sign2, ');
 	$total_arr = $GLOBALS['db']->getAll('SELECT oi.order_id FROM ' . $GLOBALS['ecs']->table('order_info') . ' as oi' . ' left join ' . $GLOBALS['ecs']->table('order_goods') . ' as og on oi.order_id = og.order_id' . (' WHERE oi.user_id = \'' . $user_id . '\' and oi.is_delete = \'0\' and oi.is_zc_order=0 ') . $where . ' and (select count(*) from ' . $GLOBALS['ecs']->table('order_info') . ' as oi2 where oi2.main_order_id = oi.order_id) = 0 ' . ' group by oi.order_id ORDER BY oi.add_time DESC');
 	$total = is_array($total_arr) ? count($total_arr) : 0;
 	$start = ($page - 1) * $num;
 	$arr = array();
-
+    
 	if (is_dir(APP_TEAM_PATH)) {
 		
 		$sql = 'SELECT og.ru_id, oi.main_order_id,og.sellers_fee,og.ppj_no,oi.ppj_id,oi.ppj_no,oi.consignee,oi.pay_name, oi.order_id, oi.order_sn,oi.pay_time,oi.order_status, oi.shipping_status, oi.pay_status, oi.add_time, oi.shipping_time, oi.auto_delivery_time, oi.sign_time,oi.team_id,oi.extension_code, ' . $select . '(oi.goods_amount + oi.shipping_fee + oi.insure_fee + oi.pay_fee + oi.pack_fee + oi.card_fee + oi.tax - oi.discount - oi.coupons) AS total_fee, og.goods_id, ' . 'oi.invoice_no, oi.shipping_name, oi.tel, oi.email, oi.address, oi.province, oi.city, oi.district ' . ' FROM ' . $GLOBALS['ecs']->table('order_info') . ' as oi' . ' left join ' . $GLOBALS['ecs']->table('order_goods') . ' as og on oi.order_id = og.order_id' . (' WHERE oi.user_id = \'' . $user_id . '\' and oi.is_delete = \'0\' and oi.is_zc_order=0  ') . $where . ' and (select count(*) from ' . $GLOBALS['ecs']->table('order_info') . ' as oi2 where oi2.main_order_id = oi.order_id) = 0 ' . (' group by oi.order_id ORDER BY oi.add_time DESC LIMIT ' . $start . ', ' . $num);
@@ -250,7 +249,7 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 	else {
 		$sql = 'SELECT og.ru_id, oi.main_order_id, oi.consignee,oi.pay_name, oi.order_id,og.sellers_fee,og.ppj_no,oi.ppj_id,oi.ppj_no,oi.order_sn,oi.pay_time,oi.order_status, oi.shipping_status, oi.pay_status, oi.add_time, oi.shipping_time, oi.auto_delivery_time, oi.sign_time,oi.extension_code, ' . $select . '(oi.goods_amount + oi.shipping_fee + oi.insure_fee + oi.pay_fee + oi.pack_fee + oi.card_fee + oi.tax - oi.discount - oi.coupons) AS total_fee, og.goods_id, ' . 'oi.invoice_no, oi.shipping_name, oi.tel, oi.email, oi.address, oi.province, oi.city, oi.district ' . ' FROM ' . $GLOBALS['ecs']->table('order_info') . ' as oi' . ' left join ' . $GLOBALS['ecs']->table('order_goods') . ' as og on oi.order_id = og.order_id' . (' WHERE oi.user_id = \'' . $user_id . '\' and oi.is_delete = \'0\' and oi.is_zc_order=0  ') . $where . ' and (select count(*) from ' . $GLOBALS['ecs']->table('order_info') . ' as oi2 where oi2.main_order_id = oi.order_id) = 0 ' . (' group by oi.order_id ORDER BY oi.add_time DESC LIMIT ' . $start . ', ' . $num);
 	}
-
+    
 	$res = $GLOBALS['db']->query($sql);
 
 	$noTime = gmtime();
@@ -427,6 +426,14 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 		}
 
 		$ru_id = $row['ru_id'];
+
+		if($status==0){
+            $so_sql="SELECT spm_id FROM ". $GLOBALS['ecs']->table('paipai_seller_ok')." WHERE order_id=".$row['order_id'];
+            $spm_id = $GLOBALS['db']->getRow($so_sql);
+            $spm_sql="SELECT order_id FROM ". $GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE spm_id=".$spm_id['spm_id'];
+            $order_id = $GLOBALS['db']->getRow($spm_sql);
+            $row['order_id']=$order_id['order_id'];
+		}
 		$row['order_goods'] = get_order_goods_toInfo($row['order_id']);
 		$order_id = $row['order_id'];
 		$date = array('order_id');

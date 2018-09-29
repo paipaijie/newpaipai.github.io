@@ -18,7 +18,7 @@
         <nav style="padding-top:10px" class="tab-title b-color-f of-hidden" style="position:fixed">
             <ul class="dis-box">          
                 <li class="box-flex {if $status ==10}active{/if}"><a status="10" >匹配中订单({$order_num.pay_count})</a></li>              
-                <li class="box-flex {if $status ==0}active{/if}"><a status="0" >匹配成功订单({$ordersuccess_num.pay_count})</a></li>              
+                <li class="box-flex {if $status ==0}active{/if}"><a  href="{url(user/order/indexpaipai,array('status'=>0))}" >匹配成功订单({$ordersuccess_num.pay_count})</a></li>              
             </ul>
         </nav>
              
@@ -29,7 +29,7 @@
             <% if order_list!=""%>
                 <%each order_list as order%>              
                 <section class="flow-checkout-pro  m-top08">
-                    <%if order.ppj_end_time < order.time%> 
+                    <%if order.ppj_end_time < order.time && order.pay_status !=2 && order.two_status == ''%>
                       <img style="position: absolute;width: 7rem;margin-left: 27rem;z-index: 999;" src="__ROOT__/public/img/overdue.png">
                 	<%/if%>
                     <header class="b-color-f dis-box padding-all">
@@ -71,16 +71,21 @@
                             <%/if%>
                             <%/each%>
                         </ul>
-                      
-                       <span class="t-jiantou" style="color: orangered;">
+                        <% if order.pay_status ==10 %>
+                        <span class="t-jiantou" style="color: orangered;">
                         共<%order.order_goods_num%>件商品,已付保证金：<%#order.total_fee%>                        
                          </span>
+                        <%else%>
+                        <span class="t-jiantou" style="color: orangered;">
+                        共<%order.order_goods_num%>件商品
+                        </span>
+                        <%/if%>
                          
                     </div>
 					<div class="padding-all f-05 user-order-money b-color-f">
 												
 						<% if order.pay_status ==10 %>
-                          <%if order.two_status == 1%>
+                          <%if order.two_status == 1 || order.two_status == 2%>
                              <span style="color:orangered;">成交价格：<%order.sellers_fee%> </span>
                           <%else%>
 							<span style="color:orangered;">当前价格：<%order.price%> </span>
@@ -89,7 +94,7 @@
                           <%/if%>       
                         </span>
 						 <%else%>					 
-						 <span style="color:orangered;">成交价格：<%order.sellers_fee%> </span>
+						 <span style="color:orangered;">成交价格：<%order.total_fee%> </span>
 						
 						 <%/if%>
 					</div>
@@ -99,7 +104,7 @@
                         <p class="ect-button-more ect-button-more-dete n-br-5">
                     <%if order.ppj_start_time < order.time && order.ppj_end_time >= order.time%> 
                         <% if order.pay_status ==10 %>                        
-                            <%if order.two_status ==1%>
+                            <%if order.two_status ==1 || order.two_status ==2 %>
                                     <% if order.ls_refund == 0 %>
                                     <a class="btn-default-new br-5 min-btn" href="{url('user/order/refundmargin')}&id=<%order.ppj_id%>">申请保证金退款</a>
                                     <%else if order.ls_refund == 1 %>
