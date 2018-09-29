@@ -1020,8 +1020,12 @@ public function actionMypaipaiokList()
 			$show = 0 < $count ? 1 : 0;
 				foreach($collection_goods['goods_list'] as $v=>$k){
 					$sql1 = "SELECT createtime FROM dsc_paipai_seller_ok where user_id = {$user_id}";
-					$result = $GLOBALS['db']->getOne($sql1);
-					$collection_goods['goods_list'][$v]['createtime']=date('Y-m-d H:i:s',$result+8*60*60);
+					$result = $GLOBALS['db']->query($sql1);
+					foreach($result as $key => $val){
+						$collection_goods['goods_list'][$v]['createtime']=date('Y-m-d H:i:s',$val['createtime']+8*60*60);
+						
+					}
+
 				}
 //				var_dump($collection_goods['goods_list']);
 			exit(json_encode(array('goods_list' => $collection_goods['goods_list'],'show' => $show, 'totalPage' => $page_size)));

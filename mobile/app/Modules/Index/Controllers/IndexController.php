@@ -13,7 +13,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 	}
 	
 	
-
+	/*
 	public function actionIndex()
 	{	
 		//查询商品信息
@@ -125,8 +125,92 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$this->assign('res', $res);	
 		$this->display();
 	}
+	*/
 	
-	
+	public function actionIndex()
+	{
+		uaredirect(__PC__ . '/');
+
+		if (IS_POST) {
+			$preview = input('preview', 0);
+
+			if ($preview) {
+				$module = \App\Libraries\Compile::getModule('preview');
+			}
+			else {
+				$module = \App\Libraries\Compile::getModule();
+			}
+
+			if ($module === false) {
+				$module = \App\Libraries\Compile::initModule();
+			}
+
+			$this->response(array('error' => 0, 'data' => $module ? $module : ''));
+		}
+
+		$popup_ads = S('popup_ads');
+
+		if ($popup_ads === false) {
+			$popup_ads = dao('touch_ad')->where(array('ad_name' => '首页红包广告'))->find();
+			S('popup_ads', $popup_ads, 600);
+		}
+
+		$time = gmtime();
+		$popup_enabled = 1;
+		$ad_link = '';
+		
+		if ($popup_ads['enabled'] == 1 && ($popup_ads['start_time'] <= $time && $time < $popup_ads['end_time'])) {
+			if (!cookie('popup_enabled')) {
+				$popup_enabled = get_data_path($popup_ads['ad_code'], 'afficheimg/');
+				$ad_link = $popup_ads['ad_link'];
+				cookie('ad_link', $ad_link);
+				cookie('popup_enabled', $popup_enabled);
+			}
+		}
+
+		$this->assign('ad_link', $ad_link);
+		
+		$this->assign('popup_ads', $popup_enabled);
+		
+		$topic_id = input('topic_id', 0, 'intval');
+		$pages = dao('touch_page_view')->field('title, thumb_pic, page_id')->where(array('id' => $topic_id))->find();
+
+		if (0 < $topic_id) {
+			if (0 < $pages['page_id']) {
+				$topic = dao('topic')->field('title, description')->where(array('topic_id' => $pages['page_id']))->find();
+				$pages['title'] = $topic['title'];
+				$pages['description'] = $topic['description'];
+			}
+
+			$pages['thumb_pic'] = get_image_path('data/gallery_album/original_img/' . $pages['thumb_pic']);
+		}
+
+		$position = assign_ur_here(0, $pages['title']);
+		$seo = get_seo_words('index');
+
+		foreach ($seo as $key => $value) {
+			$seo[$key] = html_in(str_replace(array('{sitename}', '{key}', '{description}'), array(C('shop.shop_name'), C('shop.shop_keywords'), C('shop.shop_desc')), $value));
+		}
+
+		$page_title = !empty($seo['title']) ? $seo['title'] : $position['title'];
+		
+		$keywords = !empty($seo['keywords']) ? $seo['keywords'] : C('shop.shop_keywords');
+		
+		$description = !empty($seo['description']) ? $seo['description'] : (!empty($pages['description']) ? $pages['description'] : C('shop.shop_desc'));
+		$share_img = !empty($pages['thumb_pic']) ? $pages['thumb_pic'] : '';
+		
+		$share_data = array('title' => $page_title, 'desc' => $description, 'link' => '', 'img' => $share_img);
+		
+		$this->assign('share_data', $this->get_wechat_share_content($share_data));
+		
+		$this->assign('page_title', $page_title);
+		
+		$this->assign('keywords', $keywords);
+		
+		$this->assign('description', $description);
+		
+		 $this->display();
+	}
 	
 
 	public function actionAppNav()
