@@ -906,11 +906,24 @@ function get_order_detail($order_id, $user_id = 0)
 	}
 
 	$order = order_info($order_id);
-	
-		$sellers_fee = $GLOBALS['db']->GetOne('SELECT sellers_fee FROM ' . $GLOBALS['ecs']->table('order_goods') . (' WHERE order_id = \'' . $order_id. '\''));
-	
-	$order['sellers_fee'] =price_format($sellers_fee);
-	
+	   $m_sql="SELECT spm_id FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE order_id=".$order_id;
+	   $margin_id=$GLOBALS['db']->getRow($m_sql);
+	   if($margin_id){
+	      $ok_sql="SELECT sellers_fee FROM ".$GLOBALS['ecs']->table('paipai_seller_ok')." WHERE spm_id=".$margin_id['spm_id'];
+	      $ok_data=$GLOBALS['db']->getRow($ok_sql);
+	      if($ok_data){
+	      	 $order['sellers_fee'] =price_format($ok_data['sellers_fee']);
+	      }else{
+             $ub_sql="SELECT bid_price FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE spm_id=".$margin_id['spm_id'];
+	         $bid_price=$GLOBALS['db']->getRow($ub_sql);   
+	         $order['sellers_fee'] =price_format($bid_price['bid_price']);
+	      }	     
+	   }else{
+	   	  $sellers_fee = $GLOBALS['db']->GetOne('SELECT sellers_fee FROM ' . $GLOBALS['ecs']->table('order_goods') . (' WHERE order_id = \'' . $order_id. '\''));
+
+	      $order['sellers_fee'] =price_format($sellers_fee);
+	   }
+
 	if (0 < $user_id && $user_id != $order['user_id']) {
 		$GLOBALS['err']->add(L('no_priv'));
 		return false;
