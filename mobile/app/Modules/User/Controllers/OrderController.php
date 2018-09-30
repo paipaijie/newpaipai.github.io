@@ -30,6 +30,7 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		
 		$status = I('status', 0, 'intval');
 		
+	           
 
 		if (IS_POST) {	
 					
@@ -43,7 +44,7 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		
 		$where_pay = ' AND oi.pay_status = 10';
 		
-		$where_paysuccess = ' AND oi.pay_status = 0 AND oi.extension_code = "paipai_buy"';
+		$where_paysuccess = ' AND oi.pay_status = 2 AND oi.extension_code = "two_price"';
 		
 		$pay_count = get_order_where_count($this->user_id, 0, $where_pay);
 		
