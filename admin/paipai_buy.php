@@ -582,11 +582,11 @@ else {
 			
 			$goods_act=goods_paipai_activity($goods_id);  //查询该产品的最近一条的拍拍活动
 
-			$info = goods_paipai_buy($goods_id);  //查询该产品的已有的拍拍活动
-
-			if ($info && $info['ppj_id'] != $group_buy_id) {
-				sys_msg($_LANG['error_goods_exist']);   //您选择的商品目前有一个拍拍活动正在进行
-			}
+//			$info = goods_paipai_buy($goods_id);  //查询该产品的已有的拍拍活动
+//
+//			if ($info && $info['ppj_id'] != $group_buy_id) {
+//				sys_msg($_LANG['error_goods_exist']);   //您选择的商品目前有一个拍拍活动正在进行
+//			}
 			
 
 			//该商品的拍拍期数，自动加1
