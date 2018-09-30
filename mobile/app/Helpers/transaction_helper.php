@@ -696,6 +696,13 @@ function get_user_orders($user_id, $num = 10, $page = 1, $status = 0)
 		}
 
 		$ru_id = $row['ru_id'];
+		if($row['extension_code']=='two_price'){
+            $so_sql="SELECT spm_id FROM ". $GLOBALS['ecs']->table('paipai_seller_ok')." WHERE order_id=".$row['order_id'];
+            $spm_id = $GLOBALS['db']->getRow($so_sql);
+            $spm_sql="SELECT order_id FROM ". $GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE spm_id=".$spm_id['spm_id'];
+            $order_id = $GLOBALS['db']->getRow($spm_sql);
+            $row['order_id']=$order_id['order_id'];
+		}
 		$row['order_goods'] = get_order_goods_toInfo($row['order_id']);
 		$order_id = $row['order_id'];
 		$date = array('order_id');
