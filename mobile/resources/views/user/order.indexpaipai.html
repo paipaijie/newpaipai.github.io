@@ -107,13 +107,13 @@
                     <%if order.ppj_start_time < order.time && order.ppj_end_time >= order.time%> 
                         <% if order.pay_status ==10 %>                        
                             <%if order.two_status ==1 || order.two_status ==2 %>
-                                    <% if order.ls_refund == 0 %>
-                                    <a class="btn-default-new br-5 min-btn" href="{url('user/order/refundmargin')}&id=<%order.ppj_id%>">申请保证金退款</a>
-                                    <%else if order.ls_refund == 1 %>
-                                    <a class="btn-default-new br-5 min-btn" href="">保证金已退</a>
-                                    <%else%>
-                                    <a class="btn-default-new br-5 min-btn" href="">保证金退款中</a>
-                                    <%/if%>
+                                    <!-- <% if order.ls_refund == 0 %> -->
+                                    <!-- <a class="btn-default-new br-5 min-btn" href="{url('user/order/refundmargin')}&id=<%order.ppj_id%>">申请保证金退款</a> -->
+                                    <!-- <%else if order.ls_refund == 1 %> -->
+                                    <!-- <a class="btn-default-new br-5 min-btn" href="">保证金已退</a> -->
+                                    <!-- <%else%> -->
+                                    <!-- <a class="btn-default-new br-5 min-btn" href="">保证金退款中</a> -->
+                                    <!-- <%/if%> -->
                                     <a class="btn-default-new br-5 min-btn received-order" data-item-received="<%order.order_id%>">确认收货</a>
                             <%else if order.two_status ==0 %>
                                 <a class="btn-default-new br-5 min-btn" href="{url('user/userbuy/paipaibuy')}&ppj_id=&ppj_no=&sell=<%order.sell_user_data%>">待付款</a> 
@@ -152,13 +152,13 @@
                                 <a class="btn-default-new br-5 min-btn" href="{url('user/userbuy/paipaibuy')}&ppj_id=&ppj_no=&sell=<%order.sell_user_data%>">待付款</a> 
                             <%/if%>
                             
-                            <% if order.ls_refund == 0 %>
-                            <a class="btn-default-new br-5 min-btn" href="{url('user/order/refundmargin')}&id=<%order.ppj_id%>">申请保证金退款</a>
-                            <%else if order.ls_refund == 1 %>
-                            <a class="btn-default-new br-5 min-btn" href="">保证金已退</a>
-                            <%else%>
-                            <a class="btn-default-new br-5 min-btn" href="">保证金退款中</a>
-                            <%/if%>
+                            <!-- <% if order.ls_refund == 0 %> -->
+                            <!-- <a class="btn-default-new br-5 min-btn" href="{url('user/order/refundmargin')}&id=<%order.ppj_id%>">申请保证金退款</a> -->
+                            <!-- <%else if order.ls_refund == 1 %> -->
+                            <!-- <a class="btn-default-new br-5 min-btn" href="">保证金已退</a> -->
+                            <!-- <%else%> -->
+                            <!-- <a class="btn-default-new br-5 min-btn" href="">保证金退款中</a> -->
+                            <!-- <%/if%> -->
 					  <%/if%>
 					    <%if order.pay_status==2%>
 					    <a class="btn-default-new br-5 min-btn" >确认收货</a> 

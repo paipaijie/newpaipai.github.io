@@ -223,14 +223,14 @@
                         data: { "max": max, "min": min, "ppj_id": ppj_id, "ppj_no": ppj_no },
                         dataType: 'json',
                         success: function (success) {
-                            if (success == 1) {
+                            if (success.re == 1) {
                                 layer.open({
                                     content: '报名成功'
                                     , skin: 'msg'
                                     , time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
-                            } else if (success == 2) {
+                            } else if (success.re == 2) {
                                 layer.open({
                                     content: '报名失败'
                                     , skin: 'msg'
@@ -239,7 +239,7 @@
                                 layer.close(index);
 
                             }
-                            else if (success == 3) {
+                            else if (success.re == 3) {
                                 layer.open({
                                     content: '您没有优惠券'
                                     , skin: 'msg'
@@ -247,14 +247,14 @@
                                 });
                                 layer.close(index);
 
-                            } else if (success == 4) {
+                            } else if (success.re == 4) {
                                 layer.open({
                                     content: '价格不匹配，请重新出价'
                                     , skin: 'msg'
                                     , time: 2 //2秒后自动关闭
                                 });
                                 layer.close(index);
-                            } else if (success == 5) {
+                            } else if (success.re == 5) {
                                 layer.open({
                                     content: '活动期数不匹配'
                                     , skin: 'msg'
