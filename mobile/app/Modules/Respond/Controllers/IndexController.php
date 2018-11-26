@@ -36,9 +36,14 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			}
 
 			if ($payment->callback($this->data)) {
+				$alipay_order=$_GET['trade_no'];
 				$log_id = parse_trade_no($_GET['out_trade_no']);
 				$sql1 = 'SELECT * FROM ' . $GLOBALS['ecs']->table('pay_log') . (' WHERE log_id = \'' . $log_id . '\'');
 				$pay_log = $GLOBALS['db']->getRow($sql1);
+
+				$trade_sql="UPDATE dsc_pay_log SET trade_no={$alipay_order} WHERE log_id={$log_id}";
+                $GLOBALS['db']->query($trade_sql);
+			
 				$sql2 = 'SELECT main_order_id, order_id, user_id, order_sn, ppj_id, ppj_no, extension_code ' . 'FROM ' . $GLOBALS['ecs']->table('order_info') . (' WHERE order_id = \'' . $pay_log['order_id'] . '\'');
 				$order_data = $GLOBALS['db']->getRow($sql2);
 				if($order_data['extension_code'] == 'paipai_buy'){

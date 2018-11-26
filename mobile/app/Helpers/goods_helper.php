@@ -1297,7 +1297,9 @@ function group_buy_info($group_buy_id, $current_num = 0)
 	}
 
 	$group_buy['price_ladder'] = $price_ladder;
+	
 	$stat = group_buy_stat($group_buy_id, $group_buy['deposit']);
+	
 	$group_buy = array_merge($group_buy, $stat);
 	$cur_price = $price_ladder[0]['price'];
 	
@@ -1418,12 +1420,15 @@ function paipai_buy_info($group_buy_id, $current_num = 0)
 	$cur_price = $price_ladder[0]['price'];
 	
 	$cur_amount = $stat['valid_goods'] + $current_num;
+	
+	$group_buy['cur_amount'] = $cur_amount;
 
 	foreach ($price_ladder as $amount_price) {
 		if ($amount_price['amount'] <= $cur_amount) {
 			$cur_price = $amount_price['price'];
 		}
-		else {
+		else if($cur_amount ==0){
+			$cur_price=0;
 			break;
 		}
 	}
@@ -1537,14 +1542,13 @@ function paipai_buy_stat($group_buy_id, $ppj_no,$deposit)
 {
 	$group_buy_id = intval($group_buy_id);
 	
+	
 	$sql = 'SELECT goods_id ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ('WHERE ppj_id = \'' . $group_buy_id . '\' ') . 'AND act_type = \'' . GAT_PAIPAI_BUY . '\'' . 'AND review_status = 3 ';
 		
 	$group_buy_goods_id = $GLOBALS['db']->getOne($sql); // 产品ID
 	
-	$sql = 'SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods ' . 'FROM ' . $GLOBALS['ecs']->table('order_info') . ' AS o, ' . $GLOBALS['ecs']->table('order_goods') . ' AS g ' . ' WHERE o.order_id = g.order_id ' . 'AND o.extension_code = \'paipai_buy\' ' . ('AND o.extension_id = \'' . $group_buy_id . '\' ') . ('AND o.ppj_no = \'' . $ppj_no . '\' '). ('AND g.goods_id = \'' . $group_buy_goods_id . '\' ') . 'AND (order_status = \'' . OS_CONFIRMED . '\' OR order_status = \'' . OS_UNCONFIRMED . '\')';
-	
-	
-	
+	$sql = 'SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods ' . 'FROM ' . $GLOBALS['ecs']->table('order_info') . ' AS o, ' . $GLOBALS['ecs']->table('order_goods') . ' AS g ' . ' WHERE o.pay_status <>11 and  o.order_id = g.order_id ' . 'AND o.extension_code = \'paipai_buy\' ' . ('AND o.extension_id = \'' . $group_buy_id . '\' ') . ('AND o.ppj_no = \'' . $ppj_no . '\' '). ('AND g.goods_id = \'' . $group_buy_goods_id . '\' ') . 'AND (order_status = \'' . OS_CONFIRMED . '\' OR order_status = \'' . OS_UNCONFIRMED . '\')';
+			
 	$stat = $GLOBALS['db']->getRow($sql);
 
 	if ($stat['total_order'] == 0) {

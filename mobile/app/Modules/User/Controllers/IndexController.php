@@ -985,7 +985,7 @@ public function actionMypaipaiList()
 			$collection_goods = get_paipai_goods($user_id, $count, $limit);
 			
 			$show = 0 < $count ? 1 : 0;
-				
+			$sql1 = "SELECT * FROM dsc_paipai_list WHERE ppj_id = {$collection_goods['goods_list']['ppj_id']}";
 			exit(json_encode(array('goods_list' => $collection_goods['goods_list'], 'show' => $show, 'totalPage' => $page_size)));
 			
 		}

@@ -56,12 +56,12 @@
 										</div>
 									</section>
 						
-                        <p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:102px;padding-top:12px;">   
+                        <p class="ect-button-more ect-button-more-dete n-br-5" style="margin-left:200px;padding-top:12px;">   
   					
-                            <span style="width:150px; color: red;" class="btn-default-new br-5 min-btn"  id="nowsale" ppjid="<%goods.ppj_id%>">手 动 售 出</span> 
+                            <!--<span style="width:150px; color: red;" class="btn-default-new br-5 min-btn"  id="nowsale" ppjid="<%goods.ppj_id%>">手 动 售 出</span>--> 
    
 						    <div class="zidong" style="padding-top: 11px;">
-                              <span style="width:150px;color: blue;     margin-left: 14px;" class="btn-default-new br-5 min-btn"  id="autosale">自 动 售 出</span> 
+                              <span style="width:150px;color: blue;margin-left: 14px;" class="btn-default-new br-5 min-btn"  id="autosale">已参加活动</span> 
 							  <input type="hidden" id="ppj_id" class="ppj_id" name="ppj_id" value="<%goods.ppj_id%>">
 						    </div>
                         </p>
@@ -175,181 +175,181 @@
     //         });
     //     });
 
-
-        $(".shoudong").click(function(){
-            var ppj_id = document.getElementById('ppj_id').value;
-            var ppj_no = document.getElementById('ppj_no').value;
-            var goods_id = document.getElementById('goods_id').value;
-            layer.open({
-                content: '<h4 class="t-remark">确认售出即可获得收益</h4>	',
-                btn: ['确定', '取消'],
-                yes: function (index,  layero) {
-                    $.ajax({
-                        url: "{url('user/index/paipaibuy')}",
-                        type: "post",
-                        data: { "ppd": ppj_id, "ppn": ppj_no, "g_id": goods_id },
-                        dataType: "JSON",
-                        success: function (y) {
-						console.log(y.re);
-                            if (y.re == 1) {
-                                layer.open({
-                                    content: '没有券'
-                                    , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            } else if (y.re == 2) {
-                                layer.open({
-                                    content: '销售券期数不匹配'
-                                    , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            } else if (y.re == 3) {
-                                layer.open({
-                                    content: '销售券已使用'
-                                    , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            } else if (y.re == 4) {
-                                layer.open({
-                                    content: '出售成功，买家支付收货后您将获收益！'
-                                    , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }else if (y.re == 8) {
-                                layer.open({
-                                    content: '暂时没有买家出价！'
-                                    , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }
-							
-                        },
-                        error: function (success) {
-                            if (success == 3) {
-                                layer.open({
-                                    content: '您没有优惠券'
-                                    , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }
-                        }
-                    });
-                },
-                btn2: function (index, layero) {
-                    layer.open({
-                        content: '您没有优惠券'
-                        , skin: 'msg'
-                        , time: 2 //2秒后自动关闭
-                    });
-                    layer.close(index);
-                }
-
-            });
-        });
-		
-		
-		
-		$(".zidong").click(function(){
-        var ppj_id = $(this).find(".ppj_id").val();        
-         //alert(ppj_id);
-            layer.open({
-                type: 1,
-                title:'预售价格区间',
-                skin:'layui-layer-rim',
-                area:['300px', '80%'],
-                content: ' <div class="row" style="width: 420px;  margin-left:7px; margin-top:10px;">'
-                    +'<div class="col-sm-12">'
-                    +'<div class="input-group">'
-                    +'<span class="input-group-addon"> 最低价   :</span>'
-                    +'<input id="seller_min_fee" name="seller_min_fee" type="text" class="form-control" placeholder="不能少于成本价">'
-                    +'</div>'
-                    +'</div>'
-                    +'<div class="col-sm-12" style="margin-top: 10px">'
-                    +'<div class="input-group">'
-                    +'<span class="input-group-addon">最高价:</span>'
-                    +'<input id="seller_max_fee" name="seller_max_fee" type="text" class="form-control" placeholder="不能高于零售价">'
-                    +'</div>'
-                    +'</div>'
-                    +'</div>'
-                ,
-                btn:['保存','取消'],
-                yes: function (index, layero) {
-                    var max = $("#seller_max_fee").val();
-                    var min = $("#seller_min_fee").val();
-					//alert(max);
-					//alert(min);exit;
-                    $.ajax({
-                        url:"{url('groupbuy/index/baoming')}",
-                        type:"post",
-                        data:{"max":max,"min":min,"ppj_id":ppj_id},
-                        dataType:'json',
-                        success:function(success){
-                            if(success == 1){
-                                layer.open({
-                                    content: '报名成功'
-                                    ,skin: 'msg'
-                                    ,time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }else if(success == 2){
-                                layer.open({
-                                    content: '报名失败'
-                                    ,skin: 'msg'
-                                    ,time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }else if(success == 3){
-                                layer.open({
-                                    content: '您没有优惠券'
-                                    ,skin: 'msg'
-                                    ,time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }else if(success == 4){
-                                layer.open({
-                                    content: '价格不匹配，请重新出价'
-                                    ,skin: 'msg'
-                                    ,time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }else if(success == 5){
-                                layer.open({
-                                    content: '活动期数不匹配'
-                                    ,skin: 'msg'
-                                    ,time: 2 //2秒后自动关闭
-                                });
-                                layer.close(index);
-                            }
-                        },
-                        error:function(e){
-                            layer.open({
-                                content: '您没有优惠券'
-                                ,skin: 'msg'
-                                ,time: 2 //2秒后自动关闭
-                            });
-                            layer.close(index);
-                        }
-                    });
-                },
-                btn2:function (index,layero) {
-                    layer.open({
-                        content: '您没有优惠券'
-                        ,skin: 'msg'
-                        ,time: 2 //2秒后自动关闭
-                    });
-                    layer.close(index); 
-                }
-
-            });
-        });
-		
-		
+//
+//      $(".shoudong").click(function(){
+//          var ppj_id = document.getElementById('ppj_id').value;
+//          var ppj_no = document.getElementById('ppj_no').value;
+//          var goods_id = document.getElementById('goods_id').value;
+//          layer.open({
+//              content: '<h4 class="t-remark">确认售出即可获得收益</h4>	',
+//              btn: ['确定', '取消'],
+//              yes: function (index,  layero) {
+//                  $.ajax({
+//                      url: "{url('user/index/paipaibuy')}",
+//                      type: "post",
+//                      data: { "ppd": ppj_id, "ppn": ppj_no, "g_id": goods_id },
+//                      dataType: "JSON",
+//                      success: function (y) {
+//						console.log(y.re);
+//                          if (y.re == 1) {
+//                              layer.open({
+//                                  content: '没有券'
+//                                  , skin: 'msg'
+//                                  , time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          } else if (y.re == 2) {
+//                              layer.open({
+//                                  content: '销售券期数不匹配'
+//                                  , skin: 'msg'
+//                                  , time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          } else if (y.re == 3) {
+//                              layer.open({
+//                                  content: '销售券已使用'
+//                                  , skin: 'msg'
+//                                  , time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          } else if (y.re == 4) {
+//                              layer.open({
+//                                  content: '出售成功，买家支付收货后您将获收益！'
+//                                  , skin: 'msg'
+//                                  , time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          }else if (y.re == 8) {
+//                              layer.open({
+//                                  content: '暂时没有买家出价！'
+//                                  , skin: 'msg'
+//                                  , time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          }
+//							
+//                      },
+//                      error: function (success) {
+//                          if (success == 3) {
+//                              layer.open({
+//                                  content: '您没有优惠券'
+//                                  , skin: 'msg'
+//                                  , time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          }
+//                      }
+//                  });
+//              },
+//              btn2: function (index, layero) {
+//                  layer.open({
+//                      content: '您没有优惠券'
+//                      , skin: 'msg'
+//                      , time: 2 //2秒后自动关闭
+//                  });
+//                  layer.close(index);
+//              }
+//
+//          });
+//      });
+//		
+//		
+//		
+//		$(".zidong").click(function(){
+//      var ppj_id = $(this).find(".ppj_id").val();        
+//       //alert(ppj_id);
+//          layer.open({
+//              type: 1,
+//              title:'预售价格区间',
+//              skin:'layui-layer-rim',
+//              area:['300px', '80%'],
+//              content: ' <div class="row" style="width: 420px;  margin-left:7px; margin-top:10px;">'
+//                  +'<div class="col-sm-12">'
+//                  +'<div class="input-group">'
+//                  +'<span class="input-group-addon"> 最低价   :</span>'
+//                  +'<input id="seller_min_fee" name="seller_min_fee" type="text" class="form-control" placeholder="不能少于成本价">'
+//                  +'</div>'
+//                  +'</div>'
+//                  +'<div class="col-sm-12" style="margin-top: 10px">'
+//                  +'<div class="input-group">'
+//                  +'<span class="input-group-addon">最高价:</span>'
+//                  +'<input id="seller_max_fee" name="seller_max_fee" type="text" class="form-control" placeholder="不能高于零售价">'
+//                  +'</div>'
+//                  +'</div>'
+//                  +'</div>'
+//              ,
+//              btn:['保存','取消'],
+//              yes: function (index, layero) {
+//                  var max = $("#seller_max_fee").val();
+//                  var min = $("#seller_min_fee").val();
+//					//alert(max);
+//					//alert(min);exit;
+//                  $.ajax({
+//                      url:"{url('groupbuy/index/baoming')}",
+//                      type:"post",
+//                      data:{"max":max,"min":min,"ppj_id":ppj_id},
+//                      dataType:'json',
+//                      success:function(success){
+//                          if(success == 1){
+//                              layer.open({
+//                                  content: '报名成功'
+//                                  ,skin: 'msg'
+//                                  ,time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          }else if(success == 2){
+//                              layer.open({
+//                                  content: '报名失败'
+//                                  ,skin: 'msg'
+//                                  ,time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          }else if(success == 3){
+//                              layer.open({
+//                                  content: '您没有优惠券'
+//                                  ,skin: 'msg'
+//                                  ,time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          }else if(success == 4){
+//                              layer.open({
+//                                  content: '价格不匹配，请重新出价'
+//                                  ,skin: 'msg'
+//                                  ,time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          }else if(success == 5){
+//                              layer.open({
+//                                  content: '活动期数不匹配'
+//                                  ,skin: 'msg'
+//                                  ,time: 2 //2秒后自动关闭
+//                              });
+//                              layer.close(index);
+//                          }
+//                      },
+//                      error:function(e){
+//                          layer.open({
+//                              content: '您没有优惠券'
+//                              ,skin: 'msg'
+//                              ,time: 2 //2秒后自动关闭
+//                          });
+//                          layer.close(index);
+//                      }
+//                  });
+//              },
+//              btn2:function (index,layero) {
+//                  layer.open({
+//                      content: '您没有优惠券'
+//                      ,skin: 'msg'
+//                      ,time: 2 //2秒后自动关闭
+//                  });
+//                  layer.close(index); 
+//              }
+//
+//          });
+//      });
+//		
+//		
    		
 		
 		$(function(){

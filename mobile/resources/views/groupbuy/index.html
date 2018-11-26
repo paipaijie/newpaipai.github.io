@@ -46,8 +46,7 @@
                             
                                       
                             <%if list.is_end == 1 || list.is_end == 2%>
-                            
-                            <li>
+                            <li <%if list.now_time>list.limit_time %> style="display:none" <%/if%>>
                                 <div class="product-div">
                                 
 
