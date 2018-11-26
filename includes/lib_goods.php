@@ -1487,33 +1487,39 @@ function group_buy_stat($group_buy_id, $deposit)
 // 判断状态
 function group_buy_status($group_buy)
 {
-	$now = gmtime();
 
-	if ($group_buy['is_finished'] == 0) {
-		if ($now < $group_buy['start_time']) {
-			
-			$status = GBS_PRE_START;
-		}
-		else if ($group_buy['end_time'] < $now) {
-			$status = GBS_FINISHED;
-		}
-		else {
-			if ($group_buy['restrict_amount'] == 0 || $group_buy['valid_goods'] < $group_buy['restrict_amount']) {
-				$status = GBS_UNDER_WAY;
-			}
-			else {
-				$status = GBS_FINISHED;
-			}
-		}
-	}
-	else if ($group_buy['is_finished'] == GBS_SUCCEED) {
-		$status = GBS_SUCCEED;
-	}
-	else if ($group_buy['is_finished'] == GBS_FAIL) {
-		$status = GBS_FAIL;
-	}
+        $now = gmtime();
 
-	return $status;
+        if ($group_buy['is_finished'] == 0) {
+
+            if ($now < $group_buy['start_time']) {
+
+                $status = GBS_PRE_START;
+            }
+            else if ($group_buy['end_time'] < $now) {
+                    if ($group_buy['ppj_status_end_time'] != '') {
+                        $status = GBS_FINISHED_REFUND;
+                    }else{
+                        $status = GBS_FINISHED;
+					}
+            }
+            else {
+                if ($group_buy['restrict_amount'] == 0 || $group_buy['valid_goods'] < $group_buy['restrict_amount']) {
+                    $status = GBS_UNDER_WAY;
+                }
+                else {
+                    $status = GBS_FINISHED;
+                }
+            }
+        }
+        else if ($group_buy['is_finished'] == GBS_SUCCEED) {
+            $status = GBS_SUCCEED;
+        }
+        else if ($group_buy['is_finished'] == GBS_FAIL) {
+            $status = GBS_FAIL;
+        }
+
+        return $status;
 }
 
 

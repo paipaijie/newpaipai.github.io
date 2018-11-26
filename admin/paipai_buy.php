@@ -133,6 +133,7 @@ function group_buy_list($ru_id)
 		}		
 		$arr['cur_price'] = $cur_price;
 		$status = group_buy_status($arr); //  group_buy_status 在 lib_goos.php中定义
+
 		$arr['start_time'] = local_date($GLOBALS['_CFG']['date_format'], $arr['start_time']);
 		$arr['end_time'] = local_date($GLOBALS['_CFG']['date_format'], $arr['end_time']);
 		$arr['cur_status'] = $GLOBALS['_LANG']['gbs'][$status];
@@ -189,12 +190,48 @@ function list_link($is_add = true)
 	return array('href' => $href, 'text' => $GLOBALS['_LANG']['group_buy_list']);
 }
 
+//点击结束活动  保证金退款开始
+function paipai_margin_refund($group_buy_id){
+
+    $sql1="SELECT m.ppj_id,m.user_id,m.order_id,m.order_sn,m.pay_fee,pl.log_id FROM " . $GLOBALS['ecs']->table('paipai_seller_pay_margin') ." AS m LEFT JOIN ".$GLOBALS['ecs']->table('pay_log')." AS pl ON m.order_id=pl.order_id "." WHERE m.ppj_id=".$group_buy_id." AND m.ls_pay_ok=1 AND m.ls_refund=0 ";
+    $res=$GLOBALS['db']->getAll($sql1);
+
+    foreach($res as $key=>$val ){
+           $out_trade_no=make_trade_no($val['log_id'],$val['pay_fee']);
+           $refund_amount=$val['pay_fee'];
+
+           $refund=alipay_refund($out_trade_no,$refund_amount);
+           if($refund['code']){
+           	    $field=array(
+           	    	  'ppj_id' => $val['ppj_id'],
+                      'margin_id' => $out_trade_no,
+                      'order_id' => $val['order_sn'],
+                      'user_id' => $val['user_id'],
+                      'margin_price' => $refund_amount,
+                      'create_time' => time(),
+                      'refund_code' => $refund['code'],
+                      'refund_msg' => $refund['sub_msg']
+           	    );
+                $GLOBALS['db']-> autoExecute($GLOBALS['ecs']->table('paipai_margin_return'), $field, 'INSERT');
+           }
+    }
+}
+
+
+function make_trade_no($log_id, $order_amount)
+{
+	$trade_no = '6';
+	$trade_no .= str_pad($log_id, 15, 0, STR_PAD_LEFT);
+	$trade_no .= str_pad($order_amount * 100, 16, 0, STR_PAD_LEFT);
+	return $trade_no;
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 define('IN_ECS', true);
 require dirname(__FILE__) . '/includes/init.php';
 require_once ROOT_PATH . 'includes/lib_goods.php';
 require_once ROOT_PATH . 'includes/lib_order.php';
+require_once ROOT_PATH . 'admin/includes/lib_refund.php';
 
 admin_priv('group_by');
 $adminru = get_admin_ru_id();
@@ -231,7 +268,7 @@ if ($_REQUEST['act'] == 'list') {     //list 首页
 	$smarty->assign('action_link', array('href' => 'paipai_buy.php?act=add', 'text' => $_LANG['add_group_buy']));
 	
 	$list = group_buy_list($adminru['ru_id']);
-	
+
 	$smarty->assign('group_buy_list', $list['item']);
 	
 	$smarty->assign('filter', $list['filter']);
@@ -308,6 +345,7 @@ else {
 			$shuju1 = $result->fetch_object();
 			//转换为数组
 			$group_buy = get_object_vars($shuju1); 
+		
 			$goods=goods_news($group_buy['goods_id']);
 			$smarty->assign('goods', $goods);
 			//过滤
@@ -354,6 +392,7 @@ else {
 	else if ($_REQUEST['act'] == 'insert_update') {
 
 		$group_buy_id = intval($_POST['act_id']);
+
 		if (isset($_POST['finish']) || isset($_POST['succeed']) || isset($_POST['fail']) || isset($_POST['mail'])) {
 			if ($group_buy_id <= 0) {
 				sys_msg($_LANG['error_group_buy'], 1); //'您要操作的拍拍活动不存在'
@@ -382,10 +421,15 @@ else {
 				sys_msg($_LANG['error_status'], 1);
 			}
 			
-			$sql = 'UPDATE ' . $ecs->table('paipai_list') . ' SET end_time = \'' . gmtime() . '\' ,ppj_staus = 2 ' . ('WHERE ppj_id = \'' . $group_buy_id . '\' LIMIT 1');
+
+			$sql = 'UPDATE ' . $ecs->table('paipai_list') . ' SET ppj_status_end_time = \'' . gmtime(). '\' ,ppj_staus = 2 ' . ('WHERE ppj_id = \'' . $group_buy_id . '\' LIMIT 1');
 			
-			$db->query($sql);
-			
+			$res=$db->query($sql);
+
+			if($res){
+			     //结束活动退款执行
+                  $refund_res=paipai_margin_refund($group_buy_id);
+			}
 			clear_cache_files();
 			$links = array(
 				array('href' => 'paipai_buy.php?act=list', 'text' => $_LANG['back_list']) //返回拍拍活动列表
@@ -396,10 +440,11 @@ else {
 		else if (isset($_POST['succeed'])) {
 			$sql = "select * from dsc_paipai_list where ppj_id = '$group_buy_id'";
 			$group_buy = $db->getRow($sql);
+
 			if ($group_buy['ppj_staus'] != 2) {  //结束未处理
 				sys_msg($_LANG['error_status'], 1); //当前状态不能执行该操作
 			}
-			exit;
+
 			/*
 			if (0 < $group_buy['total_order']) {
 				
@@ -488,7 +533,7 @@ else {
 			活动失败为4
 			*/
 			
-			$sql = 'UPDATE ' . $ecs->table('paipai_list') . ' SET is_finished = \'' . GBS_SUCCEED . '\' ' . ('WHERE act_id = \'' . $group_buy_id . '\' LIMIT 1');
+			$sql = 'UPDATE ' . $ecs->table('paipai_list') . ' SET is_finished = \'' . GBS_SUCCEED . '\' ' . ('WHERE ppj_id = \'' . $group_buy_id . '\' LIMIT 1');
 			$db->query($sql);
 			
 			clear_cache_files();
@@ -721,7 +766,7 @@ else {
 			
 			if (0 < $group_buy_id) {//
 				
-				
+				 
 				//exit;
 				if (isset($_POST['review_status'])) {
 					
@@ -734,7 +779,7 @@ else {
 				//保证金
 				$deposit = floatval($_POST['ppl_margin_fee']);
 				if ($deposit < 0) {
-					$deposit = 0;
+					$deposit = 0; 
 				}
 				
 				// 起拍价

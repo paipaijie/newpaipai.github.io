@@ -130,6 +130,7 @@ define('GBS_UNDER_WAY', 1);
 define('GBS_FINISHED', 2);
 define('GBS_SUCCEED', 3);
 define('GBS_FAIL', 4);
+define('GBS_FINISHED_REFUND', 5);
 define('BONUS_NOT_MAIL', 0);
 define('BONUS_MAIL_SUCCEED', 1);
 define('BONUS_MAIL_FAIL', 2);

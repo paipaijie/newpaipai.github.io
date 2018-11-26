@@ -25,8 +25,9 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 
 	//显示进行中的拍拍活动
 	public function actionUnderway(){
-			$now = time();
-			$user_id = $_SESSION['user_id'];
+
+		$now = time();
+		$user_id = $_SESSION['user_id'];
 		
 		$default_sort_order_method = C('sort_order_method') == '0' ? 'ASC' : 'DESC';
 

@@ -48,6 +48,7 @@ $_LANG['gbs'][GBS_UNDER_WAY] = '进行中';
 $_LANG['gbs'][GBS_FINISHED] = '结束未处理';
 $_LANG['gbs'][GBS_SUCCEED] = '成功结束';
 $_LANG['gbs'][GBS_FAIL] = '失败结束';
+$_LANG['gbs'][GBS_FINISHED_REFUND] = '结束已退款（未点击活动成功或失败）';
 
 $_LANG['label_order_qty'] = '订单数 / 有效订单数：';
 $_LANG['label_goods_qty'] = '商品数 / 有效商品数：';

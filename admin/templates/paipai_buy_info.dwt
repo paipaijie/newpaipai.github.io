@@ -297,9 +297,8 @@
 											<div class="label">&nbsp;</div>
 											
 											<div class="label_value info_btn">
-												{if $group_buy.ppj_staus eq 1 || $group_buy.ppj_staus eq 0}
 												<input name="act_id" type="hidden" id="act_id" value="{$group_buy.ppj_id}" id="submitBtn">
-												
+												{if $group_buy.ppj_staus eq 1 || $group_buy.ppj_staus eq 0}
 												<input type="submit" name="submit" value="{$lang.button_submit}" class="button" />
 												
 												<input type="reset" value="{$lang.button_reset}" class="button button_reset" /> 
@@ -311,8 +310,8 @@
 													<label class="fl lh">{$lang.notice_succeed}</label>
 													<input type="submit" name="fail" value="{$lang.button_fail}" class="button" onclick="return confirm(fail_confirm)" /><!--活动失败-->
 													<div class="notic">{$lang.notice_fail}</div>
-												{elseif $group_buy.ppj_staus eq 2}
-													<input type="submit" name="mail" value="{$lang.button_succeed}" class="button" onclick="return confirm('{$lang.button_succeed}')" />
+									<!-- 			{elseif $group_buy.ppj_staus eq 2}
+													<input type="submit" name="mail" value="{$lang.button_succeed}" class="button" onclick="return confirm('{$lang.button_succeed}')" /> -->
 												{/if}
 
 											</div>

@@ -37,6 +37,7 @@ $_LANG['gbs'][GBS_UNDER_WAY] = '進行中';
 $_LANG['gbs'][GBS_FINISHED] = '結束未處理';
 $_LANG['gbs'][GBS_SUCCEED] = '成功結束';
 $_LANG['gbs'][GBS_FAIL] = '失敗結束';
+$_LANG['gbs'][GBS_FINISHED_REFUND] = '结束已退款（未点击活动成功或失败）';
 $_LANG['label_order_qty'] = '訂單數 / 有效訂單數：';
 $_LANG['label_goods_qty'] = '商品數 / 有效商品數：';
 $_LANG['label_cur_price'] = '當前價：';
