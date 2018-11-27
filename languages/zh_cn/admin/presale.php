@@ -57,6 +57,7 @@ $_LANG['button_succeed'] = '活动成功';
 $_LANG['notice_succeed'] = '（更新订单价格）';
 $_LANG['button_fail'] = '活动失败';
 $_LANG['notice_fail'] = '（取消订单，保证金退回帐户余额，失败原因可以写到活动说明中）';
+$_LANG['paipai_notice_fail'] = '（取消订单，手动退货款，失败原因可以写到活动说明中）';
 $_LANG['cancel_order_reason'] = '预售失败';
 $_LANG['js_languages']['succeed_confirm'] = '此操作不可逆，您确定要设置该预售活动成功吗？';
 $_LANG['js_languages']['fail_confirm'] = '此操作不可逆，您确定要设置该预售活动失败吗？';

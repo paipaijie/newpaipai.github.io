@@ -309,7 +309,7 @@
 													<input type="submit" name="succeed" value="{$lang.button_succeed}" class="button" onclick="return confirm(succeed_confirm)" /><!--活动成功-->
 													<label class="fl lh">{$lang.notice_succeed}</label>
 													<input type="submit" name="fail" value="{$lang.button_fail}" class="button" onclick="return confirm(fail_confirm)" /><!--活动失败-->
-													<div class="notic">{$lang.notice_fail}</div>
+													<div class="notic">{$lang.paipai_notice_fail}</div>
 									<!-- 			{elseif $group_buy.ppj_staus eq 2}
 													<input type="submit" name="mail" value="{$lang.button_succeed}" class="button" onclick="return confirm('{$lang.button_succeed}')" /> -->
 												{/if}

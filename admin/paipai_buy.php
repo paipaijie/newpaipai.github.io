@@ -552,41 +552,45 @@ else {
 		}
 		
 		else if (isset($_POST['fail'])) {
-			
-			if ($group_buy['status'] != GBS_FINISHED) {
-				sys_msg($_LANG['error_status'], 1);
-			}
 
-			if (0 < $group_buy['valid_order']) {
-				$sql = 'SELECT * ' . 'FROM ' . $ecs->table('order_info') . ' WHERE extension_code = \'group_buy\' ' . ('AND extension_id = \'' . $group_buy_id . '\' ') . 'AND (order_status = \'' . OS_CONFIRMED . '\' OR order_status = \'' . OS_UNCONFIRMED . '\') ';
-				$res = $db->query($sql);
+            $sql = "select * from dsc_paipai_list where ppj_id = '$group_buy_id'";
+            $group_buy = $db->getRow($sql);
 
-				while ($order = $db->fetchRow($res)) {
-					$order['order_status'] = OS_CANCELED;
-					$order['to_buyer'] = $_LANG['cancel_order_reason'];
-					$order['pay_status'] = PS_UNPAYED;
-					$order['pay_time'] = 0;
-					$money = $order['surplus'] + $order['money_paid'];
+            if ($group_buy['ppj_staus'] != 2) {  //结束未处理
+                sys_msg($_LANG['error_status'], 1); //当前状态不能执行该操作
+            }
 
-					if (0 < $money) {
-						$order['surplus'] = 0;
-						$order['money_paid'] = 0;
-						$order['order_amount'] = $money;
-						order_refund($order, 1, $_LANG['cancel_order_reason'] . ':' . $order['order_sn'], $money);
-					}
+//			if (0 < $group_buy['valid_order']) {
+//				$sql = 'SELECT * ' . 'FROM ' . $ecs->table('order_info') . ' WHERE extension_code = \'group_buy\' ' . ('AND extension_id = \'' . $group_buy_id . '\' ') . 'AND (order_status = \'' . OS_CONFIRMED . '\' OR order_status = \'' . OS_UNCONFIRMED . '\') ';
+//				$res = $db->query($sql);
+//
+//				while ($order = $db->fetchRow($res)) {
+//					$order['order_status'] = OS_CANCELED;
+//					$order['to_buyer'] = $_LANG['cancel_order_reason'];
+//					$order['pay_status'] = PS_UNPAYED;
+//					$order['pay_time'] = 0;
+//					$money = $order['surplus'] + $order['money_paid'];
+//
+//					if (0 < $money) {
+//						$order['surplus'] = 0;
+//						$order['money_paid'] = 0;
+//						$order['order_amount'] = $money;
+//						order_refund($order, 1, $_LANG['cancel_order_reason'] . ':' . $order['order_sn'], $money);
+//					}
+//
+//					$order = addslashes_deep($order);
+//					update_order($order['order_id'], $order);
+//				}
+//			}
 
-					$order = addslashes_deep($order);
-					update_order($order['order_id'], $order);
-				}
-			}
+            $sql = 'UPDATE ' . $ecs->table('paipai_list') . ' SET is_finished = \'' . GBS_FAIL . '\' ' . ('WHERE ppj_id = \'' . $group_buy_id . '\' LIMIT 1');
+            $db->query($sql);
 
-			$sql = 'UPDATE ' . $ecs->table('goods_activity') . ' SET is_finished = \'' . GBS_FAIL . '\', ' . ('act_desc = \'' . $_POST['act_desc'] . '\' ') . ('WHERE act_id = \'' . $group_buy_id . '\' LIMIT 1');
-			$db->query($sql);
-			clear_cache_files();
-			$links = array(
-				array('href' => 'group_buy.php?act=list', 'text' => $_LANG['back_list'])
-				);
-			sys_msg($_LANG['edit_success'], 0, $links);
+            clear_cache_files();
+            $links = array(
+                array('href' => 'paipai_buy.php?act=list', 'text' => $_LANG['back_list']) //返回拍拍活动列表
+            );
+            sys_msg($_LANG['edit_success'], 0, $links);
 		}
 		
 		else if (isset($_POST['mail'])) {
