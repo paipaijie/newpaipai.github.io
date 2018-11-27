@@ -238,6 +238,7 @@ require dirname(__FILE__) . '/includes/init.php';
 require_once ROOT_PATH . 'includes/lib_goods.php';
 require_once ROOT_PATH . 'includes/lib_order.php';
 require_once ROOT_PATH . 'admin/includes/lib_refund.php';
+require_once ROOT_PATH . 'admin/includes/lib_timing.php';
 
 admin_priv('group_by');
 $adminru = get_admin_ru_id();
@@ -265,7 +266,9 @@ else {
 //判断哪个控制器
 
 if ($_REQUEST['act'] == 'list') {     //list 首页
-	
+
+	//更改活动ppj_staus=0的  更改为1 （ 后期可增加定时任务完成自动更改 ）
+	$timing=paipai_active_update();
 
 	$smarty->assign('full_page', 1);
 	

@@ -6,7 +6,7 @@
 	<body class="iframe_body">
 		<div class="warpper">
 			<div class="title">
-				<a href="_buy.php?act=list" class="s-back">{$lang.back}</a>{$lang.promotion} - {$ur_here}</div>
+				<a href="paipai_buy.php?act=list" class="s-back">{$lang.back}</a>{$lang.promotion} - {$ur_here}</div>
 			<div class="content">
 
 				<!--操作提示start  -->
