@@ -28,7 +28,8 @@ function alipay_refund($out_trade_no,$refund_amount){
 			"\"out_trade_no\":\"{$out_trade_no}\"," .
 	//		"\"trade_no\":\"{$trade_no}\"," .
 			"\"refund_amount\":\"{$refund_amount}\"," .
-			"\"refund_reason\":\"保证金退款\" " .
+			"\"refund_reason\":\"保证金退款\" ," .
+            "\"body\":\"拍拍活动保证金退款\" ".
 		"}");
         
         $result = $aop->execute ( $request); 
