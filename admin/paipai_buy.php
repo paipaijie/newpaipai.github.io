@@ -221,6 +221,7 @@ function paipai_margin_refund($group_buy_id){
 				}
            }
     }
+
 }
 
 
@@ -439,6 +440,7 @@ else {
 			     //结束活动退款执行
                   $refund_res=paipai_margin_refund($group_buy_id);
 			}
+	
 			clear_cache_files();
 			$links = array(
 				array('href' => 'paipai_buy.php?act=list', 'text' => $_LANG['back_list']) //返回拍拍活动列表

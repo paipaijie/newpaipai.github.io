@@ -5,11 +5,11 @@ require_once ROOT_PATH . 'admin/alipay/AopSdk.php';
 //  
 function alipay_refund($out_trade_no,$refund_amount){
         
-        $appId = "2018052960298201";
+        $appId = "2018080960980568";
 
-        $Private_Key = "MIIEogIBAAKCAQEAu9/670kbrCGIXSQAhwgfUV5BRS2TU+PR/hOOiyFPcH+3oMZ/+xSTUh/ciH1r9d+Zv9xlcpI9o9abHOi9t3+7DCWt7DrUZKdPxr+fpJnvYQKVsodXJVbxAT6tVxUwDT6L4ZkhoWcQfwW5q8I9oy12uzT8E/P91apqPDkIVcN4VYv+8DU+bkcZNV/byL4QNOl81DUd99JF7DhYmtNvg8ZiJZawVlT/2vEzk/0rPftbuiePJi05wQ8QDgQYsR0ivAX+RkHXYnO4s8RKZccXzb/toNNDAMXnRC+yVeODus9lM5uUIGTmX+txPjOY2vqVXrNcWkR7ihMnxmBkBqOSPjxbtQIDAQABAoIBAEAH1j43bHb99rvHyWY8HnBc72HkZpHw02EEyVAhyjFNVgg1nuiz2oHi2gaquGDUFFKPiwPBU8DDI5p2uDISFm3NablZU4n6e/YA2SgATtWBTAPMnKbdOsZx1iIX1oitCH+a8RtRRQ4FpYIkcV1r4Utsg31JavmnWw2rYmvYcuq0dnFHaDPAqBIT58Y4MHWPfmhv081IqqUIv06pluxMKLHfFl49Aus9iSAUcNWm4zpF3IPhKVtC9sQQgFtYDgfhL0aL5dwYIraFSdEfAnP0xFloC6UkEMcG7MSuYzB2/sJ/6yqInqBBR/IK830D97hqmlA5OVY0BmzLwfxjV6duOAECgYEA3EwVRZfXCBAPcREWrErgMje2D9gvj0ph89ChkYV/3anROS2pc9wEkuz+HeL0oVlUREicXix4mGt7oqrVKMrHS9cEu6nEZBohTzXAJ3/B5M6TZkB7QbXy3D/Vf0d/Ra7FsfilSKfajhIpnRUa+mptnpTpIh4dRWNIFT3BBH53y00CgYEA2lK6dCAOMHj7ZgROvZ0ES2/0dlEwYEk5vItgYcbb6ndH8DiV5QZBHb7dHb6DgkAUUJ8+Lz5B58iX0HqhucJ94aiCSL3XsB9pwy7TXh2uKyJtplG3UugwgZkLXB6oVpuXAq1j0hB062LWNOWDT3FPy8RmPhrAvhF3ITZ8XTaIDgkCgYAEvVZP0v57W+0ZH6b/OfUs32n5WUtcp9sHpdt0CA1CNZ8cvdDBf2BR0Ot+tR1SQ1u+xFko5YgKr3VPgKFpaUN0bEHbz8E77hv9WkiyENuZEqC1OHnuZf29o1nyjRU96I60T4cu0v2uxNFEYencrWGCYe3KIB+9GG+6lUOL1zS4mQKBgAEvmduvoOQahCMVuufExpUyUn2iC0U6oJmpmChv0BoB894WMJpB4nCq7MCQnF5Ewtd9RfUzvV/o8woq4F4F9HEZXTvP7DAEu6pXwsYsGxoY4ceZggltQXYywqEJeZie178n+fbWKAxvSQKYjJIN54UP2A5WTt25cpA3n41SEoMhAoGAe7vNfWwvhQGLkQGtoeo51sw9LbzWKU1FEdLjMbw1Qq/Y0V23iUpRvNAB6cAv7XCCzqv7+zEnYF3J4abryLXZ+h/SUYgPjSULrDBBWU+iFfUwoM9PsV1O7Ie97U1cav8j02VTid+8fQUHGBVewyMjQT8HlPS83xWaELm7YNQCJBg=";
+        $Private_Key = "MIIEowIBAAKCAQEAuhrrxPoA/aEXWbDdP+tWq4u7OFfhW8j+iXxRBfN+0yBjntjsm8RjRaRE5DVaOgkbAFQvtz9932pmvp4Z9iwlE01ygB098c2MePTCKk+lHWwGgMBtJQybyaCICcKe+oewarUAmdN5kfo/+RspCyAUzS8VRWE36nhFOS+PgxjS44go59JYkr0K/Zr0eKz9skldL61THF/ABsSQCtQ0FrQvkTCLlyyy7VRKfFpSp+9yeFKrrtjTyBtmbwzvArrfS1sxjJJiyZV4xjnC+LElkUc3GlMccbD6UrfW2rnPkQTjPLwIlaz+hjLNDvCDX+5+zHSot1pVV4srEbJe4Nx1IlC2jQIDAQABAoIBAH2EdKmIWCy3flEuuTpIFk9i0aWhl8vY1tuRbfAOluX8PVRAR+yS2sV4kkI8PZtQ0tY48WmtN878K0m6xhXDFkpbfLMthb7U/D4EDgSNbPZYClbB8ZsAUv38+GNk0OZ1p6WAaGRXPfIXjxgKmnb3bzAn5jfB5v2LmlyEWE1565oq7d0EWs2AC2mOjibWX+4qI1d4TtWnoNhypUF+LLjGNwrMZS1jPp+N7+ZCwzfJ0dnqAZ/beTcQp02tQKVZnIkqk67Ivrp4/nmdB5I+jmq/7OjSDhAW04FCq3z9dAoxx/d0jHPiPNrhgxOmVlOFbovyLvi5anopM+uehq7NxdISdt0CgYEA9JaOtgu6ZrcSxW5omRGVL5nrBtIsrX1qBvGkx2mAC5MmlF3zga1heuZGCZ0d8/ntZIU/byhmbg3c5X0/9bxrY+quDuzN46QHPLGTNOwoA23OCFfYVdji6e9i6nReXYCXVkxID8m7JnRazzPVAx6jm+SEOPUPlcphVORnKUmwIhcCgYEAwsnSzq20qZVCUeL6la43LB84xw0rX0+qTQab07Sy0vRXTvydye014F0dId6glE0V8JgporJJm15RSR3pOOCWenYNRyR9EoPdtxm3Au752OJiEXcDOETEVuR3CfMGwbrjrFv4WdAa4RN/B4Kcp1isjRZvZLtIh1JReL1JA9I7RvsCgYEAh3/9MedPbeYQVSY0dlBiWMupg87eB4MKQSyPwBW3ZTIxVlKyO24lKeP2ew768BXOqTiUiu1TybaOYOjBjU7EI8d4hDY2Xd2aUMqDpfcKt9OWJ9Mau3x7QWRoZUDwolZCAQIjjfORZd1iDZZGdQL9Wrj/c1p4NuC2iUQ7zojPNiMCgYApomnks0xCUxzx08or5Cj2zVWddjsnDCgifp8gCSeP35opz+UKHCG/6ycm7ib0i+V8n4mGtQT2qJpHPpVzCs4fLsx3wFzbcEQbtutfPSU6Lmk3wnB1vn0Y9YxcHA39qqyvUpkq2Uhlg31LZaeGPXXkUj9NEJrYEchIPm002+K/sQKBgHcJxzU51J6tFtImxjlC8qVUX9UvKJPKFMav7o14XsbNBe1A7mKycodsBZR2fi6fOoR5THgMUzd7RJOg0+XclCOM5kpzYh8H+HLfALi6p5DQm4YKOx49ECmxZh/RNVkIZX0kpbILB2XEgAgkkoYSqMCkPEzVdTaWh198QGsHBwVH";
 
-        $Public_Key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkir0NEbJmQivQNlcE016iiizkMFsQoCAGzZgeRzMtSRFXD8yAr3ExWqH7bbt2h0s2BvUI4+fWCSFo0PfssD4S4TKFXehf8M+dYWMqwF/xtU26SOWEJJPDYrJn3391qbKgI9AjOCUo9OFGZxCSYxs8JYxJLDTHQfTp+IGuiQK3rfrR+4en3RddmUu5neF0R9kQuI8O7wvwQOexZeoHnMZSJRTRwfBUQQz3b6+LfevjPXe70RTyUoEDhvNGNA2AXhg3eqOodoeslAKNBWRDN8UlWVKMwcl5TF7o7TjIIoESDPwQNzojQOpoTG+r1g6GoYrf0oo7wOEVYQiJo2bIgdnNwIDAQAB";       
+        $Public_Key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwHkIZ+53EV5fDhS6QDrJ5Potff8IfhD5cRZ1FxyUAvvSKV1XwCGER5SwTS48MopQGPWCOEpflrgoQoYC318ABW6hOhXOLJV6y2fx8fBsLpOVZZXbq9Fdwiwd+7qno92TY1chOP7kDPzF+yXk6MGJ8cLkYDcw9bmWq9HIUkwbP6EfuxmY0gloK+qcl6I8dYiDf6h5XiFiM8/EePNUZWlG1BsoNBR/FVQvAAt316VzBCgedK1qcRTwsNZZ15MqT+U7HjrL0vd4gLK4QFnonLodYkJ3O7ITT0/uRd4CsuRy+d+w8ygCBGECPwJ09ZoW2vihp7SqTbsr3XYbcJeSH7SklwIDAQAB";
 
         $aop = new AopClient ();
 		$aop->gatewayUrl = 'https://openapi.alipay.com/gateway.do';
@@ -36,13 +36,8 @@ function alipay_refund($out_trade_no,$refund_amount){
 		$responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
         $resultCode = $result->$responseNode->code;
         $result_msg = $result->$responseNode->sub_msg;
-  
- 
-		if(!empty($resultCode)&&$resultCode == 10000){
-		            return array('code'=>$resultCode,'sub_msg'=>$result_msg);
-		} else {
-		            return array('code'=>$resultCode,'sub_msg'=>$result_msg);
-		}	
+
+        return array('code'=>$resultCode,'sub_msg'=>$result_msg);
 	
 
 }
