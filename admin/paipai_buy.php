@@ -214,9 +214,10 @@ function paipai_margin_refund($group_buy_id){
            	    );
 
            	    $refund_res=$GLOBALS['db']-> autoExecute($GLOBALS['ecs']->table('paipai_margin_return'), $field, 'INSERT');
-           	    if($refund_res){
+
+			   if($refund_res){
            	    	$refund_arr=array('ls_refund'=>'1');
-                    $GLOBALS['db']-> autoExecute($GLOBALS['ecs']->table('paipai_seller_pay_margin'), $refund_res, 'UPDATE', array('order_id'=>$val['order_id']));
+                    $GLOBALS['db']-> autoExecute($GLOBALS['ecs']->table('paipai_seller_pay_margin'), $refund_arr, 'UPDATE', 'order_id='.$val['order_id']);
 				}
            }
     }
