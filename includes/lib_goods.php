@@ -1504,11 +1504,21 @@ function group_buy_status($group_buy)
 					}
             }
             else {
+
                 if ($group_buy['restrict_amount'] == 0 || $group_buy['valid_goods'] < $group_buy['restrict_amount']) {
-                    $status = GBS_UNDER_WAY;
+                    if ($group_buy['ppj_status_end_time'] != '') {
+                        $status = GBS_FINISHED_REFUND;
+                    }else{
+                    	$status = GBS_UNDER_WAY;
+                    }
                 }
                 else {
-                    $status = GBS_FINISHED;
+                    if ($group_buy['ppj_status_end_time'] != '') {
+                        $status = GBS_FINISHED_REFUND;
+                    }else{
+                        $status = GBS_FINISHED;
+					}
+
                 }
             }
         }
