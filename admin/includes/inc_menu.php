@@ -66,6 +66,7 @@ if (file_exists(MOBILE_BARGAIN)) {
 $modules['02_promotion']['gift_gard_list'] = 'gift_gard.php?act=list';
 $modules['02_promotion']['16_presale'] = 'presale.php?act=list';
 $modules['04_order']['02_order_list'] = 'order.php?act=list';
+$modules['04_order']['02_paipai_list'] = 'pporder.php?act=list';
 $modules['04_order']['06_undispose_booking'] = 'goods_booking.php?act=list_all';
 $modules['04_order']['08_add_order'] = 'order.php?act=add';
 $modules['04_order']['09_delivery_order'] = 'order.php?act=delivery_list';

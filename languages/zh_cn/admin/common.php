@@ -393,6 +393,7 @@ if (file_exists(MOBILE_BARGAIN)) {
 $_LANG['03_seckill_list'] = '秒杀活动';
 
 $_LANG['02_order_list'] = '订单列表';
+$_LANG['02_paipai_list'] = '拍拍订单列表';
 $_LANG['03_order_query'] = '订单查询';
 $_LANG['04_merge_order'] = '合并订单';
 $_LANG['05_edit_order_print'] = '订单打印';

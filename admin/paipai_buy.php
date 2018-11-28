@@ -132,7 +132,7 @@ function group_buy_list($ru_id)
 			}
 		}		
 		$arr['cur_price'] = $cur_price;
-		$status = group_buy_status($arr); //  group_buy_status 在 lib_goos.php中定义
+		$status = group_buy_status($arr); //  group_buy_status 在 lib_goods.php中定义
 
 		$arr['start_time'] = local_date($GLOBALS['_CFG']['date_format'], $arr['start_time']);
 		$arr['end_time'] = local_date($GLOBALS['_CFG']['date_format'], $arr['end_time']);
@@ -440,7 +440,7 @@ else {
 			     //结束活动退款执行
                   $refund_res=paipai_margin_refund($group_buy_id);
 			}
-	
+
 			clear_cache_files();
 			$links = array(
 				array('href' => 'paipai_buy.php?act=list', 'text' => $_LANG['back_list']) //返回拍拍活动列表
