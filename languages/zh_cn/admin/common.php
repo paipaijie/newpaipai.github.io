@@ -361,7 +361,8 @@ $_LANG['pack_add'] = '添加新包装';
 $_LANG['card_add'] = '添加新贺卡';
 $_LANG['08_group_buy'] = '团购活动';
 
-$_LANG['88_paipai_buy'] = '拍拍活动'; 
+$_LANG['88_paipai_buy'] = '拍拍活动';
+$_LANG['90_paipai_buy_part'] = '拍拍活动时间段';
 
 $_LANG['09_topic'] = '专题管理';
 $_LANG['topic_add'] = '添加专题';

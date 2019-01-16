@@ -124,6 +124,7 @@ $_LANG['auction'] = '拍卖活动';
 $_LANG['group_by'] = '团购活动';
 
 $_LANG['paipai_by'] = '拍拍活动';
+$_LANG['paipai_part'] = '拍拍活动时间段';
 
 $_LANG['favourable'] = '优惠活动';
 $_LANG['whole_sale'] = '批发管理';

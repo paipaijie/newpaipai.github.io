@@ -4,17 +4,17 @@
 <head>{include file ='library/admin_html_head.lbi'}</head>
 
 <body class="iframe_body">
-	<div class="warpper">
-    	<div class="title">{if $action_link2}<a href="{$action_link2.href}" class="s-back">{$lang.back}</a>{/if}{$lang.order_word} - {$lang.02_order_list}</div>
-		<div class="content">
-			{if $is_zc neq 1}
+    <div class="warpper">
+        <div class="title">{if $action_link2}<a href="{$action_link2.href}" class="s-back">{$lang.back}</a>{/if}{$lang.order_word} - {$lang.02_order_list}</div>
+        <div class="content">
+            {if $is_zc neq 1}
             {if !$from_store}
-        	{include file="library/common_tabs_info.lbi"}
-			{/if}
+            {include file="library/common_tabs_info.lbi"}
             {/if}
-           	{if $user_id gt 0}
+            {/if}
+            {if $user_id gt 0}
             <div class="tabs_info">
-            	<ul>
+                <ul>
                     <li {if $form_action eq 'update'}class="curr"{/if}><a href="users.php?act=edit&id={$user_id}">{$lang.base_info}</a></li>
                     <li {if $form_action eq 'address_list'}class="curr"{/if}><a href="users.php?act=address_list&id={$user_id}">{$lang.consignee_address}</a></li>
                     <li class="curr"><a href="order.php?act=list&user_id={$user_id}">{$lang.view_order}</a></li>
@@ -27,25 +27,25 @@
                 <div class="ex_tit"><i class="sc_icon"></i><h4>{$lang.operating_hints}</h4><span id="explanationZoom" title="{$lang.fold_tips}"></span></div>
                 <ul>
                     <li>{$lang.operation_prompt_content.list.0}</li>
-                	<li>{$lang.operation_prompt_content.list.1}</li>
+                    <li>{$lang.operation_prompt_content.list.1}</li>
                     <li>{$lang.operation_prompt_content.list.2}</li>
                 </ul>
             </div>
             <div class="flexilist mt30"  id="listDiv">
-				{/if}
+                {/if}
                 <div class="common-head order-coomon-head">
 
                     <!--{     拍拍街预订单    }-->
-<!--{
+
                     <div class="ppj_order">
-                        <a href="order.php?act=ppj&list_type=11{if $user_id}&user_id={$user_id}{/if}"  {if $list_type eq '11'}class="current"{/if}> {$lang.seller_sign_list}</a>
-                        <a href="order.php?act=ppj&list_type=12{if $user_id}&user_id={$user_id}{/if}"  {if $list_type eq '12'}class="current"{/if}> {$lang.buyer_bid_list}</a>
-                        <a href="order.php?act=ppj&list_type=13{if $user_id}&user_id={$user_id}{/if}"  {if $list_type eq '13'}class="current"{/if}> {$lang.margin_pay_list}</a>
-                        <a href="order.php?act=ppj&list_type=14{if $user_id}&user_id={$user_id}{/if}"  {if $list_type eq '14'}class="current"{/if}> {$lang.match_success_list}</a>
-                        <a href="order.php?act=ppj&list_type=15{if $user_id}&user_id={$user_id}{/if}"  {if $list_type eq '15'}class="current"{/if}> {$lang.match_fail_list}</a>
+                        <a href="paipai_order.php?act=list&serch_type=11"  {if $serch_type eq '11'}class="current"{/if}> {$lang.seller_sign_list}</a>
+                        <a href="order.php?act=list{$seller_list}&serch_type=12{if $user_id}&user_id={$user_id}{/if}"  {if $serch_type eq '12'}class="current"{/if}> {$lang.buyer_bid_list}</a>
+                        <a href="order.php?act=list{$seller_list}&serch_type=13{if $user_id}&user_id={$user_id}{/if}"  {if $serch_type eq '13'}class="current"{/if}> {$lang.margin_pay_list}</a>
+                        <a href="order.php?act=list{$seller_list}&serch_type=14{if $user_id}&user_id={$user_id}{/if}"  {if $serch_type eq '14'}class="current"{/if}> {$lang.match_success_list}</a>
+                        <a href="order.php?act=list{$seller_list}&serch_type=15{if $user_id}&user_id={$user_id}{/if}"  {if $serch_type eq '15'}class="current"{/if}> {$lang.match_fail_list}</a>
                     </div>
-}-->
-                	<div class="order_state_tab">
+
+                    <div class="order_state_tab">
                         <a href="order.php?act=list{$seller_list}&serch_type=-1{if $user_id}&user_id={$user_id}{/if}" {if $serch_type eq '-1'}class="current"{/if}>{$lang.all_order}{if $serch_type eq '-1'}<em>({$filter.record_count})</em>{/if}</a>
                         <a href="order.php?act=list{$seller_list}&serch_type=0{if $user_id}&user_id={$user_id}{/if}" {if $serch_type eq '0'}class="current"{/if}>{$lang.order_status_01}{if $serch_type eq '0'}<em>({$filter.record_count})</em>{/if}</a>
                         <a href="order.php?act=list{$seller_list}&serch_type=1{if $user_id}&user_id={$user_id}{/if}" {if $serch_type eq '1'}class="current"{/if}>{$lang.order_status_02}{if $serch_type eq '1'}<em>({$filter.record_count})</em>{/if}</a>
@@ -63,115 +63,56 @@
                     </div>
                     
                     <div class="search">
-                    	<form action="javascript:;" name="searchForm" onSubmit="searchGoodsname(this);">
+                        <form action="javascript:;" name="searchForm" onSubmit="searchGoodsname(this);">
                         <div class="input">
                             <input type="text" name="keywords" value="{$filter.keywords}" class="text nofocus w180" placeholder="{$lang.search_keywords_placeholder}" autocomplete="off">
                             <input type="submit" class="btn" name="secrch_btn" ectype="secrch_btn" value="" />
                         </div>
                         </form>
-                    </div>        
-                    <div class="common-head-right"    {if $list_type>10}style="display:none" {/if} >
-                        <div class="fbutton"><a href="{$action_link.href}{$seller_list}"><div title="{$action_link.text}"><span><i class="icon icon-search"></i>{$action_link.text}</span></div></a></div>
-						<div class="fbutton"><div class="merge" title="{$lang.merge_order}"><span><i class="icon icon-copy"></i>{$lang.merge_order}</span></div></div>
-						<div class="fbutton"><a href="javascript:download_orderlist();"><div class="csv" title="{$lang.11_order_export}"><span><i class="icon icon-download-alt"></i>{$lang.11_order_export}</span></div></a></div>
                     </div>
-                
+                        
+                    <div class="common-head-right">
+                        <div class="fbutton"><a href="{$action_link.href}{$seller_list}"><div title="{$action_link.text}"><span><i class="icon icon-search"></i>{$action_link.text}</span></div></a></div>
+                        <div class="fbutton"><div class="merge" title="{$lang.merge_order}"><span><i class="icon icon-copy"></i>{$lang.merge_order}</span></div></div>
+                        <div class="fbutton"><a href="javascript:download_orderlist();"><div class="csv" title="{$lang.11_order_export}"><span><i class="icon icon-download-alt"></i>{$lang.11_order_export}</span></div></a></div>
+                    </div>
                 </div>
                 <div class="common-content">
-
                 <form method="post" action="order.php?act=operate" name="listForm" onsubmit="return check()">
                     <div class="list-div list-tb-div" >
-                    {if $list_type > 10}
-                         <table cellpadding="0" cellspacing="0" border="0">
+                        <table cellpadding="0" cellspacing="0" border="0">
                             <thead>
                                 <tr>
-                                {if $list_type eq 14 OR  $list_type eq 15}
+                                    <th width="3%" class="sign"><div class="tDiv"><input type="checkbox" name="all_list" class="checkbox" id="all_list" /><label for="all_list" class="checkbox_stars"></label></div></th>
                                     <th width="25%"><div class="tDiv">{$lang.order_sn}</div></th>
-                                    <th width="6%"><div class="tDiv">商品{$lang.goods_price}</div></th>
-                                    <th width="5%"><div class="tDiv">{$lang.goods_number}</div></th>
+                                    <th width="6%"><div class="tDiv">{$lang.goods_price}</div></th>
+                                    <th width="3%"><div class="tDiv">{$lang.goods_number}</div></th>
+                                    <th width="7%"><div class="tDiv">{$lang.op_after_service}</div></th>
                                     <th width="6%"><div class="tDiv">{$lang.goods_steps_name}</div></th>
                                     <th width="7%"><div class="tDiv">{$lang.user_name}</div></th>
                                     <th width="16%"><div class="tDiv">{$lang.consignee}</div></th>
-                                    <th width="12%"><div class="tDiv">支付金额</div></th>
-                                    <th width="8%"><div class="tDiv">匹配数据</div></th>
+                                    <th width="12%"><div class="tDiv">{$lang.amount_label}</div></th>
                                     <th width="6%"><div class="tDiv">{$lang.all_status}</div></th>
-                                {else}
-                                    <th width="3%" ><div class="tDiv">{$lang.ppj_sign_id}</div></th>
-                                    <th width="8%"><div class="tDiv">{$lang.ppj_user_name}</div></th>
-                                    <th width="8%"><div class="tDiv">{$lang.ppj_mobile_phone}</div></th>
-                                    <th width="8%"><div class="tDiv">{$lang.ppj_user_flag}</div></th> 
-                                    {if $list_type eq 12}
-                                    <th width="15%"><div class="tDiv">拍拍活动名称</div></th>
-                                    <th width="5%"><div class="tDiv">活动期数</div></th>
-                                    <th width="8%"><div class="tDiv">出价金额</div></th>
-                                    <th width="8%"><div class="tDiv">是否成交</div></th>
-                                    <th width="10%"><div class="tDiv">{$lang.ppj_bid_date}</div></th>
-                                    {elseif $list_type eq 13}  
-                                    <th width="15%"><div class="tDiv">拍拍活动名称</div></th>
-                                    <th width="5%"><div class="tDiv">活动期数</div></th>  
-                                    <th width="10%"><div class="tDiv">{$lang.ppj_margin_no}</div></th>
-                                    <th width="10%"><div class="tDiv">{$lang.ppj_margin_pay_date}</div></th>
-                                    <th width="10%"><div class="tDiv">{$lang.ppj_margin_status}</div></th>
-                                    <th width="10%"><div class="tDiv">{$lang.ppj_margin_refund}</div></th>
-                                    {else}
-                                    <th width="20%"><div class="tDiv">拍拍活动名称</div></th>
-                                    <th width="5%"><div class="tDiv">拍拍期数</div></th>
-                                    <th width="8%"><div class="tDiv">最低金额</div></th>
-                                    <th width="8%"><div class="tDiv">最高金额</div></th>
-                                    <th width="10%"><div class="tDiv">是否成交</div></th>
-                                    <th width="10%"><div class="tDiv">{$lang.ppj_sign_date}</div></th>
-                                    {/if}         
-                                {/if}
-                                    <th width="10%"><div class="tDiv">操作</div></th>                                
+                                    <th width="7%"><div class="tDiv">{$lang.handler}</div></th>
                                 </tr>
                             </thead>
                         </table>
-                        {foreach from=$order_list.orders item=order key=okey}
+                        {foreach from=$order_list item=order key=okey}
                         <table cellpadding="0" cellspacing="0" border="0">
-                           <colgroup>
-                            {if $list_type eq 14 OR $list_type eq 15}
-                                <col width="25%">
+                            <colgroup>
+                                <col width="28%">
                                 <col width="6%">
-                                <col width="5%">
+                                <col width="3%">
+                                <col width="7%">
                                 <col width="6%">
                                 <col width="7%">
                                 <col width="16%">
                                 <col width="12%">
-                                 <col width="8%">
-                                <col width="6%">                            
-                            {else}
-                                <col width="3%">
-                                <col width="8%">
-                                <col width="8%">
-                                <col width="8%">                              
-                                {if $list_type eq 12}
-                                    <col width="15%">
-                                    <col width="5%">
-                                    <col width="8%">
-                                    <col width="8%">
-                                    <col width="10%">
-                                {elseif $list_type eq 13} 
-                                    <col width="15%">
-                                    <col width="5%">   
-                                    <col width="10%">
-                                    <col width="10%">
-                                    <col width="10%">
-                                    <col width="10%">
-                                {else}
-                                    <col width="20%">
-                                    <col width="5%">
-                                    <col width="8%">
-                                    <col width="8%">
-                                    <col width="10%">
-                                    <col width="10%">
-                                {/if}    
-                            {/if}
-                                <col width="10%">
+                                <col width="6%">
+                                <col width="7%">
                             </colgroup>
-
                             <tbody>
-                                {if $list_type eq 14 OR $list_type eq 15}          
-                                    <tr class="tr-order-sn">
+                                <tr class="tr-order-sn">
                                     <td colspan="10">
                                         <div class="tDiv ml10">
                                             <span class="sign{if $order.chargeoff_status eq 1 || $order.chargeoff_status eq 2} sign_bdl{/if}" {if $order.chargeoff_status eq 1 || $order.chargeoff_status eq 2}rowspan="2"{/if}>
@@ -181,9 +122,8 @@
                                             <span class="words">{$lang.order_time}：{$order.short_order_time}</span>
                                         </div>
                                     </td>
-                                    </tr>
-                                    <tr>
-                            <!--产品信息 start-->
+                                </tr>
+                                <tr>
                                     <td class="td-product">
                                     {foreach from=$order.goods_list item=list name=foo}
                                         <div class="tDiv relative tpinfo {if $smarty.foreach.foo.last}last{/if}">
@@ -282,376 +222,6 @@
                                         </div>
                                     {/foreach}
                                     </td>
-                            <!--产品信息 end-->
-                            <!--价格 start-->
-                                    <td class="td-price" style="vertical-align: top;">
-                                    {foreach from=$order.goods_list item=list name=foo}
-                                        <div class="tDiv tpinfo {if $smarty.foreach.foo.last}last{/if}">{$list.goods_price}</div>
-                                    {/foreach}
-                                    </td>
-                            <!--价格 end-->
-                            <!--数量 start-->
-                                    <td class="td-number">
-                                    {foreach from=$order.goods_list item=list name=foo}
-                                        <div class="tDiv tpinfo {if $smarty.foreach.foo.last}last{/if}">{$list.goods_number}</div>
-                                    {/foreach}
-                                    </td>
-                            <!--价格 end-->   
-                            <!--商户名 start-->    
-                                    <td>
-                                        <div class="tDiv" style="height: 100px;">{$order.shop_name} </div>
-                                    </td>
-                            <!--商户名 end-->
-                            <!--用户名 start-->
-                                    <td>
-                                    <div class="tDiv" style="height: 100px;">
-                                        <a href="users.php?act=edit&id={$order.user_id}">{$order.buyer|escape}</a>
-                                    </div>                          
-                                    </td>
-                            <!--用户名 end-->
-                            <!--收货人 start-->
-                                    <td><div class="tDiv" style="height: 100px;text-align: left;">{$order.consignee|escape}<br>{if $order.mobile} TEL: {$order.mobile|escape}{/if}<br>{$order.region} {$order.address|escape}</div>
-                                    </td>
-                            <!--收货人 end-->
-                            <!--金额 start-->
-                                    <td>
-                                        <div class="tDiv" style="height: 100px;">
-                                            <span class="order-price">{$order.formated_total_fee_order}</span>
-                                            <div class="price-shipping">({if $order.shipping_name}{$order.shipping_name}{else}{$lang.wu}{/if}：{$order.shipping_fee})</div>
-                                            <div class="price-shipping">
-                                                <p>{$lang.pay_name}：{if $order.pay_name}{$order.pay_name}{else}{$lang.wu}{/if}</p>
-                                                <p>{$lang.referer}：{if $order.referer eq 'mobile'}APP{elseif $order.referer eq 'touch'}{$lang.touch}{elseif $order.referer eq 'wxapp'}小程序{elseif $order.referer eq 'ecjia-cashdesk'}{$lang.cashdesk}{else}PC{/if}</p>
-                                            </div>        
-                                        </div>    
-                                    </td>
-                            <!--金额 end-->
-                            <!--匹配状态 start-->
-                                    <td>
-                                        <div class="tDiv" style="height: 100px;">
-                                            <span class="order-price">金额：￥{$order.ok_sellers_fee}</span>
-                                            <div class="price-shipping">状态：{$order.ok_status_ch}</div>
-                                            <div class="price-shipping">活动id：{$order.ok_ppj_id}</div>
-                                            <div class="price-shipping">活动期数：{$order.ok_ppj_no}</div>    
-                                        </div>    
-                                    </td>
-                            <!--匹配状态 end-->
-                            <!--订单状态 start-->
-                                    <td>
-                                        <div class="tDiv" style="height: 100px;">
-                                            <div>{$lang.os[$order.order_status]}<br />{$lang.ps[$order.pay_status]}<br />{$lang.ss[$order.shipping_status]}</div>
-                                        </div>
-                                    </td>
-                                            <td >
-                                                <div class="tDiv m110">
-                                                    <div class="btn-wrap">
-                                                        <p>
-                                                           <a href="order.php?act=info&order_id={$order.order_id}" class="btn-tb btn-tb-blue">{$lang.detail}</a>&nbsp;&nbsp;
-                                                    <!--       <a href="order.php?act=info&order_id={$order.order_id}" class="btn-tb btn-tb-red">{$lang.op_remove}</a>   -->
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                            <!--订单状态 end-->
-                                    {else}
-                                        <td>
-                                            <div class="tDiv ml10">
-                                                <span class="words">{$order.id}</span>
-                                            </div>
-                                        </td>
-                                        <td >
-                                            <div class="tDiv ml10">
-                                                <span class="words">{$order.user_name}</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="tDiv ml10">
-                                                <span class="words">{$order.mobile_phone}</span>
-                                            </div>
-                                        </td>
-                                        <td >
-                                            <div class="tDiv ml10">
-                                                <span class="words">{$order.flag_ch}</span>
-                                            </div>
-                                        </td>
-                                        {if $list_type eq 12}
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ppj_name} ({$order.ppj_id})</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ppj_no}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">￥{$order.bid_price}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.is_status_ch}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.bid_time}</span>
-                                                </div>
-                                            </td>
-                                        {elseif $list_type eq 13}  
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ppj_name} ({$order.ppj_id})</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ppj_no}</span>
-                                                </div>
-                                            </td>  
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.pay_fee}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.paytime}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ls_pay_ok_ch}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ls_refund_ch}</span>
-                                                </div>
-                                            </td>
-                                        
-                                        {else}
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ppj_name} ({$order.ppj_id})</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ppj_no}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">￥{$order.seller_min_fee}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">￥{$order.seller_max_fee}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.ls_ok}</span>
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div class="tDiv ml10">
-                                                    <span class="words">{$order.createtime}</span>
-                                                </div>
-                                            </td>
-                                        {/if}
-                                            <td >
-                                                <div class="tDiv m110">
-                                                    <div class="btn-wrap">
-                                                        <p>
-                                                           <a href="order.php?act=ppj_sign&order_id={$order.id}" class="btn-tb btn-tb-blue">{$lang.detail}</a>&nbsp;&nbsp;
-                                                    <!--       <a href="order.php?act=ppj_sign_drop&order_id={$order.id}" class="btn-tb btn-tb-red">{$lang.op_remove}</a>   -->
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                    {/if}        
-                            </tbody>
-                        </table>
-                            {foreachelse}
-                            <table cellpadding="0" cellspacing="0" border="0">
-                                <tbody>
-                                    <tr><td class="no-records" colspan="12">{$lang.no_records}</td></tr>
-                                </tbody>
-                            </table>
-                        {/foreach}
-                        <table cellpadding="0" cellspacing="0" border="0">
-                            <tfoot>
-                                <tr>
-                                    <td colspan="10">
-                                        <div class="tDiv">
-                                            <div class="tfoot_btninfo">
-                                                <input type="submit" value="{$lang.op_confirm}" name="confirm" ectype="btnSubmit" class="btn btn_disabled" disabled="" onclick="this.form.target = '_self'">
-                                                <input type="submit" value="{$lang.op_invalid}" name="invalid" ectype="btnSubmit" class="btn btn_disabled" disabled="" onclick="this.form.target = '_self'">
-                                                <input type="submit" value="{$lang.op_cancel}" name="cancel" ectype="btnSubmit" class="btn btn_disabled" disabled="" onclick="this.form.target = '_self'">
-                                                {if $order_os_remove}
-                                                <input type="submit" value="{$lang.remove}" name="remove" ectype="btnSubmit" class="btn btn_disabled" disabled="" onclick="this.form.target = '_self'">
-                                                {/if}
-                                                <input type="submit" value="{$lang.print_order}" name="print" ectype="btnSubmit" class="btn btn_disabled" disabled="" onclick="this.form.target = '_blank'">
-                                                <input type="button" value="{$lang.print_shipping}" ectype="btnSubmit" class="btn btn_disabled" disabled="" print-data="print_shipping">
-                                                <input name="batch" type="hidden" value="1" />
-                                                <input name="order_id" type="hidden" value="" />
-                                            </div>
-                                            <div class="list-page">
-                                                {include file="library/page.lbi"}
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>       
-                    {else}
-                        <table cellpadding="0" cellspacing="0" border="0">
-                            <thead>
-                                <tr>
-                                    <th width="3%" class="sign"><div class="tDiv"><input type="checkbox" name="all_list" class="checkbox" id="all_list" /><label for="all_list" class="checkbox_stars"></label></div></th>
-                                    <th width="25%"><div class="tDiv">{$lang.order_sn}</div></th>
-                                    <th width="6%"><div class="tDiv">{$lang.goods_price}</div></th>
-                                    <th width="3%"><div class="tDiv">{$lang.goods_number}</div></th>
-                                    <th width="7%"><div class="tDiv">{$lang.op_after_service}</div></th>
-                                    <th width="6%"><div class="tDiv">{$lang.goods_steps_name}</div></th>
-                                    <th width="7%"><div class="tDiv">{$lang.user_name}</div></th>
-                                    <th width="16%"><div class="tDiv">{$lang.consignee}</div></th>
-                                    <th width="12%"><div class="tDiv">{$lang.amount_label}</div></th>
-                                    <th width="6%"><div class="tDiv">{$lang.all_status}</div></th>
-                                    <th width="7%"><div class="tDiv">{$lang.handler}</div></th>
-                                </tr>
-                            </thead>
-                        </table>
-					    {foreach from=$order_list item=order key=okey}
-                        <table cellpadding="0" cellspacing="0" border="0">
-                            <colgroup>
-                                <col width="28%">
-                                <col width="6%">
-                                <col width="3%">
-                                <col width="7%">
-                                <col width="6%">
-                                <col width="7%">
-                                <col width="16%">
-                                <col width="12%">
-                                <col width="6%">
-                                <col width="7%">
-                            </colgroup>
-                            <tbody>
-                                <tr class="tr-order-sn">
-                                    <td colspan="10">
-                                        <div class="tDiv ml10">
-                                            <span class="sign{if $order.chargeoff_status eq 1 || $order.chargeoff_status eq 2} sign_bdl{/if}" {if $order.chargeoff_status eq 1 || $order.chargeoff_status eq 2}rowspan="2"{/if}>
-                                                <input type="checkbox" name="checkboxes[]" value="{$order.order_sn}" class="checkbox" id="checkbox_{$order.order_id}" /><label for="checkbox_{$order.order_id}" class="checkbox_stars"></label>
-                                            </span>
-                                            <span class="words">{$lang.order_sn}：{$order.order_sn}</span>
-                                            <span class="words">{$lang.order_time}：{$order.short_order_time}</span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="td-product">
-                                    {foreach from=$order.goods_list item=list name=foo}
-										<div class="tDiv relative tpinfo {if $smarty.foreach.foo.last}last{/if}">
-                                            <div class="img"><img width="80" src="{$list.goods_thumb}" alt="" onmouseover="toolTip('<img src={$list.goods_img}>')" onmouseout="toolTip()"></div>
-                                            <div class="product-info">
-                                                <div class="name mb5">
-                                                    {if $order.oi_extension_code eq "group_buy"}
-                                                    <a href="../group_buy.php?act=view&id={$order.extension_id}" target="_blank">
-                                                    {elseif $order.oi_extension_code eq "snatch"}
-                                                    <a href="../snatch.php?id={$order.extension_id}" target="_blank">
-                                                    {elseif $order.oi_extension_code eq "seckill"}
-                                                    <a href="../seckill.php?id={$order.extension_id}&act=view" target="_blank">
-                                                    {elseif $order.oi_extension_code eq "auction"}
-                                                    <a href="../auction.php?id={$order.extension_id}&act=view" target="_blank"> 
-                                                    {elseif $order.oi_extension_code eq "exchange_goods"}
-                                                    <a href="../exchange.php?id={$order.extension_id}&act=view" target="_blank">
-                                                    {elseif $order.oi_extension_code eq "presale"}
-                                                    <a href="../presale.php?id={$order.extension_id}&act=view" target="_blank">
-                                                    {elseif $order.o_extension_code eq "package_buy"}
-                                                    <a href="../package.php" target="_blank">
-                                                    {else}
-                                                        <a href="../goods.php?id={$list.goods_id}" target="_blank">
-                                                    {/if}
-                                                    {$list.goods_name}
-                                                    {if $list.brand_name}<span class="org">[ {$list.brand_name} ]</span>{/if}
-                                                    {if $list.is_gift}
-                                                    <span class="red">
-                                                        {if $list.goods_price > 0}
-                                                            {$lang.remark_favourable}
-                                                        {else}
-                                                            {$lang.remark_gift}
-                                                        {/if}
-                                                    </span>
-                                                    {/if}
-                                                    {if $list.parent_id > 0}<span class="red">{$lang.remark_fittings}</span>{/if}
-                                                    </a>
-                                                    
-                                                </div>
-                                                {if $list.goods_attr}<div class="attr"><span>{$list.goods_attr}</span></div>{/if}
-                                                <div>{$lang.goods_sku}：{if $list.product_sn}{$list.product_sn}{else}{$list.goods_sn}{/if}{if $list.trade_url}<a href="{$list.trade_url}" target="_blank" class="ml5"><span class="org">[{$lang.trade_snapshot}]</span></a>{/if}</div>
-                                                <div class="order_icon_items">
-                                                    {if $order.is_stages eq 1}<div class="order_icon order_icon_bt" title="{$lang.baitiao_order}">{$lang.baitiao_order}</div>{/if}
-                                                    {if $order.is_zc_order eq 1}<div class="order_icon order_icon_zc" title="{$lang.zc_order}">{$lang.zc_order}</div>{/if}
-                                                    {if $order.is_store_order eq 1}<div class="order_icon order_icon_so" title="{$lang.so_order}">{$lang.so_order}</div>{/if}
-        											{if $order.is_drp_order eq 1}<div class="order_icon order_icon_fx" title="{$lang.fx_order}">{$lang.fx_order}</div>{/if}
-                                                    {if $order.o_extension_code eq "group_buy"}
-                                                        <div class="order_icon order_icon_tg" title="{$lang.group_buy}">{$lang.group_buy}</div>
-                                                    {elseif $order.o_extension_code eq "exchange_goods"}
-                                                        <div class="order_icon order_icon_jf" title="{$lang.exchange_goods}">{$lang.exchange_goods}</div>
-                                                    {elseif $order.o_extension_code eq "auction"}
-                                                        <div class="order_icon order_icon_pm" title="{$lang.auction}">{$lang.auction}</div>
-                                                    {elseif $order.o_extension_code eq "snatch"}
-                                                        <div class="order_icon order_icon_db" title="{$lang.snatch}">{$lang.snatch}</div>
-                                                    {elseif $order.o_extension_code eq "presale"}
-                                                        <div class="order_icon order_icon_ys" title="{$lang.presale}">{$lang.presale}</div>  
-                                                    {elseif $order.o_extension_code eq "seckill"}
-                                                        <div class="order_icon order_icon_ms" title="{$lang.seckill}">{$lang.seckill}</div> 
-                                                    {elseif $order.o_extension_code eq "team_buy"}
-                                                        <div class="order_icon order_icon_team" title="{$lang.team_order}">{$lang.team_order}</div>
-                                                    {elseif $order.o_extension_code eq "bargain_buy"}
-                                                        <div class="order_icon order_icon_bargain" title="{$lang.bargain_order}">{$lang.bargain_order}</div>
-                                                    {elseif $order.o_extension_code eq "wholesale"}    
-                                                    	<div class="order_icon order_icon_wholesale" title="{$lang.wholesale_order}">{$lang.bargain_order}</div>
-                                                    {/if}
-        											{if $order.iog_extension_code eq "package_buy"}
-                                                        <div class="order_icon order_icon_package" title="{$lang.package_order}">{$lang.package_order}</div>
-                                                    {elseif $order.iog_extension_code eq 'virtual_card'}
-                                                        <div class="order_icon order_icon_xn" title="{$lang.xn_order}">{$lang.xn_order}</div>
-                                                    {/if}
-                                                    {if $order.is_stages eq 0 && $order.is_zc_order eq 0 && $order.is_store_order eq 0 && $order.o_extension_code eq '' && $order.iog_extension_code eq ''}
-                                                        {if $order.iog_extension_codes}
-                                                        {foreach from=$order.iog_extension_codes item=extension_code}
-                                                            {if $extension_code eq ''}
-                                                            <div class="order_icon order_icon_pt" title="{$lang.pt_order}">{$lang.pt_order}</div>
-                                                            {elseif $extension_code eq 'virtual_card'}
-                                                            <div class="order_icon order_icon_xn" title="{$lang.xn_order}">{$lang.xn_order}</div>
-                                                            {/if}
-                                                        {/foreach}
-                                                        {else}
-                                                        <div class="order_icon order_icon_pt" title="{$lang.pt_order}">{$lang.pt_order}</div>
-                                                        {/if}
-                                                    {/if}
-                                                    {if $order.order_child neq 0}
-                                                        <div class="order_icon" title="{$lang.to_order_sn}">{$lang.to_order_sn}</div>
-                                                    {/if}
-                                                    {if !$order.order_child > 0}											
-                                                        {if $order.main_order_id > 0}
-                                                        <div class="order_icon order_icon_zdd">{$lang.sub_order_sn2}</div>
-                                                        {/if}
-                                                    {/if}
-                                                    {if $list.ret_id}
-                                                    	<div class="order_icon order_icon_return" title="{$lang.return_order}">{$lang.return_order}</div>
-                                                    {/if}
-                                                </div>
-                                            </div>
-										</div>
-                                    {/foreach}
-									</td>
                                     <td class="td-price" style="vertical-align: top;">
                                     {foreach from=$order.goods_list item=list name=foo}
                                         <div class="tDiv tpinfo {if $smarty.foreach.foo.last}last{/if}">{$list.goods_price}</div>
@@ -665,34 +235,34 @@
                                     <td>      
                                     {foreach from=$order.goods_list item=list name=foo}
                                     <div class="tDiv tpinfo {if $smarty.foreach.foo.last}last{/if}">
-                                    	{if $list.ret_id}
-                                        	<div class="btn-wrap">
+                                        {if $list.ret_id}
+                                            <div class="btn-wrap">
                                                 <a href="order.php?act=return_info&ret_id={$list.ret_id}&rec_id={$list.rec_id}" target="_blank" class="btn-tb btn-tb-blue">
                                                 {$list.back_order.return_status}
                                                 </a>
                                             </div>
                                         {else}
-                                        	<div>{if $list.is_reality eq 1}{$lang.is_reality}<br />{/if}{if $list.is_return eq 1}{$lang.is_return}<br />{/if}{if $list.is_fast eq 1}{$lang.is_fast}{/if}</div>
+                                            <div>{if $list.is_reality eq 1}{$lang.is_reality}<br />{/if}{if $list.is_return eq 1}{$lang.is_return}<br />{/if}{if $list.is_fast eq 1}{$lang.is_fast}{/if}</div>
                                         {/if}
                                     </div>
                                     {/foreach}
-									</td>
+                                    </td>
                                     <td>
-										<div class="tDiv" style="height: 100px;">
-											{if $order.order_child eq 0}
-											{if $order.user_name}
-												<font>{$order.user_name}{if $order.self_run}（{$lang.self_run}）{/if}</font>
-											{else}
-												<font>{$lang.self}</font>
-											{/if}
-											{else}
+                                        <div class="tDiv" style="height: 100px;">
+                                            {if $order.order_child eq 0}
+                                            {if $order.user_name}
+                                                <font>{$order.user_name}{if $order.self_run}（{$lang.self_run}）{/if}</font>
+                                            {else}
+                                                <font>{$lang.self}</font>
+                                            {/if}
+                                            {else}
                                             <div class="exh">
-                                            	<span class="blue3">{$lang.to_order_sn2}</span>
+                                                <span class="blue3">{$lang.to_order_sn2}</span>
                                                 <div class="exh_info">
-                                                	<i class="jt_r"></i>
+                                                    <i class="jt_r"></i>
                                                     {if $order.order_child > 0}
                                                         <font class="to_order_sn red">
-                                                        	{$lang.to_order_sn3}
+                                                            {$lang.to_order_sn3}
                                                             <div id="div_order_{$order.order_id}" class="div_order_id">
                                                             {foreach from=$order.child_list item=list}
                                                             {$lang.sub_order_sn}：{$list.order_sn}
@@ -703,17 +273,17 @@
                                                     {/if}
                                                 </div>
                                             </div>
-											{/if}
-										</div>
-									</td>
-                                    <td>
-                                        <div class="tDiv" style="height: 100px;">
-                                        	<a href="users.php?act=edit&id={$order.user_id}">{$order.buyer|escape}</a>
+                                            {/if}
                                         </div>
+                                    </td>
+                                    <td>
+                                    <div class="tDiv" style="height: 100px;">
+                                        <a href="users.php?act=edit&id={$order.user_id}">{$order.buyer|escape}</a>
+                                    </div>
                                     </td>
                                     <td><div class="tDiv" style="height: 100px;text-align: left;">{$order.consignee|escape}<br>{if $order.mobile} TEL: {$order.mobile|escape}{/if}<br>{$order.region} {$order.address|escape}</div></td>
                                     <td>
-                                    	<div class="tDiv" style="height: 100px;">
+                                        <div class="tDiv" style="height: 100px;">
                                             <span class="order-price">{$order.formated_total_fee_order}</span>
                                             <div class="price-shipping">({if $order.shipping_name}{$order.shipping_name}{else}{$lang.wu}{/if}：{$order.shipping_fee})</div>
                                             <div class="price-shipping">
@@ -741,13 +311,13 @@
                             </tbody>
                         </table>
                         {if $order.bill_sn}
-                        	{if $order.chargeoff_status eq 1 || $order.chargeoff_status eq 2}
+                            {if $order.chargeoff_status eq 1 || $order.chargeoff_status eq 2}
                         <table cellpadding="0" cellspacing="0" border="0">
                             <tbody>
                                 <tr class="tr_thead">
-                                	<td colspan="8" class="tr_thead_con">
-                                    	<div class="order_sku">
-                                        	<div class="item">
+                                    <td colspan="8" class="tr_thead_con">
+                                        <div class="order_sku">
+                                            <div class="item">
                                                 {if $order.chargeoff_status eq 1}
                                                 <em class="red">【{$lang.have_commission_bill}：{$order.bill_sn}】</em>
                                                 {else}
@@ -760,15 +330,15 @@
                                 </tr>
                             </tbody>
                         </table>
-                        	{/if}
+                            {/if}
                         {/if}    
-						{foreachelse}
+                        {foreachelse}
                         <table cellpadding="0" cellspacing="0" border="0">
                             <tbody>
-								<tr><td class="no-records" colspan="12">{$lang.no_records}</td></tr>
+                                <tr><td class="no-records" colspan="12">{$lang.no_records}</td></tr>
                             </tbody>
                         </table>
-						{/foreach}
+                        {/foreach}
                         <table cellpadding="0" cellspacing="0" border="0">
                             <tfoot>
                                 <tr>
@@ -793,13 +363,12 @@
                                     </td>
                                 </tr>
                             </tfoot>
-                        </table> 
-                        {/if}    
+                        </table>     
                     </div>
                     </form>
                 </div>
             </div>
-			{if $full_page}	
+            {if $full_page} 
         </div>
     </div>
     <div class="gj_search">
@@ -826,12 +395,12 @@
                                 <div id="status" class="imitate_select select_w145">
                                   <div class="cite">{$lang.select_please}</div>
                                   <ul>
-                                  	 <li><a href="javascript:;" data-value="-1">{$lang.select_please}</a></li>
-								  {foreach from=$status_list item=i key=k}
+                                     <li><a href="javascript:;" data-value="-1">{$lang.select_please}</a></li>
+                                  {foreach from=$status_list item=i key=k}
                                      <li><a href="javascript:;" data-value="{$k}">{$i}</a></li>
-								  {/foreach}
+                                  {/foreach}
                                   </ul>
-								<input name="status" type="hidden" value="-1" id="status_val">
+                                <input name="status" type="hidden" value="-1" id="status_val">
                                 </div>
                             </dd>
                         </dl>
@@ -841,19 +410,19 @@
                                 <div id="order_cat" class="imitate_select select_w145">
                                   <div class="cite">{$lang.select_please}</div>
                                   <ul>
-                                  	 <li><a href="javascript:;" data-value="">{$lang.select_please}</a></li>
-									 <li><a href="javascript:;" data-value="stages">{$lang.baitiao_order}</a></li>
-									 <li><a href="javascript:;" data-value="zc">{$lang.zc_order}</a></li>
-									 <li><a href="javascript:;" data-value="store">{$lang.so_order}</a></li>
-									 <li><a href="javascript:;" data-value="other">{$lang.other_order}</a></li>
-									 <li><a href="javascript:;" data-value="dbdd">{$lang.db_order}</a></li>
-									 <li><a href="javascript:;" data-value="msdd">{$lang.ms_order}</a></li>
-									 <li><a href="javascript:;" data-value="tgdd">{$lang.tg_order}</a></li>
-									 <li><a href="javascript:;" data-value="pmdd">{$lang.pm_order}</a></li>
-									 <li><a href="javascript:;" data-value="jfdd">{$lang.jf_order}</a></li>
-									 <li><a href="javascript:;" data-value="ysdd">{$lang.ys_order}</a></li>
+                                     <li><a href="javascript:;" data-value="">{$lang.select_please}</a></li>
+                                     <li><a href="javascript:;" data-value="stages">{$lang.baitiao_order}</a></li>
+                                     <li><a href="javascript:;" data-value="zc">{$lang.zc_order}</a></li>
+                                     <li><a href="javascript:;" data-value="store">{$lang.so_order}</a></li>
+                                     <li><a href="javascript:;" data-value="other">{$lang.other_order}</a></li>
+                                     <li><a href="javascript:;" data-value="dbdd">{$lang.db_order}</a></li>
+                                     <li><a href="javascript:;" data-value="msdd">{$lang.ms_order}</a></li>
+                                     <li><a href="javascript:;" data-value="tgdd">{$lang.tg_order}</a></li>
+                                     <li><a href="javascript:;" data-value="pmdd">{$lang.pm_order}</a></li>
+                                     <li><a href="javascript:;" data-value="jfdd">{$lang.jf_order}</a></li>
+                                     <li><a href="javascript:;" data-value="ysdd">{$lang.ys_order}</a></li>
                                   </ul>
-								<input name="order_cat" type="hidden" value="" id="order_cat_val">
+                                <input name="order_cat" type="hidden" value="" id="order_cat_val">
                                 </div>
                             </dd>
                         </dl>
@@ -863,13 +432,13 @@
                                 <div id="order_referer" class="imitate_select select_w145">
                                   <div class="cite">{$lang.select_please}</div>
                                   <ul>
-                                  	 <li><a href="javascript:;" data-value="">{$lang.select_please}</a></li>
-									 <li><a href="javascript:;" data-value="pc">PC</a></li>
-									 <li><a href="javascript:;" data-value="touch">WAP</a></li>
-									 <li><a href="javascript:;" data-value="mobile">APP</a></li>
-									 <li><a href="javascript:;" data-value="ecjia-cashdesk">{$lang.cashdesk}</a></li>
+                                     <li><a href="javascript:;" data-value="">{$lang.select_please}</a></li>
+                                     <li><a href="javascript:;" data-value="pc">PC</a></li>
+                                     <li><a href="javascript:;" data-value="touch">WAP</a></li>
+                                     <li><a href="javascript:;" data-value="mobile">APP</a></li>
+                                     <li><a href="javascript:;" data-value="ecjia-cashdesk">{$lang.cashdesk}</a></li>
                                   </ul>
-								<input name="order_referer" type="hidden" value="" id="order_referer_val">
+                                <input name="order_referer" type="hidden" value="" id="order_referer_val">
                                 </div>
                             </dd>
                         </dl>                        
@@ -899,13 +468,13 @@
                                 <div id="store_search" class="imitate_select select_w145">
                                   <div class="cite">{$lang.select_please}</div>
                                   <ul>
-                                  	 <li><a href="javascript:;" data-value="-1">{$lang.select_please}</a></li>
+                                     <li><a href="javascript:;" data-value="-1">{$lang.select_please}</a></li>
                                      <!--<li><a href="javascript:;" data-value="0">{$lang.platform_self}</a></li>-->
-									 <li><a href="javascript:;" data-value="1">{$lang.s_shop_name}</a></li>
-									 <li><a href="javascript:;" data-value="2">{$lang.s_qw_shop_name}</a></li>
-									 <li><a href="javascript:;" data-value="3">{$lang.s_brand_type}</a></li>
+                                     <li><a href="javascript:;" data-value="1">{$lang.s_shop_name}</a></li>
+                                     <li><a href="javascript:;" data-value="2">{$lang.s_qw_shop_name}</a></li>
+                                     <li><a href="javascript:;" data-value="3">{$lang.s_brand_type}</a></li>
                                   </ul>
-								<input name="store_search" type="hidden" value="-1" id="store_search_val">
+                                <input name="store_search" type="hidden" value="-1" id="store_search_val">
                                 </div>
                             </dd>
                         </dl>
@@ -915,28 +484,28 @@
                                 <div id="merchant_id" class="imitate_select select_w145">
                                   <div class="cite">{$lang.select_please}</div>
                                   <ul>
-								  {foreach from=$store_list item=store}
-									 <li><a href="javascript:;" data-value="{$store.ru_id}">{$store.store_name}</a></li>
-								  {/foreach}
+                                  {foreach from=$store_list item=store}
+                                     <li><a href="javascript:;" data-value="{$store.ru_id}">{$store.store_name}</a></li>
+                                  {/foreach}
                                   </ul>
-								<input name="merchant_id" type="hidden" value="" id="merchant_id_val">
+                                <input name="merchant_id" type="hidden" value="" id="merchant_id_val">
                                 </div>
                             </dd>
                         </dl>
-						<dl id="store_keyword_dl" style="display:none;">
-							<input name="store_keyword" type="text"  class="text text_2 mr10"/>
-						</dl>
+                        <dl id="store_keyword_dl" style="display:none;">
+                            <input name="store_keyword" type="text"  class="text text_2 mr10"/>
+                        </dl>
                         <dl id="store_type_dl" style="display:none">
                             <dd>
                                 <div id="store_type" class="imitate_select select_w145">
                                   <div class="cite">{$lang.steps_shop_type}</div>
                                   <ul>
-									 <li><a href="javascript:;" data-value="{$lang.flagship_store}">{$lang.flagship_store}</a></li>
-									 <li><a href="javascript:;" data-value="{$lang.exclusive_shop}">{$lang.exclusive_shop}</a></li>
-									 <li><a href="javascript:;" data-value="{$lang.franchised_store}">{$lang.franchised_store}</a></li>
-									 <li><a href="javascript:;" data-value="{$lang.flagship_store}">{$lang.flagship_store}</a></li>
-								  </ul>
-								<input name="store_type" type="hidden" value="0" id="store_type_val">
+                                     <li><a href="javascript:;" data-value="{$lang.flagship_store}">{$lang.flagship_store}</a></li>
+                                     <li><a href="javascript:;" data-value="{$lang.exclusive_shop}">{$lang.exclusive_shop}</a></li>
+                                     <li><a href="javascript:;" data-value="{$lang.franchised_store}">{$lang.franchised_store}</a></li>
+                                     <li><a href="javascript:;" data-value="{$lang.flagship_store}">{$lang.flagship_store}</a></li>
+                                  </ul>
+                                <input name="store_type" type="hidden" value="0" id="store_type_val">
                                 </div>
                             </dd>
                         </dl>
@@ -948,11 +517,11 @@
             </form>
         </div>
     </div>
-	<!-- 显示订单商品页面 -->
+    <!-- 显示订单商品页面 -->
     <div id="order_goods_layer"></div>
- 	{include file ='library/pagefooter.lbi'}
-	<script type="text/javascript">
-    	//分页传值
+    {include file ='library/pagefooter.lbi'}
+    <script type="text/javascript">
+        //分页传值
         listTable.recordCount = {$record_count|default:0};
         listTable.pageCount = {$page_count|default:1};
     
@@ -976,7 +545,7 @@
                 clearTimeout(hoverTimer);
                 outTimer = setTimeout(function(){
                     $('.order_goods_layer').remove();
-                },100);	
+                },100); 
             });
             
             $(document).on('mouseenter','.order_goods_layer',function(){
@@ -1044,7 +613,7 @@
              $.jqueryAjax("order.php", "act=ajax_merge_order_list&store_search="+ store_search +"&merchant_id="+merchant_id, function(data){
                 $("#to_order_merge").html(data.content);
                 $("#from_order_merge").html(data.content);
-             });	
+             });    
              $.divselect("#main_order","#main_order_val");
         });
         
@@ -1117,14 +686,14 @@
          * 搜索订单
          */
          
-        /*$(document).on("click",".order_state_tab a",function(){	
+        /*$(document).on("click",".order_state_tab a",function(){   
             var val = $(this).data("value");
             $(this).addClass("current").siblings().removeClass("current");
             searchOrder(val);
-        })*/
+        })*/    
          
         function searchOrder(val)
-        {		
+        {       
             {if $seller_order eq 1}
             listTable.filter['store_search'] = Utils.trim(document.forms['searchHighForm'].elements['store_search'].value);
             listTable.filter['merchant_id'] = Utils.trim(document.forms['searchHighForm'].elements['merchant_id'].value);
@@ -1170,8 +739,8 @@
                 window.open("print_batch.php?act=print_batch&checkboxes="+checkboxes);
             }
         });
-		
-		$(document).on('click',"*[id='all_list']",function(){
+        
+        $(document).on('click',"*[id='all_list']",function(){
             var frm = $("form[name='listForm']");
             var checkboxes = [];
             frm.find("input[name='checkboxes[]']").each(function(){

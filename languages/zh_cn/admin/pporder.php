@@ -1,4 +1,31 @@
 <?php
+
+$_LANG['seller_sign_list'] = '卖方报名列表';
+$_LANG['buyer_bid_list'] = '买方出价列表';
+$_LANG['margin_pay_list'] = '保证金支付列表';
+$_LANG['match_success_list'] = '匹配成功列表';
+$_LANG['match_fail_list'] = '匹配失败列表';
+$_LANG['sell_name'] = '卖家用户名';
+$_LANG['details_list'] = '详情列表';
+$_LANG['details_status'] = '详情状态';
+$_LANG['margin_refund_status'] = '退款状态';
+$_LANG['flag_ch'] = '<font color="green">用户身份：</font>';
+@$_LANG['bm'][SITSTATUS_SUCCESS] = '<font color="green">自动出售</font>';
+@$_LANG['bm'][SITSTATUS_FAIL] = '<font color="red">手动出售</font>';
+@$_LANG['bm'][CLINCH_SUCCESS] = '<font color="blue">已成交</font>';
+@$_LANG['bm'][CLINCH_FAIL] = '<font color="red">未成交</font>';
+@$_LANG['bd'][BID_SUCCESS] = '<font color="blue">出价成功</font>';
+@$_LANG['bd'][BID_ING] = '<font color="green">出价进行中</font>';
+@$_LANG['bd'][BID_FAIL] = '<font color="red">出价失败</font>';
+@$_LANG['mr'][REFUND_SUCCESS] = '<font color="blue">退款成功</font>';
+@$_LANG['mr'][REFUND_FAIL] = '<font color="red">退款失败</font>';
+@$_LANG['mr'][NOT_REFUND] = '<font color="green">未退款</font>';
+@$_LANG['mr'][MARGIN_SUCCESS] = '<font color="blue">已支付</font>';
+@$_LANG['mr'][MARGIN_NOPAY] = '<font color="red">未支付</font>';
+@$_LANG['pp'][PAIPAI_INVALID] = '<font color="#808080">活动已过期</font>';
+$_LANG['margin_price'] = '保证金金额';
+$_LANG['refund_fail_reason'] = '<font color="red">退款失败原因:</font>';
+$_LANG['match_price'] = '手动匹配';
 //高度差网络 https://www.gaodux.com/
 $_LANG['update_shipping'] = '将【%s】配送方式修改为【%s】';
 $_LANG['self_motion_goods'] = '自动确认收货';
@@ -54,8 +81,8 @@ $_LANG['cs'][OS_CANCELED] = '取消';
 $_LANG['cs'][OS_INVALID] = '无效';
 $_LANG['cs'][OS_RETURNED] = '退货';
 $_LANG['cs'][OS_SHIPPED_PART] = '待收货';
-$_LANG['os'][OS_UNCONFIRMED] = '未确认';
-$_LANG['os'][OS_CONFIRMED] = '已确认';
+$_LANG['os'][OS_UNCONFIRMED] = '<font color="red">未确认</font>';
+$_LANG['os'][OS_CONFIRMED] = '<font color="blue">已确认</font>';
 $_LANG['os'][OS_CANCELED] = '<font color="red"> 取消</font>';
 $_LANG['os'][OS_INVALID] = '<font color="red">无效</font>';
 $_LANG['os'][OS_RETURNED] = '<font color="red">退货</font>';
@@ -63,15 +90,15 @@ $_LANG['os'][OS_SPLITED] = '已分单';
 $_LANG['os'][OS_SPLITING_PART] = '部分分单';
 $_LANG['os'][OS_RETURNED_PART] = '<font color="red">部分已退货</font>';
 $_LANG['os'][OS_ONLY_REFOUND] = '<font color="red">仅退款</font>';
-$_LANG['ss'][SS_UNSHIPPED] = '未发货';
+$_LANG['ss'][SS_UNSHIPPED] = '<font color="red">未发货</font>';;
 $_LANG['ss'][SS_PREPARING] = '配货中';
-$_LANG['ss'][SS_SHIPPED] = '已发货';
+$_LANG['ss'][SS_SHIPPED] = '<font color="blue">已发货</font>';;
 $_LANG['ss'][SS_RECEIVED] = '收货确认';
 $_LANG['ss'][SS_SHIPPED_PART] = '已发货(部分商品)';
 $_LANG['ss'][SS_SHIPPED_ING] = '发货中';
-$_LANG['ps'][PS_UNPAYED] = '未付款';
+$_LANG['ps'][PS_UNPAYED] = '<font color="red">未付款</font>';;
 $_LANG['ps'][PS_PAYING] = '付款中';
-$_LANG['ps'][PS_PAYED] = '已付款';
+$_LANG['ps'][PS_PAYED] = '<font color="blue">已付款</font>';;
 $_LANG['ps'][PS_PAYED_PART] = '部分付款(定金)';
 $_LANG['ps'][PS_REFOUND] = '已退款';
 $_LANG['ps'][PS_REFOUND_PART] = '部分退款';
@@ -122,6 +149,7 @@ $_LANG['shipping_name'] = '配送方式';
 $_LANG['pay_name'] = '支付方式';
 $_LANG['address'] = '地址';
 $_LANG['order_time'] = '下单时间';
+$_LANG['sign_time'] = '报名时间';
 $_LANG['trade_snapshot'] = '交易快照';
 $_LANG['detail'] = '查看';
 $_LANG['phone'] = '电话';
@@ -670,7 +698,7 @@ $_LANG['no_info_fill_express_number'] = '暂无信息,请填写快递单号';
 
 
 $_LANG['ppj_sign_id'] = "序号";
-$_LANG['ppj_user_name'] = "用户名";
+$_LANG['ppj_user_name'] = "买家用户名";
 $_LANG['ppj_mobile_phone'] = "手机号";
 $_LANG['ppj_user_flag'] = "用户身份";
 $_LANG['ppj_sign_date'] = "报名时间";
@@ -682,5 +710,21 @@ $_LANG['ppj_margin_status'] = "支付状态";
 $_LANG['ppj_margin_refund'] = "退款状态";
 $_LANG['ppj_bid_no'] = "出价金额";
 $_LANG['ppj_bid_date'] = "出价时间";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>

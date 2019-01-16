@@ -49,7 +49,8 @@ $purview['06_pack_list'] = 'goods_pack';
 $purview['07_card_list'] = 'card_manage';
 $purview['08_group_buy'] = 'group_by';
 
-$purview['88_paipai_buy'] = 'paipai_by'; 
+$purview['88_paipai_buy'] = 'paipai_by';
+$purview['90_paipai_buy_part'] = 'paipai_part';
 
 $purview['09_topic'] = 'topic_manage';
 $purview['10_auction'] = 'auction';

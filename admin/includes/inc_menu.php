@@ -44,7 +44,9 @@ $modules['02_promotion']['04_bonustype_list'] = 'bonus.php?act=list';
 
 $modules['02_promotion']['08_group_buy'] = 'group_buy.php?act=list';
 
-$modules['02_promotion']['88_paipai_buy'] = 'paipai_buy.php?act=list';  
+$modules['02_promotion']['88_paipai_buy'] = 'paipai_buy.php?act=list';
+
+$modules['02_promotion']['90_paipai_buy_part'] = 'paipai_part.php?act=list';
 
 $modules['02_promotion']['09_topic'] = 'topic.php?act=list';
 $modules['02_promotion']['10_auction'] = 'auction.php?act=list';
