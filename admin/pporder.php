@@ -9,6 +9,7 @@ function get_pporder_goods($order)
 {
     $goods_list = array();
     $goods_attr = array();
+
     $sql = 'SELECT goods_name,goods_sn,goods_number,goods_thumb FROM ' . $GLOBALS['ecs']->table('goods') . ' WHERE goods_id=' . $order['goods_id'];
 
     $res = $GLOBALS['db']->getRow($sql);
@@ -154,7 +155,7 @@ function ppj_order_list($page = 0){
 
         $where=" WHERE 1 ";
         $sql=' SELECT gb.bid_id,gb.user_id,gb.bid_price,gb.bid_time,gb.is_status,u.user_name,u.mobile_phone,u.flag,pl.ppj_name,pl.ppj_id,pl.ppj_no,pl.start_time,pl.end_time,pl.goods_id FROM ('. $GLOBALS['ecs']->table('paipai_goods_bid_user'). 'as gb'. ' LEFT JOIN ' . $GLOBALS['ecs']->table('users') . ' AS u ON gb.user_id = u.user_id ) LEFT JOIN '.$GLOBALS['ecs']->table('paipai_list') .'AS pl ON gb.ppj_id=pl.ppj_id AND gb.ppj_no=pl.ppj_no'. $where . ' ORDER BY ' . 'gb.bid_id' . $filter['sort_order'] . "  LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ', ' . $filter['page_size'];
-        $row = $GLOBALS['db']->getAll($sql);
+		$row = $GLOBALS['db']->getAll($sql);
 
         for($i=0;$i<count($row);$i++){
             $row[$i]['id'] = $row[$i]['bid_id'];
@@ -173,7 +174,7 @@ function ppj_order_list($page = 0){
             $sell_data = $GLOBALS['db']->getOne($sql, true);
             $row[$i]['buyer'] = !empty($sell_data) ? $sell_data : $GLOBALS['_LANG']['anonymous'];
         }
-
+   
     }else if( $filter['list_type'] == '13'){   //保证金支付列表
         $sql = 'SELECT COUNT(*) FROM ' .$GLOBALS['ecs']->table('paipai_seller_pay_margin');
         $record_count = $GLOBALS['db']->getOne($sql);
@@ -225,9 +226,8 @@ function ppj_order_list($page = 0){
             $record_count = count($pso_data);
 
         }
-
+         
         foreach($pso_data as $key => $val){
-
             $osql=" SELECT o.extension_code as oi_extension_code, o.order_id, o.main_order_id, o.order_sn, o.add_time,o.pay_time, o.order_status, o.shipping_status, o.pay_status, o.order_amount, o.money_paid, o.is_delete,o.shipping_fee, o.insure_fee, o.pay_fee, o.surplus,o.tax, o.integral_money, o.bonus, o.discount, o.coupons,o.shipping_time, o.auto_delivery_time, o.consignee, o.address, o.email, o.tel, o.mobile, o.extension_code as o_extension_code, o.extension_id, o.is_zc_order, o.pay_id, o.pay_name, o.referer, o.froms, o.user_id, o.chargeoff_status, o.confirm_take_time, o.shipping_id, o.shipping_name, o.goods_amount, ( o.goods_amount + o.tax + o.shipping_fee + o.insure_fee + o.pay_fee + o.pack_fee + o.card_fee ) AS total_fee, (o.goods_amount + o.tax + o.shipping_fee + o.insure_fee + o.pay_fee + o.pack_fee + o.card_fee - o.discount) AS total_fee_order,o.ppj_id,o.ppj_no,og.goods_id FROM ".$GLOBALS['ecs']->table('order_info')." AS o LEFT JOIN ".$GLOBALS['ecs']->table('order_goods')." AS og ON o.order_id = og.order_id WHERE o.order_id={$val['order_id']} GROUP BY o.order_id ORDER BY add_time DESC LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ", " . $filter['page_size'];
             $order_data[] = $GLOBALS['db']->getAll($osql);
             $order_data[$key][0]['sell_id']=$val['user_id'];  //卖家id
@@ -237,7 +237,6 @@ function ppj_order_list($page = 0){
             $order_data[$key][0]['ok_status']=$val['status'];
             $order_data[$key][0]['ok_confirm_time']=$val['confirm_time'];
         }
-
         if(empty($order_data)){
              exit;
         }
