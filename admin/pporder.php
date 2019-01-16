@@ -227,6 +227,7 @@ function ppj_order_list($page = 0){
         }
 
         foreach($pso_data as $key => $val){
+
             $osql=" SELECT o.extension_code as oi_extension_code, o.order_id, o.main_order_id, o.order_sn, o.add_time,o.pay_time, o.order_status, o.shipping_status, o.pay_status, o.order_amount, o.money_paid, o.is_delete,o.shipping_fee, o.insure_fee, o.pay_fee, o.surplus,o.tax, o.integral_money, o.bonus, o.discount, o.coupons,o.shipping_time, o.auto_delivery_time, o.consignee, o.address, o.email, o.tel, o.mobile, o.extension_code as o_extension_code, o.extension_id, o.is_zc_order, o.pay_id, o.pay_name, o.referer, o.froms, o.user_id, o.chargeoff_status, o.confirm_take_time, o.shipping_id, o.shipping_name, o.goods_amount, ( o.goods_amount + o.tax + o.shipping_fee + o.insure_fee + o.pay_fee + o.pack_fee + o.card_fee ) AS total_fee, (o.goods_amount + o.tax + o.shipping_fee + o.insure_fee + o.pay_fee + o.pack_fee + o.card_fee - o.discount) AS total_fee_order,o.ppj_id,o.ppj_no,og.goods_id FROM ".$GLOBALS['ecs']->table('order_info')." AS o LEFT JOIN ".$GLOBALS['ecs']->table('order_goods')." AS og ON o.order_id = og.order_id WHERE o.order_id={$val['order_id']} GROUP BY o.order_id ORDER BY add_time DESC LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ", " . $filter['page_size'];
             $order_data[] = $GLOBALS['db']->getAll($osql);
             $order_data[$key][0]['sell_id']=$val['user_id'];  //卖家id
@@ -235,12 +236,12 @@ function ppj_order_list($page = 0){
             $order_data[$key][0]['ok_goods_nowprice']=price_format($val['goods_nowprice']);
             $order_data[$key][0]['ok_status']=$val['status'];
             $order_data[$key][0]['ok_confirm_time']=$val['confirm_time'];
-            $order_data[$key][0]['ppj_id'] = $val['ppj_id'];
-            $order_data[$key][0]['ppj_no'] = $val['ppj_no'];
         }
+
         if(empty($order_data)){
              exit;
         }
+
         foreach($order_data as $key2 => $val2){
             foreach($val2 as $key3=>$val3){
                 $row[]=$val3;
