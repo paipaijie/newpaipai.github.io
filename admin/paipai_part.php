@@ -119,7 +119,9 @@ elseif($_REQUEST['act'] == 'add'){
         $userdata=array('email'=>$val['email'],'user_name'=>$val['mobile'],'nick_name'=>$val['nick_name'],'password'=>'e10adc3949ba59abbe56e057f20f883e');
         $aduser=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('users'), $userdata, 'INSERT');
     }
-    $usql="SELECT user_id,user_name FROM ".$GLOBALS['ecs']->table('users')." WHERE user_id > 32710 ";
+    $zusql="SELECT user_id,user_name FROM ".$GLOBALS['ecs']->table('users');
+    $zu_data=$GLOBALS['db']->getRow($zusql);
+    $usql="SELECT user_id,user_name FROM ".$GLOBALS['ecs']->table('users')."WHERE user_id >".$zu_data['user_id']."-10";
     $u_data=$GLOBALS['db']->getAll($usql);
     foreach($u_data as $key2=>$uval){
 
