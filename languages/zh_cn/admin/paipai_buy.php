@@ -32,6 +32,7 @@ $_LANG['label_end_date'] = '活动结束时间：';
 $_LANG['label_start_end_date'] = '活动起止时间：';
 $_LANG['notice_datetime'] = '（年月日－时）';
 $_LANG['label_deposit'] = '保证金：';
+$_LANG['sale_time'] = '预售时间点：';
 $_LANG['label_restrict_amount'] = '限购数量：';
 $_LANG['notice_restrict_amount'] = '达到此数量，拍拍活动自动结束。0表示没有数量限制。';
 $_LANG['notice_restrict_baozhenngjin'] = '保证金必须大于0';
@@ -80,12 +81,15 @@ $_LANG['error_goods_exist'] = '您选择的商品目前有一个拍拍活动正�
 $_LANG['error_price_ladder'] = '您没有输入有效的价格阶梯！';
 $_LANG['error_restrict_amount'] = '限购数量不能小于价格阶梯中的最大数量';
 $_LANG['goods_start_fee'] = '起拍价不能为空,须填';
+
 $_LANG['notice_goods_deposit'] = '保证金必须不能为0';
 $_LANG['notice_goods_deposit_market'] = '保证金不能大于商品销售价';
 $_LANG['deposit_not_edit'] = '起拍价不可更改';
 $_LANG['error_goods_not_end'] = '您选择的商品目前有一个拍拍结束时间与添加的开始时间冲突！';
+$_LANG['notice_sale_time'] = '请选择预售时间点';
 
 $_LANG['js_languages']['error_goods_null'] = '请选择拍拍商品！';
+$_LANG['js_languages']['error_sale_time'] = '请选择预售时间点！';
 $_LANG['js_languages']['error_deposit'] = '您输入的保证金不是数字！';
 $_LANG['js_languages']['error_goods_deposit'] = '保证金必须大于0！';
 $_LANG['js_languages']['goods_start_fee'] = '请填写起拍价,可为0';
