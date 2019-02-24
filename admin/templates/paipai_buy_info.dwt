@@ -109,7 +109,23 @@
 												<div class="form_prompt"></div>
 											</div>
 										</div>
-										
+
+										<div class="item">
+                                            <div class="label">{$lang.require_field}{$lang.sale_time}</div>
+                                            <div class="label_value">
+                                                <label><input name="sale_time"  id="sale_time" type="radio" value="0" {if $group_buy.ppj_sale_time ==0 } checked {/if} />0:00 </label>
+                                                <label><input name="sale_time"  id="sale_time" type="radio" value="8" {if $group_buy.ppj_sale_time ==8 } checked {/if} />8:00 </label>
+                                                <label><input name="sale_time"  id="sale_time" type="radio" value="10" {if $group_buy.ppj_sale_time ==10 } checked {/if} />10:00 </label>
+                                                <label><input name="sale_time"  id="sale_time" type="radio" value="12" {if $group_buy.ppj_sale_time ==12 } checked {/if} />12:00 </label>
+                                                <label><input name="sale_time"  id="sale_time" type="radio" value="14" {if $group_buy.ppj_sale_time ==14 } checked {/if} />14:00 </label>
+                                                <label><input name="sale_time"  id="sale_time" type="radio" value="16" {if $group_buy.ppj_sale_time ==16 } checked {/if} />16:00 </label>
+                                                <label><input name="sale_time"  id="sale_time" type="radio" value="18" {if $group_buy.ppj_sale_time ==18 } checked {/if} />18:00 </label>
+                                                <label><input name="sale_time"  id="sale_time" type="radio" value="20" {if $group_buy.ppj_sale_time ==20 } checked {/if}  />20:00 </label>
+                                                <label><input name="sale_time"  id="sale_time" type="radio" value="22" {if $group_buy.ppj_sale_time ==22 } checked {/if} />22:00 </label>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
 										<!--<div class="item">
 											<div class="label">期数</div>
 											<div class="label_value"><input name="ppj_no" type="text" id="ppj_no" value="{$group_buy.ppj_no|default:0}" class="text" autocomplete="off" {if $group_buy.status}readonly{/if}/>
@@ -362,6 +378,9 @@
                     ppj_start_fee:{
                         required : true
                     },
+                    sale_time:{
+                         digits : true
+                    },
                     restrict_amount:{
                         digits : true
                     },
@@ -391,6 +410,9 @@
                     }, 
                     ppj_start_fee:{
                     	required : '<i class="icon icon-exclamation-sign"></i>'+goods_start_fee
+                    },
+                    sale_time:{
+                        digits  : '<i class="icon icon-exclamation-sign"></i>'+error_sale_time,
                     },
                     restrict_amount:{
                         digits : '<i class="icon icon-exclamation-sign"></i>'+error_restrict_amount,

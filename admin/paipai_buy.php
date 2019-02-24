@@ -656,6 +656,7 @@ else {
 			
 			$ppj_name = empty($_POST['act_name']) ? $goods_name : sub_str($_POST['act_name'], 0, 255, false);
 
+			$sale_time=$_POST['sale_time'];
 
 			//保证金     
 			$deposit = floatval($_POST['ppl_margin_fee']);
@@ -771,7 +772,7 @@ else {
 			$is_new = isset($_REQUEST['is_new']) ? $_REQUEST['is_new'] : 0;
 			$review_status=3;
 			
-			$group_buy = array('ppj_name' => $ppj_name,'act_desc' => $_POST['act_desc'],'goods_id' => $goods_id,'goods_name' => $goods_name,'start_time' => $start_time,'end_time' => $end_time, 'review_status' => $review_status, 'is_hot' => $is_hot, 'is_new' => $is_new, 'ppj_margin_fee' => $deposit, 'ppj_no' =>$ppj_no_new,'goods_count' => $restrict_amount,'ppj_start_fee' => $ppj_start_fee,'ppj_buy_fee' =>$ppj_buy_fee,'ppj_addfee_type' => $ppj_addfee_type,'ppj_startpay_time' => $ppj_startpay_time,'ppj_endpay_time' => $ppj_endpay_time ,'ppj_staus' => $ppj_staus,'ppj_createtime' => $ppj_createtime, 'ext_info' => serialize(array('price_ladder' => $price_ladder, 'restrict_amount' => $restrict_amount)),'gift_integral'=>$_POST['gift_integral']);
+			$group_buy = array('ppj_name' => $ppj_name,'act_desc' => $_POST['act_desc'],'goods_id' => $goods_id,'goods_name' => $goods_name,'start_time' => $start_time,'end_time' => $end_time, 'review_status' => $review_status, 'is_hot' => $is_hot, 'is_new' => $is_new, 'ppj_margin_fee' => $deposit, 'ppj_no' =>$ppj_no_new,'goods_count' => $restrict_amount,'ppj_start_fee' => $ppj_start_fee,'ppj_buy_fee' =>$ppj_buy_fee,'ppj_addfee_type' => $ppj_addfee_type,'ppj_startpay_time' => $ppj_startpay_time,'ppj_endpay_time' => $ppj_endpay_time ,'ppj_sale_time'=>$sale_time,'ppj_staus' => $ppj_staus,'ppj_createtime' => $ppj_createtime, 'ext_info' => serialize(array('price_ladder' => $price_ladder, 'restrict_amount' => $restrict_amount)),'gift_integral'=>$_POST['gift_integral']);
 			clear_cache_files();
 
 			/*
@@ -780,8 +781,9 @@ else {
 			*/
 			
 			if (0 < $group_buy_id) {//
-				
-				 
+
+				$sale_time=$_POST['sale_time'];
+
 				//exit;
 				if (isset($_POST['review_status'])) {
 					
@@ -864,7 +866,7 @@ else {
 				$ext_info = serialize(array('price_ladder' => $price_ladder, 'restrict_amount' => $restrict_amount));
 				
 				
-				$sql = "UPDATE ". $ecs->table("paipai_list") . ' SET ppj_margin_fee=\''.$deposit .'\',ppj_start_fee=\'' .$ppj_start_fee .'\',ppj_endpay_time=\''.$ppj_endpay_time.'\',ppj_startpay_time=\''.$ppj_startpay_time.'\',ppj_buy_fee=\''.$ppj_buy_fee.'\',goods_count=\''.$restrict_amount.'\',start_time=\''.$start_time.'\',end_time=\''.$end_time.'\',gift_integral=\''.$gift_integral.'\',ext_info=\''.$ext_info.'\' ' . (' WHERE ppj_id = \'' . $group_buy_id . '\' LIMIT 1');
+				$sql = "UPDATE ". $ecs->table("paipai_list") . ' SET ppj_margin_fee=\''.$deposit .'\',ppj_start_fee=\'' .$ppj_start_fee .'\',ppj_endpay_time=\''.$ppj_endpay_time.'\',ppj_startpay_time=\''.$ppj_startpay_time.'\',ppj_buy_fee=\''.$ppj_buy_fee.'\',goods_count=\''.$restrict_amount.'\',start_time=\''.$start_time.'\',end_time=\''.$end_time.'\',ppj_sale_time=\''.$sale_time.'\',gift_integral=\''.$gift_integral.'\',ext_info=\''.$ext_info.'\' ' . (' WHERE ppj_id = \'' . $group_buy_id . '\' LIMIT 1');
 				
 				//var_dump($sql);
 				//exit;
