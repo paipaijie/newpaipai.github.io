@@ -84,7 +84,7 @@ function group_buy_list($ru_id)
 		
 		
 		$sql = 'SELECT COUNT(*) FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS ga ' . ' WHERE ' . $where;
-		
+
 		$filter['record_count'] = $GLOBALS['db']->getOne($sql);
 		
 		
@@ -107,30 +107,35 @@ function group_buy_list($ru_id)
 	$res = $GLOBALS['db']->query($sql);
 	$list = array();
 	while ($row = $GLOBALS['db']->fetchRow($res)) {
-		$ext_info = unserialize($row['ext_info']);			
-		$stat = group_buy_stat($row['ppj_id'],  $ext_info['ppj_margin_fee']);	  // 	
-		$arr = array_merge($row, $stat, $ext_info);	
+
+		if($row['ext_info']){
+			$ext_info = unserialize($row['ext_info']);
+			$stat = group_buy_stat($row['ppj_id'],  $ext_info['ppj_margin_fee']);	  //
+			$arr = array_merge($row, $stat, $ext_info);
+		}else{
+			$arr=$row;
+		}
 		$price_ladder = $arr['price_ladder'];
 		if (!is_array($price_ladder) || empty($price_ladder)) {
 			$price_ladder = array(
 				array('amount' => 0, 'price' => 0)
-			);	
+			);
 		}
 		else {
-			foreach ($price_ladder as $key => $amount_price) {	
+			foreach ($price_ladder as $key => $amount_price) {
 				$price_ladder[$key]['formated_price'] = price_format($amount_price['price']);
 			}
 		}
 		$cur_price = $price_ladder[0]['price'];
 		$cur_amount = $stat['valid_goods'];
-		foreach ($price_ladder as $amount_price) {	
+		foreach ($price_ladder as $amount_price) {
 			if ($amount_price['amount'] <= $cur_amount) {
 				$cur_price = $amount_price['price'];
 			}
 			else {
 				break;
 			}
-		}		
+		}
 		$arr['cur_price'] = $cur_price;
 		$status = group_buy_status($arr); //  group_buy_status 在 lib_goods.php中定义
 
@@ -140,6 +145,7 @@ function group_buy_list($ru_id)
 		$arr['user_name'] = get_shop_name($arr['user_id'], 1);
 		$list[] = $arr;
 	}
+
 	$arr = array('item' => $list, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
 	return $arr;
 }
@@ -353,15 +359,18 @@ else {
 			$sql = "SELECT * FROM dsc_paipai_list where ppj_id = '$group_buy_id'";
 			$result = $db->query($sql);
 			$shuju1 = $result->fetch_object();
+
 			//转换为数组
-			$group_buy = get_object_vars($shuju1); 
-		
+			$group_buy = get_object_vars($shuju1);
+
 			$goods=goods_news($group_buy['goods_id']);
 			$smarty->assign('goods', $goods);
 			//过滤
 			$ext_info = unserialize($group_buy['ext_info']);
 			//合并
-			$group_buy = array_merge($group_buy, $ext_info);	
+			if($ext_info){
+				$group_buy = array_merge($group_buy, $ext_info);
+			}
 
 			$group_buy['formated_start_date'] = local_date('Y-m-d H:i:s', $group_buy['start_time']);
 			$group_buy['formated_end_date'] = local_date('Y-m-d H:i:s', $group_buy['end_time']);
