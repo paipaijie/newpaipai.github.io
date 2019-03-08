@@ -305,21 +305,26 @@ elseif($_REQUEST['act'] == 'add'){
 elseif($_REQUEST['act'] == 'order'){
 
 
-    $cat_sql="SELECT cat_id,cat_name FROM ".$GLOBALS['ecs']->table('category')." WHERE parent_id=0 ";
+    $cat_sql="SELECT cat_id,cat_name FROM ".$GLOBALS['ecs']->table('category')." WHERE parent_id=0 AND is_show=1";
     $cat_row=$GLOBALS['db']->getAll($cat_sql);
     $smarty->assign('cat_row', $cat_row);
 
     $mouth=$_POST['mouth'];
+    $days=$_POST['days'];
     $stoprice=$_POST['storage_price'];
     $outprice=$_POST['out_price'];
     $cat_id=$_POST['cat_id'];
-//    $mouth=3;
-//    $stoprice='300000';
-//    $outprice="100000";
-//    $cat_id='1548';
+
+
+    $year=2018;
+    $order_time=$year.'-'.$mouth.'-'.$days;
+    $S=rand(8,18);//随机--时
+    $F=rand(0,59);//随机--分
+    $M=rand(0,59);//随机--秒
+    $add_time=strtotime($order_time." ".$S.":".$F.":".$M);
     if($cat_id && $stoprice) {
         var_dump(date("H:i:s",time()+8*3600));
-        $cat2_sql = "SELECT cat_id,cat_name,parent_id FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id;
+        $cat2_sql = "SELECT cat_id,cat_name,parent_id FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id." AND is_show=1 ";
         $cat2_row = $GLOBALS['db']->getAll($cat2_sql);
 
         foreach ($cat2_row as $key => $catval) {
@@ -327,6 +332,9 @@ elseif($_REQUEST['act'] == 'order'){
             $goods_count[] = $GLOBALS['db']->getAll($goods_sql);
             $goods_sql2 = "SELECT goods_id,cat_id,cost_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
             $goods_row[] = $GLOBALS['db']->getAll($goods_sql2);
+        }
+        if($goods_count[0][0]['count'] == '0'){
+             var_dump("商品数量为空"); exit;
         }
         for ($i = 0; $i < count($goods_count); $i++) {
             $goods_sum += $goods_count[$i][0]['count'];
@@ -341,13 +349,11 @@ elseif($_REQUEST['act'] == 'order'){
         for ($g = 0; $g < count($goods_count_price); $g++) {
             $goods_data[] = array(
                 'goods_id' => $new2_goods[$g]['goods_id'],
-                'goods_name' => $new2_goods[$g]['goods_name'],
-                'goods_thumb' => $new2_goods[$g]['goods_thumb'],
                 'cost_price' => $new2_goods[$g]['cost_price'],
                 'total_price' => $goods_count_price[$g + 1]
             );
-
         }
+
         $goods_logs_sql = "INSERT INTO " . $GLOBALS['ecs']->table('goods_inventory_logs') . "(goods_id,use_storage,admin_id,number,product_id,add_time) VALUES ";
         foreach ($goods_data as $key4 => $val4) {
             $sel_sql = "SELECT goods_number FROM " . $GLOBALS['ecs']->table('goods') . " WHERE goods_id=" . $val4['goods_id'];
@@ -360,7 +366,7 @@ elseif($_REQUEST['act'] == 'order'){
           $upd_sql="UPDATE ".$GLOBALS['ecs']->table('goods')." SET goods_number=".$goods_number." WHERE goods_id=".$val4['goods_id'];
           $GLOBALS['db']->query($upd_sql);
 
-            $goods_logs_sql .= "( '" . $val4['goods_id'] . "'," . '7' . "," . '59' . ",'" . $goods_number . "'," . '0' . "," . '0' . "),";
+          $goods_logs_sql .= "( '" . $val4['goods_id'] . "'," . '7' . "," . '59' . ",'" . $goods_number . "'," . '0' . ",'" . $add_time ."''),";
         }
         $goods_logs_sql = substr($goods_logs_sql, 0, strlen($goods_logs_sql) - 1);
         $GLOBALS['db']->query($goods_logs_sql);
