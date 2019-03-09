@@ -720,7 +720,6 @@ function order_list($page = 0)
 
 	$row = $GLOBALS['db']->getAll($sql);
 
-
 	foreach ($row as $key => $value) {
 		if ($value['shipping_status'] == 2 && empty($value['confirm_take_time'])) {
 			$sql = 'SELECT MAX(log_time) AS log_time FROM ' . $GLOBALS['ecs']->table('order_action') . ' WHERE order_id = \'' . $value['order_id'] . '\' AND shipping_status = \'' . SS_RECEIVED . '\'';
@@ -2047,7 +2046,27 @@ function ppj_order_list($list_type){
     $arr = array('orders' => $row, 'goods' => $goods,'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
 	return $arr;	
 }
+function download_logslist($result)
+{
+	if (empty($result)) {
+		return i($GLOBALS['_LANG']['not_fuhe_date']);
+	}
 
+	$data = i($GLOBALS['_LANG']['download_goodslogs_notic'] . "\n");
+	$count = count($result);
+	for ($i = 0; $i < $count; $i++) {
+		$logs_id = i($result[$i]['id']);
+		$goods_id = i($result[$i]['goods_id']);
+		$number = i($result[$i]['number']);
+		$add_time = i($result[$i]['add_time']);
+		$goods_name = i($result[$i]['goods_name']);
+		$order_sn = i($result[$i]['order_sn']);
+		$shop_name = i($result[$i]['shop_name']);
+		$data .= $logs_id . ',' . $goods_id . ',' . $number . ',' . $add_time . ',' . $goods_name . ','.$order_sn . ',' . $shop_name  . "\n";
+	}
+
+	return $data;
+}
 
 
 
@@ -2280,6 +2299,29 @@ if ($_REQUEST['act'] == 'order_download') {
 	}
 
 	$dir = ROOT_PATH . '/temp/static_caches/order_download_content_' . $admin_id . '.php';
+
+	if (is_file($dir)) {
+		@unlink($dir);
+	}
+
+	exit($zip->file());
+}else if($_REQUEST['act'] == 'logs_download'){
+	header('Content-Disposition: attachment; filename=' . $_LANG['order_export_alt'] . date('YmdHis') . '.zip');
+	header('Content-Type: application/unknown');
+	include_once 'includes/cls_phpzip.php';
+	$admin_id = get_admin_id();
+	$goodslogs_list = read_static_cache('logs_download_content_' . $admin_id);
+	$zip = new PHPZip();
+
+	if (!empty($goodslogs_list)) {
+		foreach ($goodslogs_list as $k => $order) {
+			$k++;
+			$content = download_logslist($order['list']);
+			$zip->add_file($content, date('YmdHis') . '-' . $k . '.csv');
+		}
+	}
+
+	$dir = ROOT_PATH . '/temp/static_caches/logs_download_content_' . $admin_id . '.php';
 
 	if (is_file($dir)) {
 		@unlink($dir);

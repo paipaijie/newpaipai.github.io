@@ -22,7 +22,9 @@
                     </div>
                     {/if}
                     <div class="search">
+
                     	<form action="javascript:;" name="searchForm" onSubmit="searchGoodsname(this);">
+                    	    <div class="fbutton"><a href="javascript:download_logslist();"><div class="csv" title="{$lang.11_order_export}"><span><i class="icon icon-download-alt"></i>{$lang.11_order_export}</span></div></a></div>
                             <div id="text_time_start" class="text_time">
                                 <input type="text" readonly placeholder="{$lang.start_time}" autocomplete="off" class="text valid" id="start_time_id" name="start_time" style="margin-right:0px;">
                             </div>
@@ -345,7 +347,13 @@
         var val = obj.attr("data-value");
         get_store_search(val);
     });
-	
+
+    //导出订单列表
+    function download_logslist()
+    {
+        page_downloadList("{$page_count}",'goods_inventory_logs','ajax_download','order','logs_download','{$lang.order_export_dialog}');
+    }
+
     function get_store_search(val){
         if(val == 1){
 			$("#merchant_box").css("display",'');

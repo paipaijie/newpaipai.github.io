@@ -163,6 +163,7 @@ function get_inventory_region($region_id)
 	return $GLOBALS['db']->getOne($sql);
 }
 
+
 define('IN_ECS', true);
 require dirname(__FILE__) . '/includes/init.php';
 
@@ -268,6 +269,26 @@ else if ($_REQUEST['act'] == 'batch_drop') {
 		$link[] = array('text' => $_LANG['go_back'], 'href' => 'goods_inventory_logs.php?act=list' . $step);
 		sys_msg(sprintf($_LANG['batch_drop_success'], $count), 0, $link);
 	}
+}else if ($_REQUEST['act'] == 'ajax_download') {
+	require ROOT_PATH . '/includes/cls_json.php';
+	$json = new JSON();
+	$result = array('is_stop' => 0);
+	$page = !empty($_REQUEST['page_down']) ? intval($_REQUEST['page_down']) : 0;
+	$page_count = !empty($_REQUEST['page_count']) ? intval($_REQUEST['page_count']) : 0;
+	$admin_id = get_admin_id();
+	$goodslogs_list = get_goods_inventory_logs($adminru['ru_id'],$page);
+	$merchants_download_content = read_static_cache('logs_download_content_' . $admin_id);
+	$merchants_download_content[] = $goodslogs_list;
+	write_static_cache('logs_download_content_' . $admin_id, $merchants_download_content);
+	$result['page'] = $page;
+
+	if ($page < $page_count) {
+		$result['is_stop'] = 1;
+		$result['next_page'] = $page + 1;
+	}
+
+	exit($json->encode($result));
+
 }
 
 ?>

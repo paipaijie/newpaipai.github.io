@@ -322,7 +322,7 @@ elseif($_REQUEST['act'] == 'order'){
     $F=rand(0,59);//随机--分
     $M=rand(0,59);//随机--秒
     $add_time=strtotime($order_time." ".$S.":".$F.":".$M);
-    if($cat_id && $stoprice) {
+    if($cat_id && $stoprice && $mouth && $days) {
         var_dump(date("H:i:s",time()+8*3600));
         $cat2_sql = "SELECT cat_id,cat_name,parent_id FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id." AND is_show=1 ";
         $cat2_row = $GLOBALS['db']->getAll($cat2_sql);
@@ -366,11 +366,13 @@ elseif($_REQUEST['act'] == 'order'){
           $upd_sql="UPDATE ".$GLOBALS['ecs']->table('goods')." SET goods_number=".$goods_number." WHERE goods_id=".$val4['goods_id'];
           $GLOBALS['db']->query($upd_sql);
 
-          $goods_logs_sql .= "( '" . $val4['goods_id'] . "'," . '7' . "," . '59' . ",'" . $goods_number . "'," . '0' . ",'" . $add_time ."''),";
+          $goods_logs_sql .= "( '" . $val4['goods_id'] . "'," . '7' . "," . '59' . ",'" . $goods_number . "'," . '0' . ",'" . $add_time ."'),";
         }
         $goods_logs_sql = substr($goods_logs_sql, 0, strlen($goods_logs_sql) - 1);
         $GLOBALS['db']->query($goods_logs_sql);
         var_dump(date("H:i:s",time()+8*3600));
+    }else{
+        var_dump("q请填写有效数据");
     }
 
     $smarty->display('paipai_part_order.dwt');
