@@ -177,7 +177,7 @@ function get_goods_inventory_logs_list($ru_id){
 		if($sup_name){
 			$res[$key]['suppliers_name']=$sup_name;
 		}else{
-			$res[$key]['suppliers_name']='益果电子商务';
+			$res[$key]['suppliers_name']='深圳丰赢科技';
 		}
 		if (empty($val['admin_name'])) {
 			$res[$key]['admin_name'] = $GLOBALS['_LANG']['reception_user_place_order'];
