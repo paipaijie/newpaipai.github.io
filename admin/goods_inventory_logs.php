@@ -153,7 +153,6 @@ function get_goods_inventory_logs($ru_id)
 		$rows['goods_thumb'] = get_image_path($rows['goods_id'], $rows['goods_thumb'], true);
 		$list[] = $rows;
 	}
-
 	return array('list' => $list, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
 }
 
@@ -162,6 +161,27 @@ function get_inventory_region($region_id)
 	$sql = 'SELECT region_name FROM ' . $GLOBALS['ecs']->table('region_warehouse') . (' WHERE region_id = \'' . $region_id . '\'');
 	return $GLOBALS['db']->getOne($sql);
 }
+function get_goods_inventory_logs_list($ru_id){
+
+	$where="WHERE 1";
+
+	if (0 < $ru_id) {
+		$where .= ' AND g.user_id = \'' . $ru_id . '\'';
+	}
+
+	$sql = 'SELECT gil.*, g.user_id,g.goods_id,g.goods_thumb,g.brand_id, g.goods_name, oi.order_sn, au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_id = oi.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_id = og.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id '.$where ;
+	$res = $GLOBALS['db']->getAll($sql);
+	foreach($res as $key=>$val){
+		if (empty($val['admin_name'])) {
+			$res[$key]['admin_name'] = $GLOBALS['_LANG']['reception_user_place_order'];
+		}
+		$res[$key]['shop_name'] = get_shop_name($val['user_id'], 1);
+		$res[$key]['add_time'] = date('Y-m-d H:i:s',$val['add_time']);
+	}
+	
+	return array('list' => $res);
+}
+
 
 
 define('IN_ECS', true);
@@ -273,19 +293,11 @@ else if ($_REQUEST['act'] == 'batch_drop') {
 	require ROOT_PATH . '/includes/cls_json.php';
 	$json = new JSON();
 	$result = array('is_stop' => 0);
-	$page = !empty($_REQUEST['page_down']) ? intval($_REQUEST['page_down']) : 0;
-	$page_count = !empty($_REQUEST['page_count']) ? intval($_REQUEST['page_count']) : 0;
 	$admin_id = get_admin_id();
-	$goodslogs_list = get_goods_inventory_logs($adminru['ru_id'],$page);
+	$goodslogs_list = get_goods_inventory_logs_list($adminru['ru_id']);
 	$merchants_download_content = read_static_cache('logs_download_content_' . $admin_id);
 	$merchants_download_content[] = $goodslogs_list;
 	write_static_cache('logs_download_content_' . $admin_id, $merchants_download_content);
-	$result['page'] = $page;
-
-	if ($page < $page_count) {
-		$result['is_stop'] = 1;
-		$result['next_page'] = $page + 1;
-	}
 
 	exit($json->encode($result));
 
