@@ -34,9 +34,18 @@
             <div class="flexilist">
             	<div class="common-head">
                     {if !$rs_id}
-                	<div class="fl">
+            <!--
+               	    <div class="fl">
                         <a href="paipai_part.php?act=add"><div class="fbutton"><div class="add" title="{$lang.paipai_part_add}"><span><i class="icon icon-plus"></i>{$lang.paipai_part_add}</span></div></div></a>
                     </div>
+            -->
+                    <div class="fl">
+                        <a href="paipai_part.php?act=order"><div class="fbutton"><div class="add" title="入库"><span><i class="icon icon-plus"></i>入库</span></div></div></a>
+                    </div>
+                    <div class="fl">
+                        <a href="paipai_part.php?act=outorder"><div class="fbutton"><div class="add" title="出库"><span><i class="icon icon-plus"></i>出库</span></div></div></a>
+                    </div>
+
                     {/if}
 
                     <div class="refresh">

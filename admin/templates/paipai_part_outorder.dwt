@@ -6,7 +6,7 @@
 	<body class="iframe_body">
 		<div class="warpper">
 			<div class="title">
-				</div>
+				<a href="paipai_buy.php?act=list" class="s-back">{$lang.back}</a>{$lang.promotion} - {$ur_here}</div>
 			<div class="content">
 
 				<!--操作提示start  --><!--
@@ -28,14 +28,14 @@
 
 						<div class="mian-info">
 
-							<form method="post" action="paipai_part.php?act=order" name="theForm" id="group_buy_form">
+							<form method="post" action="paipai_part.php?act=outorder" name="theForm" id="group_buy_form">
 
 								<div class="switch_info">
 
 									<!--字段详情start  -->
-									<div class="items">
+                                    <div class="items">
 
-									    <div class="item">
+                                        <div class="item">
                                             <div class="label">2018年月份</div>
                                             <div class="label_value">
                                                 <input type="text" name="mouth"  class="text" autocomplete="off" />
@@ -45,24 +45,24 @@
                                         </div>
 
                                         <div class="item">
-                                            <div class="label">2018年月日</div>
+                                            <div class="label">出库总金额</div>
                                             <div class="label_value">
-                                                <input type="text" name="days"  class="text" autocomplete="off" />
-                                                <div class="notic">日为单位</div>
+                                                <input type="text" name="out_price"  class="text" autocomplete="off" />
+                                                <div class="notic">元为单位</div>
                                                 <div class="form_prompt"></div>
                                             </div>
                                         </div>
 
-										<div class="item">
-											<div class="label">入库总金额</div>
-											<div class="label_value">
-												<input type="text" name="storage_price"  class="text" autocomplete="off" />
-												<div class="notic">元为单位</div>
-												<div class="form_prompt"></div>
-											</div>
-										</div>
+                                        <div class="item">
+                                            <div class="label">销售总金额</div>
+                                            <div class="label_value">
+                                                <input type="text" name="sale_price"  class="text" autocomplete="off" />
+                                                <div class="notic">元为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
 
-										<div class="item">
+                                        <div class="item">
                                             <div class="label">商品分类</div>
                                             <div class="label_value">
                                                 <input type="text" name="cat_id"  class="text" autocomplete="off" />
@@ -72,23 +72,22 @@
                                         </div>
 
 
-										<div class="item">
-											<div class="label">&nbsp;</div>
+                                        <div class="item">
+                                            <div class="label">&nbsp;</div>
 
-											<div class="label_value info_btn">
-												<input name="act_id" type="hidden" id="act_id" value="{$group_buy.ppj_id}" id="submitBtn">
-												{if $group_buy.ppj_staus eq 1 || $group_buy.ppj_staus eq 0}
-												<input type="submit" name="submit" value="{$lang.button_submit}" class="button" />
-												{/if}
-											</div>
+                                            <div class="label_value info_btn">
+                                                <input name="act_id" type="hidden" id="act_id" value="{$group_buy.ppj_id}" id="submitBtn">
+                                                {if $group_buy.ppj_staus eq 1 || $group_buy.ppj_staus eq 0}
+                                                <input type="submit" name="submit" value="{$lang.button_submit}" class="button" />
+                                                {/if}
+                                            </div>
 
-										</div>
+                                        </div>
 
 
-									</div>
+                                    </div>
 
-<!--字段详情end  -->
-
+                                    <!--字段详情end  -->
 								</div>
 
 							</form>
@@ -99,7 +98,7 @@
 			</div>
 		</div>
 		{include file ='library/pagefooter.lbi'}
-
+		
 
 		
 	

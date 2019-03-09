@@ -65,7 +65,132 @@ function grouping($total,$num,$area){
     return $result;
 }
 
+function order_add($sale_data,$mouth){
+    $year='2018';
+    $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+    $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,add_time,confirm_time,pay_time,shipping_time,confirm_take_time) VALUES ";
+    $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,goods_price,is_real,warehouse_id,area_id,money_paid) VALUES";
+    foreach($sale_data as $key=>$val){
+        //买家
+        $user_id=rand(40079,861288);
+        $u_sql='SELECT u.user_id,ua.consignee,ua.country,ua.province,ua.city,ua.district,ua.mobile FROM '.$GLOBALS['ecs']->table('users').' AS u LEFT JOIN '.$GLOBALS['ecs']->table('user_address').'AS ua ON u.user_id=ua.user_id  WHERE u.user_id='.$user_id;
+        $user_row=$GLOBALS['db']->getRow($u_sql);
+        //商品
+        $g_sql='SELECT goods_id,goods_name,goods_sn,market_price,shop_price FROM '.$GLOBALS['ecs']->table('goods').' WHERE goods_id='.$val['goods_id'];
+        $goods_row=$GLOBALS['db']->getRow($g_sql);
+        $d=rand(1,$days);
+        if($d<10){
+            $d='0'.$d;
+        }
+        $order_sn=$year.$mouth.$d.str_pad(mt_rand(1, 999999999), 9, '0', STR_PAD_LEFT);
+        $order_time=$year.'-'.$mouth.'-'.$d;
+        $S=rand(8,22);//随机--时
+        if($S<10){
+            $S='0'.$S;
+        }
+        $F=rand(0,59);//随机--分
+        if($F<10){
+            $F='0'.$F;
+        }
+        $M=rand(0,50);//随机--秒
+        if($M<10){
+            $M='0'.$M;
+        }
+        $SC=$S+1;
+        $MC=$M+5;
+        $add_time=strtotime($order_time." ".$S.":".$F.":".$M);  //提交时间
+        $pay_time=strtotime($order_time." ".$S.":".$F.":".$MC);  //支付时间
+        $confirm_time=strtotime($order_time." ".$SC.":".$F.":".$M);
+        $shipping_time=strtotime($order_time." ".$SC.":".$F.":".$M);  //发货时间
+        //收货时间
+        $td=$d+rand(2,7);
+        $take_time=strtotime($year.'-'.$mouth.'-'.$td." ".$S.":".$F.":".$M);
+        $price=$val['sale_one_price'];
+        $pay_name="支付宝支付";
 
+        $oi_sql .= "('".$order_sn."','".$user_row['user_id']."',".'1'.",".'2'.",".'2'.",'".$user_row['consignee']."','". $user_row['country']."','".$user_row['province']."','".$user_row['city']."','".$user_row['district']."','".$user_row['mobile']."',".'9'.",'".$pay_name."','".$price."','".$price."','".$price."','".$add_time."','".$confirm_time."','".$pay_time."','".$shipping_time."','".$take_time. "'),";
+        $og_sql.="('".$user_row['user_id']."','".$goods_row['goods_id']."','".$goods_row['goods_name']."','".$goods_row['goods_sn']."','".$goods_row['market_price']."','".$goods_row['shop_price']."',".'1'.",".'2'.",".'24'.",'".$price."'),";
+    }
+    $oi_sql = substr( $oi_sql,0, strlen($oi_sql)-1 );
+    $og_sql = substr( $og_sql,0, strlen($og_sql)-1 );
+
+
+    $res=$GLOBALS['db']->query($oi_sql);
+    if(!$res){
+        var_dump('订单order_info添加失败'); exit;
+    }
+    $res2=$GLOBALS['db']->query($og_sql);
+    if(!$res2){
+        var_dump('订单order_goods添加失败'); exit;
+    }
+
+
+    //更改商品的库存数
+    foreach($sale_data as $key2=>$val2){
+        $order_id_sql="SELECT oi.order_id,oi.user_id,goods_number FROM ".$GLOBALS['ecs']->table('order_goods')." AS og LEFT JOIN ".$GLOBALS['ecs']->table('order_info')." AS oi ON og.user_id=oi.user_id  WHERE goods_id=".$val2['goods_id']." AND goods_amount=".$val2['sale_one_price'];
+        $order_id_row=$GLOBALS['db']->getRow($order_id_sql);
+        if($order_id_row['order_id']){
+            $up_og_sql="UPDATE ".$GLOBALS['ecs']->table('order_goods')." SET order_id=".$order_id_row['order_id']." WHERE  goods_id=".$val2['goods_id']." AND user_id=".$order_id_row['user_id'];
+            $up_og=$GLOBALS['db']->query($up_og_sql);
+            if($up_og){
+                $upg_sql='SELECT goods_number FROM '.$GLOBALS['ecs']->table('goods').' WHERE goods_id='.$val2['goods_id'];
+                $upg_row=$GLOBALS['db']->getRow($upg_sql);
+                $cut_num=$upg_row['goods_number']-$order_id_row['goods_number'];
+                $up_g_sql="UPDATE ".$GLOBALS['ecs']->table('goods')." SET goods_number=".$cut_num." WHERE  goods_id=".$val2['goods_id'];
+                $GLOBALS['db']->query($up_g_sql);
+            }
+        }
+    }
+
+    //拍拍活动添加
+    $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
+    $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
+    $limit_min_time=strtotime($min_time);
+    $limit_max_time=strtotime($max_time);
+
+    for($p=0;$p<count($sale_data);$p++){
+        $ppj_goods_id[]=$sale_data[$p]['goods_id'];
+    }
+    $ppj_goods_id_row=array_values(array_unique($ppj_goods_id));
+    $ppj_add_sql="INSERT INTO ".$GLOBALS['ecs']->table('paipai_list')."(ppj_name,goods_id,ppj_no,goods_count,ppj_start_fee,ppj_buy_fee,start_time,end_time,ppj_margin_fee,ppj_startpay_time,ppj_endpay_time,ppj_createtime,goods_name,is_hot,is_new,review_status,user_id,ppj_staus) VALUES";
+    for($pj=0;$pj<count($ppj_goods_id_row);$pj++){
+        //拍拍活动数值
+        $act_sql="SELECT ppj_no FROM ".$GLOBALS['ecs']->table('paipai_list')." WHERE goods_id=".$ppj_goods_id_row[$pj]." ORDER BY ppj_id DESC";
+        $ppj_goods=$GLOBALS['db']->getRow($act_sql);
+
+        $pg_sql='SELECT goods_id,goods_name,shop_price FROM '.$GLOBALS['ecs']->table('goods').' WHERE goods_id='.$ppj_goods_id_row[$pj];
+        $goods_row2=$GLOBALS['db']->getRow($pg_sql);
+
+        $ppj_no=$ppj_goods['ppj_no']+1;
+        $goods_count=rand(50,200);
+        $ppj_margin_fee="0.01";
+
+        $goods_start_fee=str_replace(',','',number_format($goods_row2['shop_price']*0.70,2));
+
+        $ppj_add_sql.="('".$goods_row2['goods_name']."','".$goods_row2['goods_id']."','".$ppj_no."','".$goods_count."','".$goods_start_fee."','".$goods_start_fee."','".$limit_min_time."','".$limit_max_time."','".$ppj_margin_fee."',".'20'.",".'20'.",'".$limit_min_time."','".$goods_row2['goods_name']."',".'0'.",".'0'.",".'3'.",".'0'.",".'2'."),";
+    }
+    $ppj_add_sql = substr( $ppj_add_sql,0, strlen($ppj_add_sql)-1 );
+    $res3=$GLOBALS['db']->query($ppj_add_sql);
+    if(!$res3){
+        var_dump('拍拍活动添加失败'); exit;
+    }
+
+    //更改订单的ppj_id  ppj_no
+    $all_paipai_sql="SELECT og.goods_id,oi.order_id FROM ".$GLOBALS['ecs']->table('order_goods')."AS og LEFT JOIN ".$GLOBALS['ecs']->table('order_info')." AS oi ON og.order_id=oi.order_id WHERE  oi.add_time>=".$limit_min_time." AND oi.add_time<=".$limit_max_time;
+    $poi_row=$GLOBALS['db']->getAll($all_paipai_sql);
+    foreach($poi_row as $pkey=>$pval){
+        $one_paipai_sql="SELECT ppj_id,ppj_no,goods_id FROM ".$GLOBALS['ecs']->table('paipai_list')." WHERE goods_id=".$pval['goods_id']." AND start_time>=".$limit_min_time." AND end_time<=".$limit_max_time;
+        $one_paipai_row=$GLOBALS['db']->getRow($one_paipai_sql);
+
+        $up_order_ppj_sql="UPDATE ".$GLOBALS['ecs']->table('order_info')." SET ppj_id=".$one_paipai_row['ppj_id'].",ppj_no=".$one_paipai_row['ppj_no']." WHERE order_id=".$pval['order_id'];
+        $GLOBALS['db']->query($up_order_ppj_sql);
+
+    }
+
+
+
+
+}
 
 
 // 执行方法
@@ -330,7 +455,7 @@ elseif($_REQUEST['act'] == 'order'){
         foreach ($cat2_row as $key => $catval) {
             $goods_sql = "SELECT count(goods_id) as count FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
             $goods_count[] = $GLOBALS['db']->getAll($goods_sql);
-            $goods_sql2 = "SELECT goods_id,cat_id,cost_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
+            $goods_sql2 = "SELECT goods_id,cat_id,cost_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id']." ORDER BY shop_price DESC";
             $goods_row[] = $GLOBALS['db']->getAll($goods_sql2);
         }
         if($goods_count[0][0]['count'] == '0'){
@@ -376,4 +501,82 @@ elseif($_REQUEST['act'] == 'order'){
     }
 
     $smarty->display('paipai_part_order.dwt');
+}
+elseif($_REQUEST['act'] == 'outorder') {
+
+    $cat_sql = "SELECT cat_id,cat_name FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=0 AND is_show=1";
+    $cat_row = $GLOBALS['db']->getAll($cat_sql);
+    $smarty->assign('cat_row', $cat_row);
+
+    $mouth = $_POST['mouth'];
+    $days = $_POST['days'];
+    $outprice = $_POST['out_price'];
+    $saleprice = $_POST['sale_price'];
+    $cat_id = $_POST['cat_id'];
+
+
+    if ($cat_id && $outprice && $mouth) {
+        var_dump(date("H:i:s", time() + 8 * 3600));
+        $cat2_sql = "SELECT cat_id,cat_name,parent_id FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id . " AND is_show=1 ";
+        $cat2_row = $GLOBALS['db']->getAll($cat2_sql);
+
+        foreach ($cat2_row as $key => $catval) {
+            $goods_sql = "SELECT count(goods_id) as count FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
+            $goods_count[] = $GLOBALS['db']->getAll($goods_sql);
+            $goods_sql2 = "SELECT goods_id,cat_id,cost_price,shop_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'] . " ORDER BY shop_price DESC";
+            $goods_row[] = $GLOBALS['db']->getAll($goods_sql2);
+        }
+        if ($goods_count[0][0]['count'] == '0') {
+            var_dump("商品数量为空");
+            exit;
+        }
+        for ($i = 0; $i < count($goods_count); $i++) {
+            $goods_sum += $goods_count[$i][0]['count'];
+        }
+        $goods_count_price = grouping($outprice, $goods_sum, 1000);
+        for ($i = 0; $i < count($goods_row); $i++) {
+            $new_goods = $goods_row[$i];
+            for ($y = 0; $y < count($new_goods); $y++) {
+                $new2_goods[] = $new_goods[$y];
+            }
+        }
+        for ($g = 0; $g < count($goods_count_price); $g++) {
+            $goods_data[] = array(
+                'goods_id' => $new2_goods[$g]['goods_id'],
+                'cost_price' => $new2_goods[$g]['cost_price'],
+                'shop_price' => $new2_goods[$g]['shop_price'],
+                'total_price' => $goods_count_price[$g + 1],
+                'out_num' => round($goods_count_price[$g + 1] / $new2_goods[$g]['cost_price'])
+            );
+        }
+        //出库添加
+        foreach ($goods_data as $key => $val) {
+            for ($i = 1; $i <= $val['out_num']; $i++) {
+                $out_logs_sql = "INSERT INTO " . $GLOBALS['ecs']->table('goods_inventory_logs') . " SET goods_id=" . $val['goods_id'] . ",use_storage='7',admin_id='59',number='-1'";
+//                 $GLOBALS['db']->query($out_logs_sql);
+            }
+        }
+        $goods_sale_num = grouping($saleprice, $goods_sum, 10000);
+        for ($s = 0; $s < count($goods_sale_num); $s++) {
+            $one_price = str_replace(',', '', number_format($goods_sale_num[$s + 1] / $goods_data[$s]['out_num'], 2));
+            $sale_data[] = array(
+                'goods_id' => $goods_data[$s]['goods_id'],
+                'cost_price' => $goods_data[$s]['cost_price'],
+                'shop_price' => $goods_data[$s]['shop_price'],
+                'total_price' => $goods_data[$s]['total_price'],
+                'out_num' => $goods_data[$s]['out_num'],
+                'sale_total_price' => $goods_sale_num[$s + 1],
+                'sale_one_price' => str_replace(',', '', number_format(rand($one_price * 0.90, $one_price * 1.10), 2))
+            );
+        }
+        $row = order_add($sale_data, $mouth);
+        var_dump($row);
+
+
+        var_dump(date("H:i:s", time() + 8 * 3600));
+    } else {
+        var_dump("q请填写有效数据");
+    }
+
+    $smarty->display('paipai_part_outorder.dwt');
 }
