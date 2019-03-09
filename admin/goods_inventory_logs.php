@@ -169,16 +169,22 @@ function get_goods_inventory_logs_list($ru_id){
 		$where .= ' AND g.user_id = \'' . $ru_id . '\'';
 	}
 
-	$sql = 'SELECT gil.*, g.user_id,g.goods_id,g.goods_thumb,g.brand_id, g.goods_name, oi.order_sn, au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_id = oi.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_id = og.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id '.$where ;
+	$sql = 'SELECT gil.*, g.user_id,g.goods_id,g.goods_thumb,g.brand_id, g.goods_name,g.suppliers_id, oi.order_sn, au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_id = oi.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_id = og.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id '.$where ;
 	$res = $GLOBALS['db']->getAll($sql);
 	foreach($res as $key=>$val){
+		$sup_sql="SELECT suppliers_name FROM ".$GLOBALS['ecs']->table('suppliers')." WHERE suppliers_id=".$val['suppliers_id'];
+		$sup_name=$GLOBALS['db']->getOne($sup_sql);
+		if($sup_name){
+			$res[$key]['suppliers_name']=$sup_name;
+		}else{
+			$res[$key]['suppliers_name']='益果电子商务';
+		}
 		if (empty($val['admin_name'])) {
 			$res[$key]['admin_name'] = $GLOBALS['_LANG']['reception_user_place_order'];
 		}
 		$res[$key]['shop_name'] = get_shop_name($val['user_id'], 1);
 		$res[$key]['add_time'] = date('Y-m-d H:i:s',$val['add_time']);
 	}
-	
 	return array('list' => $res);
 }
 
@@ -223,7 +229,7 @@ if ($_REQUEST['act'] == 'list') {
 	$smarty->assign('ur_here', $_LANG['13_goods_inventory_logs'] . $storage);
 	$smarty->assign('ip_list', $ip_list);
 	$smarty->assign('full_page', 1);
-	$log_list = get_goods_inventory_logs($adminru['ru_id']);
+	$log_list = get_goods_inventory_logs_list($adminru['ru_id']);
 	$smarty->assign('log_list', $log_list['list']);
 	$smarty->assign('filter', $log_list['filter']);
 	$smarty->assign('record_count', $log_list['record_count']);

@@ -2060,9 +2060,10 @@ function download_logslist($result)
 		$number = i($result[$i]['number']);
 		$add_time = i($result[$i]['add_time']);
 		$goods_name = i($result[$i]['goods_name']);
+		$suppliers_name = i($result[$i]['suppliers_name']);
 		$order_sn = i($result[$i]['order_sn']);
 		$shop_name = i($result[$i]['shop_name']);
-		$data .= $logs_id . ',' . $goods_id . ',' . $number . ',' . $add_time . ',' . $goods_name . ','.$order_sn . ',' . $shop_name  . "\n";
+		$data .= $logs_id . ',' . $goods_id . ',' . $number . ',' . $add_time . ',' . $goods_name . ','.$suppliers_name.','.$order_sn . ',' . $shop_name  . "\n";
 	}
 
 	return $data;
