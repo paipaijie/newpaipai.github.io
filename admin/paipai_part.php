@@ -69,7 +69,7 @@ function order_add($sale_data,$mouth){
     $year='2018';
     $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
     $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,add_time,confirm_time,pay_time,shipping_time,confirm_take_time) VALUES ";
-    $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,goods_price,is_real,warehouse_id,area_id,money_paid) VALUES";
+    $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,goods_price,is_real,warehouse_id,area_id) VALUES";
     foreach($sale_data as $key=>$val){
         //买家
         $user_id=rand(40079,861288);
@@ -109,7 +109,7 @@ function order_add($sale_data,$mouth){
         $pay_name="支付宝支付";
 
         $oi_sql .= "('".$order_sn."','".$user_row['user_id']."',".'1'.",".'2'.",".'2'.",'".$user_row['consignee']."','". $user_row['country']."','".$user_row['province']."','".$user_row['city']."','".$user_row['district']."','".$user_row['mobile']."',".'9'.",'".$pay_name."','".$price."','".$price."','".$price."','".$add_time."','".$confirm_time."','".$pay_time."','".$shipping_time."','".$take_time. "'),";
-        $og_sql.="('".$user_row['user_id']."','".$goods_row['goods_id']."','".$goods_row['goods_name']."','".$goods_row['goods_sn']."','".$goods_row['market_price']."','".$goods_row['shop_price']."',".'1'.",".'2'.",".'24'.",'".$price."'),";
+        $og_sql.="('".$user_row['user_id']."','".$goods_row['goods_id']."','".$goods_row['goods_name']."','".$goods_row['goods_sn']."','".$goods_row['market_price']."','".$goods_row['shop_price']."',".'1'.",".'2'.",".'24'."),";
     }
     $oi_sql = substr( $oi_sql,0, strlen($oi_sql)-1 );
     $og_sql = substr( $og_sql,0, strlen($og_sql)-1 );
