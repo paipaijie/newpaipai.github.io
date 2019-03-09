@@ -172,9 +172,9 @@ function get_goods_inventory_logs_list($ru_id){
 	$sql = 'SELECT gil.*, g.user_id,g.goods_id,g.goods_thumb,g.brand_id, g.goods_name,g.suppliers_id, oi.order_sn, au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_id = oi.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_id = og.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id '.$where ;
 	$res = $GLOBALS['db']->getAll($sql);
 	foreach($res as $key=>$val){
-		$sup_sql="SELECT suppliers_name FROM ".$GLOBALS['ecs']->table('suppliers')." WHERE suppliers_id=".$val['suppliers_id'];
-		$sup_name=$GLOBALS['db']->getOne($sup_sql);
-		if($sup_name){
+		if($val['suppliers_id']){
+			$sup_sql="SELECT suppliers_name FROM ".$GLOBALS['ecs']->table('suppliers')." WHERE suppliers_id=".$val['suppliers_id'];
+			$sup_name=$GLOBALS['db']->getOne($sup_sql);
 			$res[$key]['suppliers_name']=$sup_name;
 		}else{
 			$res[$key]['suppliers_name']='深圳丰赢科技';
@@ -225,6 +225,9 @@ if ($_REQUEST['act'] == 'list') {
 			$smarty->assign('step', 'out');
 		}
 	}
+
+	$page = !empty($_REQUEST['page_down']) ? intval($_REQUEST['page_down']) : 0;
+	$page_count = !empty($_REQUEST['page_count']) ? intval($_REQUEST['page_count']) : 0;
 
 	$smarty->assign('ur_here', $_LANG['13_goods_inventory_logs'] . $storage);
 	$smarty->assign('ip_list', $ip_list);
