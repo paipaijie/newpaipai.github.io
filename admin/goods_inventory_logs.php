@@ -169,7 +169,7 @@ function get_goods_inventory_logs_list($ru_id){
 		$where .= ' AND g.user_id = \'' . $ru_id . '\'';
 	}
 
-	$sql = 'SELECT gil.*, g.user_id,g.goods_id,g.goods_thumb,g.brand_id, g.goods_name,g.suppliers_id, oi.order_sn, au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_id = oi.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_id = og.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id '.$where ;
+	$sql = 'SELECT gil.*, g.user_id,g.goods_id,g.goods_thumb,g.brand_id,g.cost_price, g.goods_name,g.suppliers_id, oi.order_sn, au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_id = oi.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_id = og.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id '.$where ;
 	$res = $GLOBALS['db']->getAll($sql);
 	foreach($res as $key=>$val){
 		if($val['suppliers_id']){
