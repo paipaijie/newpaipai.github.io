@@ -513,13 +513,16 @@ elseif($_REQUEST['act'] == 'order'){
         foreach ($goods_row2 as $key4 => $val4) {
             $sel_sql = "SELECT goods_number FROM " . $GLOBALS['ecs']->table('goods') . " WHERE goods_id=" . $val4['goods_id'];
             $old_goods_num = $GLOBALS['db']->getRow($sel_sql);
-
-            $goods_number = $val4['goods_number'];
+            if($old_goods_num['goods_number']){
+                $goods_number=$val4['goods_number']+$old_goods_num['goods_number'];
+            }else{
+                $goods_number = $val4['goods_number'];
+            }
 
           $upd_sql="UPDATE ".$GLOBALS['ecs']->table('goods')." SET goods_number=".$goods_number." WHERE goods_id=".$val4['goods_id'];
           $GLOBALS['db']->query($upd_sql);
 
-          $goods_logs_sql .= "( '" . $val4['goods_id'] . "'," . '7' . "," . '59' . ",'" . $goods_number . "'," . '0' . ",'" . $add_time ."'),";
+          $goods_logs_sql .= "( '" . $val4['goods_id'] . "'," . '7' . "," . '59' . ",'" . $val4['goods_number'] . "'," . '0' . ",'" . $add_time ."'),";
         }
         $goods_logs_sql = substr($goods_logs_sql, 0, strlen($goods_logs_sql) - 1);
         $GLOBALS['db']->query($goods_logs_sql);
