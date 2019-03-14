@@ -88,7 +88,7 @@ function order_add($sale_data, $mouth,$batch_number,$ceil_order_num){
 
         $oi_sql .= "('".$order_sn."','".$val['user_id']."',".'1'.",".'2'.",".'2'.",'".$val['consignee']."','". $val['country']."','".$val['province']."','".$val['city']."','".$val['district']."','".$val['mobile']."',".'9'.",'".$pay_name."','".$price."','".$price."','".$price."','".$val['add_time']."','".$val['confirm_time']."','".$val['pay_time']."','".$val['shipping_time']."','".$val['take_time']. "'),";
         $og_sql.="('".$val['user_id']."','".$val['goods_id']."','".$val['goods_name']."','".$order_sn."','".$val['market_price']."','".$val['shop_price']."',".'1'.",".'2'.",".'24'.",'".$order_sn."'),";
-        $out_logs_sql .= "( '".$val['goods_id']."',".'7'.",".'59'.",".'-1'.",'".$batch_number."','".$order_sn."'),";
+        $out_logs_sql .= "( '".$val['goods_id']."',".'8'.",".'59'.",".'-1'.",'".$batch_number."','".$order_sn."'),";
         $oi_sql = substr( $oi_sql,0, strlen($oi_sql)-1 );
         $og_sql = substr( $og_sql,0, strlen($og_sql)-1 );
         $out_logs_sql = substr( $out_logs_sql,0, strlen($out_logs_sql)-1 );
@@ -522,7 +522,7 @@ elseif($_REQUEST['act'] == 'order'){
           $upd_sql="UPDATE ".$GLOBALS['ecs']->table('goods')." SET goods_number=".$goods_number." WHERE goods_id=".$val4['goods_id'];
           $GLOBALS['db']->query($upd_sql);
 
-          $goods_logs_sql .= "( '" . $val4['goods_id'] . "'," . '8' . "," . '59' . ",'" . $val4['goods_number'] . "'," . '0' . ",'" . $add_time ."'),";
+          $goods_logs_sql .= "( '" . $val4['goods_id'] . "'," . '7' . "," . '59' . ",'" . $val4['goods_number'] . "'," . '0' . ",'" . $add_time ."'),";
         }
         $goods_logs_sql = substr($goods_logs_sql, 0, strlen($goods_logs_sql) - 1);
         $GLOBALS['db']->query($goods_logs_sql);
