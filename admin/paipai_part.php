@@ -522,7 +522,7 @@ elseif($_REQUEST['act'] == 'order'){
           $upd_sql="UPDATE ".$GLOBALS['ecs']->table('goods')." SET goods_number=".$goods_number." WHERE goods_id=".$val4['goods_id'];
           $GLOBALS['db']->query($upd_sql);
 
-          $goods_logs_sql .= "( '" . $val4['goods_id'] . "'," . '7' . "," . '59' . ",'" . $val4['goods_number'] . "'," . '0' . ",'" . $add_time ."'),";
+          $goods_logs_sql .= "( '" . $val4['goods_id'] . "'," . '8' . "," . '59' . ",'" . $val4['goods_number'] . "'," . '0' . ",'" . $add_time ."'),";
         }
         $goods_logs_sql = substr($goods_logs_sql, 0, strlen($goods_logs_sql) - 1);
         $GLOBALS['db']->query($goods_logs_sql);
