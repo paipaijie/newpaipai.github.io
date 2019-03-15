@@ -176,8 +176,8 @@ function get_goods_inventory_logs_list($ru_id){
 	$filter['start_time'] = empty($_REQUEST['start_time']) ? '' : trim($_REQUEST['start_time']);
 	$filter['end_time'] = empty($_REQUEST['end_time']) ? '' : trim($_REQUEST['end_time']);
 	if (!empty($filter['start_time']) || !empty($filter['end_time'])) {
-		$start_time = local_strtotime($filter['start_time']);
-		$end_time = local_strtotime($filter['end_time']);
+		$start_time = strtotime($filter['start_time']);
+		$end_time = strtotime($filter['end_time']);
 		$where .= ' AND gil.add_time > \'' . $start_time . '\' AND gil.add_time < \'' . $end_time . '\'';
 	}
 
@@ -211,6 +211,7 @@ function get_goods_inventory_logs_list($ru_id){
 		$res[$key]['add_time'] = date('Y-m-d H:i:s',$val['add_time']);
 		$res[$key]['goods_thumb'] = get_image_path($val['goods_id'], $val['goods_thumb'], true);
 	}
+	var_dump($res);
 	return array('list' => $res,'step'=>$filter['step']);
 }
 
@@ -258,7 +259,7 @@ if ($_REQUEST['act'] == 'list') {
 	$smarty->assign('ur_here', $_LANG['13_goods_inventory_logs'] . $storage);
 	$smarty->assign('ip_list', $ip_list);
 	$smarty->assign('full_page', 1);
-	$log_list = get_goods_inventory_logs($adminru['ru_id']);
+	$log_list = get_goods_inventory_logs_list($adminru['ru_id']);
 	$smarty->assign('log_list', $log_list['list']);
 	$smarty->assign('filter', $log_list['filter']);
 	$smarty->assign('record_count', $log_list['record_count']);
