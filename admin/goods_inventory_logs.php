@@ -13,6 +13,7 @@ function get_goods_inventory_logs($ru_id)
 			$filter['order_sn'] = json_str_iconv($filter['order_sn']);
 		}
 
+
 		$filter['start_time'] = empty($_REQUEST['start_time']) ? '' : trim($_REQUEST['start_time']);
 		$filter['end_time'] = empty($_REQUEST['end_time']) ? '' : trim($_REQUEST['end_time']);
 		$filter['warehouse_id'] = !isset($_REQUEST['warehouse_id']) ? 0 : intval($_REQUEST['warehouse_id']);
@@ -43,8 +44,8 @@ function get_goods_inventory_logs($ru_id)
 		}
 
 		if (!empty($filter['start_time']) || !empty($filter['end_time'])) {
-			$start_time = local_strtotime($filter['start_time']);
-			$end_time = local_strtotime($filter['end_time']);
+			$start_time = strtotime($filter['start_time']);
+			$end_time = strtotime($filter['end_time']);
 			$where .= ' AND gil.add_time > \'' . $start_time . '\' AND gil.add_time < \'' . $end_time . '\'';
 		}
 
@@ -122,7 +123,7 @@ function get_goods_inventory_logs($ru_id)
 	$http = $GLOBALS['ecs']->http();
 
 	while ($rows = $GLOBALS['db']->fetchRow($res)) {
-		$rows['add_time'] = local_date($GLOBALS['_CFG']['time_format'], $rows['add_time']);
+		$rows['add_time'] = date($GLOBALS['_CFG']['time_format'], $rows['add_time']);
 		$rows['shop_name'] = get_shop_name($rows['user_id'], 1);
 		$rows['warehouse_name'] = get_inventory_region($rows['warehouse_id']);
 		$rows['area_name'] = get_inventory_region($rows['area_id']);

@@ -152,70 +152,7 @@ function order_add($sale_data, $mouth,$batch_number,$ceil_order_num){
     if(!$res3){
         var_dump('拍拍活动添加失败'); exit;
     }
-//    foreach($sale_data as $key2=>$val2) {
-//
-//        $one_paipai_sql = "SELECT ppj_id,ppj_no FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE goods_id=" . $val2['goods_id'] . " AND start_time>=" . $limit_min_time . " AND end_time<=" . $limit_max_time;
-//        $one_paipai_row = $GLOBALS['db']->getRow($one_paipai_sql);
-//
-//        $order_id_sql = "SELECT oi.order_id,oi.order_sn,oi.user_id,og.rec_id,og.goods_number,og.order_sn FROM " . $GLOBALS['ecs']->table('order_goods') . " AS og LEFT JOIN " . $GLOBALS['ecs']->table('order_info') . " AS oi ON og.order_sn=oi.order_sn WHERE oi.order_sn=" . $val2['order_sn'];
-//        $order_id_row = $GLOBALS['db']->getRow($order_id_sql);
-//        $rec_id_arr[] = $order_id_row['rec_id'];
-//        $sale_data[$key2]['order_id']=$order_id_row['order_id'];
-//        $sale_data[$key2]['ppj_id']=$one_paipai_row['ppj_id'];
-//    }
-//
-//    //更改商品的库存数  以及order_info下的order_id
-//    $up_og_sql="UPDATE ".$GLOBALS['ecs']->table('order_goods')." SET  order_id=  CASE order_sn ";
-//    $up_g_sql="UPDATE ".$GLOBALS['ecs']->table('goods')." SET  goods_number=  CASE goods_id ";
-//
-//    foreach($sale_data as $key2=>$val2) {
-//        if($val2['order_id']){
-//            $up_og_sql.=" WHEN ".$val2['order_sn'] ." THEN ".$val2['order_id'];
-//
-//            $goods_id_count=implode(",", $goods_id_arr);
-//            $goods_one_display=substr_count($goods_id_count,$val2['goods_id']);
-//            $cut_number=$val2['goods_number']-$goods_one_display;
-////            if($val2['goods_number']<$goods_one_display){
-////                var_dump($val2['goods_id']."库存数量不足"); exit;
-////            }
-//            $up_g_sql.=" WHEN ".$val2['goods_id'] ." THEN ".$cut_number;
-//        }
-//
-//
-//
-//    }
-//    $up_og_sql.=" END  WHERE rec_id in(".implode(",", $rec_id_arr).")";
-//    $up_g_sql.=" END  WHERE goods_id in(".implode(",", $goods_id_arr).")";
-//
-//    $GLOBALS['db']->query($up_og_sql);
-//    $GLOBALS['db']->query($up_g_sql);
-//
-//    if(count($sale_data)%1000==0){
-//        $GLOBALS['db']->query('commit');
-//        $GLOBALS['db']->query('begin');
-//    }
-//    $GLOBALS['db']->query('commit');
-//
-//
-//    //更改订单的ppj_id  ppj_no
-//    $up_ogpp_sql="UPDATE ".$GLOBALS['ecs']->table('order_info')." SET  ppj_id=  CASE order_sn ";
-//    $up_gl_sql="UPDATE ".$GLOBALS['ecs']->table('goods_inventory_logs')." SET  order_id=  CASE order_sn ";
-//    foreach($sale_data as $lkey=>$lval){
-//        $up_ogpp_sql.=" WHEN ".$lval['order_sn'] ." THEN ".$lval['ppj_id'];
-//        $up_gl_sql.=" WHEN ".$lval['order_sn'] ." THEN ".$lval['order_id'];
-//        $ordersn_arr[]=$lval['order_sn'];
-//    }
-//    $up_ogpp_sql.=" END  WHERE order_sn in(".implode(",", $ordersn_arr).")";
-//    $up_gl_sql.=" END  WHERE goods_id in(".implode(",", $ppj_goods_id_row).") AND batch_number=".$batch_number;
-//
-//    $GLOBALS['db']->query($up_ogpp_sql);
-//    $GLOBALS['db']->query($up_gl_sql);
-//
-//    if(count($sale_data)%1000==0){
-//        $GLOBALS['db']->query('commit');
-//        $GLOBALS['db']->query('begin');
-//    }
-//    $GLOBALS['db']->query('commit');
+
 
 
 }
@@ -474,11 +411,21 @@ elseif($_REQUEST['act'] == 'order'){
     $F=rand(0,59);//随机--分
     $M=rand(0,59);//随机--秒
     $add_time=strtotime($order_time." ".$S.":".$F.":".$M);
+
+    
+
     if($cat_id && $stoprice && $mouth && $days) {
         var_dump(date("H:i:s",time()+8*3600));
+        $cat_one_sql="SELECT cat_id,cat_name FROM ".$GLOBALS['ecs']->table('category')." WHERE parent_id=" . $cat_id." AND is_show=1 ";
+        $cat_one_row=$GLOBALS['db']->getRow($cat_one_sql);
+        if(!$cat_one_row){
+                var_dump("输入的类别错误"); exit;
+        }
+
+
         $cat2_sql = "SELECT cat_id,cat_name,parent_id FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id." AND is_show=1 ";
         $cat2_row = $GLOBALS['db']->getAll($cat2_sql);
-
+        
         foreach ($cat2_row as $cakey => $catval) {
             $goods_sql = "SELECT count(goods_id) as count FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
             $goods_count[] = $GLOBALS['db']->getAll($goods_sql);
@@ -565,28 +512,26 @@ elseif($_REQUEST['act'] == 'outorder') {
 
     var_dump(date("H:i:s", time() + 8 * 3600));
     if ($cat_id && $outprice && $mouth) {
+        $cat_one_sql="SELECT cat_id,cat_name FROM ".$GLOBALS['ecs']->table('category')." WHERE parent_id=" . $cat_id." AND is_show=1 ";
+        $cat_one_row=$GLOBALS['db']->getRow($cat_one_sql);
+        if(!$cat_one_row){
+                var_dump("输入的类别错误"); exit;
+        }
 
         $cat2_sql = "SELECT cat_id,cat_name,parent_id FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id . " AND is_show=1 ";
         $cat2_row = $GLOBALS['db']->getAll($cat2_sql);
         foreach ($cat2_row as $key => $catval) {
             $goods_sql = "SELECT count(goods_id) as count FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
             $goods_count[] = $GLOBALS['db']->getAll($goods_sql);
-            $goods_sql2 = "SELECT goods_id,cat_id,cost_price,shop_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'] . " ORDER BY shop_price DESC";
+            $goods_sql2 = "SELECT goods_id,cat_id,goods_number,cost_price,shop_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
             $goods_row[] = $GLOBALS['db']->getAll($goods_sql2);
         }
         if ($goods_count[0][0]['count'] == '0') {
             var_dump("商品数量为空");
             exit;
         }
-        for ($i = 0; $i < count($goods_count); $i++) {
-            $goods_sum += $goods_count[$i][0]['count'];
-        }
-        if($cat_id == '1551'){
-             $area=1000;
-        }else{
-            $area=100;
-        }
-        $goods_count_price = grouping($outprice, $goods_sum, $area);
+
+
         for ($i = 0; $i < count($goods_row); $i++) {
             $new_goods = $goods_row[$i];
             for ($y = 0; $y < count($new_goods); $y++) {
@@ -594,21 +539,48 @@ elseif($_REQUEST['act'] == 'outorder') {
             }
         }
 
-        for ($g = 0; $g < count($goods_count_price); $g++) {
-            $goods_data[] = array(
-                'goods_id' => $new2_goods[$g]['goods_id'],
-                'cost_price' => $new2_goods[$g]['cost_price'],
-                'shop_price' => $new2_goods[$g]['shop_price'],
-                'cost_total_price' => $goods_count_price[$g + 1],
-                'out_num' => round($goods_count_price[$g + 1] / $new2_goods[$g]['cost_price'])
-            );
+        for ($i = 0; $i < count($new2_goods); $i++) {
+            $goods_cost_total += $new2_goods[$i]['cost_price'];
         }
 
-        $goods_sale_num = grouping($saleprice, $goods_sum, 100);
+
+        $first_price_yu=$outprice%$goods_cost_total;
+
+
+        $first_goods_num=($outprice-$first_price_yu)/$goods_cost_total;
+
+
+        foreach ($new2_goods as $ngkey => $ngval) {
+            if($ngval['goods_number']<round($first_goods_num)){
+                  var_dump($ngval['goods_id']."产品库存不足");   exit;
+            }
+              $goods_row2[]=array(
+                  'goods_id' => $ngval['goods_id'],
+                  'cost_price' => $ngval['cost_price'],
+                  'goods_number'=>round($first_goods_num),
+              );
+        }
+
+        for ($t = 0; $t < count($goods_row2); $t++) {
+            $first_price_yu-=$goods_row2[$t]['cost_price'];
+            if($first_price_yu > $goods_row2[$t]['cost_price']){
+                 $goods_id[]=$goods_row2[$t]['goods_id'];
+            }
+        }
+
+        foreach($goods_row2 as $grkey=>$grval){
+            if($grval['goods_id'] == $goods_id[$grkey]){
+                $goods_row2[$grkey]['goods_number']=$grval['goods_number']+1;
+            }
+        }
+       
+
+        $sale_pro=$saleprice/$outprice;
+
         $year='2018';
         $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
-        foreach ($goods_data as $gdkey => $gdval){
-            for($gi=1;$gi<=$gdval['out_num'];$gi++){
+        foreach ($goods_row2 as $gdkey => $gdval){
+            for($gi=1;$gi<=$gdval['goods_number'];$gi++){
 
                 $d=rand(1,$days);
                 if($d<10){
@@ -670,9 +642,9 @@ elseif($_REQUEST['act'] == 'outorder') {
                     'shipping_time'=>$shipping_time,
                     'take_time'=>$take_time,
 //                    'cost_total_price' => $gdval['cost_total_price'],
-                    'out_num' => $gdval['out_num'],
+                    // 'out_num' => $gdval['out_num'],
 //                    'sale_total_price' => $goods_sale_num[$s + 1],
-                    'sale_one_price' => str_replace(',', '', number_format(rand($one_price * 0.95, $one_price * 1.05), 2))
+                    'sale_one_price' => str_replace(',', '', number_format(rand($gdval['cost_price']*$sale_pro * 0.95, $gdval['cost_price']*$sale_pro * 1.05),2)),
                 );
             }
         }
@@ -688,6 +660,71 @@ elseif($_REQUEST['act'] == 'outorder') {
     $smarty->display('paipai_part_outorder.dwt');
 }
 elseif($_REQUEST['act'] =='upordernext'){
+
+    //    foreach($sale_data as $key2=>$val2) {
+//
+//        $one_paipai_sql = "SELECT ppj_id,ppj_no FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE goods_id=" . $val2['goods_id'] . " AND start_time>=" . $limit_min_time . " AND end_time<=" . $limit_max_time;
+//        $one_paipai_row = $GLOBALS['db']->getRow($one_paipai_sql);
+//
+//        $order_id_sql = "SELECT oi.order_id,oi.order_sn,oi.user_id,og.rec_id,og.goods_number,og.order_sn FROM " . $GLOBALS['ecs']->table('order_goods') . " AS og LEFT JOIN " . $GLOBALS['ecs']->table('order_info') . " AS oi ON og.order_sn=oi.order_sn WHERE oi.order_sn=" . $val2['order_sn'];
+//        $order_id_row = $GLOBALS['db']->getRow($order_id_sql);
+//        $rec_id_arr[] = $order_id_row['rec_id'];
+//        $sale_data[$key2]['order_id']=$order_id_row['order_id'];
+//        $sale_data[$key2]['ppj_id']=$one_paipai_row['ppj_id'];
+//    }
+//
+//    //更改商品的库存数  以及order_info下的order_id
+//    $up_og_sql="UPDATE ".$GLOBALS['ecs']->table('order_goods')." SET  order_id=  CASE order_sn ";
+//    $up_g_sql="UPDATE ".$GLOBALS['ecs']->table('goods')." SET  goods_number=  CASE goods_id ";
+//
+//    foreach($sale_data as $key2=>$val2) {
+//        if($val2['order_id']){
+//            $up_og_sql.=" WHEN ".$val2['order_sn'] ." THEN ".$val2['order_id'];
+//
+//            $goods_id_count=implode(",", $goods_id_arr);
+//            $goods_one_display=substr_count($goods_id_count,$val2['goods_id']);
+//            $cut_number=$val2['goods_number']-$goods_one_display;
+////            if($val2['goods_number']<$goods_one_display){
+////                var_dump($val2['goods_id']."库存数量不足"); exit;
+////            }
+//            $up_g_sql.=" WHEN ".$val2['goods_id'] ." THEN ".$cut_number;
+//        }
+//
+//
+//
+//    }
+//    $up_og_sql.=" END  WHERE rec_id in(".implode(",", $rec_id_arr).")";
+//    $up_g_sql.=" END  WHERE goods_id in(".implode(",", $goods_id_arr).")";
+//
+//    $GLOBALS['db']->query($up_og_sql);
+//    $GLOBALS['db']->query($up_g_sql);
+//
+//    if(count($sale_data)%1000==0){
+//        $GLOBALS['db']->query('commit');
+//        $GLOBALS['db']->query('begin');
+//    }
+//    $GLOBALS['db']->query('commit');
+//
+//
+//    //更改订单的ppj_id  ppj_no
+//    $up_ogpp_sql="UPDATE ".$GLOBALS['ecs']->table('order_info')." SET  ppj_id=  CASE order_sn ";
+//    $up_gl_sql="UPDATE ".$GLOBALS['ecs']->table('goods_inventory_logs')." SET  order_id=  CASE order_sn ";
+//    foreach($sale_data as $lkey=>$lval){
+//        $up_ogpp_sql.=" WHEN ".$lval['order_sn'] ." THEN ".$lval['ppj_id'];
+//        $up_gl_sql.=" WHEN ".$lval['order_sn'] ." THEN ".$lval['order_id'];
+//        $ordersn_arr[]=$lval['order_sn'];
+//    }
+//    $up_ogpp_sql.=" END  WHERE order_sn in(".implode(",", $ordersn_arr).")";
+//    $up_gl_sql.=" END  WHERE goods_id in(".implode(",", $ppj_goods_id_row).") AND batch_number=".$batch_number;
+//
+//    $GLOBALS['db']->query($up_ogpp_sql);
+//    $GLOBALS['db']->query($up_gl_sql);
+//
+//    if(count($sale_data)%1000==0){
+//        $GLOBALS['db']->query('commit');
+//        $GLOBALS['db']->query('begin');
+//    }
+//    $GLOBALS['db']->query('commit');
 
 
     $smarty->display('paipai_part_upordernext.dwt');
