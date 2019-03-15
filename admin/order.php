@@ -2058,7 +2058,7 @@ function download_logslist($result,$step)
 		for ($i = 0; $i < $count; $i++) {
 			$logs_id = i($result[$i]['id']);
 			$goods_id = i($result[$i]['goods_id']);
-			$cost_price =number_format( i($result[$i]['cost_price']),2);
+			$cost_price =i($result[$i]['cost_price']);
 			$number = i($result[$i]['number']);
 			$add_time = i($result[$i]['add_time']);
 			$goods_name = i($result[$i]['goods_name']);
@@ -2075,8 +2075,8 @@ function download_logslist($result,$step)
 			$goods_id = i($result[$i]['goods_id']);
 			$goods_name = i($result[$i]['goods_name']);
 			$number = i($result[$i]['number']);
-			$cost_price =number_format( i($result[$i]['cost_price']),2);
-			$order_amount =number_format( i($result[$i]['order_amount']),2);		
+			$cost_price =i($result[$i]['cost_price']);
+			$order_amount =i($result[$i]['order_amount']);		
 			$add_time = i($result[$i]['add_time']);	
 			$suppliers_name = i($result[$i]['suppliers_name']);			
 			$shop_name = i($result[$i]['shop_name']);
