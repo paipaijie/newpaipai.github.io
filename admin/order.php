@@ -2075,7 +2075,7 @@ function download_logslist($result,$step)
 			$goods_id = i($result[$i]['goods_id']);
 			$goods_name = i($result[$i]['goods_name']);
 			$number = i($result[$i]['number']);
-			$cost_price =str_replace(',','',number_format( i($result[$i]['cost_price']),2));
+			$cost_price =number_format( i($result[$i]['cost_price']),2);
 			$order_amount =number_format( i($result[$i]['order_amount']),2);		
 			$add_time = i($result[$i]['add_time']);	
 			$suppliers_name = i($result[$i]['suppliers_name']);			
