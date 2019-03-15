@@ -211,7 +211,6 @@ function get_goods_inventory_logs_list($ru_id){
 		$res[$key]['add_time'] = date('Y-m-d H:i:s',$val['add_time']);
 		$res[$key]['goods_thumb'] = get_image_path($val['goods_id'], $val['goods_thumb'], true);
 	}
-	var_dump($res);
 	return array('list' => $res,'step'=>$filter['step']);
 }
 
