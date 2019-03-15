@@ -167,10 +167,12 @@ function get_inventory_region($region_id)
 function get_goods_inventory_logs_list($ru_id){
 	$result = get_filter();
 	$where="WHERE 1";
-
+    
 	if (0 < $ru_id) {
 		$where .= ' AND g.user_id = \'' . $ru_id . '\'';
 	}
+	$filter['step'] = empty($_REQUEST['step']) ? '' : trim($_REQUEST['step']);
+
 	$filter['start_time'] = empty($_REQUEST['start_time']) ? '' : trim($_REQUEST['start_time']);
 	$filter['end_time'] = empty($_REQUEST['end_time']) ? '' : trim($_REQUEST['end_time']);
 	if (!empty($filter['start_time']) || !empty($filter['end_time'])) {
@@ -178,10 +180,16 @@ function get_goods_inventory_logs_list($ru_id){
 		$end_time = local_strtotime($filter['end_time']);
 		$where .= ' AND gil.add_time > \'' . $start_time . '\' AND gil.add_time < \'' . $end_time . '\'';
 	}
-    
-	$sql = 'SELECT gil.*, g.user_id,g.goods_id,g.cost_price,g.goods_thumb,g.brand_id,g.goods_name,g.suppliers_id, oi.order_sn, au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_sn = oi.order_sn ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_sn= og.order_sn ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id '.$where ;
 
+	if ($filter['step'] == 'out') {
+		$where .= ' AND gil.use_storage IN(0,1,4,8,10,15)';
+	}else{
+		$where .= ' AND gil.use_storage IN(2,3,5,6,7,9,11,13)';
+	}
+    
+	$sql = 'SELECT gil.*, g.user_id,g.goods_id,g.cost_price,g.goods_thumb,g.brand_id,g.goods_name,g.suppliers_id, oi.order_sn, oi.order_amount,au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_sn = oi.order_sn ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_sn= og.order_sn ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id '.$where ;
 	$res = $GLOBALS['db']->getAll($sql);
+	
     if(count($res)%3000==0){
         $GLOBALS['db']->query('commit');
         $GLOBALS['db']->query('begin');
@@ -203,7 +211,7 @@ function get_goods_inventory_logs_list($ru_id){
 		$res[$key]['add_time'] = date('Y-m-d H:i:s',$val['add_time']);
 		$res[$key]['goods_thumb'] = get_image_path($val['goods_id'], $val['goods_thumb'], true);
 	}
-	return array('list' => $res);
+	return array('list' => $res,'step'=>$filter['step']);
 }
 
 

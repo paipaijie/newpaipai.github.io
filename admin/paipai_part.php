@@ -664,72 +664,71 @@ elseif($_REQUEST['act'] == 'outorder') {
 }
 elseif($_REQUEST['act'] =='upordernext'){
 
-    //    foreach($sale_data as $key2=>$val2) {
-//
-//        $one_paipai_sql = "SELECT ppj_id,ppj_no FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE goods_id=" . $val2['goods_id'] . " AND start_time>=" . $limit_min_time . " AND end_time<=" . $limit_max_time;
-//        $one_paipai_row = $GLOBALS['db']->getRow($one_paipai_sql);
-//
-//        $order_id_sql = "SELECT oi.order_id,oi.order_sn,oi.user_id,og.rec_id,og.goods_number,og.order_sn FROM " . $GLOBALS['ecs']->table('order_goods') . " AS og LEFT JOIN " . $GLOBALS['ecs']->table('order_info') . " AS oi ON og.order_sn=oi.order_sn WHERE oi.order_sn=" . $val2['order_sn'];
-//        $order_id_row = $GLOBALS['db']->getRow($order_id_sql);
-//        $rec_id_arr[] = $order_id_row['rec_id'];
-//        $sale_data[$key2]['order_id']=$order_id_row['order_id'];
-//        $sale_data[$key2]['ppj_id']=$one_paipai_row['ppj_id'];
-//    }
-//
-//    //更改商品的库存数  以及order_info下的order_id
-//    $up_og_sql="UPDATE ".$GLOBALS['ecs']->table('order_goods')." SET  order_id=  CASE order_sn ";
-//    $up_g_sql="UPDATE ".$GLOBALS['ecs']->table('goods')." SET  goods_number=  CASE goods_id ";
-//
-//    foreach($sale_data as $key2=>$val2) {
-//        if($val2['order_id']){
-//            $up_og_sql.=" WHEN ".$val2['order_sn'] ." THEN ".$val2['order_id'];
-//
-//            $goods_id_count=implode(",", $goods_id_arr);
-//            $goods_one_display=substr_count($goods_id_count,$val2['goods_id']);
-//            $cut_number=$val2['goods_number']-$goods_one_display;
-////            if($val2['goods_number']<$goods_one_display){
-////                var_dump($val2['goods_id']."库存数量不足"); exit;
-////            }
-//            $up_g_sql.=" WHEN ".$val2['goods_id'] ." THEN ".$cut_number;
-//        }
-//
-//
-//
-//    }
-//    $up_og_sql.=" END  WHERE rec_id in(".implode(",", $rec_id_arr).")";
-//    $up_g_sql.=" END  WHERE goods_id in(".implode(",", $goods_id_arr).")";
-//
-//    $GLOBALS['db']->query($up_og_sql);
-//    $GLOBALS['db']->query($up_g_sql);
-//
-//    if(count($sale_data)%1000==0){
-//        $GLOBALS['db']->query('commit');
-//        $GLOBALS['db']->query('begin');
-//    }
-//    $GLOBALS['db']->query('commit');
-//
-//
-//    //更改订单的ppj_id  ppj_no
-//    $up_ogpp_sql="UPDATE ".$GLOBALS['ecs']->table('order_info')." SET  ppj_id=  CASE order_sn ";
-//    $up_gl_sql="UPDATE ".$GLOBALS['ecs']->table('goods_inventory_logs')." SET  order_id=  CASE order_sn ";
-//    foreach($sale_data as $lkey=>$lval){
-//        $up_ogpp_sql.=" WHEN ".$lval['order_sn'] ." THEN ".$lval['ppj_id'];
-//        $up_gl_sql.=" WHEN ".$lval['order_sn'] ." THEN ".$lval['order_id'];
-//        $ordersn_arr[]=$lval['order_sn'];
-//    }
-//    $up_ogpp_sql.=" END  WHERE order_sn in(".implode(",", $ordersn_arr).")";
-//    $up_gl_sql.=" END  WHERE goods_id in(".implode(",", $ppj_goods_id_row).") AND batch_number=".$batch_number;
-//
-//    $GLOBALS['db']->query($up_ogpp_sql);
-//    $GLOBALS['db']->query($up_gl_sql);
-//
-//    if(count($sale_data)%1000==0){
-//        $GLOBALS['db']->query('commit');
-//        $GLOBALS['db']->query('begin');
-//    }
-//    $GLOBALS['db']->query('commit');
+    $mouth = $_POST['mouth'];
+    $year='2018';
+    $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
 
+    $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
+    $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
+    $limit_min_time=strtotime($min_time);
+    $limit_max_time=strtotime($max_time);
+    var_dump(date("H:i:s", time() + 8 * 3600));
+    if($mouth){
+          
+        $order_sql="SELECT order_id,order_sn FROM ".$GLOBALS['ecs']->table('order_info')." WHERE add_time<=".$limit_max_time." AND add_time>".$limit_min_time ;
+        $sale_data=$GLOBALS['db']->getAll($order_sql);
+        var_dump($sale_data);
+       //  foreach($sale_data as $key2=>$val2) {
 
-    $smarty->display('paipai_part_upordernext.dwt');
+       //     $one_paipai_sql = "SELECT ppj_id,ppj_no FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE goods_id=" . $val2['goods_id'] . " AND start_time>=" . $limit_min_time . " AND end_time<=" . $limit_max_time;
+       //     $one_paipai_row = $GLOBALS['db']->getRow($one_paipai_sql);
+
+       //     $order_id_sql = "SELECT oi.order_id,oi.order_sn,oi.user_id,og.rec_id,og.goods_number,og.order_sn FROM " . $GLOBALS['ecs']->table('order_goods') . " AS og LEFT JOIN " . $GLOBALS['ecs']->table('order_info') . " AS oi ON og.order_sn=oi.order_sn WHERE oi.order_sn=" . $val2['order_sn'];
+       //     $order_id_row = $GLOBALS['db']->getRow($order_id_sql);
+       //     $rec_id_arr[] = $order_id_row['rec_id'];
+       //     $sale_data[$key2]['order_id']=$order_id_row['order_id'];
+       //     $sale_data[$key2]['ppj_id']=$one_paipai_row['ppj_id'];
+       // }
+
+       //更改order_info下的order_id
+       $up_og_sql="UPDATE ".$GLOBALS['ecs']->table('order_goods')." SET  order_id=  CASE order_sn ";
+       foreach($sale_data as $key=>$val) {
+            $up_og_sql.=" WHEN ".$val['order_sn'] ." THEN ".$val['order_id'];
+            $order_sn_arr[] = $val['order_sn'];
+       }
+       $up_og_sql.=" END  WHERE goods_id in(".implode(",", $order_sn_arr).")";
+
+       $GLOBALS['db']->query($up_og_sql);
+
+       if(count($sale_data)%1000==0){
+           $GLOBALS['db']->query('commit');
+           $GLOBALS['db']->query('begin');
+       }
+       $GLOBALS['db']->query('commit');
+
+       var_dump(date("H:i:s", time() + 8 * 3600));
+
+    //    //更改订单的ppj_id  ppj_no
+    //    $up_ogpp_sql="UPDATE ".$GLOBALS['ecs']->table('order_info')." SET  ppj_id=  CASE order_sn ";
+    //    $up_gl_sql="UPDATE ".$GLOBALS['ecs']->table('goods_inventory_logs')." SET  order_id=  CASE order_sn ";
+    //    foreach($sale_data as $lkey=>$lval){
+    //        $up_ogpp_sql.=" WHEN ".$lval['order_sn'] ." THEN ".$lval['ppj_id'];
+    //        $up_gl_sql.=" WHEN ".$lval['order_sn'] ." THEN ".$lval['order_id'];
+    //        $ordersn_arr[]=$lval['order_sn'];
+    //    }
+    //    $up_ogpp_sql.=" END  WHERE order_sn in(".implode(",", $ordersn_arr).")";
+    //    $up_gl_sql.=" END  WHERE goods_id in(".implode(",", $ppj_goods_id_row).") AND batch_number=".$batch_number;
+
+    //    $GLOBALS['db']->query($up_ogpp_sql);
+    //    $GLOBALS['db']->query($up_gl_sql);
+
+    //    if(count($sale_data)%1000==0){
+    //        $GLOBALS['db']->query('commit');
+    //        $GLOBALS['db']->query('begin');
+    //    }
+    //    $GLOBALS['db']->query('commit');
+    }
+
+    $smarty->display('paipai_part_outordernext.dwt');
 
 }

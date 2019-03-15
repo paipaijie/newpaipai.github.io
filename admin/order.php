@@ -2046,26 +2046,42 @@ function ppj_order_list($list_type){
     $arr = array('orders' => $row, 'goods' => $goods,'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
 	return $arr;	
 }
-function download_logslist($result)
+function download_logslist($result,$step)
 {
 	if (empty($result)) {
 		return i($GLOBALS['_LANG']['not_fuhe_date']);
 	}
-
-	$data = i($GLOBALS['_LANG']['download_goodslogs_notic'] . "\n");
-	$count = count($result);
-	for ($i = 0; $i < $count; $i++) {
-		$logs_id = i($result[$i]['id']);
-		$goods_id = i($result[$i]['goods_id']);
-		$cost_price =str_replace(',','',number_format( i($result[$i]['cost_price']),2));
-		$number = i($result[$i]['number']);
-		$add_time = i($result[$i]['add_time']);
-		$goods_name = i($result[$i]['goods_name']);
-		$suppliers_name = i($result[$i]['suppliers_name']);
-		$order_sn = i($result[$i]['order_sn']);
-		$shop_name = i($result[$i]['shop_name']);
-		$data .= $logs_id . ',' . $goods_id . ','. $cost_price.',' . $number . ',' . $add_time . ',' . $goods_name . ','.$suppliers_name.','.$order_sn . ',' . $shop_name  . "\n";
-	}
+    
+    if($step=='put'){
+        $data = i($GLOBALS['_LANG']['download_goodslogs_notic'] . "\n");
+		$count = count($result);
+		for ($i = 0; $i < $count; $i++) {
+			$logs_id = i($result[$i]['id']);
+			$goods_id = i($result[$i]['goods_id']);
+			$cost_price =str_replace(',','',number_format( i($result[$i]['cost_price']),2));
+			$number = i($result[$i]['number']);
+			$add_time = i($result[$i]['add_time']);
+			$goods_name = i($result[$i]['goods_name']);
+			$suppliers_name = i($result[$i]['suppliers_name']);
+			$shop_name = i($result[$i]['shop_name']);
+			$data .= $logs_id . ',' . $goods_id . ','. $cost_price.',' . $number . ',' . $add_time . ',' . $goods_name . ','.$suppliers_name.','. $shop_name  . "\n";
+		}
+    }else{
+        $data = i($GLOBALS['_LANG']['download_goodslogs_out_notic'] . "\n");
+		$count = count($result);
+		for ($i = 0; $i < $count; $i++) {
+			$logs_id = i($result[$i]['id']);
+			$order_sn = i($result[$i]['order_sn']);
+			$goods_id = i($result[$i]['goods_id']);
+			$goods_name = i($result[$i]['goods_name']);
+			$number = i($result[$i]['number']);
+			$order_amount =number_format( i($result[$i]['order_amount']),2);		
+			$add_time = i($result[$i]['add_time']);	
+			$suppliers_name = i($result[$i]['suppliers_name']);			
+			$shop_name = i($result[$i]['shop_name']);
+			$data .= $logs_id . ','.$order_sn . ','. $goods_id . ','. $goods_name . ','. $number . ',' . $order_amount . ','. $add_time . ','. $suppliers_name.',' . $shop_name  . "\n";
+		}
+    }
 
 	return $data;
 }
@@ -2318,7 +2334,7 @@ if ($_REQUEST['act'] == 'order_download') {
 	if (!empty($goodslogs_list)) {
 		foreach ($goodslogs_list as $k => $order) {
 			$k++;
-			$content = download_logslist($order['list']);
+			$content = download_logslist($order['list'],$order['step']);
 			$zip->add_file($content, date('YmdHis') . '-' . $k . '.csv');
 		}
 	}

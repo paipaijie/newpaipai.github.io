@@ -45,6 +45,9 @@
                     <div class="fl">
                         <a href="paipai_part.php?act=outorder"><div class="fbutton"><div class="add" title="出库"><span><i class="icon icon-plus"></i>出库</span></div></div></a>
                     </div>
+                    <div class="fl">
+                        <a href="paipai_part.php?act=upordernext"><div class="fbutton"><div class="add" title="修改订单"><span><i class="icon icon-plus"></i>修改订单</span></div></div></a>
+                    </div>
 
                     {/if}
 
