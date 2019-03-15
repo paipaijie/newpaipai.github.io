@@ -259,7 +259,7 @@ if ($_REQUEST['act'] == 'list') {
 	$smarty->assign('ur_here', $_LANG['13_goods_inventory_logs'] . $storage);
 	$smarty->assign('ip_list', $ip_list);
 	$smarty->assign('full_page', 1);
-	$log_list = get_goods_inventory_logs_list($adminru['ru_id']);
+	$log_list = get_goods_inventory_logs($adminru['ru_id']);
 	$smarty->assign('log_list', $log_list['list']);
 	$smarty->assign('filter', $log_list['filter']);
 	$smarty->assign('record_count', $log_list['record_count']);
