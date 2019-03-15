@@ -71,7 +71,7 @@ function order_add($sale_data, $mouth,$batch_number,$ceil_order_num){
     $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
     $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,add_time,confirm_time,pay_time,shipping_time,confirm_take_time) VALUE ";
     $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,goods_price,is_real,warehouse_id,area_id,order_sn) VALUES";
-    $out_logs_sql = "INSERT INTO ".$GLOBALS['ecs']->table('goods_inventory_logs')."(goods_id,use_storage,admin_id,number,batch_number,order_sn) VALUES ";
+    $out_logs_sql = "INSERT INTO ".$GLOBALS['ecs']->table('goods_inventory_logs')."(goods_id,use_storage,admin_id,number,add_time,batch_number,order_sn) VALUES ";
 
     foreach($sale_data as $key=>$val){
 
@@ -89,7 +89,7 @@ function order_add($sale_data, $mouth,$batch_number,$ceil_order_num){
 
         $oi_sql .= "('".$order_sn."','".$val['user_id']."',".'1'.",".'2'.",".'2'.",'".$val['consignee']."','". $val['country']."','".$val['province']."','".$val['city']."','".$val['district']."','".$val['mobile']."',".'9'.",'".$pay_name."','".$price."','".$price."','".$price."','".$val['add_time']."','".$val['confirm_time']."','".$val['pay_time']."','".$val['shipping_time']."','".$val['take_time']. "'),";
         $og_sql.="('".$val['user_id']."','".$val['goods_id']."','".$val['goods_name']."','".$order_sn."','".$val['market_price']."','".$val['shop_price']."',".'1'.",".'2'.",".'24'.",'".$order_sn."'),";
-        $out_logs_sql .= "( '".$val['goods_id']."',".'8'.",".'59'.",".'-1'.",'".$batch_number."','".$order_sn."'),";
+        $out_logs_sql .= "( '".$val['goods_id']."',".'8'.",".'59'.",".'-1'.",'".$val['pay_time']."','".$batch_number."','".$order_sn."'),";
 
     }
     $oi_sql = substr( $oi_sql,0, strlen($oi_sql)-1 );
@@ -630,7 +630,7 @@ elseif($_REQUEST['act'] == 'outorder') {
                 $SC=$S+1;
                 $MC=$M+5;
                 $add_time=strtotime($order_time." ".$S.":".$F.":".$M);  //提交时间
-                $pay_time=$order_time." ".$S.":".$F.":".$MC;  //支付时间
+                $pay_time=strtotime($order_time." ".$S.":".$F.":".$MC);  //支付时间
                 $confirm_time=strtotime($order_time." ".$SC.":".$F.":".$M);
                 $shipping_time=strtotime($order_time." ".$SC.":".$F.":".$M);  //发货时间
                 //收货时间
@@ -679,7 +679,7 @@ elseif($_REQUEST['act'] == 'outorder') {
         $ceil_order_num=ceil(count($sale_data)/$goods_sum);
         $row = order_add($sale_data, $mouth,$batch_number,$ceil_order_num);
 
-        
+
         var_dump(date("H:i:s", time() + 8 * 3600));
     } else {
         var_dump("q请填写有效数据");

@@ -107,7 +107,9 @@ function get_goods_inventory_logs($ru_id)
 		$filter['record_count'] = $GLOBALS['db']->getOne($sql);
 		$filter = page_and_size($filter);
 		$list = array();
-		$sql = 'SELECT gil.*, g.user_id,g.goods_id,g.goods_thumb,g.brand_id, g.goods_name, oi.order_sn, au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_id = oi.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_id = og.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id ' . $where . ' GROUP BY gil.id ORDER by ' . $filter['sort_by'] . ' ' . $filter['sort_order'];
+		// $sql = 'SELECT gil.*, g.user_id,g.goods_id,g.goods_thumb,g.brand_id, g.goods_name, oi.order_sn, au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_id = oi.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_id = og.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id ' . $where . ' GROUP BY gil.id ORDER by ' . $filter['sort_by'] . ' ' . $filter['sort_order'];
+		$sql = 'SELECT gil.*, g.user_id,g.goods_id,g.goods_thumb,g.brand_id, g.goods_name, oi.order_sn, au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_sn = oi.order_sn ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_id = og.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id ' . $where . ' GROUP BY gil.id ORDER by ' . $filter['sort_by'] . ' ' . $filter['sort_order'];
+
 		$res = $GLOBALS['db']->selectLimit($sql, $filter['page_size'], $filter['start']);
 		$filter['keyword'] = stripslashes($filter['keyword']);
 		set_filter($filter, $sql, $param_str);
@@ -144,10 +146,10 @@ function get_goods_inventory_logs($ru_id)
 				$table = 'products';
 			}
 
-			$sql = 'SELECT goods_attr FROM ' . $GLOBALS['ecs']->table($table) . ' WHERE product_id = \'' . $rows['product_id'] . '\' LIMIT 1';
-			$spec = $GLOBALS['db']->getRow($sql);
-			$spec['goods_attr'] = explode('|', $spec['goods_attr']);
-			$rows['goods_attr'] = get_goods_attr_info($spec['goods_attr'], 'pice', $rows['warehouse_id'], $rows['area_id']);
+			// $sql = 'SELECT goods_attr FROM ' . $GLOBALS['ecs']->table($table) . ' WHERE product_id = \'' . $rows['product_id'] . '\' LIMIT 1';
+			// $spec = $GLOBALS['db']->getRow($sql);
+			// $spec['goods_attr'] = explode('|', $spec['goods_attr']);
+			// $rows['goods_attr'] = get_goods_attr_info($spec['goods_attr'], 'pice', $rows['warehouse_id'], $rows['area_id']);
 		}
 
 		$rows['goods_thumb'] = get_image_path($rows['goods_id'], $rows['goods_thumb'], true);
@@ -162,15 +164,29 @@ function get_inventory_region($region_id)
 	return $GLOBALS['db']->getOne($sql);
 }
 function get_goods_inventory_logs_list($ru_id){
-
+	$result = get_filter();
 	$where="WHERE 1";
 
 	if (0 < $ru_id) {
 		$where .= ' AND g.user_id = \'' . $ru_id . '\'';
 	}
+	$filter['start_time'] = empty($_REQUEST['start_time']) ? '' : trim($_REQUEST['start_time']);
+	$filter['end_time'] = empty($_REQUEST['end_time']) ? '' : trim($_REQUEST['end_time']);
+	if (!empty($filter['start_time']) || !empty($filter['end_time'])) {
+		$start_time = local_strtotime($filter['start_time']);
+		$end_time = local_strtotime($filter['end_time']);
+		$where .= ' AND gil.add_time > \'' . $start_time . '\' AND gil.add_time < \'' . $end_time . '\'';
+	}
+    
+	$sql = 'SELECT gil.*, g.user_id,g.goods_id,g.cost_price,g.goods_thumb,g.brand_id,g.goods_name,g.suppliers_id, oi.order_sn, au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_sn = oi.order_sn ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_sn= og.order_sn ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id '.$where ;
 
-	$sql = 'SELECT gil.*, g.user_id,g.goods_id,g.goods_thumb,g.brand_id,g.cost_price, g.goods_name,g.suppliers_id, oi.order_sn, au.user_name AS admin_name, og.goods_attr FROM ' . $GLOBALS['ecs']->table('goods_inventory_logs') . ' as gil ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' as g ON gil.goods_id = g.goods_id' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' as oi ON gil.order_id = oi.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_goods') . ' as og ON gil.goods_id = og.goods_id AND gil.order_id = og.order_id ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('admin_user') . ' as au ON gil.admin_id = au.user_id '.$where ;
 	$res = $GLOBALS['db']->getAll($sql);
+    if(count($res)%3000==0){
+        $GLOBALS['db']->query('commit');
+        $GLOBALS['db']->query('begin');
+    }
+    $GLOBALS['db']->query('commit');
+
 	foreach($res as $key=>$val){
 		if($val['suppliers_id']){
 			$sup_sql="SELECT suppliers_name FROM ".$GLOBALS['ecs']->table('suppliers')." WHERE suppliers_id=".$val['suppliers_id'];
@@ -184,6 +200,7 @@ function get_goods_inventory_logs_list($ru_id){
 		}
 		$res[$key]['shop_name'] = get_shop_name($val['user_id'], 1);
 		$res[$key]['add_time'] = date('Y-m-d H:i:s',$val['add_time']);
+		$res[$key]['goods_thumb'] = get_image_path($val['goods_id'], $val['goods_thumb'], true);
 	}
 	return array('list' => $res);
 }
