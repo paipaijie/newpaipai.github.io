@@ -95,9 +95,14 @@ function order_add($sale_data, $mouth,$batch_number,$ceil_order_num){
     $oi_sql = substr( $oi_sql,0, strlen($oi_sql)-1 );
     $og_sql = substr( $og_sql,0, strlen($og_sql)-1 );
     $out_logs_sql = substr( $out_logs_sql,0, strlen($out_logs_sql)-1 );
-    $GLOBALS['db']->query($oi_sql);
-    $GLOBALS['db']->query($og_sql);
-    $GLOBALS['db']->query($out_logs_sql);
+    $res1=$GLOBALS['db']->query($oi_sql);
+    if($res1){
+       $res2=$GLOBALS['db']->query($og_sql);
+       if($res2){
+           $res3=$GLOBALS['db']->query($out_logs_sql);
+       }
+    }
+
     if(count($sale_data)%5000==0){
         $GLOBALS['db']->query('commit');
         $GLOBALS['db']->query('begin');
@@ -120,10 +125,7 @@ function order_add($sale_data, $mouth,$batch_number,$ceil_order_num){
     $goods_id_count=implode(",", $goods_id_arr);
     for($ug=0;$ug<count($ppj_goods_id_row);$ug++){
 
-        $goods_one_display=substr_count($goods_id_count,$ppj_goods_id_row[$ug]);
-
-        $cut_number=$sale_data[$ug]['goods_number']-$goods_one_display;
-        $up_g_sql.=" WHEN ".$ppj_goods_id_row[$ug] ." THEN ".$cut_number;
+        $up_g_sql.=" WHEN ".$ppj_goods_id_row[$ug] ." THEN ".$sale_data[$ug]['goods_number'];
     }
     $up_g_sql.=" END  WHERE goods_id in(".implode(",", $ppj_goods_id_row).")";
 
@@ -141,16 +143,15 @@ function order_add($sale_data, $mouth,$batch_number,$ceil_order_num){
 
         $ppj_no=$ppj_goods['ppj_no']+1;
         $goods_count=ceil(rand($ceil_order_num*1.3,$ceil_order_num*2));
-        $ppj_margin_fee="0.01";
+        $ppj_margin_fee="0.00";
 
         $goods_start_fee=str_replace(',','',number_format($goods_row2['shop_price']*0.70,2));
         $ppj_add_sql.="('".$goods_row2['goods_name']."','".$goods_row2['goods_id']."','".$ppj_no."','".$goods_count."','".$goods_start_fee."','".$goods_start_fee."','".$limit_min_time."','".$limit_max_time."','".$ppj_margin_fee."',".'20'.",".'20'.",'".$limit_min_time."','".$goods_row2['goods_name']."',".'0'.",".'0'.",".'3'.",".'0'.",".'2'."),";
     }
     $ppj_add_sql = substr( $ppj_add_sql,0, strlen($ppj_add_sql)-1 );
-
-    $res3=$GLOBALS['db']->query($ppj_add_sql);
-    if(!$res3){
-        var_dump('拍拍活动添加失败'); exit;
+ 
+    if($res3){
+        $res4=$GLOBALS['db']->query($ppj_add_sql);
     }
 
 
@@ -538,22 +539,24 @@ elseif($_REQUEST['act'] == 'outorder') {
                 $new2_goods[] = $new_goods[$y];
             }
         }
+  
 
         for ($i = 0; $i < count($new2_goods); $i++) {
             $goods_cost_total += $new2_goods[$i]['cost_price'];
-        }
-
+        } 
 
         $first_price_yu=$outprice%$goods_cost_total;
-
 
         $first_goods_num=($outprice-$first_price_yu)/$goods_cost_total;
 
 
+        for($ng=0;$ng<count($new2_goods);$ng++){
+            if($new2_goods[$ng]['goods_number']<round($first_goods_num)){
+                unset($new2_goods[$ng]);
+            } 
+        }
+
         foreach ($new2_goods as $ngkey => $ngval) {
-            if($ngval['goods_number']<round($first_goods_num)){
-                  var_dump($ngval['goods_id']."产品库存不足");   exit;
-            }
               $goods_row2[]=array(
                   'goods_id' => $ngval['goods_id'],
                   'cost_price' => $ngval['cost_price'],
@@ -573,7 +576,6 @@ elseif($_REQUEST['act'] == 'outorder') {
                 $goods_row2[$grkey]['goods_number']=$grval['goods_number']+1;
             }
         }
-       
 
         $sale_pro=$saleprice/$outprice;
 
@@ -635,12 +637,13 @@ elseif($_REQUEST['act'] == 'outorder') {
                     'goods_name'=>$goods_row['goods_name'],
                     'market_price'=>$goods_row['market_price'],
                     'shop_price'=>$goods_row['shop_price'],
-                    'goods_number'=>$goods_row['goods_number'],
+                    'goods_number'=>$goods_row['goods_number']-$gdval['goods_number'],
                     'add_time'=>$add_time,
                     'pay_time'=>$pay_time,
                     'confirm_time'=>$confirm_time,
                     'shipping_time'=>$shipping_time,
                     'take_time'=>$take_time,
+                    'first_number'=>$gdval['goods_number'],
 //                    'cost_total_price' => $gdval['cost_total_price'],
                     // 'out_num' => $gdval['out_num'],
 //                    'sale_total_price' => $goods_sale_num[$s + 1],
@@ -648,7 +651,7 @@ elseif($_REQUEST['act'] == 'outorder') {
                 );
             }
         }
-        $ceil_order_num=ceil(count($sale_data)/$goods_sum);
+        $ceil_order_num=$first_goods_num;
         $row = order_add($sale_data, $mouth,$batch_number,$ceil_order_num);
 
 
