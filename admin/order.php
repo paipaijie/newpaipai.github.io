@@ -2075,11 +2075,12 @@ function download_logslist($result,$step)
 			$goods_id = i($result[$i]['goods_id']);
 			$goods_name = i($result[$i]['goods_name']);
 			$number = i($result[$i]['number']);
+			$cost_price =str_replace(',','',number_format( i($result[$i]['cost_price']),2));
 			$order_amount =number_format( i($result[$i]['order_amount']),2);		
 			$add_time = i($result[$i]['add_time']);	
 			$suppliers_name = i($result[$i]['suppliers_name']);			
 			$shop_name = i($result[$i]['shop_name']);
-			$data .= $logs_id . ','.$order_sn . ','. $goods_id . ','. $goods_name . ','. $number . ',' . $order_amount . ','. $add_time . ','. $suppliers_name.',' . $shop_name  . "\n";
+			$data .= $logs_id . ','.$order_sn . ','. $goods_id . ','. $goods_name . ','. $number . ','. $cost_price . ',' . $order_amount . ','. $add_time . ','. $suppliers_name.',' . $shop_name  . "\n";
 		}
     }
 
