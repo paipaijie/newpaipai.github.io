@@ -674,37 +674,89 @@ elseif($_REQUEST['act'] =='upordernext'){
     $limit_max_time=strtotime($max_time);
     var_dump(date("H:i:s", time() + 8 * 3600));
     if($mouth){
-          
-        $order_sql="SELECT order_id,order_sn FROM ".$GLOBALS['ecs']->table('order_info')." WHERE add_time<=".$limit_max_time." AND add_time>".$limit_min_time ;
-        $sale_data=$GLOBALS['db']->getAll($order_sql);
-        var_dump($sale_data);
-       //  foreach($sale_data as $key2=>$val2) {
-
-       //     $one_paipai_sql = "SELECT ppj_id,ppj_no FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE goods_id=" . $val2['goods_id'] . " AND start_time>=" . $limit_min_time . " AND end_time<=" . $limit_max_time;
-       //     $one_paipai_row = $GLOBALS['db']->getRow($one_paipai_sql);
-
-       //     $order_id_sql = "SELECT oi.order_id,oi.order_sn,oi.user_id,og.rec_id,og.goods_number,og.order_sn FROM " . $GLOBALS['ecs']->table('order_goods') . " AS og LEFT JOIN " . $GLOBALS['ecs']->table('order_info') . " AS oi ON og.order_sn=oi.order_sn WHERE oi.order_sn=" . $val2['order_sn'];
-       //     $order_id_row = $GLOBALS['db']->getRow($order_id_sql);
-       //     $rec_id_arr[] = $order_id_row['rec_id'];
-       //     $sale_data[$key2]['order_id']=$order_id_row['order_id'];
-       //     $sale_data[$key2]['ppj_id']=$one_paipai_row['ppj_id'];
-       // }
-
-       //更改order_info下的order_id
-       $up_og_sql="UPDATE ".$GLOBALS['ecs']->table('order_goods')." SET  order_id=  CASE order_sn ";
-       foreach($sale_data as $key=>$val) {
-            $up_og_sql.=" WHEN ".$val['order_sn'] ." THEN ".$val['order_id'];
+        $order_sql="SELECT order_id,order_sn FROM ".$GLOBALS['ecs']->table('order_info')." WHERE add_time<=".$limit_max_time." AND add_time>=".$limit_min_time;
+        $update_data=$GLOBALS['db']->getAll($order_sql);
+//         foreach($update_data as $key=>$val) {
+//            $one_paipai_sql = "SELECT ppj_id,ppj_no FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE goods_id=" . $val2['goods_id'] . " AND start_time>=" . $limit_min_time . " AND end_time<=" . $limit_max_time;
+//            $one_paipai_row = $GLOBALS['db']->getRow($one_paipai_sql);
+//             $rec_id_sql = "SELECT rec_id FROM " . $GLOBALS['ecs']->table('order_goods') . " WHERE order_sn=".$val['order_sn'];
+//             $order_id_row = $GLOBALS['db']->getRow($rec_id_sql);
+//             if(count($update_data)%1000==0){
+//                   $GLOBALS['db']->query('commit transaction');
+//                   $GLOBALS['db']->query('begin');
+//             }
+//             $GLOBALS['db']->query('commit');
+//             $rec_id_arr[] = $order_id_row['rec_id'];
+//             $update_data[$key]['rec_id']=$order_id_row['rec_id'];
+//            $sale_data[$key2]['order_id']=$order_id_row['order_id'];
+//            $sale_data[$key2]['ppj_id']=$one_paipai_row['ppj_id'];
+//        }
+        foreach($update_data as $key=>$val) {
             $order_sn_arr[] = $val['order_sn'];
-       }
-       $up_og_sql.=" END  WHERE goods_id in(".implode(",", $order_sn_arr).")";
+        }
+        $rec_id_sql = "SELECT rec_id,order_sn,goods_id FROM " . $GLOBALS['ecs']->table('order_goods') . " WHERE order_sn IN (".implode(",", $order_sn_arr).")";
+        $rec_id_row = $GLOBALS['db']->getALL($rec_id_sql);
+        $logs_id_sql = "SELECT id,order_sn FROM " . $GLOBALS['ecs']->table('goods_inventory_logs') . " WHERE order_sn IN (".implode(",", $order_sn_arr).")";
+        $logs_id_row = $GLOBALS['db']->getALL($logs_id_sql);
+        foreach($update_data as $key=>$val) {
+            if($val['order_sn']==$rec_id_row[$key]['order_sn']){
+                $update_data[$key]['rec_id']=$rec_id_row[$key]['rec_id'];
+                $update_data[$key]['goods_id']=$rec_id_row[$key]['goods_id'];
+                $rec_id_arr[] = $rec_id_row[$key]['rec_id'];
+                $order_id_arr[] = $val['order_id'];
+                $goods_id_arr[] = $rec_id_row[$key]['goods_id'];
+            }
+            if($val['order_sn']==$logs_id_row[$key]['order_sn']){
+                $update_data[$key]['logs_id']=$logs_id_row[$key]['id'];
+                $logs_id_arr[] = $logs_id_row[$key]['id'];
+            }
+        }
+       //更改order_info下的order_id
+        $up_og_sql="UPDATE  ".$GLOBALS['ecs']->table('order_goods')." SET  order_id= CASE rec_id";
+        foreach($update_data as $key2=>$val2) {
+           $up_og_sql.=" WHEN ".$val2['rec_id']." THEN ". $val2['order_id'];
+        }
+        $up_og_sql.=" END WHERE rec_id IN(".implode(",", $rec_id_arr).") ";
+        $GLOBALS['db']->query($up_og_sql);
+        //更改goods_logs下的order_id
+        $up_gl_sql="UPDATE  ".$GLOBALS['ecs']->table('goods_inventory_logs')." SET  order_id= CASE id";
+        foreach($update_data as $key3=>$val3) {
+            $up_gl_sql.=" WHEN ".$val3['logs_id']." THEN ". $val3['order_id'];
+        }
+        $up_gl_sql.=" END WHERE id IN(".implode(",", $logs_id_arr).") ";
+        $GLOBALS['db']->query($up_gl_sql);
+        if(count($update_data)%1000==0){
+            $GLOBALS['db']->query('commit transaction');
+            $GLOBALS['db']->query('begin');
+        }
+        $GLOBALS['db']->query('commit');
+        //更改order_info下的ppj_id
+        $ppj_goods_id_row=array_values(array_unique($goods_id_arr));
+        $paipai_sql = "SELECT ppj_id,ppj_no,goods_id FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE  start_time>=" . $limit_min_time . " AND end_time<=" . $limit_max_time." AND goods_id IN (".implode(",", $ppj_goods_id_row).")";
+        $paipai_row = $GLOBALS['db']->getAll($paipai_sql);
 
-       $GLOBALS['db']->query($up_og_sql);
+        foreach($update_data as $key4=>$val4) {
+            foreach($paipai_row as $pkey=>$pval){
+                if($val4['goods_id'] == $pval['goods_id']){
+                    $update_data[$key4]['ppj_id']= $pval['ppj_id'];
+                    $update_data[$key4]['ppj_no']= $pval['ppj_no'];
+                }
+            }
+        }
+        $up_oi_sql="UPDATE  ".$GLOBALS['ecs']->table('order_info')." SET  ppj_id= CASE order_id";
+        foreach($update_data as $key5=>$val5) {
+            $up_oi_sql.=" WHEN ".$val5['order_id']." THEN ". $val5['ppj_id'];
+        }
+        $up_oi_sql.=" END WHERE order_id IN(".implode(",", $order_id_arr).") ";
+        $GLOBALS['db']->query($up_oi_sql);
+        if(count($update_data)%1000==0){
+            $GLOBALS['db']->query('commit transaction');
+            $GLOBALS['db']->query('begin');
+        }
+        $GLOBALS['db']->query('commit');
 
-       if(count($sale_data)%1000==0){
-           $GLOBALS['db']->query('commit');
-           $GLOBALS['db']->query('begin');
-       }
-       $GLOBALS['db']->query('commit');
+
+
 
        var_dump(date("H:i:s", time() + 8 * 3600));
 
