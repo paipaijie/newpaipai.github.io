@@ -543,7 +543,7 @@ elseif($_REQUEST['act'] == 'outorder') {
 
         for ($i = 0; $i < count($new2_goods); $i++) {
             $goods_cost_total += $new2_goods[$i]['cost_price'];
-        } 
+        }
 
         $first_price_yu=$outprice%$goods_cost_total;
 
@@ -676,21 +676,7 @@ elseif($_REQUEST['act'] =='upordernext'){
     if($mouth){
         $order_sql="SELECT order_id,order_sn FROM ".$GLOBALS['ecs']->table('order_info')." WHERE add_time<=".$limit_max_time." AND add_time>=".$limit_min_time;
         $update_data=$GLOBALS['db']->getAll($order_sql);
-//         foreach($update_data as $key=>$val) {
-//            $one_paipai_sql = "SELECT ppj_id,ppj_no FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE goods_id=" . $val2['goods_id'] . " AND start_time>=" . $limit_min_time . " AND end_time<=" . $limit_max_time;
-//            $one_paipai_row = $GLOBALS['db']->getRow($one_paipai_sql);
-//             $rec_id_sql = "SELECT rec_id FROM " . $GLOBALS['ecs']->table('order_goods') . " WHERE order_sn=".$val['order_sn'];
-//             $order_id_row = $GLOBALS['db']->getRow($rec_id_sql);
-//             if(count($update_data)%1000==0){
-//                   $GLOBALS['db']->query('commit transaction');
-//                   $GLOBALS['db']->query('begin');
-//             }
-//             $GLOBALS['db']->query('commit');
-//             $rec_id_arr[] = $order_id_row['rec_id'];
-//             $update_data[$key]['rec_id']=$order_id_row['rec_id'];
-//            $sale_data[$key2]['order_id']=$order_id_row['order_id'];
-//            $sale_data[$key2]['ppj_id']=$one_paipai_row['ppj_id'];
-//        }
+
         foreach($update_data as $key=>$val) {
             $order_sn_arr[] = $val['order_sn'];
         }
@@ -755,32 +741,89 @@ elseif($_REQUEST['act'] =='upordernext'){
         }
         $GLOBALS['db']->query('commit');
 
+        var_dump(date("H:i:s", time() + 8 * 3600));
 
-
-
-       var_dump(date("H:i:s", time() + 8 * 3600));
-
-    //    //更改订单的ppj_id  ppj_no
-    //    $up_ogpp_sql="UPDATE ".$GLOBALS['ecs']->table('order_info')." SET  ppj_id=  CASE order_sn ";
-    //    $up_gl_sql="UPDATE ".$GLOBALS['ecs']->table('goods_inventory_logs')." SET  order_id=  CASE order_sn ";
-    //    foreach($sale_data as $lkey=>$lval){
-    //        $up_ogpp_sql.=" WHEN ".$lval['order_sn'] ." THEN ".$lval['ppj_id'];
-    //        $up_gl_sql.=" WHEN ".$lval['order_sn'] ." THEN ".$lval['order_id'];
-    //        $ordersn_arr[]=$lval['order_sn'];
-    //    }
-    //    $up_ogpp_sql.=" END  WHERE order_sn in(".implode(",", $ordersn_arr).")";
-    //    $up_gl_sql.=" END  WHERE goods_id in(".implode(",", $ppj_goods_id_row).") AND batch_number=".$batch_number;
-
-    //    $GLOBALS['db']->query($up_ogpp_sql);
-    //    $GLOBALS['db']->query($up_gl_sql);
-
-    //    if(count($sale_data)%1000==0){
-    //        $GLOBALS['db']->query('commit');
-    //        $GLOBALS['db']->query('begin');
-    //    }
-    //    $GLOBALS['db']->query('commit');
     }
 
     $smarty->display('paipai_part_outordernext.dwt');
 
+}
+elseif($_REQUEST['act'] =='paipaiact'){
+
+    $cat_sql = "SELECT cat_id,cat_name FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=0 AND is_show=1";
+    $cat_row = $GLOBALS['db']->getAll($cat_sql);
+    $smarty->assign('cat_row', $cat_row);
+
+    $mouth = $_POST['mouth'];
+    $days = $_POST['days'];
+    $out_price = $_POST['out_price'];
+    $cat_id=$_POST['cat_id'];
+    $year='2019';
+    $total_days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+
+    $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
+    $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
+    $limit_min_time=strtotime($min_time);
+    $limit_max_time=strtotime($max_time);
+    var_dump(date("H:i:s", time() + 8 * 3600));
+    if($mouth && $days && $out_price){
+        $cat_one_sql="SELECT cat_id,cat_name FROM ".$GLOBALS['ecs']->table('category')." WHERE parent_id=" . $cat_id." AND is_show=1 ";
+        $cat_one_row=$GLOBALS['db']->getRow($cat_one_sql);
+        if(!$cat_one_row){
+            var_dump("输入的类别错误"); exit;
+        }
+
+        $cat2_sql = "SELECT cat_id,cat_name,parent_id FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id . " AND is_show=1 ";
+        $cat2_row = $GLOBALS['db']->getAll($cat2_sql);
+        foreach ($cat2_row as $key => $catval) {
+            $goods_sql2 = "SELECT goods_id,cat_id,goods_number,cost_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
+            $goods_row[] = $GLOBALS['db']->getAll($goods_sql2);
+        }
+
+        for ($i = 0; $i < count($goods_row); $i++) {
+            $new_goods = $goods_row[$i];
+            for ($y = 0; $y < count($new_goods); $y++) {
+                $new2_goods[] = $new_goods[$y];
+                $goods_id_arr[]=$new_goods[$y]['goods_id'];
+            }
+        }
+
+        $ppj_goods_id_row=array_values(array_unique($goods_id_arr));
+
+        $paipai_sql = "SELECT ppj_id,ppj_no,goods_id FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE  start_time>=" . $limit_min_time . " AND end_time<=" . $limit_max_time." AND goods_id IN (".implode(",", $ppj_goods_id_row).")";
+        $paipai_row = $GLOBALS['db']->getAll($paipai_sql);
+
+
+
+    }else{
+        var_dump("输入有效数据");
+    }
+    $smarty->display('paipai_part_paipaiact.dwt');
+}
+elseif($_REQUEST['act'] =='uptime'){
+
+    $mouth = $_POST['mouth'];
+    $total_days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+    if($mouth){
+        $logs_sql = "SELECT id,add_time FROM " . $GLOBALS['ecs']->table('goods_inventory_logs') . " WHERE number>'-1' ";
+        $logs_row = $GLOBALS['db']->getAll($logs_sql);
+
+        $up_logs_sql="UPDATE ".$GLOBALS['ecs']->table('goods_inventory_logs')." SET add_time= CASE id";
+        foreach($logs_row as $key=>$val){
+            $up_logs_sql.=" WHEN ".$val['id']." THEN ". strtotime($val['add_time']);
+            $logs_id[]=$val['id'];
+        }
+        $up_logs_sql.=" END WHERE id IN(".implode(",", $logs_id).") ";
+        $GLOBALS['db']->query($up_logs_sql);
+        if(count($logs_row)%1000==0){
+            $GLOBALS['db']->query('commit transaction');
+            $GLOBALS['db']->query('begin');
+        }
+        $GLOBALS['db']->query('commit');
+
+
+    }else{
+        var_dump("输入有效数据");
+    }
+    $smarty->display('paipai_part_uptime.dwt');
 }
