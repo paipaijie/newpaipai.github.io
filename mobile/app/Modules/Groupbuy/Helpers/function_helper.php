@@ -10,7 +10,7 @@ function paipai_buy_list($size, $page, $keywords, $sort, $order)
 {
 	$gb_list = array();
 	
-	$now = time();
+	$now = time()+8*3600;
 	
 	$where = '';
 	$where .= ' AND g.is_delete = 0 ';
@@ -27,7 +27,6 @@ function paipai_buy_list($size, $page, $keywords, $sort, $order)
 	}
    
 	$res = $GLOBALS['db']->selectLimit($sql, $size, ($page - 1) * $size);
-	
 
 	foreach ($res as $key => $val) {
 		
@@ -38,11 +37,6 @@ function paipai_buy_list($size, $page, $keywords, $sort, $order)
 		
 		$val['formated_end_date'] = groupbuydate($val['end_date']);
 
-
-
-		
-		//$val['is_end'] = $val['end_date'] < $now ? 1 : 0;
-	
 		if($val['end_date'] > $now && $val['start_date'] < $now){
 			$val['is_end'] = 1;
 		}else if($val['start_date'] > $now){
@@ -115,7 +109,7 @@ function paipai_buy_list($size, $page, $keywords, $sort, $order)
 	
 	    $val['price'] = price_format($cur_price, false);// 当前价格
 		
-		$val['now_time']= time();
+		$val['now_time']= time()+8*3600;
 		$val['limit_time']= $val['end_time']+12*3600;
 			$group_buy[] = $val;
 		
