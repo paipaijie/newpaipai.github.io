@@ -138,7 +138,7 @@
 											<div class="label">{$lang.require_field}{$lang.label_deposit}</div>   
 											<div class="label_value">
 												<input name="ppl_margin_fee" type="text" id="ppl_margin_fee" value="{$group_buy.ppj_margin_fee}" class="text" autocomplete="off"/>
-												<div class="notic">{$lang.notice_goods_deposit}</div>
+											<!--	<div class="notic">{$lang.notice_goods_deposit}</div>-->
 												<div class="form_prompt"></div>
 											</div>
 										</div>
