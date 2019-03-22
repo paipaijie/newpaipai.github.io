@@ -9902,7 +9902,8 @@ body .ui-tooltip {
 
 .swiper-container-autoheight,
 .swiper-container-autoheight .swiper-slide {
-	height: auto
+	height: auto;
+	margin-top:6px
 }
 
 .swiper-container-autoheight .swiper-wrapper {
