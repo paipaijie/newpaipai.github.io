@@ -1383,10 +1383,10 @@ function paipai_buy_info($group_buy_id, $current_num = 0)
 	
 	$group_buy = array_merge($group_buy, $ext_info);
 	
-	$group_buy['formated_start_date'] = local_date('Y-m-d H:i', $group_buy['start_time']);
+	$group_buy['formated_start_date'] = date('Y-m-d H:i', $group_buy['start_time']);
 	
-	$group_buy['formated_end_date'] = local_date('Y-m-d H:i', $group_buy['end_time']);
-	$now = gmtime();
+	$group_buy['formated_end_date'] = date('Y-m-d H:i', $group_buy['end_time']);
+	$now = time()+8*3600;
 	
 	$group_buy['is_end'] = $group_buy['end_time'] < $now ? 1 : 0;
 		
