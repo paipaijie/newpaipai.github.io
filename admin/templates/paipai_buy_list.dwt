@@ -37,6 +37,9 @@
                 	<div class="fl">
                         <a href="paipai_buy.php?act=add"><div class="fbutton"><div class="add" title="{$lang.add_group_buy}"><span><i class="icon icon-plus"></i>{$lang.add_group_buy}</span></div></div></a>
                     </div>
+                    <div class="fl">
+                        <a href="paipai_buy.php?act=batchadd"><div class="fbutton"><div class="add" title="活动批量添加"><span><i class="icon icon-plus"></i>活动批量添加</span></div></div></a>
+                    </div>
                     {/if}
                     
                     <div class="refresh">

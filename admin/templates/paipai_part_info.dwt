@@ -9,7 +9,7 @@
 				<a href="paipai_buy.php?act=list" class="s-back">{$lang.back}</a>{$lang.promotion} - {$ur_here}</div>
 			<div class="content">
 
-				<!--操作提示start  -->
+				<!--操作提示start  --><!--
 				<div class="explanation" id="explanation">
 					<div class="ex_tit"><i class="sc_icon"></i>
 						<h4>{$lang.operating_hints}</h4><span id="explanationZoom" title="{$lang.fold_tips}"></span></div>
@@ -19,7 +19,7 @@
 						<li>{$lang.operation_prompt_content.info.1}</li>
 						<li>{$lang.operation_prompt_content.info.2}</li>
 					</ul>
-				</div>
+				</div>-->
 				<!--操作提示end  -->
 
 				<div class="flexilist">
@@ -28,113 +28,74 @@
 
 						<div class="mian-info">
 
-							<form method="post" action="paipai_buy.php?act=insert_update" name="theForm" id="group_buy_form">
+							<form method="post" action="paipai_part.php?act=add" name="theForm" id="group_buy_form">
 
 								<div class="switch_info">
 
 									<!--字段详情start  -->
-									<div class="items">
+                                    <div class="items">
 
-										<div class="item">
-											<div class="label">交易匹配成功支付时间</div>
-											<div class="label_value">
-												<input type="text" name="ppj_startpay_time" value="{$group_buy.ppj_startpay_time|default:0}" class="text" autocomplete="off" />
-												<div class="notic">分钟为单位</div>
-												<div class="form_prompt"></div>
-											</div>
-										</div>
-										
-										<div class="item">
-											<div class="label">活动结束后支付时间</div>
-											<div class="label_value">
-												<input type="text" name="ppj_endpay_time" value="{$group_buy.ppj_endpay_time|default:0}" class="text" autocomplete="off" />
-												<div class="notic">分钟为单位</div>
-												<div class="form_prompt"></div>
-											</div>
-										</div>
-										
+                                        <div class="item">
+                                            <div class="label">2018年月份</div>
+                                            <div class="label_value">
+                                                <input type="text" name="mouth"  class="text" autocomplete="off" />
+                                                <div class="notic">月为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
 
-										{if $form_action eq 'update' && $group_buy.user_id neq 0}
-										<div class="item">
-											<div class="label">{$lang.adopt_status}：</div>
-											<div class="label_value">
-												<div class="checkbox_items" ectype="general_audit_status">
-													<div class="checkbox_item">
-														<input name="review_status" type="radio" class="ui-radio" value="1" id="review_status_1" {if $group_buy.groupby_staus eq 1}checked="checked" {/if} />
-														<label for="review_status_1" class="ui-radio-label">{$lang.not_audited}</label>
-													</div>
-													<div class="checkbox_item">
-														<input name="review_status" type="radio" class="ui-radio" value="2" id="review_status_2" {if $group_buy.groupby_staus eq 2}checked="checked" {/if} />
-														<label for="review_status_2" class="ui-radio-label">{$lang.audited_not_adopt}</label>
-													</div>
-													<div class="checkbox_item">
-														<input name="review_status" type="radio" class="ui-radio" value="3" id="review_status_3" {if $group_buy.groupby_staus eq 3}checked="checked" {/if} />
-														<label for="review_status_3" class="ui-radio-label">{$lang.audited_yes_adopt}</label>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<div class="item {if $group_buy.ppj_staus neq 2}hide{/if}" id="review_content">
-											<div class="label">{$lang.adopt_reply}：</div>
-											<div class="value">
-												<textarea name="review_content" class="textarea h100">{$group_buy.groupby_review}</textarea>
-											</div>
-										</div>
-										
-										{/if}
-										
-										<div class="item">
-											<div class="label">{$lang.new}：</div>
-											<div class="label_value step_goods_service">
-												<div class="switch switch_2 {if $group_buy.is_new}active{/if}" title="{$lang.yes}">
-													<div class="circle"></div>
-												</div>
-												<input type="hidden" value="{$group_buy.is_new}" name="is_new">
-											</div>
-										</div>
-										
-										
-										<div class="item">
-											<div class="label">{$lang.hot}：</div>
-											<div class="label_value step_goods_service">
-												<div class="switch switch_2 {if $group_buy.is_hot}active{/if}" title="{$lang.yes}">
-													<div class="circle"></div>
-												</div>
-												<input type="hidden" value="{$group_buy.is_hot}" name="is_hot">
-											</div>
-										</div>
-										
-										
-										<div class="item">
-											<div class="label">&nbsp;</div>
-											
-											<div class="label_value info_btn">
-												<input name="act_id" type="hidden" id="act_id" value="{$group_buy.ppj_id}" id="submitBtn">
-												{if $group_buy.ppj_staus eq 1 || $group_buy.ppj_staus eq 0}
-												<input type="submit" name="submit" value="{$lang.button_submit}" class="button" />
-												
-												<input type="reset" value="{$lang.button_reset}" class="button button_reset" /> 
-												{/if}
-												{if $group_buy.ppj_staus eq 1}
-													<input type="submit" name="finish" value="{$lang.button_finish}" class="button" onclick="return confirm('{$lang.notice_finish}'" id="{$group_buy.ppj_id}")" /><!--结束活动--> 
-												{elseif $group_buy.ppj_staus eq 2}
-													<input type="submit" name="succeed" value="{$lang.button_succeed}" class="button" onclick="return confirm(succeed_confirm)" /><!--活动成功-->
-													<label class="fl lh">{$lang.notice_succeed}</label>
-													<input type="submit" name="fail" value="{$lang.button_fail}" class="button" onclick="return confirm(fail_confirm)" /><!--活动失败-->
-													<div class="notic">{$lang.paipai_notice_fail}</div>
-									<!-- 			{elseif $group_buy.ppj_staus eq 2}
-													<input type="submit" name="mail" value="{$lang.button_succeed}" class="button" onclick="return confirm('{$lang.button_succeed}')" /> -->
-												{/if}
+                                        <div class="item">
+                                            <div class="label">2018年月日</div>
+                                            <div class="label_value">
+                                                <input type="text" name="days"  class="text" autocomplete="off" />
+                                                <div class="notic">日为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
 
-											</div>
-											
-										</div>
-										
-										
-									</div>
+                                        <div class="item">
+                                            <div class="label">入库总金额</div>
+                                            <div class="label_value">
+                                                <input type="text" name="storage_price"  class="text" autocomplete="off" />
+                                                <div class="notic">元为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
 
-<!--字段详情end  -->
+                                        <div class="item">
+                                            <div class="label">出库总金额</div>
+                                            <div class="label_value">
+                                                <input type="text" name="out_price"  class="text" autocomplete="off" />
+                                                <div class="notic">元为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
+                                            <div class="label">商品分类</div>
+                                            <div class="label_value">
+                                                <input type="text" name="cat_id"  class="text" autocomplete="off" />
+                                                <div class="notic">{foreach from=$cat_row item=cat_list}{$cat_list.cat_id}{$cat_list.cat_name}__{/foreach}</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="item">
+                                            <div class="label">&nbsp;</div>
+
+                                            <div class="label_value info_btn">
+                                                <input name="act_id" type="hidden" id="act_id" value="{$group_buy.ppj_id}" id="submitBtn">
+                                                {if $group_buy.ppj_staus eq 1 || $group_buy.ppj_staus eq 0}
+                                                <input type="submit" name="submit" value="{$lang.button_submit}" class="button" />
+                                                {/if}
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <!--字段详情end  -->
 
 								</div>
 

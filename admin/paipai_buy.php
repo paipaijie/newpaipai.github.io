@@ -139,8 +139,8 @@ function group_buy_list($ru_id)
 		$arr['cur_price'] = $cur_price;
 		$status = group_buy_status($arr); //  group_buy_status 在 lib_goods.php中定义
 
-		$arr['start_time'] = local_date($GLOBALS['_CFG']['date_format'], $arr['start_time']);
-		$arr['end_time'] = local_date($GLOBALS['_CFG']['date_format'], $arr['end_time']);
+		$arr['start_time'] = date($GLOBALS['_CFG']['date_format'], $arr['start_time']);
+		$arr['end_time'] = date($GLOBALS['_CFG']['date_format'], $arr['end_time']);
 		$arr['cur_status'] = $GLOBALS['_LANG']['gbs'][$status];
 		$arr['user_name'] = get_shop_name($arr['user_id'], 1);
 		$list[] = $arr;
@@ -372,8 +372,8 @@ else {
 				$group_buy = array_merge($group_buy, $ext_info);
 			}
 
-			$group_buy['formated_start_date'] = local_date('Y-m-d H:i:s', $group_buy['start_time']);
-			$group_buy['formated_end_date'] = local_date('Y-m-d H:i:s', $group_buy['end_time']);
+			$group_buy['formated_start_date'] = date('Y-m-d H:i:s', $group_buy['start_time']);
+			$group_buy['formated_end_date'] = date('Y-m-d H:i:s', $group_buy['end_time']);
 		
 			//价格遍历
 			$price_ladder = $group_buy['price_ladder'];
@@ -620,14 +620,14 @@ else {
 
 			while ($order = $db->fetchRow($res)) {
 				$smarty->assign('consignee', $order['consignee']);
-				$smarty->assign('add_time', local_date($_CFG['time_format'], $order['add_time']));
+				$smarty->assign('add_time', date($_CFG['time_format'], $order['add_time']));
 				$smarty->assign('goods_name', $group_buy['goods_name']);
 				$smarty->assign('goods_number', $order['goods_number']);
 				$smarty->assign('order_sn', $order['order_sn']);
 				$smarty->assign('order_amount', price_format($order['order_amount']));
 				$smarty->assign('shop_url', $ecs->url() . 'user.php?act=order_detail&order_id=' . $order['order_id']);
 				$smarty->assign('shop_name', $_CFG['shop_name']);
-				$smarty->assign('send_date', local_date($GLOBALS['_CFG']['time_format'], gmtime()));
+				$smarty->assign('send_date', date($GLOBALS['_CFG']['time_format'], gmtime()));
 				$content = $smarty->fetch('str:' . $tpl['template_content']);
 
 				if (send_mail($order['consignee'], $order['email'], $tpl['template_subject'], $content, $tpl['is_html'])) {
@@ -732,7 +732,6 @@ else {
 					$price_ladder[$amount] = array('amount' => $amount, 'price' => $price);
 				}
 			}
-			
 			//商品的市场销售价
 			$goods_price = $db->getOne('SELECT market_price FROM ' . $ecs->table('goods') . (' WHERE goods_id = \'' . $goods_id . '\''));
 			$market_price=floatval($goods_price);
@@ -756,11 +755,11 @@ else {
 			
 			
 			
-			$start_time = local_strtotime($_POST['start_time']);//开始时间
+			$start_time = strtotime($_POST['start_time']);//开始时间
 			
-			$end_time = local_strtotime($_POST['end_time']);//结束时间
+			$end_time = strtotime($_POST['end_time']);//结束时间
 
-			$ppj_createtime=gmtime();
+			$ppj_createtime=time();
 
 			if ($end_time <= $start_time) {
 				sys_msg($_LANG['invalid_time']);//输入的无效时间
@@ -773,7 +772,7 @@ else {
 			}
 
 			if($end_time < $ppj_createtime){
-				$ppj_staus=2; //活动已结束
+				$ppj_staus=2; //活动已结束$restrict_amount
 			}
 
 			$is_hot = isset($_REQUEST['is_hot']) ? $_REQUEST['is_hot'] : 0;
@@ -1030,6 +1029,110 @@ else {
 		$url = 'paipai_buy.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 		ecs_header('Location: ' . $url . "\n");
 		exit();
+	}
+	elseif($_REQUEST['act'] == 'batchadd'){
+
+		$mouth = $_POST['mouth'];
+		$days = $_POST['days'];
+		$goods_number=$_POST['goods_number'];
+		$limit_number=$_POST['limit_number'];
+		$year='2019';
+
+		$min_time=$year.'-'.$mouth.'-'.$days.' 07:00:00';
+		$max_time=$year.'-'.$mouth.'-'.$days.' 22:00:00';
+		$limit_min_time=strtotime($min_time);
+		$limit_max_time=strtotime($max_time);
+		var_dump(date("H:i:s", time() + 8 * 3600));
+		if($mouth && $days && $goods_number && $limit_number) {
+
+			$num = explode(";", $goods_number);
+
+			for ($i = 0; $i < count($num); $i++) {
+				$num2[] = explode(",", $num[$i]);
+			}
+
+			for ($t = 0; $t < count($num2); $t++) {
+				$goods_sql = " SELECT goods_id FROM " . $GLOBALS['ecs']->table('goods') . " WHERE suppliers_id=" . $num2[$t][0];
+				$goods_row = $GLOBALS['db']->getAll($goods_sql);
+
+				if (count($goods_row) < $num2[$t][1]) {
+					for ($g = 0; $g < count($goods_row); $g++) {
+						$goods_id_row1[] = $goods_row[$g]['goods_id'];
+					}
+				} else {
+					for ($g = 0; $g < count($goods_row); $g++) {
+						$goods_id_row2[] = $goods_row[$g]['goods_id'];
+						$number = $num2[$t][1];
+					}
+					$goods_id_row4 = array_rand($goods_id_row2, $number);
+					foreach ($goods_id_row4 as $val2) {
+						$goods_id_row5[] = $goods_id_row2[$val2];
+					}
+				}
+			}
+			if ($goods_id_row5) {
+				$goods_id_row = array_merge($goods_id_row1, $goods_id_row5);
+			} else {
+				$goods_id_row = $goods_id_row1;
+			}
+
+
+			//活动添加
+			$goods_sql2 = " SELECT goods_id,goods_name,cost_price,goods_sn,market_price,shop_price,goods_number FROM " . $GLOBALS['ecs']->table('goods') . " WHERE goods_id in(" . implode(",", $goods_id_row) . ")";
+			$goods_data = $GLOBALS['db']->getAll($goods_sql2);
+			$ppj_add_sql = "INSERT INTO " . $GLOBALS['ecs']->table('paipai_list') . "(ppj_name,goods_id,ppj_no,goods_count,ppj_start_fee,ppj_buy_fee,start_time,end_time,ppj_margin_fee,ppj_startpay_time,ppj_endpay_time,ppj_createtime,goods_name,is_hot,is_new,review_status,ext_info,user_id,ppj_staus) VALUES";
+			foreach ($goods_data as $key => $val) {
+				//最近一期商品的拍拍活动
+				$act_sql = "SELECT ppj_no FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE goods_id=" . $val['goods_id'] . " ORDER BY ppj_id DESC";
+				$ppj_goods = $GLOBALS['db']->getRow($act_sql);
+
+				$ppj_no = $ppj_goods['ppj_no'] + 1;
+
+				$ppj_margin_fee = "0.00";
+
+				if ($val['shop_price'] <= 100) {
+					$part = '5';
+				} elseif ($val['shop_price'] > 100 && $val['shop_price'] < 300) {
+					$part = '8';
+				} elseif ($val['shop_price'] >= 300 && $val['shop_price'] < 500) {
+					$part = '11';
+				} else {
+					$part = '15';
+				}
+				$ppj_buy_fee = $val['cost_price'] + ($val['cost_price'] * 0.25);
+				$price_part = floor($val['shop_price'] * 0.7 / $part);
+				$ceil_amount = floor($limit_number / $part);
+				for ($ei = 1; $ei < $part; $ei++) {
+					$price_ladder[$ei] = array(
+						'amount' => $ei == 1 ? '1' : $ceil_amount * ($ei - 1),
+						'price' => $ppj_buy_fee + ($price_part * ($ei - 1))
+					);
+				}
+
+				$ext_info = serialize(array('price_ladder' => $price_ladder, 'restrict_amount' => $limit_number));
+				$ppj_start_fee = '0.00';
+				if(time()>$limit_max_time){
+					$ppj_status='2';
+				}elseif(time()<$limit_min_time){
+					$ppj_status='0';
+				}else{
+					$ppj_status='1';
+				}
+
+				$ppj_add_sql .= "('" . $val['goods_name'] . "','" . $val['goods_id'] . "','" . $ppj_no . "','" . $limit_number . "','" . $ppj_start_fee . "','" . $ppj_buy_fee . "','" . $limit_min_time . "','" . $limit_max_time . "','" . $ppj_margin_fee . "'," . '20' . "," . '20' . ",'" . $limit_min_time . "','" . $val['goods_name'] . "'," . '0' . "," . '0' . "," . '3' . ",'" . $ext_info . "'," . '0' . ",'" . $ppj_status. "'),";
+			}
+			$ppj_add_sql = substr($ppj_add_sql, 0, strlen($ppj_add_sql) - 1);
+			$res = $GLOBALS['db']->query($ppj_add_sql);
+			if($res){
+				var_dump('成功');
+				var_dump(date("H:i:s", time() + 8 * 3600));
+			}else{
+				var_dump('失败');
+			}
+		}else{
+			var_dump("输入有效数据");
+		}
+		$smarty->display('paipai_batchadd.dwt');
 	}
 }
 

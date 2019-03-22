@@ -28,7 +28,7 @@
 
 						<div class="mian-info">
 
-							<form method="post" action="paipai_part.php?act=upordernext" name="theForm" id="group_buy_form">
+							<form method="post" action="paipai_buy.php?act=batchadd" name="theForm" id="group_buy_form">
 
 								<div class="switch_info">
 
@@ -36,16 +36,7 @@
                                     <div class="items">
 
                                         <div class="item">
-                                            <div class="label">年</div>
-                                            <div class="label_value">
-                                                <input type="text" name="year"  class="text" autocomplete="off" />
-                                                <div class="notic">年为单位</div>
-                                                <div class="form_prompt"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="item">
-                                            <div class="label">月</div>
+                                            <div class="label">2019年月</div>
                                             <div class="label_value">
                                                 <input type="text" name="mouth"  class="text" autocomplete="off" />
                                                 <div class="notic">月为单位</div>
@@ -53,7 +44,7 @@
                                             </div>
                                         </div>
                                         <div class="item">
-                                            <div class="label">日</div>
+                                            <div class="label">2019年日</div>
                                             <div class="label_value">
                                                 <input type="text" name="days"  class="text" autocomplete="off" />
                                                 <div class="notic">日为单位</div>
@@ -62,6 +53,23 @@
                                         </div>
 
 
+                                        <div class="item">
+                                            <div class="label">商品数</div>
+                                            <div class="label_value">
+                                                <input type="text" name="goods_number"  class="text" autocomplete="off" />
+                                                <div class="notic">个为单位  添加格式为(1,10;2,10;3,10;4,10) 1代表供货商 10代表添加商品的数量 不足10时不从别的商品补 </div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
+                                            <div class="label">单个活动限购量数</div>
+                                            <div class="label_value">
+                                                <input type="text" name="limit_number"  class="text" autocomplete="off" />
+                                                <div class="notic">个为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
 
                                         <div class="item">
                                             <div class="label">&nbsp;</div>

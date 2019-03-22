@@ -28,7 +28,7 @@
 
 						<div class="mian-info">
 
-							<form method="post" action="paipai_part.php?act=upordernext" name="theForm" id="group_buy_form">
+							<form method="post" action="paipai_part.php?act=paipaiact" name="theForm" id="group_buy_form">
 
 								<div class="switch_info">
 
@@ -36,10 +36,36 @@
                                     <div class="items">
 
                                         <div class="item">
-                                            <div class="label">2018年</div>
+                                            <div class="label">2019年月</div>
                                             <div class="label_value">
                                                 <input type="text" name="mouth"  class="text" autocomplete="off" />
                                                 <div class="notic">月为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="label">2019年日</div>
+                                            <div class="label_value">
+                                                <input type="text" name="days"  class="text" autocomplete="off" />
+                                                <div class="notic">日为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
+                                            <div class="label">运行金额</div>
+                                            <div class="label_value">
+                                                <input type="text" name="out_price"  class="text" autocomplete="off" />
+                                                <div class="notic">元为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
+                                            <div class="label">商品数</div>
+                                            <div class="label_value">
+                                                <input type="text" name="goods_number"  class="text" autocomplete="off" />
+                                                <div class="notic">个为单位</div>
                                                 <div class="form_prompt"></div>
                                             </div>
                                         </div>

@@ -36,6 +36,15 @@
                                     <div class="items">
 
                                         <div class="item">
+                                            <div class="label">年</div>
+                                            <div class="label_value">
+                                                <input type="text" name="year"  class="text" autocomplete="off" />
+                                                <div class="notic">年为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
                                             <div class="label">2018年月份</div>
                                             <div class="label_value">
                                                 <input type="text" name="mouth"  class="text" autocomplete="off" />

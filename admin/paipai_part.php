@@ -64,10 +64,34 @@ function grouping($total,$num,$area){
 
     return $result;
 }
-function order_add($sale_data, $mouth,$batch_number,$ceil_order_num){
+function ordertime($year,$mouth,$days){
+    $order_time = $year . '-' . $mouth . '-' . $days;
+    $S = rand(8, 22);//随机--时
+    if ($S < 10) {
+        $S = '0' . $S;
+    }
+    $F = rand(0, 59);//随机--分
+    if ($F < 10) {
+        $F = '0' . $F;
+    }
+    $M = rand(0, 50);//随机--秒
+    if ($M < 10) {
+        $M = '0' . $M;
+    }
+    $SC = $S + 1;
+    $MC = $M + 5;
+    $order_date['add_time'] = strtotime($order_time . " " . $S . ":" . $F . ":" . $M);  //提交时间
+    $order_date['pay_time'] = strtotime($order_time . " " . $S . ":" . $F . ":" . $MC);  //支付时间
+    $order_date['confirm_time'] = strtotime($order_time . " " . $SC . ":" . $F . ":" . $M);
+    $order_date['shipping_time'] = strtotime($order_time . " " . $SC . ":" . $F . ":" . $M);  //发货时间
+    //收货时间
+    $td = $days + rand(2, 7);
+    $order_date['take_time'] = strtotime($year . '-' . $mouth . '-' . $td . " " . $S . ":" . $F . ":" . $M);
+    return $order_date;
+}
+function order_add($sale_data,$year, $mouth,$batch_number,$ceil_order_num){
 
     $batch_number=time();
-    $year='2018';
     $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
     $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,add_time,confirm_time,pay_time,shipping_time,confirm_take_time) VALUE ";
     $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,goods_price,is_real,warehouse_id,area_id,order_sn) VALUES";
@@ -157,7 +181,218 @@ function order_add($sale_data, $mouth,$batch_number,$ceil_order_num){
 
 
 }
+function paipai_order($sale_data){
 
+    $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,add_time,confirm_time,pay_time,shipping_time,confirm_take_time) VALUE ";
+    $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,goods_price,is_real,warehouse_id,area_id,order_sn) VALUES";
+    $out_logs_sql = "INSERT INTO ".$GLOBALS['ecs']->table('goods_inventory_logs')."(goods_id,use_storage,admin_id,number,add_time,batch_number,order_sn) VALUES ";
+    $batch_number=time();
+    foreach($sale_data as $key=>$val){
+
+        $price=$val['sale_one_price'];
+        $pay_name="支付宝支付";
+        $goods_id_arr[]=$val['goods_id'];
+        $ordersn_arr[]=$val['order_sn'];
+        $sale_data[$key]['order_sn']=$val['order_sn'];
+
+        $oi_sql .= "('".$val['order_sn']."','".$val['user_id']."',".'1'.",".'2'.",".'2'.",'".$val['consignee']."','". $val['country']."','".$val['province']."','".$val['city']."','".$val['district']."','".$val['mobile']."',".'9'.",'".$pay_name."','".$price."','".$price."','".$price."','".$val['add_time']."','".$val['confirm_time']."','".$val['pay_time']."','".$val['shipping_time']."','".$val['take_time']. "'),";
+        $og_sql.="('".$val['user_id']."','".$val['goods_id']."','".$val['goods_name']."','".$val['goods_sn']."','".$val['market_price']."','".$val['shop_price']."',".'1'.",".'2'.",".'24'.",'".$val['order_sn']."'),";
+        $out_logs_sql .= "( '".$val['goods_id']."',".'8'.",".'59'.",".'1'.",'".$val['pay_time']."','".$batch_number."','".$val['order_sn']."'),";
+
+    }
+    $oi_sql = substr( $oi_sql,0, strlen($oi_sql)-1 );
+    $og_sql = substr( $og_sql,0, strlen($og_sql)-1 );
+    $out_logs_sql = substr( $out_logs_sql,0, strlen($out_logs_sql)-1 );
+    $res1=$GLOBALS['db']->query($oi_sql);
+    if($res1){
+        $res2=$GLOBALS['db']->query($og_sql);
+        if($res2){
+            $res3=$GLOBALS['db']->query($out_logs_sql);
+        }
+    }
+
+    if(count($sale_data)%5000==0){
+        $GLOBALS['db']->query('commit');
+        $GLOBALS['db']->query('begin');
+    }
+    $res4=$GLOBALS['db']->query('commit');
+    return $res4;
+//    for($p=0;$p<count($sale_data);$p++){
+//        $ppj_goods_id[]=$sale_data[$p]['goods_id'];
+//    }
+//    $ppj_goods_id_row=array_values(array_unique($ppj_goods_id));
+//
+//    //更改商品的库存数
+//    $up_g_sql="UPDATE ".$GLOBALS['ecs']->table('goods')." SET  goods_number=  CASE goods_id ";
+//    $goods_id_count=implode(",", $goods_id_arr);
+//    for($ug=0;$ug<count($ppj_goods_id_row);$ug++){
+//
+//        $up_g_sql.=" WHEN ".$ppj_goods_id_row[$ug] ." THEN ".$sale_data[$ug]['goods_number'];
+//    }
+//    $up_g_sql.=" END  WHERE goods_id in(".implode(",", $ppj_goods_id_row).")";
+//
+//    $GLOBALS['db']->query($up_g_sql);
+    //更改paipai_list订单数
+
+
+
+}
+function ppj_auto($ppj_row,$year,$mouth,$days){
+
+    $time=date('H:i:s',time()+8*3600);
+    $now_time=strtotime($year.'-'.$mouth.'-'.$days.' '.$time);
+
+    //保证金记录添加
+    $ppj_pm_sql = "INSERT INTO ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')."(user_id,ppj_id,ppj_no,pay_fee,ls_pay_ok,ls_refund,createtime,paytime) VALUES ";
+    foreach($ppj_row as $key=>$val){
+        $ppj_pm_sql .= "( '".$val['user_id']."','".$val['ppj_id']."','".$val['ppj_no']."',".'0.00'.",".'1'.",".'0'.",'".$now_time."','".$now_time."'),";
+    }
+    $ppj_pm_sql = substr( $ppj_pm_sql,0, strlen($ppj_pm_sql)-1 );
+    $res1=$GLOBALS['db']->query($ppj_pm_sql);
+    if(!$res1){
+        var_dump(保证金记录添加失败); exit;
+    }
+
+    //出价记录添加
+    $ppj_bid_sql = "INSERT INTO ".$GLOBALS['ecs']->table('paipai_goods_bid_user')."(user_id,ppj_id,ppj_no,bid_price,bid_time,is_status,createtime,spm_id) VALUES ";
+    foreach($ppj_row as $key2=>$val2){
+        $sel_pm_sql ="SELECT spm_id FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE user_id=".$val2['user_id']." AND ppj_id=".$val2['ppj_id']." ORDER BY spm_id DESC";;
+        $margin_row=$GLOBALS['db']->getRow($sel_pm_sql);
+        $sel_bu_sql ="SELECT bid_price,count(bid_id) as total_bid FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id=".$val2['ppj_id']." ORDER BY bid_id DESC";
+        $bid_row=$GLOBALS['db']->getRow($sel_bu_sql);
+        if($bid_row['bid_price']){
+            $bid_price=number_format($bid_row['bid_price']+$bid_row['bid_price']*0.18,2);
+        }else{
+            $bid_price=number_format($val2['buy_fee'],2);
+        }
+
+        for($i=1;$i<=count($val2['ext_info']['price_ladder']);$i++){
+            if($bid_row['total_bid']>=$val2['ext_info']['price_ladder'][$i]['amount'] && $bid_row['total_bid']<=$val2['ext_info']['price_ladder'][$i+1]['amount']){
+                $pay_price=$val2['ext_info']['price_ladder'][$i]['price'];
+            }elseif($bid_row['total_bid']=='0'){
+                $pay_price=$bid_price;
+            }
+        }
+        $min_time=$year.'-'.$mouth.'-'.$days.' 07:00:00';
+        $max_time=$year.'-'.$mouth.'-'.$days.' 22:00:00';
+        $limit_min_time=strtotime($min_time);
+        $limit_max_time=strtotime($max_time);
+        if($now_time >= $limit_min_time && $now_time<=$limit_max_time){
+            $bid_status=2;
+        }else{
+            $bid_status=0;
+        }
+        $ppj_row[$key2]['pay_price']=$pay_price;
+        $ppj_row[$key2]['spm_id']=$margin_row['spm_id'];
+        $ppj_bid_sql .= "( '".$val2['user_id']."','".$val2['ppj_id']."','".$val2['ppj_no']."','".$bid_price."','".$now_time."',".$bid_status.",'".$now_time."','".$margin_row['spm_id']."'),";
+    }
+    $ppj_bid_sql = substr( $ppj_bid_sql,0, strlen($ppj_bid_sql)-1 );
+    $res2=$GLOBALS['db']->query($ppj_bid_sql);
+    if(!$res2){
+        var_dump(出价记录添加失败); exit;
+    }
+
+    //选取两个订单添加
+    $order_num=2;
+    for($i=0;$i<$order_num;$i++){
+        $order_one_id=rand(0,count($ppj_row)-1);
+        $order_arr[]=$ppj_row[$order_one_id];
+    }
+
+    $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,add_time,pay_time,ppj_id,ppj_no) VALUE ";
+    $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,goods_price,is_real,warehouse_id,area_id,ppj_no,order_sn) VALUES";
+    $out_logs_sql = "INSERT INTO ".$GLOBALS['ecs']->table('goods_inventory_logs')."(goods_id,use_storage,admin_id,number,add_time,batch_number,order_sn) VALUES ";
+
+    foreach($order_arr as $okey=>$oval){
+
+        $sel_g_sql ="SELECT goods_id,goods_name,goods_sn,cost_price,shop_price,market_price FROM ".$GLOBALS['ecs']->table('goods')." WHERE goods_id=".$oval['goods_id'];
+        $goods_row=$GLOBALS['db']->getRow($sel_g_sql);
+
+        $u_sql='SELECT u.user_id,ua.consignee,ua.country,ua.province,ua.city,ua.district,ua.mobile FROM '.$GLOBALS['ecs']->table('users').' AS u LEFT JOIN '.$GLOBALS['ecs']->table('user_address').'AS ua ON u.user_id=ua.user_id  WHERE u.user_id='.$oval['user_id'];
+        $user_row=$GLOBALS['db']->getRow($u_sql);
+
+        $order_sn=$year.$mouth.$days.str_pad(mt_rand(1, 99999999), 8, '0', STR_PAD_LEFT);
+
+        $price=$oval['pay_price'];
+        $pay_name="支付宝支付";
+        $goods_id_arr[]=$oval['goods_id'];
+        $ordersn_arr[]=$order_sn;
+        $order_arr[$okey]['order_sn']=$order_sn;
+
+        $oi_sql .= "('".$order_sn."','".$oval['user_id']."',".'1'.",".'2'.",".'2'.",'".$user_row['consignee']."','". $user_row['country']."','".$user_row['province']."','".$user_row['city']."','".$user_row['district']."','".$user_row['mobile']."',".'9'.",'".$pay_name."','".$price."','".$price."','".$price."','".$now_time."','".$now_time."','".$oval['ppj_id']."','".$oval['ppj_no']."'),";
+        $og_sql.="('".$oval['user_id']."','".$oval['goods_id']."','".$goods_row['goods_name']."','".$order_sn."','".$goods_row['market_price']."','".$goods_row['shop_price']."',".'1'.",".'2'.",".'24'.",'".$oval['ppj_no']."','".$order_sn."'),";
+        $out_logs_sql .= "( '".$oval['goods_id']."',".'8'.",".'59'.",".'1'.",'".$now_time."','".$now_time."','".$order_sn."'),";
+
+    }
+
+    $oi_sql = substr( $oi_sql,0, strlen($oi_sql)-1 );
+    $og_sql = substr( $og_sql,0, strlen($og_sql)-1 );
+    $out_logs_sql = substr( $out_logs_sql,0, strlen($out_logs_sql)-1 );
+    $oires=$GLOBALS['db']->query($oi_sql);
+    if($oires){
+        $ogres=$GLOBALS['db']->query($og_sql);
+        if($ogres){
+            $lres=$GLOBALS['db']->query($out_logs_sql);
+            if(!$lres){
+                var_dump(出库记录添加失败); exit;
+            }
+        }else{
+            var_dump(订单产品添加失败); exit;
+        }
+    }else{
+        var_dump(订单添加失败); exit;
+    }
+
+    $order_allid_sql = "SELECT order_id,order_sn FROM " . $GLOBALS['ecs']->table('order_info') . " WHERE order_sn IN (".implode(",", $ordersn_arr).")";
+    $update_data=$GLOBALS['db']->getAll($order_allid_sql);
+    $rec_id_sql = "SELECT rec_id,order_sn,goods_id FROM " . $GLOBALS['ecs']->table('order_goods') . " WHERE order_sn IN (".implode(",", $ordersn_arr).")";
+    $rec_id_row = $GLOBALS['db']->getALL($rec_id_sql);
+    $logs_id_sql = "SELECT id,order_sn FROM " . $GLOBALS['ecs']->table('goods_inventory_logs') . " WHERE order_sn IN (".implode(",", $ordersn_arr).")";
+    $logs_id_row = $GLOBALS['db']->getALL($logs_id_sql);
+    foreach($update_data as $ukey2=>$uval2) {
+        if($uval2['order_sn']==$rec_id_row[$ukey2]['order_sn']){
+            $update_data[$ukey2]['rec_id']=$rec_id_row[$ukey2]['rec_id'];
+            $rec_id_arr[] = $rec_id_row[$ukey2]['rec_id'];
+        }
+        if($uval2['order_sn']==$logs_id_row[$ukey2]['order_sn']){
+            $update_data[$ukey2]['logs_id']=$logs_id_row[$ukey2]['id'];
+            $logs_id_arr[] = $logs_id_row[$ukey2]['id'];
+        }
+    }
+
+    //更改order_info下的order_id   更改goods_logs下的order_id
+    $up_og_sql="UPDATE  ".$GLOBALS['ecs']->table('order_goods')." SET  order_id= CASE rec_id";
+    $up_gl_sql="UPDATE  ".$GLOBALS['ecs']->table('goods_inventory_logs')." SET  order_id= CASE id";
+    foreach($update_data as $okey2=>$oval2) {
+        $up_og_sql.=" WHEN ".$oval2['rec_id']." THEN ". $oval2['order_id'];
+        $up_gl_sql.=" WHEN ".$oval2['logs_id']." THEN ". $oval2['order_id'];
+    }
+    $up_og_sql.=" END WHERE rec_id IN(".implode(",", $rec_id_arr).") ";
+    $up_gl_sql.=" END WHERE id IN(".implode(",", $logs_id_arr).") ";
+
+    $uog=$GLOBALS['db']->query($up_og_sql);
+    if($uog){
+        $ugl=$GLOBALS['db']->query($up_gl_sql);
+        if(!$ugl){
+            var_dump(更改出库记录失败); exit;
+        }
+    }else{
+        var_dump(更改订单记录失败); exit;
+    }
+
+    //更改goods_bid_user下的is_status   更改paipai_list下的goods_count
+    for($x=0;$x<count($order_arr);$x++){
+        $up_gb_sql="UPDATE  ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." SET  is_status='1' WHERE spm_id=".$order_arr[$x]['spm_id'];
+        $GLOBALS['db']->query($up_gb_sql);
+        $gcount=$order_arr[$x]['goods_count']-1;
+        $up_ppl_sql="UPDATE  ".$GLOBALS['ecs']->table('paipai_list')." SET  goods_count=".$gcount." WHERE ppj_id=".$order_arr[$x]['ppj_id'];
+        $ppl=$GLOBALS['db']->query($up_ppl_sql);
+    }
+    if($ppl){
+        return 1;
+    }
+
+}
 
 // 执行方法
 define('IN_ECS', true);
@@ -505,6 +740,7 @@ elseif($_REQUEST['act'] == 'outorder') {
     $cat_row = $GLOBALS['db']->getAll($cat_sql);
     $smarty->assign('cat_row', $cat_row);
 
+    $year = $_POST['year'];
     $mouth = $_POST['mouth'];
     $days = $_POST['days'];
     $outprice = $_POST['out_price'];
@@ -579,7 +815,6 @@ elseif($_REQUEST['act'] == 'outorder') {
 
         $sale_pro=$saleprice/$outprice;
 
-        $year='2018';
         $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
         foreach ($goods_row2 as $gdkey => $gdval){
             for($gi=1;$gi<=$gdval['goods_number'];$gi++){
@@ -652,7 +887,7 @@ elseif($_REQUEST['act'] == 'outorder') {
             }
         }
         $ceil_order_num=$first_goods_num;
-        $row = order_add($sale_data, $mouth,$batch_number,$ceil_order_num);
+        $row = order_add($sale_data,$year, $mouth,$batch_number,$ceil_order_num);
 
 
         var_dump(date("H:i:s", time() + 8 * 3600));
@@ -664,9 +899,9 @@ elseif($_REQUEST['act'] == 'outorder') {
 }
 elseif($_REQUEST['act'] =='upordernext'){
 
+    $year=$_POST['year'];
     $mouth = $_POST['mouth'];
-    $year='2018';
-    $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+    $days=$_POST['days'];
 
     $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
     $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
@@ -677,8 +912,8 @@ elseif($_REQUEST['act'] =='upordernext'){
         $order_sql="SELECT order_id,order_sn FROM ".$GLOBALS['ecs']->table('order_info')." WHERE add_time<=".$limit_max_time." AND add_time>=".$limit_min_time;
         $update_data=$GLOBALS['db']->getAll($order_sql);
 
-        foreach($update_data as $key=>$val) {
-            $order_sn_arr[] = $val['order_sn'];
+        foreach($update_data as $ukey=>$uval) {
+            $order_sn_arr[] = $uval['order_sn'];
         }
         $rec_id_sql = "SELECT rec_id,order_sn,goods_id FROM " . $GLOBALS['ecs']->table('order_goods') . " WHERE order_sn IN (".implode(",", $order_sn_arr).")";
         $rec_id_row = $GLOBALS['db']->getALL($rec_id_sql);
@@ -697,6 +932,7 @@ elseif($_REQUEST['act'] =='upordernext'){
                 $logs_id_arr[] = $logs_id_row[$key]['id'];
             }
         }
+
        //更改order_info下的order_id
         $up_og_sql="UPDATE  ".$GLOBALS['ecs']->table('order_goods')." SET  order_id= CASE rec_id";
         foreach($update_data as $key2=>$val2) {
@@ -750,51 +986,200 @@ elseif($_REQUEST['act'] =='upordernext'){
 }
 elseif($_REQUEST['act'] =='paipaiact'){
 
-    $cat_sql = "SELECT cat_id,cat_name FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=0 AND is_show=1";
-    $cat_row = $GLOBALS['db']->getAll($cat_sql);
-    $smarty->assign('cat_row', $cat_row);
-
     $mouth = $_POST['mouth'];
     $days = $_POST['days'];
     $out_price = $_POST['out_price'];
-    $cat_id=$_POST['cat_id'];
+    $goods_number=$_POST['goods_number'];
     $year='2019';
-    $total_days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
 
-    $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
-    $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
+    $min_time=$year.'-'.$mouth.'-'.$days.' 07:00:00';
+    $max_time=$year.'-'.$mouth.'-'.$days.' 22:00:00';
     $limit_min_time=strtotime($min_time);
     $limit_max_time=strtotime($max_time);
     var_dump(date("H:i:s", time() + 8 * 3600));
-    if($mouth && $days && $out_price){
-        $cat_one_sql="SELECT cat_id,cat_name FROM ".$GLOBALS['ecs']->table('category')." WHERE parent_id=" . $cat_id." AND is_show=1 ";
-        $cat_one_row=$GLOBALS['db']->getRow($cat_one_sql);
-        if(!$cat_one_row){
-            var_dump("输入的类别错误"); exit;
+    if($mouth && $days && $out_price && $goods_number){
+
+        $num=explode(";",$goods_number);
+
+        for($i=0;$i<count($num);$i++){
+            $num2[]=explode(",",$num[$i]);
         }
 
-        $cat2_sql = "SELECT cat_id,cat_name,parent_id FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id . " AND is_show=1 ";
-        $cat2_row = $GLOBALS['db']->getAll($cat2_sql);
-        foreach ($cat2_row as $key => $catval) {
-            $goods_sql2 = "SELECT goods_id,cat_id,goods_number,cost_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
-            $goods_row[] = $GLOBALS['db']->getAll($goods_sql2);
-        }
+        for($t=0;$t<count($num2);$t++){
+            $goods_sql=" SELECT goods_id FROM ".$GLOBALS['ecs']->table('goods')." WHERE suppliers_id=".$num2[$t][0];
+            $goods_row=$GLOBALS['db']->getAll($goods_sql);
 
-        for ($i = 0; $i < count($goods_row); $i++) {
-            $new_goods = $goods_row[$i];
-            for ($y = 0; $y < count($new_goods); $y++) {
-                $new2_goods[] = $new_goods[$y];
-                $goods_id_arr[]=$new_goods[$y]['goods_id'];
+            if(count($goods_row)<$num2[$t][1]){
+                for($g=0;$g<count($goods_row);$g++){
+                    $goods_id_row1[]=$goods_row[$g]['goods_id'];
+                }
+            }else{
+                for($g=0;$g<count($goods_row);$g++){
+                    $goods_id_row2[]=$goods_row[$g]['goods_id'];
+                    $number=$num2[$t][1];
+                }
+                $goods_id_row4=array_rand($goods_id_row2,$number);
+                foreach ($goods_id_row4 as $val2) {
+                    $goods_id_row5[]=$goods_id_row2[$val2];
+                }
             }
         }
+        if($goods_id_row5){
+            $goods_id_row=array_merge($goods_id_row1,$goods_id_row5);
+        }else{
+            $goods_id_row=$goods_id_row1;
+        }
 
-        $ppj_goods_id_row=array_values(array_unique($goods_id_arr));
 
-        $paipai_sql = "SELECT ppj_id,ppj_no,goods_id FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE  start_time>=" . $limit_min_time . " AND end_time<=" . $limit_max_time." AND goods_id IN (".implode(",", $ppj_goods_id_row).")";
-        $paipai_row = $GLOBALS['db']->getAll($paipai_sql);
+        //活动添加
+        $goods_sql2=" SELECT goods_id,goods_name,cost_price,goods_sn,market_price,shop_price,goods_number FROM ".$GLOBALS['ecs']->table('goods')." WHERE goods_id in(".implode(",", $goods_id_row).")";
+        $goods_data=$GLOBALS['db']->getAll($goods_sql2);
+        $ppj_add_sql="INSERT INTO ".$GLOBALS['ecs']->table('paipai_list')."(ppj_name,goods_id,ppj_no,goods_count,ppj_start_fee,ppj_buy_fee,start_time,end_time,ppj_margin_fee,ppj_startpay_time,ppj_endpay_time,ppj_createtime,goods_name,is_hot,is_new,review_status,ext_info,user_id,ppj_staus) VALUES";
+        foreach($goods_data as $key=>$val){
+            //最近一期商品的拍拍活动
+            $act_sql="SELECT ppj_no FROM ".$GLOBALS['ecs']->table('paipai_list')." WHERE goods_id=".$val['goods_id']." ORDER BY ppj_id DESC";
+            $ppj_goods=$GLOBALS['db']->getRow($act_sql);
 
+            $ppj_no=$ppj_goods['ppj_no']+1;
 
+            $goods_count='300';
+            $ppj_margin_fee="0.00";
 
+            if($val['shop_price'] <=100){
+                $part='5';
+            }elseif($val['shop_price'] >100 && $val['shop_price'] <300){
+                $part='8';
+            }elseif($val['shop_price'] >=300 && $val['shop_price'] <500){
+                $part='11';
+            }else{
+                $part='15';
+            }
+            $ppj_buy_fee=$val['cost_price']+($val['cost_price']*0.25);
+            $price_part=floor($val['shop_price']*0.7/$part);
+            $ceil_amount=floor($goods_count/$part);
+            for($ei=1;$ei<$part;$ei++){
+                $price_ladder[$ei]=array(
+                    'amount'=>$ei==1?'1':$ceil_amount*($ei-1),
+                    'price'=>$ppj_buy_fee+($price_part*($ei-1))
+                );
+            }
+            $price_ladder_arr[]=array(
+                'goods_id'=>$val['goods_id'],
+                'part'=>$part,
+                'goods_name'=>$val['goods_name'],
+                'price_ladder'=>$price_ladder,
+                'cost_price'=>$val['cost_price'],
+                'shop_price'=>$val['shop_price'],
+                'goods_sn'=>$val['goods_sn'],
+                'market_price'=>$val['market_price'],
+                'goods_number'=>$val['goods_number'],
+            );
+            $ext_info=serialize(array('price_ladder' => $price_ladder, 'restrict_amount' => $goods_count));
+            $ppj_start_fee='0.00';
+            $shop_price_total+=$val['shop_price'];
+
+            $ppj_add_sql.="('".$val['goods_name']."','".$val['goods_id']."','".$ppj_no."','".$goods_count."','".$ppj_start_fee."','".$ppj_buy_fee."','".$limit_min_time."','".$limit_max_time."','".$ppj_margin_fee."',".'20'.",".'20'.",'".$limit_min_time."','".$val['goods_name']."',".'0'.",".'0'.",".'3'.",'".$ext_info."',".'0'.",".'2'."),";
+        }
+//        var_dump('销售成本'.$shop_price_total);
+        $first_price_yu=$out_price%$shop_price_total;
+//        var_dump('余'.$first_price_yu);
+        $first_goods_num=($out_price-$first_price_yu)/$shop_price_total;
+//        var_dump('单'.round($first_goods_num));
+
+        foreach ($price_ladder_arr as $key => $val) {
+            $price_ladder_arr[$key]['goods_number']=round($first_goods_num);
+        }
+        for ($t = 0; $t < count($price_ladder_arr); $t++) {
+            $first_price_yu-=$price_ladder_arr[$t]['shop_price'];
+            if($first_price_yu > $price_ladder_arr[$t]['shop_price']){
+                $goods_id[]=$price_ladder_arr[$t]['goods_id'];
+            }
+        }
+        foreach($price_ladder_arr as $grkey=>$grval){
+            if($grval['goods_id'] == $goods_id[$grkey]){
+                $price_ladder_arr[$grkey]['cut_goods_number']=$grval['goods_number']+1;
+            }
+        }
+        $ppj_add_sql = substr( $ppj_add_sql,0, strlen($ppj_add_sql)-1 );
+        $res=$GLOBALS['db']->query($ppj_add_sql);
+        $res=1;
+        if($res) {
+            foreach ($price_ladder_arr as $gdkey => $gdval) {
+
+                for ($gi = 1; $gi <= $gdval['cut_goods_number']; $gi++) {
+                    $num=round($gdval['cut_goods_number']/count($gdval['price_ladder']));
+                    if($gi >=1 && $gi<= $num){
+                        $price=$gdval['price_ladder'][1]['price'];
+                    }elseif($gi >$num && $gi<= $num*2){
+                        $price=$gdval['price_ladder'][2]['price'];
+                    }elseif($gi >$num*2 && $gi<= $num*3){
+                        $price=$gdval['price_ladder'][3]['price'];
+                    }elseif($gi >$num*3 && $gi<= $num*4){
+                        $price=$gdval['price_ladder'][4]['price'];
+                    }elseif($gi >$num*4 && $gi<= $num*5){
+                        $price=$gdval['price_ladder'][5]['price'];
+                    }elseif($gi >$num*6 && $gi<= $num*7){
+                        $price=$gdval['price_ladder'][7]['price'];
+                    }elseif($gi >$num*7&& $gi<= $num*8){
+                        $price=$gdval['price_ladder'][8]['price'];
+                    }elseif($gi >$num*8 && $gi<= $num*9){
+                        $price=$gdval['price_ladder'][9]['price'];
+                    }elseif($gi >$num*9 && $gi<= $num*10){
+                        $price=$gdval['price_ladder'][10]['price'];
+                    }elseif($gi >$num*10 && $gi<= $num*11){
+                        $price=$gdval['price_ladder'][11]['price'];
+                    }elseif($gi >$num*11 && $gi<= $num*12){
+                        $price=$gdval['price_ladder'][12]['price'];
+                    }elseif($gi >$num*12 && $gi<= $num*13){
+                        $price=$gdval['price_ladder'][13]['price'];
+                    }elseif($gi >$num*13){
+                        $price=$gdval['price_ladder'][14]['price'];
+                    }
+
+                    $order_date=ordertime($year,$mouth,$days);
+                    //买家
+                    $user_id = rand(40079, 861288);
+                    $u_sql = 'SELECT u.user_id,ua.consignee,ua.country,ua.province,ua.city,ua.district,ua.mobile FROM ' . $GLOBALS['ecs']->table('users') . ' AS u LEFT JOIN ' . $GLOBALS['ecs']->table('user_address') . 'AS ua ON u.user_id=ua.user_id  WHERE u.user_id=' . $user_id;
+                    $user_row = $GLOBALS['db']->getRow($u_sql);
+                    if (!$user_row['consignee']) {
+                        $user_id = 32527;
+                        $u_sql = 'SELECT u.user_id,ua.consignee,ua.country,ua.province,ua.city,ua.district,ua.mobile FROM ' . $GLOBALS['ecs']->table('users') . ' AS u LEFT JOIN ' . $GLOBALS['ecs']->table('user_address') . 'AS ua ON u.user_id=ua.user_id  WHERE u.user_id=' . $user_id;
+                        $user_row = $GLOBALS['db']->getRow($u_sql);
+                    }
+                    $order_sn=$year.$mouth.$days.str_pad(mt_rand(1, 999999999), 9, '0', STR_PAD_LEFT);
+                    $sale_data[] = array(
+                        'order_sn'=>$order_sn,
+                        'goods_id' => $gdval['goods_id'],
+                        'goods_sn' => $gdval['goods_sn'],
+                        'user_id' => $user_row['user_id'],
+                        'consignee' => $user_row['consignee'],
+                        'country' => $user_row['country'],
+                        'province' => $user_row['province'],
+                        'city' => $user_row['city'],
+                        'district' => $user_row['district'],
+                        'mobile' => $user_row['mobile'],
+                        'goods_name' => $gdval['goods_name'],
+                        'market_price' => $gdval['market_price'],
+                        'shop_price' => $gdval['shop_price'],
+                        'add_time' => $order_date['add_time'],
+                        'pay_time' => $order_date['pay_time'],
+                        'confirm_time' => $order_date['confirm_time'],
+                        'shipping_time' => $order_date['shipping_time'],
+                        'take_time' => $order_date['take_time'],
+                        'goods_number'=>$gdval['goods_number']-$gdval['cut_goods_number'],
+                        'sale_one_price' =>$price,
+                        'cut_goods_num'=>$gdval['cut_goods_number']
+                    );
+                }
+            }
+            $row=paipai_order($sale_data);
+            if($row){
+                var_dump('成功');
+                var_dump(date("H:i:s", time() + 8 * 3600));
+            }else{
+                var_dump('失败');
+            }
+        }
     }else{
         var_dump("输入有效数据");
     }
@@ -821,9 +1206,111 @@ elseif($_REQUEST['act'] =='uptime'){
         }
         $GLOBALS['db']->query('commit');
 
-
     }else{
         var_dump("输入有效数据");
     }
     $smarty->display('paipai_part_uptime.dwt');
+}
+elseif($_REQUEST['act'] =='paipaiauto'){
+
+//    $year='2019';
+//    $mouth = $_POST['mouth'];
+//    $days = $_POST['days'];
+//
+//    $min_time=$year.'-'.$mouth.'-'.$days.' 00:00:00';
+//    $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
+//    $limit_min_time=strtotime($min_time);
+//    $limit_max_time=strtotime($max_time);
+//    var_dump(date("H:i:s", time() + 8 * 3600));
+//    if($mouth && $days){
+//        $ppj_sql="SELECT ppj_id,ppj_no,goods_id,goods_count,ppj_buy_fee,ppj_now_fee,ext_info FROM ".$GLOBALS['ecs']->table('paipai_list')." WHERE end_time<=".$limit_max_time." AND start_time>=".$limit_min_time;
+//        $ppj_data=$GLOBALS['db']->getAll($ppj_sql);
+//        if(!$ppj_data){
+//            var_dump('暂无拍拍活动'); exit;
+//        }
+//        foreach($ppj_data as $key=>$val){
+//            $ppj_id_arr[]=$val['ppj_id'];
+//            $ppj_no_arr[]=$val['ppj_no'];
+//            $ppj_buy_fee_arr[]=$val['ppj_buy_fee'];
+//            $ppj_goods_id_arr[]=$val['goods_id'];
+//            $ppj_ext_info_arr[]=$val['ext_info'];
+//            $ppj_goods_count[]=$val['goods_count'];
+//        }
+//        $one_num=rand(3,5);
+//        for($i=0;$i<$one_num;$i++){
+//            $ppj_one_id=rand(0,count($ppj_id_arr)-1);
+//            $user_id=rand(40079,861288);
+//            $user_arr[]=$user_id;
+//            $ppj_row[]=array(
+//                'ppj_id'=>$ppj_id_arr[$ppj_one_id],
+//                'ppj_no'=>$ppj_no_arr[$ppj_one_id],
+//                'buy_fee'=>$ppj_buy_fee_arr[$ppj_one_id],
+//                'user_id'=>$user_id,
+//                'goods_id'=>$ppj_goods_id_arr[$ppj_one_id],
+//                'goods_count'=>$ppj_goods_count[$ppj_one_id],
+//                'ext_info'=>unserialize($ppj_ext_info_arr[$ppj_one_id])
+//            );
+//        }
+//        $row=ppj_auto($ppj_row,$year,$mouth,$days);
+//        if($row){
+//            var_dump("执行成功");
+//            var_dump(date("H:i:s", time() + 8 * 3600));
+//        }
+//
+//    }
+
+    $smarty->display('paipai_part_paiauto.dwt');
+}
+elseif($_REQUEST['act'] =='paipai'){
+
+    $year='2019';
+    $mouth = '3';
+    $days = '22';
+//    $mouth = $_POST['mouth'];
+//    $days = $_POST['days'];
+
+    $min_time=$year.'-'.$mouth.'-'.$days.' 00:00:00';
+    $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
+    $limit_min_time=strtotime($min_time);
+    $limit_max_time=strtotime($max_time);
+
+    if($mouth && $days){
+
+        $ppj_sql="SELECT ppj_id,ppj_no, FROM ".$GLOBALS['ecs']->table('paipai_list')." WHERE end_time=<".$limit_max_time." AND start_time>=".$limit_min_time;
+        $ppj_data=$GLOBALS['db']->getAll($ppj_sql);
+
+        $ppj_sql="SELECT ppj_id,ppj_no,goods_id,goods_count,ppj_buy_fee,ppj_now_fee,ext_info FROM ".$GLOBALS['ecs']->table('paipai_list')." WHERE end_time<=".$limit_max_time." AND start_time>=".$limit_min_time;
+        $ppj_data=$GLOBALS['db']->getAll($ppj_sql);
+        if(!$ppj_data){
+            exit(json_encode(array('row'=>'拍拍活动为空')));
+        }
+        foreach($ppj_data as $key=>$val){
+            $ppj_id_arr[]=$val['ppj_id'];
+            $ppj_no_arr[]=$val['ppj_no'];
+            $ppj_buy_fee_arr[]=$val['ppj_buy_fee'];
+            $ppj_goods_id_arr[]=$val['goods_id'];
+            $ppj_ext_info_arr[]=$val['ext_info'];
+            $ppj_goods_count[]=$val['goods_count'];
+        }
+        $one_num=rand(3,5);
+        for($i=0;$i<$one_num;$i++){
+            $ppj_one_id=rand(0,count($ppj_id_arr)-1);
+            $user_id=rand(40079,861288);
+            $user_arr[]=$user_id;
+            $ppj_row[]=array(
+                'ppj_id'=>$ppj_id_arr[$ppj_one_id],
+                'ppj_no'=>$ppj_no_arr[$ppj_one_id],
+                'buy_fee'=>$ppj_buy_fee_arr[$ppj_one_id],
+                'user_id'=>$user_id,
+                'goods_id'=>$ppj_goods_id_arr[$ppj_one_id],
+                'goods_count'=>$ppj_goods_count[$ppj_one_id],
+                'ext_info'=>unserialize($ppj_ext_info_arr[$ppj_one_id])
+            );
+        }
+        $row=ppj_auto($ppj_row,$year,$mouth,$days);
+  //      exit(json_encode(array('row'=>$one_num)));
+    }else{
+        exit(json_encode(array('row'=>'nonono')));
+    }
+
 }

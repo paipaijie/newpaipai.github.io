@@ -28,7 +28,7 @@
 
 						<div class="mian-info">
 
-							<form method="post" action="paipai_part.php?act=upordernext" name="theForm" id="group_buy_form">
+					<!--	    <form method="post" action="paipai_part.php?act=paipaiauto" name="theForm" id="group_buy_form">    -->
 
 								<div class="switch_info">
 
@@ -36,32 +36,21 @@
                                     <div class="items">
 
                                         <div class="item">
-                                            <div class="label">年</div>
+                                            <div class="label">2019年月</div>
                                             <div class="label_value">
-                                                <input type="text" name="year"  class="text" autocomplete="off" />
-                                                <div class="notic">年为单位</div>
-                                                <div class="form_prompt"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="item">
-                                            <div class="label">月</div>
-                                            <div class="label_value">
-                                                <input type="text" name="mouth"  class="text" autocomplete="off" />
+                                                <input type="text" name="mouth" id="mouth" class="text" autocomplete="off" />
                                                 <div class="notic">月为单位</div>
                                                 <div class="form_prompt"></div>
                                             </div>
                                         </div>
                                         <div class="item">
-                                            <div class="label">日</div>
+                                            <div class="label">2019年日</div>
                                             <div class="label_value">
-                                                <input type="text" name="days"  class="text" autocomplete="off" />
+                                                <input type="text" name="days" id="days" class="text" autocomplete="off" />
                                                 <div class="notic">日为单位</div>
                                                 <div class="form_prompt"></div>
                                             </div>
                                         </div>
-
-
 
                                         <div class="item">
                                             <div class="label">&nbsp;</div>
@@ -81,14 +70,27 @@
 
 								</div>
 
-							</form>
+						 <!--	</form>  -->
 
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>	
-	
+	<script type="text/javascript">
+       function reloadView(){
+            $.ajax({
+                url:'paipai_part.php?act=paipai',
+                type:'POST',
+                       data: {mouth:$("#mouth").val(), days:$("#days").val()},
+                       dataType: "json",
+                success:function(result){
+                          console.log(result.row);
+                       }
+                  })
+       }
+       setInterval('reloadView()',10000);
+	</script>
 	</body>
 
 </html>
