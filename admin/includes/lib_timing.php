@@ -16,11 +16,13 @@
 //         0表示未开始，1表示已开始，2表示已结束
 //			*/
 function paipai_active_update(){
-      $ntime=time()-8*3600;
+      $ntime=time()+8*3600;
+
       $sql="SELECT ppj_id,start_time,end_time,ppj_staus,is_finished,ppj_status_end_time FROM ".$GLOBALS['ecs']->table('paipai_list')." WHERE ppj_staus!=2";
       $res=$GLOBALS['db']->getAll($sql);
 
       foreach($res as $key=>$val){
+  
           //ppj_staus为0时无法结束活动 为1时结束活动操作退款并更改为2
           if($val['ppj_staus']==0){
               if($val['end_time']<$ntime){    // ppj_staus 改为1
