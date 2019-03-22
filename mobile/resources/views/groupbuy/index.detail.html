@@ -20,7 +20,7 @@
 <div id="loading"><img src="{elixir('img/loading.gif')}" /></div>
 <div id="fanhui" class="text-all dis-box j-text-all text-all-back" style="position:fixed;z-index:999;background:#f3f3f3;">
 	<a class="a-icon-back" href="javascript:history.go(-1) "><i class="iconfont icon-back"></i>
-		<span style="margin-left:2rem;padding-top:1.1rem;">
+		<span style="margin-left:2rem;padding-top:0.5rem;padding-bottom: 0.2rem; font-size: 16px">
 			&nbsp;&nbsp;返回
 		</span>
 	</a>
@@ -83,7 +83,7 @@
 										<p class=" dis-box g-p-tthree m-top06">
 											<!--<span class="box-flex text-left">销量 {$pm_data.count}</span>-->
 											<span class="box-flex text-left">销量 {$group_buy.cur_amount}</span>
-											<span class="box-flex text-center">数量{$goods.goods_number}</span>
+											<span class="box-flex text-center">数量 {$group_buy.restrict_amount}</span>
 										</p>
 										
 									</section>
@@ -413,7 +413,7 @@
 		<input class="box-flex" type="text" value=""  name="sellers_fee" id="sellers_fee" />									
 									</div>
 									
-									<h4 class="t-remark">抢购不成功，保证金原路退回</h4>
+									<!--<h4 class="t-remark">抢购不成功，保证金原路退回</h4>-->
 									
 									
 								</div>
@@ -426,11 +426,12 @@
 							<input type="hidden" value="{$user_id}" id="user_id" name="user_id">
 							<input type="hidden" value="{$area_id}" id="area_id" name="area_id">
 							<input type="hidden" value="{$group_buy_id}" id="group_buy_id" name="group_buy_id">
-							{if $goods.is_end == 2 || $goods.is_end == 0}
-							<a class="btn-disab box-flex quehuo" href="javascript:void(0);"style="display:none">团购结束</a>
+							{if $goods.is_end == 2}
+							<a class="btn-disab box-flex quehuo" href="javascript:void(0);">团购结束</a>
+							{elseif $goods.is_end == 1}
+							<button id="zhifu" type="sumbit" class="btn-submit box-flex add-to-cart">支付保证金</button>
 							{else}
-							<button id="zhifu" type="sumbit" class="btn-submit box-flex add-to-cart" style="display:block">支付保证金</button>
-
+							<a class="btn-disab box-flex quehuo" href="javascript:void(0);">团购未开始</a>
 							{/if}
 						</section>
 					</div>

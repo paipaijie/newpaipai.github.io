@@ -587,7 +587,7 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 		else {
 			$default_sort_order_type = 'ppj_id';
 		}
-		
+
 			if (IS_AJAX) {
 			
 			$this->sort = isset($_REQUEST['sort']) && in_array(trim(strtolower($_REQUEST['sort'])), array('ppj_id', 'start_time', 'sales_volume', 'comments_number')) ? trim($_REQUEST['sort']) : $default_sort_order_type;
@@ -609,10 +609,8 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 
 			$gb_list = paipai_buy_list($this->size, $page, $keywords, $this->sort, $this->order);
 			
-			// var_dump($gb_list);
-			
 			exit(json_encode(array('gb_list' => $gb_list, 'totalPage' => ceil($count / $this->size))));
-					
+
 		}
 
 		$seo = get_seo_words('group');
@@ -681,7 +679,7 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 		$goods = goods_info($this->goods_id, $this->region_id, $this->area_id, $this->area_city);
 
 
-		$now = time();
+		$now = time()+8*3600;
 		if($group_buy['end_date'] > $now && $group_buy['start_date'] < $now){
 			$goods['is_end'] = 1;
 		}else if($group_buy['start_date'] > $now){
