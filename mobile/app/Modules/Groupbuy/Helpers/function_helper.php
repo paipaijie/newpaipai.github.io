@@ -99,7 +99,7 @@ function paipai_buy_list($size, $page, $keywords, $sort, $order)
 		$val['cur_amount'] = $cur_amount;
 		
 		
-		$val['goods_thumb'] = get_image_path($val['goods_thumb']);
+		$val['goods_thumb'] =get_image_path($val['goods_thumb']);
 		
 		$val['url'] = build_uri('groupbuy', array('gbid' => $val['group_buy_id']));
 		
@@ -254,13 +254,11 @@ function paipai_buy_add_list($size, $page, $keywords, $sort, $order)
 function groupbuydate($time = NULL)
 {
 	$text = '';
-	$t = $time - gmtime();
-
+	$t = $time - (time()+8*3600);
 	if ($t <= 0) {
 		return 1;
 	}
-
-	$y = date('Y', $time) - date('Y', gmtime());
+	$y = date('Y', $time) - date('Y', (time()+8*3600));
 
 	switch ($t) {
 	case $t == 0:
