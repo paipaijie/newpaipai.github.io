@@ -1587,7 +1587,7 @@ function paipai_buy_stat($group_buy_id, $ppj_no,$deposit)
 
 function group_buy_status($group_buy)
 {
-	$now = gmtime();
+	$now = time()+8*3600;
 
 	if ($group_buy['is_finished'] == 0) {
 		if ($now < $group_buy['start_time']) {

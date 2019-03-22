@@ -22,7 +22,7 @@ function paipai_active_update(){
       $res=$GLOBALS['db']->getAll($sql);
 
       foreach($res as $key=>$val){
-  
+
           //ppj_staus为0时无法结束活动 为1时结束活动操作退款并更改为2
           if($val['ppj_staus']==0){
               if($val['end_time']<$ntime){    // ppj_staus 改为1
