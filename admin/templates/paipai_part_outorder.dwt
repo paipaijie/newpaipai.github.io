@@ -45,7 +45,7 @@
                                         </div>
 
                                         <div class="item">
-                                            <div class="label">2018年月份</div>
+                                            <div class="label">年月份</div>
                                             <div class="label_value">
                                                 <input type="text" name="mouth"  class="text" autocomplete="off" />
                                                 <div class="notic">月为单位</div>

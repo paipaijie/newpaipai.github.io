@@ -36,7 +36,7 @@
 									<div class="items">
 
 									    <div class="item">
-                                            <div class="label">2018年月份</div>
+                                            <div class="label">2019年月份</div>
                                             <div class="label_value">
                                                 <input type="text" name="mouth"  class="text" autocomplete="off" />
                                                 <div class="notic">月为单位</div>
@@ -45,7 +45,7 @@
                                         </div>
 
                                         <div class="item">
-                                            <div class="label">2018年月日</div>
+                                            <div class="label">2019年月日</div>
                                             <div class="label_value">
                                                 <input type="text" name="days"  class="text" autocomplete="off" />
                                                 <div class="notic">日为单位</div>

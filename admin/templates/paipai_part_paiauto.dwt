@@ -28,7 +28,7 @@
 
 						<div class="mian-info">
 
-					<!--	    <form method="post" action="paipai_part.php?act=paipaiauto" name="theForm" id="group_buy_form">    -->
+						    <form method="post" action="paipai_part.php?act=paipaiauto" name="theForm" id="group_buy_form">
 
 								<div class="switch_info">
 
@@ -70,27 +70,14 @@
 
 								</div>
 
-						 <!--	</form>  -->
+						</form>
 
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>	
-	<script type="text/javascript">
-       function reloadView(){
-            $.ajax({
-                url:'paipai_part.php?act=paipai',
-                type:'POST',
-                       data: {mouth:$("#mouth").val(), days:$("#days").val()},
-                       dataType: "json",
-                success:function(result){
-                          console.log(result.row);
-                       }
-                  })
-       }
-       setInterval('reloadView()',10000);
-	</script>
+
 	</body>
 
 </html>

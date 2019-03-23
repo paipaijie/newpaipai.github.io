@@ -641,7 +641,7 @@ elseif($_REQUEST['act'] == 'order'){
     $cat_id=$_POST['cat_id'];
 
 
-    $year=2018;
+    $year=2019;
     $order_time=$year.'-'.$mouth.'-'.$days;
     $S=rand(8,18);//随机--时
     $F=rand(0,59);//随机--分
@@ -1213,51 +1213,53 @@ elseif($_REQUEST['act'] =='uptime'){
 }
 elseif($_REQUEST['act'] =='paipaiauto'){
 
-//    $year='2019';
-//    $mouth = $_POST['mouth'];
-//    $days = $_POST['days'];
-//
-//    $min_time=$year.'-'.$mouth.'-'.$days.' 00:00:00';
-//    $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
-//    $limit_min_time=strtotime($min_time);
-//    $limit_max_time=strtotime($max_time);
-//    var_dump(date("H:i:s", time() + 8 * 3600));
-//    if($mouth && $days){
-//        $ppj_sql="SELECT ppj_id,ppj_no,goods_id,goods_count,ppj_buy_fee,ppj_now_fee,ext_info FROM ".$GLOBALS['ecs']->table('paipai_list')." WHERE end_time<=".$limit_max_time." AND start_time>=".$limit_min_time;
-//        $ppj_data=$GLOBALS['db']->getAll($ppj_sql);
-//        if(!$ppj_data){
-//            var_dump('暂无拍拍活动'); exit;
-//        }
-//        foreach($ppj_data as $key=>$val){
-//            $ppj_id_arr[]=$val['ppj_id'];
-//            $ppj_no_arr[]=$val['ppj_no'];
-//            $ppj_buy_fee_arr[]=$val['ppj_buy_fee'];
-//            $ppj_goods_id_arr[]=$val['goods_id'];
-//            $ppj_ext_info_arr[]=$val['ext_info'];
-//            $ppj_goods_count[]=$val['goods_count'];
-//        }
-//        $one_num=rand(3,5);
-//        for($i=0;$i<$one_num;$i++){
-//            $ppj_one_id=rand(0,count($ppj_id_arr)-1);
-//            $user_id=rand(40079,861288);
-//            $user_arr[]=$user_id;
-//            $ppj_row[]=array(
-//                'ppj_id'=>$ppj_id_arr[$ppj_one_id],
-//                'ppj_no'=>$ppj_no_arr[$ppj_one_id],
-//                'buy_fee'=>$ppj_buy_fee_arr[$ppj_one_id],
-//                'user_id'=>$user_id,
-//                'goods_id'=>$ppj_goods_id_arr[$ppj_one_id],
-//                'goods_count'=>$ppj_goods_count[$ppj_one_id],
-//                'ext_info'=>unserialize($ppj_ext_info_arr[$ppj_one_id])
-//            );
-//        }
-//        $row=ppj_auto($ppj_row,$year,$mouth,$days);
-//        if($row){
-//            var_dump("执行成功");
-//            var_dump(date("H:i:s", time() + 8 * 3600));
-//        }
-//
-//    }
+    $year='2019';
+    $mouth = $_POST['mouth'];
+    $days = $_POST['days'];
+
+    $min_time=$year.'-'.$mouth.'-'.$days.' 00:00:00';
+    $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
+    $limit_min_time=strtotime($min_time);
+    $limit_max_time=strtotime($max_time);
+    var_dump(date("H:i:s", time() + 8 * 3600));
+    if($mouth && $days){
+        $ppj_sql="SELECT ppj_id,ppj_no,goods_id,goods_count,ppj_buy_fee,ppj_now_fee,ext_info FROM ".$GLOBALS['ecs']->table('paipai_list')." WHERE end_time<=".$limit_max_time." AND start_time>=".$limit_min_time;
+        $ppj_data=$GLOBALS['db']->getAll($ppj_sql);
+        if(!$ppj_data){
+            var_dump('暂无拍拍活动'); exit;
+        }
+        foreach($ppj_data as $key=>$val){
+            $ppj_id_arr[]=$val['ppj_id'];
+            $ppj_no_arr[]=$val['ppj_no'];
+            $ppj_buy_fee_arr[]=$val['ppj_buy_fee'];
+            $ppj_goods_id_arr[]=$val['goods_id'];
+            $ppj_ext_info_arr[]=$val['ext_info'];
+            $ppj_goods_count[]=$val['goods_count'];
+        }
+        $one_num=rand(3,5);
+        for($i=0;$i<$one_num;$i++){
+            $ppj_one_id=rand(0,count($ppj_id_arr)-1);
+            $user_id=rand(40079,861288);
+            $user_arr[]=$user_id;
+            $ppj_row[]=array(
+                'ppj_id'=>$ppj_id_arr[$ppj_one_id],
+                'ppj_no'=>$ppj_no_arr[$ppj_one_id],
+                'buy_fee'=>$ppj_buy_fee_arr[$ppj_one_id],
+                'user_id'=>$user_id,
+                'goods_id'=>$ppj_goods_id_arr[$ppj_one_id],
+                'goods_count'=>$ppj_goods_count[$ppj_one_id],
+                'ext_info'=>unserialize($ppj_ext_info_arr[$ppj_one_id])
+            );
+        }
+        $row=ppj_auto($ppj_row,$year,$mouth,$days);
+        if($row){
+            var_dump("执行成功");
+            var_dump(date("H:i:s", time() + 8 * 3600));
+        }
+
+    }else{
+        var_dump("填写有效数据");
+    }
 
     $smarty->display('paipai_part_paiauto.dwt');
 }

@@ -1070,12 +1070,14 @@ else {
 					}
 				}
 			}
-			if ($goods_id_row5) {
-				$goods_id_row = array_merge($goods_id_row1, $goods_id_row5);
-			} else {
-				$goods_id_row = $goods_id_row1;
-			}
 
+			if ($goods_id_row5 && $goods_id_row1) {
+				$goods_id_row = array_merge($goods_id_row1, $goods_id_row5);
+			} else if($goods_id_row1){
+				$goods_id_row = $goods_id_row1;
+			}else{
+				$goods_id_row = $goods_id_row5;
+			}
 
 			//活动添加
 			$goods_sql2 = " SELECT goods_id,goods_name,cost_price,goods_sn,market_price,shop_price,goods_number FROM " . $GLOBALS['ecs']->table('goods') . " WHERE goods_id in(" . implode(",", $goods_id_row) . ")";
@@ -1104,7 +1106,7 @@ else {
 				$ceil_amount = floor($limit_number / $part);
 				for ($ei = 1; $ei < $part; $ei++) {
 					$price_ladder[$ei] = array(
-						'amount' => $ei == 1 ? '1' : $ceil_amount * ($ei - 1),
+						'amount' => $ei == 1 ? '2' : $ceil_amount * ($ei - 1),
 						'price' => $ppj_buy_fee + ($price_part * ($ei - 1))
 					);
 				}
