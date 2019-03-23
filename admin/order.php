@@ -1772,10 +1772,40 @@ function download_orderlist($result)
 
 	$data = i($GLOBALS['_LANG']['download_orderlist_notic'] . "\n");
 	$count = count($result);
-
+//	for ($i = 0; $i < $count; $i++) {
+//		$order_sn = i('#' . $result[$i]['order_sn']);
+//		$order_user = i($result[$i]['buyer']);
+//		$order_time = i($result[$i]['short_order_time']);
+//		$consignee = i($result[$i]['consignee']);
+//		$tel = !empty($result[$i]['mobile']) ? i($result[$i]['mobile']) : i($result[$i]['tel']);
+//		$address = i(addslashes(str_replace(',', '，', '[' . $result[$i]['region'] . '] ' . $result[$i]['address'])));
+//		$order_amount = i($result[$i]['order_amount']);
+//		$goods_amount = i($result[$i]['goods_amount']);
+//		$shipping_fee = i($result[$i]['old_shipping_fee']);
+//		$insure_fee = i($result[$i]['insure_fee']);
+//		$pay_fee = i($result[$i]['pay_fee']);
+//		$surplus = i($result[$i]['surplus']);
+//		$money_paid = i($result[$i]['money_paid']);
+//		$integral_money = i($result[$i]['integral_money']);
+//		$bonus = i($result[$i]['bonus']);
+//		$tax = i($result[$i]['tax']);
+//		$discount = i($result[$i]['discount']);
+//		$coupons = i($result[$i]['coupons']);
+//		$value_card = i($result[$i]['value_card']);
+//		$order_status = i($GLOBALS['_LANG']['os'][$result[$i]['order_status']]);
+//		$seller_name = i($result[$i]['user_name']);
+//		$pay_status = i($GLOBALS['_LANG']['ps'][$result[$i]['pay_status']]);
+//		$shipping_status = i($GLOBALS['_LANG']['ss'][$result[$i]['shipping_status']]);
+//		$froms = i($result[$i]['froms']);
+//		$pay_name = i($result[$i]['pay_name']);
+//		$total_fee = i($result[$i]['total_fee']);
+//		$total_fee_order = i($result[$i]['total_fee_order']);
+//		$data .= $order_sn . ',' . $seller_name . ',' . $order_user . ',' . $order_time . ',' . $consignee . ',' . $tel . ',' . $address . ',' . $goods_amount . ',' . $tax . ',' . $shipping_fee . ',' . $insure_fee . ',' . $pay_fee . ',' . $total_fee . ',' . $discount . ',' . $total_fee_order . ',' . $surplus . ',' . $integral_money . ',' . $bonus . ',' . $coupons . ',' . $value_card . ',' . $money_paid . ',' . $order_amount . ',' . $order_status . ',' . $pay_status . ',' . $shipping_status . ',' . $froms . ',' . $pay_name . "\n";
+//	}
 	for ($i = 0; $i < $count; $i++) {
 		$order_sn = i('#' . $result[$i]['order_sn']);
 		$order_user = i($result[$i]['buyer']);
+		$goods_name = i($result[$i]['goods_list'][0]['goods_name']);
 		$order_time = i($result[$i]['short_order_time']);
 		$consignee = i($result[$i]['consignee']);
 		$tel = !empty($result[$i]['mobile']) ? i($result[$i]['mobile']) : i($result[$i]['tel']);
@@ -1783,26 +1813,16 @@ function download_orderlist($result)
 		$order_amount = i($result[$i]['order_amount']);
 		$goods_amount = i($result[$i]['goods_amount']);
 		$shipping_fee = i($result[$i]['old_shipping_fee']);
-		$insure_fee = i($result[$i]['insure_fee']);
-		$pay_fee = i($result[$i]['pay_fee']);
-		$surplus = i($result[$i]['surplus']);
-		$money_paid = i($result[$i]['money_paid']);
-		$integral_money = i($result[$i]['integral_money']);
-		$bonus = i($result[$i]['bonus']);
-		$tax = i($result[$i]['tax']);
 		$discount = i($result[$i]['discount']);
-		$coupons = i($result[$i]['coupons']);
-		$value_card = i($result[$i]['value_card']);
 		$order_status = i($GLOBALS['_LANG']['os'][$result[$i]['order_status']]);
 		$seller_name = i($result[$i]['user_name']);
 		$pay_status = i($GLOBALS['_LANG']['ps'][$result[$i]['pay_status']]);
 		$shipping_status = i($GLOBALS['_LANG']['ss'][$result[$i]['shipping_status']]);
-		$froms = i($result[$i]['froms']);
-		$pay_name = i($result[$i]['pay_name']);
 		$total_fee = i($result[$i]['total_fee']);
 		$total_fee_order = i($result[$i]['total_fee_order']);
-		$data .= $order_sn . ',' . $seller_name . ',' . $order_user . ',' . $order_time . ',' . $consignee . ',' . $tel . ',' . $address . ',' . $goods_amount . ',' . $tax . ',' . $shipping_fee . ',' . $insure_fee . ',' . $pay_fee . ',' . $total_fee . ',' . $discount . ',' . $total_fee_order . ',' . $surplus . ',' . $integral_money . ',' . $bonus . ',' . $coupons . ',' . $value_card . ',' . $money_paid . ',' . $order_amount . ',' . $order_status . ',' . $pay_status . ',' . $shipping_status . ',' . $froms . ',' . $pay_name . "\n";
+		$data .= $order_sn . ',' . $seller_name . ','.$goods_name.',' . $order_user . ',' . $order_time . ',' . $consignee . ',' . $tel . ',' . $address . ',' . $goods_amount . ',' .  $shipping_fee . ',' . $total_fee . ',' . $discount . ',' . $total_fee_order . ',' . $order_amount . ',' . $order_status . ',' . $pay_status . ',' . $shipping_status . "\n";
 	}
+
 
 	return $data;
 }
@@ -2180,6 +2200,7 @@ else if ($_REQUEST['act'] == 'list') {
 	$serch_type = isset($_GET['serch_type']) ? $_GET['serch_type'] : -1;
 	$smarty->assign('serch_type', $serch_type);
 	$order_list = order_list();
+
 	$is_zc = !isset($_REQUEST['is_zc']) ? 0 : intval($_REQUEST['is_zc']);
 	$smarty->assign('order_list', $order_list['orders']);
 	$smarty->assign('is_zc', $is_zc);
