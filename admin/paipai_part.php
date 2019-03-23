@@ -299,7 +299,7 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
         $order_arr[]=$ppj_row[$order_one_id];
     }
 
-    $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,add_time,pay_time,ppj_id,ppj_no) VALUE ";
+    $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,add_time,pay_time,extension_code,extension_id,ppj_id,ppj_no) VALUE ";
     $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,goods_price,is_real,warehouse_id,area_id,ppj_no,order_sn) VALUES";
     $out_logs_sql = "INSERT INTO ".$GLOBALS['ecs']->table('goods_inventory_logs')."(goods_id,use_storage,admin_id,number,add_time,batch_number,order_sn) VALUES ";
 
@@ -319,7 +319,7 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
         $ordersn_arr[]=$order_sn;
         $order_arr[$okey]['order_sn']=$order_sn;
 
-        $oi_sql .= "('".$order_sn."','".$oval['user_id']."',".'1'.",".'2'.",".'2'.",'".$user_row['consignee']."','". $user_row['country']."','".$user_row['province']."','".$user_row['city']."','".$user_row['district']."','".$user_row['mobile']."',".'9'.",'".$pay_name."','".$price."','".$price."','".$price."','".$now_time."','".$now_time."','".$oval['ppj_id']."','".$oval['ppj_no']."'),";
+        $oi_sql .= "('".$order_sn."','".$oval['user_id']."',".'1'.",".'2'.",".'2'.",'".$user_row['consignee']."','". $user_row['country']."','".$user_row['province']."','".$user_row['city']."','".$user_row['district']."','".$user_row['mobile']."',".'9'.",'".$pay_name."','".$price."','".$price."','".$price."','".$now_time."','".$now_time."',".'paipai_buy'.",'".$oval['ppj_id']."','".$oval['ppj_id']."','".$oval['ppj_no']."'),";
         $og_sql.="('".$oval['user_id']."','".$oval['goods_id']."','".$goods_row['goods_name']."','".$order_sn."','".$goods_row['market_price']."','".$goods_row['shop_price']."',".'1'.",".'2'.",".'24'.",'".$oval['ppj_no']."','".$order_sn."'),";
         $out_logs_sql .= "( '".$oval['goods_id']."',".'8'.",".'59'.",".'-1'.",'".$now_time."','".$now_time."','".$order_sn."'),";
 
@@ -343,9 +343,9 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
         var_dump(订单添加失败); exit;
     }
 
-    $order_allid_sql = "SELECT order_id,order_sn FROM " . $GLOBALS['ecs']->table('order_info') . " WHERE order_sn IN (".implode(",", $ordersn_arr).")";
+    $order_allid_sql = "SELECT order_id,order_sn FROM " . $GLOBALS['ecs']->table('order_info') . " WHERE order_sn IN (".implode(",", $ordersn_arr).") ORDER BY order_id DESC ";
     $update_data=$GLOBALS['db']->getAll($order_allid_sql);
-    $rec_id_sql = "SELECT rec_id,order_sn,goods_id FROM " . $GLOBALS['ecs']->table('order_goods') . " WHERE order_sn IN (".implode(",", $ordersn_arr).")";
+    $rec_id_sql = "SELECT rec_id,order_sn,goods_id FROM " . $GLOBALS['ecs']->table('order_goods') . " WHERE order_sn IN (".implode(",", $ordersn_arr).") ORDER BY rec_id DESC ";
     $rec_id_row = $GLOBALS['db']->getALL($rec_id_sql);
     $logs_id_sql = "SELECT id,order_sn FROM " . $GLOBALS['ecs']->table('goods_inventory_logs') . " WHERE order_sn IN (".implode(",", $ordersn_arr).") ORDER BY id DESC ";
     $logs_id_row = $GLOBALS['db']->getALL($logs_id_sql);
