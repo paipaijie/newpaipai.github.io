@@ -321,7 +321,7 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
 
         $oi_sql .= "('".$order_sn."','".$oval['user_id']."',".'1'.",".'2'.",".'2'.",'".$user_row['consignee']."','". $user_row['country']."','".$user_row['province']."','".$user_row['city']."','".$user_row['district']."','".$user_row['mobile']."',".'9'.",'".$pay_name."','".$price."','".$price."','".$price."','".$now_time."','".$now_time."','".$oval['ppj_id']."','".$oval['ppj_no']."'),";
         $og_sql.="('".$oval['user_id']."','".$oval['goods_id']."','".$goods_row['goods_name']."','".$order_sn."','".$goods_row['market_price']."','".$goods_row['shop_price']."',".'1'.",".'2'.",".'24'.",'".$oval['ppj_no']."','".$order_sn."'),";
-        $out_logs_sql .= "( '".$oval['goods_id']."',".'8'.",".'59'.",".'1'.",'".$now_time."','".$now_time."','".$order_sn."'),";
+        $out_logs_sql .= "( '".$oval['goods_id']."',".'8'.",".'59'.",".'-1'.",'".$now_time."','".$now_time."','".$order_sn."'),";
 
     }
 
