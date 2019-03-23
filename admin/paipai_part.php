@@ -347,7 +347,7 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
     $update_data=$GLOBALS['db']->getAll($order_allid_sql);
     $rec_id_sql = "SELECT rec_id,order_sn,goods_id FROM " . $GLOBALS['ecs']->table('order_goods') . " WHERE order_sn IN (".implode(",", $ordersn_arr).")";
     $rec_id_row = $GLOBALS['db']->getALL($rec_id_sql);
-    $logs_id_sql = "SELECT id,order_sn FROM " . $GLOBALS['ecs']->table('goods_inventory_logs') . " WHERE order_sn IN (".implode(",", $ordersn_arr).")";
+    $logs_id_sql = "SELECT id,order_sn FROM " . $GLOBALS['ecs']->table('goods_inventory_logs') . " WHERE order_sn IN (".implode(",", $ordersn_arr).") ORDER BY id DESC ";
     $logs_id_row = $GLOBALS['db']->getALL($logs_id_sql);
     foreach($update_data as $ukey2=>$uval2) {
         if($uval2['order_sn']==$rec_id_row[$ukey2]['order_sn']){
