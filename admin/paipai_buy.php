@@ -1092,30 +1092,43 @@ else {
 
 				$ppj_margin_fee = "0.00";
 
-				if ($val['shop_price'] <= 100) {
+				if ($val['shop_price'] < 500) {
 					$part = '5';
-				} elseif ($val['shop_price'] > 100 && $val['shop_price'] < 300) {
+				} elseif ($val['shop_price'] >= 100 && $val['shop_price'] < 300) {
 					$part = '8';
 				} elseif ($val['shop_price'] >= 300 && $val['shop_price'] < 500) {
-					$part = '11';
-				} else {
-					$part = '15';
-				}
+					$part = '10';
+				}elseif ($val['shop_price'] >= 500){
+					$part = '14';
+			    }
 				$ppj_buy_fee = $val['cost_price'] + ($val['cost_price'] * 0.25);
 				$price_part = floor($val['shop_price'] * 0.7 / $part);
 				$ceil_amount = floor($limit_number / $part);
+
+//				var_dump('均数'.$ceil_amount);
+//				var_dump('分段'.$part);
+//				var_dump('成本价'.$val['cost_price']);
+//				var_dump('销售价'.$val['shop_price']);
+
 				for ($ei = 1; $ei < $part; $ei++) {
-					$price_ladder[$ei] = array(
-						'amount' => $ei == 1 ? '2' : $ceil_amount * ($ei - 1),
-						'price' => $ppj_buy_fee + ($price_part * ($ei - 1))
+					$amount=$ei==1?'1':$ceil_amount*($ei-1);
+					$price_ladder[$amount]= array(
+						'amount' => $amount,
+						'price' => $ppj_buy_fee + $price_part * ($ei - 1)
 					);
+				}
+				foreach($price_ladder as $lkey=>$lval){
+					if($lkey%$ceil_amount != 0 && $lkey>1){
+                         unset($price_ladder[$lkey]);
+					}
 				}
 
 				$ext_info = serialize(array('price_ladder' => $price_ladder, 'restrict_amount' => $limit_number));
 				$ppj_start_fee = '0.00';
-				if(time()>$limit_max_time){
+				$n_time=time()+8*3600;
+				if($n_time>$limit_max_time){
 					$ppj_status='2';
-				}elseif(time()<$limit_min_time){
+				}elseif($n_time<$limit_min_time){
 					$ppj_status='0';
 				}else{
 					$ppj_status='1';

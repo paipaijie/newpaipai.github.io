@@ -328,7 +328,6 @@ function order_fee($order, $goods, $consignee, $type = 0, $cart_value = '', $pay
 		if ($val['is_real']) {
 			$total['real_goods_count']++;
 		}
-
 		$arr[$key]['goods_amount'] = $val['goods_price'] * $val['goods_number'];
 		$total['goods_price_formated'] += $arr[$key]['goods_amount'];
 		$goods_con = get_con_goods_amount($arr[$key]['goods_amount'], $val['goods_id'], 0, 0, $val['parent_id']);
@@ -711,11 +710,11 @@ function cart_goods($type = CART_GENERAL_GOODS, $cart_value = '', $ru_type = 0, 
 		$where_area = ' AND c.area_city = \'' . $area_city . '\'';
 	}
 
-	$sql = 'SELECT c.warehouse_id, c.area_id, c.area_city, c.rec_id, c.user_id, c.goods_id, g.user_id as ru_id, g.cat_id, c.goods_name, g.goods_thumb, c.goods_sn, c.goods_number, g.default_shipping, g.goods_weight as goodsweight, ' . 'c.market_price, c.goods_price, c.goods_attr, c.is_real, c.extension_code, c.parent_id, c.is_gift, c.rec_type, ' . 'c.goods_price * c.goods_number AS subtotal, c.goods_attr_id, c.goods_number, c.stages_qishu, ' . 'c.parent_id, c.group_id, pa.deposit, g.is_shipping, g.freight, g.tid, g.shipping_fee, c.store_id, g.brand_id,g.cloud_id,g.cloud_goodsname ' . 'FROM ' . $GLOBALS['ecs']->table('cart') . ' AS c ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON c.goods_id = g.goods_id ' . $goods_where . 'LEFT JOIN ' . $GLOBALS['ecs']->table('presale_activity') . ' AS pa ON pa.goods_id = g.goods_id AND pa.review_status = 3 ' . ('WHERE ' . $where . ' ') . $c_sess . ('AND c.rec_type = \'' . $type . '\'') . $goodsIn . ' AND c.is_checked = 1 AND c.extension_code <> \'package_buy\' order by c.rec_id DESC';
+	$sql = 'SELECT c.warehouse_id, c.area_id, c.area_city, c.rec_id, c.user_id, c.goods_id, g.user_id as ru_id, g.cat_id, c.goods_name, g.goods_thumb, c.goods_sn, c.goods_number,c.ppj_id,c.ppj_no, g.default_shipping, g.goods_weight as goodsweight, ' . 'c.market_price, c.goods_price, c.goods_attr, c.is_real, c.extension_code, c.parent_id, c.is_gift, c.rec_type, ' . 'c.goods_price * c.goods_number AS subtotal, c.goods_attr_id, c.goods_number, c.stages_qishu, ' . 'c.parent_id, c.group_id, pa.deposit, g.is_shipping, g.freight, g.tid, g.shipping_fee, c.store_id, g.brand_id,g.cloud_id,g.cloud_goodsname ' . 'FROM ' . $GLOBALS['ecs']->table('cart') . ' AS c ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON c.goods_id = g.goods_id ' . $goods_where . 'LEFT JOIN ' . $GLOBALS['ecs']->table('presale_activity') . ' AS pa ON pa.goods_id = g.goods_id AND pa.review_status = 3 ' . ('WHERE ' . $where . ' ') . $c_sess . ('AND c.rec_type = \'' . $type . '\'') . $goodsIn . ' AND c.is_checked = 1 AND c.extension_code <> \'package_buy\' order by c.rec_id DESC';
 		
 	$arr = $GLOBALS['db']->getAll($sql);
 	
-	$sql = 'SELECT c.warehouse_id, c.rec_id, c.area_city, c.user_id, c.goods_id, c.ru_id, c.goods_name, c.goods_sn, c.goods_number, ' . 'c.market_price, c.goods_price, c.goods_attr, c.is_real, c.extension_code, c.parent_id, c.is_gift, c.rec_type, ' . 'c.goods_price * c.goods_number AS subtotal, c.goods_attr_id, c.goods_number, c.stages_qishu,' . ' c.parent_id, c.group_id, g.is_shipping, g.freight, g.tid, g.shipping_fee, g.brand_id,g.cloud_id, g.cloud_goodsname ' . 'FROM ' . $GLOBALS['ecs']->table('cart') . ' AS c ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON c.goods_id = g.goods_id ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods_activity') . ' AS ga ON c.goods_id = ga.act_id ' . ('WHERE ' . $where . ' ') . $c_sess . ('AND c.rec_type = \'' . $type . '\'') . $goodsIn . ' AND c.extension_code = \'package_buy\' AND ga.review_status = 3 order by c.rec_id DESC';
+	$sql = 'SELECT c.warehouse_id, c.rec_id, c.area_city, c.user_id, c.goods_id, c.ru_id, c.goods_name, c.goods_sn, c.goods_number, ' . 'c.market_price, c.goods_price,c.ppj_id,c.ppj_no, c.goods_attr, c.is_real, c.extension_code, c.parent_id, c.is_gift, c.rec_type, ' . 'c.goods_price * c.goods_number AS subtotal, c.goods_attr_id, c.goods_number, c.stages_qishu,' . ' c.parent_id, c.group_id, g.is_shipping, g.freight, g.tid, g.shipping_fee, g.brand_id,g.cloud_id, g.cloud_goodsname ' . 'FROM ' . $GLOBALS['ecs']->table('cart') . ' AS c ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON c.goods_id = g.goods_id ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods_activity') . ' AS ga ON c.goods_id = ga.act_id ' . ('WHERE ' . $where . ' ') . $c_sess . ('AND c.rec_type = \'' . $type . '\'') . $goodsIn . ' AND c.extension_code = \'package_buy\' AND ga.review_status = 3 order by c.rec_id DESC';
 	
 	$arr2 = $GLOBALS['db']->getAll($sql);
 	$arr = array_merge($arr, $arr2);
@@ -798,7 +797,8 @@ function cart_goods($type = CART_GENERAL_GOODS, $cart_value = '', $ru_type = 0, 
 			$arr[$key]['formated_market_price'] = price_format($value['market_price'], false);
 			$arr[$key]['formated_presale_deposit'] = price_format($value['deposit'], false);
 			$arr[$key]['region_name'] = $GLOBALS['db']->getOne('select region_name from ' . $GLOBALS['ecs']->table('region_warehouse') . ' where region_id = \'' . $value['warehouse_id'] . '\'');
-			$arr[$key]['rec_txt'] = $rec_txt[$value['rec_type']];
+			$arr[$key]['ppj_id'] = $value['ppj_id'];
+			$arr[$key]['ppj_no'] = $value['ppj_no'];
 
 			if ($value['rec_type'] == 1) { // 拍拍商品
 				
@@ -886,7 +886,6 @@ function cart_goods($type = CART_GENERAL_GOODS, $cart_value = '', $ru_type = 0, 
 		$arr = get_cart_goods_ru_list($arr, $ru_type);
 		$arr = get_cart_ru_goods_list($arr, $cart_value, $consignee, $store_id);
 	}
-
 	return $arr;
 }
 
