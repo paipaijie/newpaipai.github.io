@@ -1454,9 +1454,13 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$ppj_id=$this->db->getOne($cartsql);
 		$ppj_no=session('ppj_no');
 
-
-		$order = array('shipping_id' => empty($shipping['shipping_id']) ? 0 : $shipping['shipping_id'], 'shipping_type' => empty($shipping['shipping_type']) ? 0 : $shipping['shipping_type'], 'shipping_code' => empty($shipping['shipping_code']) ? 0 : $shipping['shipping_code'], 'pay_id' => intval($_POST['payment']), 'pack_id' => isset($_POST['pack']) ? intval($_POST['pack']) : 0, 'card_id' => isset($_POST['card']) ? intval($_POST['card']) : 0, 'card_message' => trim($_POST['card_message']), 'surplus' => isset($_POST['surplus']) ? floatval($_POST['surplus']) : 0, 'integral' => isset($_POST['integral']) ? intval($_POST['integral']) : 0, 'is_surplus' => isset($_POST['is_surplus']) ? intval($_POST['is_surplus']) : 0, 'bonus_id' => I('bonus', 0, 'intval'), 'uc_id' => I('uc_id', 0, 'intval'), 'vc_id' => I('vc_id', 0, 'intval'), 'need_inv' => empty($_POST['need_inv']) ? 0 : 1, 'tax_id' => isset($_POST['tax_id']) ? trim($_POST['tax_id']) : '', 'inv_type' => I('inv_type', 1, 'intval'), 'inv_payee' => isset($_POST['inv_payee']) ? trim($_POST['inv_payee']) : '', 'invoice_id' => I('invoice_id', 0, 'intval'), 'invoice' => I('invoice', 1, 'intval'), 'invoice_type' => I('inv_type', 1, 'intval'), 'inv_content' => isset($_POST['inv_content']) ? trim($_POST['inv_content']) : '', 'vat_id' => I('vat_id', 0, 'intval'), 'postscript' => empty($postscript) ? '' : $postscript, 'how_oos' => isset($how_oos) ? addslashes($how_oos) : '', 'need_insure' => isset($_POST['need_insure']) ? intval($_POST['need_insure']) : 0, 'user_id' => $_SESSION['user_id'],'ppj_no' => $ppj_no, 'ppj_id' => $ppj_id,'add_time' => time(), 'order_status' => OS_UNCONFIRMED, 'shipping_status' => SS_UNSHIPPED, 'pay_status' =>11, 'agency_id' => get_agency_by_regions(array($consignee['country'], $consignee['province'], $consignee['city'], $consignee['district'])), 'point_id' => empty($point_info['point_id']) ? 0 : $point_info['point_id'], 'shipping_dateStr' => empty($point_info['shipping_dateStr']) ? '' : $point_info['shipping_dateStr'], 'mobile' => isset($_POST['store_mobile']) && !empty($_POST['store_mobile']) ? addslashes(trim($_POST['store_mobile'])) : '');
-
+        var_dump( $_SESSION['extension_code']);
+        if($_SESSION['extension_code'] == 'paipai_buy'){
+            $pay_status='11';
+        }else{
+            $pay_status='0';
+        }
+		$order = array('shipping_id' => empty($shipping['shipping_id']) ? 0 : $shipping['shipping_id'], 'shipping_type' => empty($shipping['shipping_type']) ? 0 : $shipping['shipping_type'], 'shipping_code' => empty($shipping['shipping_code']) ? 0 : $shipping['shipping_code'], 'pay_id' => intval($_POST['payment']), 'pack_id' => isset($_POST['pack']) ? intval($_POST['pack']) : 0, 'card_id' => isset($_POST['card']) ? intval($_POST['card']) : 0, 'card_message' => trim($_POST['card_message']), 'surplus' => isset($_POST['surplus']) ? floatval($_POST['surplus']) : 0, 'integral' => isset($_POST['integral']) ? intval($_POST['integral']) : 0, 'is_surplus' => isset($_POST['is_surplus']) ? intval($_POST['is_surplus']) : 0, 'bonus_id' => I('bonus', 0, 'intval'), 'uc_id' => I('uc_id', 0, 'intval'), 'vc_id' => I('vc_id', 0, 'intval'), 'need_inv' => empty($_POST['need_inv']) ? 0 : 1, 'tax_id' => isset($_POST['tax_id']) ? trim($_POST['tax_id']) : '', 'inv_type' => I('inv_type', 1, 'intval'), 'inv_payee' => isset($_POST['inv_payee']) ? trim($_POST['inv_payee']) : '', 'invoice_id' => I('invoice_id', 0, 'intval'), 'invoice' => I('invoice', 1, 'intval'), 'invoice_type' => I('inv_type', 1, 'intval'), 'inv_content' => isset($_POST['inv_content']) ? trim($_POST['inv_content']) : '', 'vat_id' => I('vat_id', 0, 'intval'), 'postscript' => empty($postscript) ? '' : $postscript, 'how_oos' => isset($how_oos) ? addslashes($how_oos) : '', 'need_insure' => isset($_POST['need_insure']) ? intval($_POST['need_insure']) : 0, 'user_id' => $_SESSION['user_id'],'ppj_no' => $ppj_no, 'ppj_id' => $ppj_id,'add_time' => time(), 'order_status' => OS_UNCONFIRMED, 'shipping_status' => SS_UNSHIPPED, 'pay_status' =>$pay_status, 'agency_id' => get_agency_by_regions(array($consignee['country'], $consignee['province'], $consignee['city'], $consignee['district'])), 'point_id' => empty($point_info['point_id']) ? 0 : $point_info['point_id'], 'shipping_dateStr' => empty($point_info['shipping_dateStr']) ? '' : $point_info['shipping_dateStr'], 'mobile' => isset($_POST['store_mobile']) && !empty($_POST['store_mobile']) ? addslashes(trim($_POST['store_mobile'])) : '');
 
 		if (isset($_SESSION['flow_type']) && $flow_type != CART_GENERAL_GOODS && $flow_type != CART_ONESTEP_GOODS) {
 			$order['extension_code'] = $_SESSION['extension_code'];
@@ -1804,6 +1808,12 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
 		$error_no = 0;
+        $order['order_sn'] = get_order_sn();
+
+        $new_order = $this->db->filter_field('order_info', $order);
+
+        $new_order_id = $this->db->table('order_info')->data($new_order)->add();
+
 		if($order['extension_code'] == 'paipai_buy'){
 
 			if($_POST['bid_price'] == '0.00'){
@@ -1812,11 +1822,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				$bid_price= number_format($_POST['bid_price'],2);
 			}
 			do {
-				$order['order_sn'] = get_order_sn();
 
-				$new_order = $this->db->filter_field('order_info', $order);
-
-				$new_order_id = $this->db->table('order_info')->data($new_order)->add();
 				if($new_order_id){
 
 					$margin_date=array(
@@ -1856,8 +1862,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			} while ($error_no == 1062);
 		}
 
-
 		$order['order_id'] = $new_order_id;
+
 		$goodsIn = '';
 		$cartValue = !empty($done_cart_value) ? $done_cart_value : '';
 		if (is_dir(APP_DRP_PATH) && $order['extension_code'] != 'bargain_buy' && $order['extension_code'] != 'team_buy') {
