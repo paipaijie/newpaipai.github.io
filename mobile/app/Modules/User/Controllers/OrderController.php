@@ -46,7 +46,11 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		
 		$where_paysuccess = ' AND oi.pay_status = 2 AND oi.extension_code = "two_price"';
 		
-		$pay_count = get_order_where_count($this->user_id, 0, $where_pay);
+//		$pay_count = get_order_where_count($this->user_id, 0, $where_pay);
+
+        $ntime=time()+8*3600;
+		$oi_ing='SELECT count(order_id) as count FROM '.$GLOBALS['ecs']->table('order_info').' AS oi LEFT JOIN '.$GLOBALS['ecs']->table('paipai_list').' AS pl ON oi.ppj_id=pl.ppj_id WHERE oi.user_id='.$this->user_id.' AND oi.pay_status=10 AND pl.start_time<='.$ntime.' AND pl.end_time>'.$ntime ;
+		$pay_count=$GLOBALS['db']->getRow($oi_ing);
 		
 		$paysuccess_count = get_order_where_count($this->user_id, 0, $where_paysuccess);
 		
@@ -54,7 +58,7 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 			
 		$confirmed_count = get_order_where_count($this->user_id, 0, $where_confirmed);
 		
-		$order_num = array('all_order' => $all_order, 'pay_count' => $pay_count, 'confirmed_count' => $confirmed_count);
+		$order_num = array('all_order' => $all_order, 'pay_count' => $pay_count['count'], 'confirmed_count' => $confirmed_count);
 		
 		$ordersuccess_num = array('all_order' => $all_order, 'pay_count' => $paysuccess_count, 'confirmed_count' => $confirmed_count);
 		

@@ -191,18 +191,18 @@ public function actionPaipaibuy()
 	{
 		$user_id = $this->user_id;
 		$type = 0;
-		
-		//拍拍匹配中的订单
-		$where_pay = ' AND oi.pay_status = 10';
-		$paipai_count = get_order_where_count($user_id, $type, $where_pay);
-		$this->assign('paipai_count', intval($paipai_count));
-		
-		
-		///
-		// $where_pay = ' AND oi.pay_status = ' . PS_UNPAYED . ' AND oi.order_status not in(' . OS_CANCELED . ',' . OS_INVALID . ',' . OS_RETURNED . ')';
-		// $pay_count = get_order_where_count($user_id, $type, $where_pay);		
-		// $this->assign('pay_count', intval($pay_count));
 
+		
+		//拍拍中
+//		$where_pay = ' AND oi.pay_status = 10';
+//		$paipai_count = get_order_where_count($user_id, $type, $where_pay);
+		$ntime=time()+8*3600;
+		$oi_ing='SELECT count(order_id) as count FROM '.$GLOBALS['ecs']->table('order_info').' AS oi LEFT JOIN '.$GLOBALS['ecs']->table('paipai_list').' AS pl ON oi.ppj_id=pl.ppj_id WHERE oi.user_id='.$user_id.' AND oi.pay_status=10 AND pl.start_time<='.$ntime.' AND pl.end_time>'.$ntime ;
+		$paipai_count=$GLOBALS['db']->getRow($oi_ing);
+		$this->assign('paipai_count', intval($paipai_count['count']));
+
+
+		//待付款
 		$sql = "select count(*) from dsc_order_info where user_id = {$_SESSION['user_id']} and pay_status = 11";
 		$res = $GLOBALS['db']->getAll($sql);
 		$arrt = array();

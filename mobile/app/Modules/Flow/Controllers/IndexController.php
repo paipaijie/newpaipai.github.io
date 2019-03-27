@@ -62,8 +62,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		unset($_SESSION['flow_order']['cou_id']);
 		unset($_SESSION['flow_order']['uc_id']);
 		unset($_SESSION['flow_order']['vc_id']);
-		
-		
+
 		
 		$flow_type = isset($_SESSION['flow_type']) ? intval($_SESSION['flow_type']) : CART_GENERAL_GOODS;
 						
@@ -194,11 +193,12 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			$this->redirect('/');
 		}
 
-
+		$extension_id=$_SESSION['extension_id'];
 		$store_goods_id = '';
 
 		if ($cart_goods_list) {
 			foreach ($cart_goods_list as $key => $val) {
+
 				$amount = 0;
 				$goods_price_amount = 0;
 				$amount += $val['shipping']['shipping_fee'];
@@ -215,22 +215,26 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				}
 
 				$cart_goods_list[$key]['amount'] = $amount ? price_format($amount, false) : 0;
+
 				$cart_goods_list[$key]['goods_price_amount'] = $goods_price_amount ? price_format($goods_price_amount, false) : 0;
 			}
 		}
-
 
 		if (empty($consignee) && !$isStoreOrder) {
 			ecs_header('Location: ' . url('address_list'));
 			exit();
 		}
 
-// 用户出价
-	$sql = 'SELECT sellers_fee FROM {pre}cart WHERE rec_id in (' . $cart_value . ')  LIMIT 1';
+// 用户出价  保证金
+	$sql = 'SELECT sellers_fee,ppj_id,ppj_no FROM {pre}cart WHERE rec_id in (' . $cart_value . ')  LIMIT 1';
     $sellers_fee = $this->db->getRow($sql);
-  
+
+    $pl_sql="SELECT ppj_margin_fee FROM {pre}paipai_list WHERE ppj_id=".$sellers_fee['ppj_id'] . "  LIMIT 1 ";
+	$ppj_margin_fee = $this->db->getRow($pl_sql);
+
     $sellers_fee["sellers_fee"]=price_format($sellers_fee["sellers_fee"]);
-    
+    $sellers_fee["margin_fee"]=price_format($ppj_margin_fee["ppj_margin_fee"]);
+
         $this->assign('sellers_fee', $sellers_fee);
 		$this->assign('store_goods_id', $store_goods_id);
 		$this->assign('isStoreOrder', $isStoreOrder);
@@ -248,8 +252,9 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
 		$cart_goods_list_new = cart_by_favourable($cart_goods_list);
-		
+
 		$this->assign('goods_list', $cart_goods_list_new);
+
 		if ($flow_type != CART_GENERAL_GOODS || C('shop.one_step_buy') == '1') {
 			$this->assign('allow_edit_cart', 0);
 		}
@@ -337,13 +342,11 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			if ($cod) {
 				if ($flow_type == CART_GROUP_BUY_GOODS) {
 					$group_buy_id = $_SESSION['extension_id'];
-
 					if ($group_buy_id <= 0) {
 						show_message('error group_buy_id');
 					}
 
-					$group_buy = group_buy_info($group_buy_id);
-
+					$group_buy = paipai_buy_info($group_buy_id);
 					if (empty($group_buy)) {
 						show_message('group buy not exists: ' . $group_buy_id);
 					}
@@ -1354,6 +1357,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 
 	public function actionDone()
 	{
+
 		$order_hash = md5(serialize($_POST));
 		if (S('order_hash_' . $_SESSION['user_id']) === $order_hash) {
 			$this->redirect('user/order/index');
@@ -1363,13 +1367,13 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
 		$done_cart_value = $_SESSION['cart_value'];
-		
+
 		$flow_type = isset($_SESSION['flow_type']) ? intval($_SESSION['flow_type']) : CART_GENERAL_GOODS;
 		$flow_type = $_SESSION['flow_type'] == CART_ONESTEP_GOODS ? CART_ONESTEP_GOODS : $flow_type;
 		$store_id = isset($_REQUEST['store_id']) ? intval($_REQUEST['store_id']) : 0;
 		$store_id = !empty($_SESSION['store_id']) ? $_SESSION['store_id'] : $store_id;
 		$pay_type = input('post.pay_type', 0, 'intval');
-		
+
 		$sql = 'SELECT COUNT(*) FROM {pre}cart WHERE ' . $this->sess_id . ('AND parent_id = 0 AND is_gift = 0 AND rec_type = \'' . $flow_type . '\' AND rec_id ') . db_create_in($done_cart_value) . ' AND store_id = \'' . $store_id . '\' ';
 
 		if ($this->db->getOne($sql) == 0) {
@@ -1444,16 +1448,16 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		else {
 			$postscript = get_order_post_postscript($msg, $ru_id_arr);
 		}
-		
-		
-		$cartsql = 'SELECT ppj_id FROM {pre}cart WHERE ' . $this->sess_id . ('AND parent_id = 0 AND is_gift = 0 AND rec_type = \'' . $flow_type . '\' AND rec_id ') . db_create_in($done_cart_value) . ' AND store_id = \'' . $store_id . '\' ';		
+
+
+		$cartsql = 'SELECT ppj_id FROM {pre}cart WHERE ' . $this->sess_id . ('AND parent_id = 0 AND is_gift = 0 AND rec_type = \'' . $flow_type . '\' AND rec_id ') . db_create_in($done_cart_value) . ' AND store_id = \'' . $store_id . '\' ';
 		$ppj_id=$this->db->getOne($cartsql);
 		$ppj_no=session('ppj_no');
-		
+
 
 		$order = array('shipping_id' => empty($shipping['shipping_id']) ? 0 : $shipping['shipping_id'], 'shipping_type' => empty($shipping['shipping_type']) ? 0 : $shipping['shipping_type'], 'shipping_code' => empty($shipping['shipping_code']) ? 0 : $shipping['shipping_code'], 'pay_id' => intval($_POST['payment']), 'pack_id' => isset($_POST['pack']) ? intval($_POST['pack']) : 0, 'card_id' => isset($_POST['card']) ? intval($_POST['card']) : 0, 'card_message' => trim($_POST['card_message']), 'surplus' => isset($_POST['surplus']) ? floatval($_POST['surplus']) : 0, 'integral' => isset($_POST['integral']) ? intval($_POST['integral']) : 0, 'is_surplus' => isset($_POST['is_surplus']) ? intval($_POST['is_surplus']) : 0, 'bonus_id' => I('bonus', 0, 'intval'), 'uc_id' => I('uc_id', 0, 'intval'), 'vc_id' => I('vc_id', 0, 'intval'), 'need_inv' => empty($_POST['need_inv']) ? 0 : 1, 'tax_id' => isset($_POST['tax_id']) ? trim($_POST['tax_id']) : '', 'inv_type' => I('inv_type', 1, 'intval'), 'inv_payee' => isset($_POST['inv_payee']) ? trim($_POST['inv_payee']) : '', 'invoice_id' => I('invoice_id', 0, 'intval'), 'invoice' => I('invoice', 1, 'intval'), 'invoice_type' => I('inv_type', 1, 'intval'), 'inv_content' => isset($_POST['inv_content']) ? trim($_POST['inv_content']) : '', 'vat_id' => I('vat_id', 0, 'intval'), 'postscript' => empty($postscript) ? '' : $postscript, 'how_oos' => isset($how_oos) ? addslashes($how_oos) : '', 'need_insure' => isset($_POST['need_insure']) ? intval($_POST['need_insure']) : 0, 'user_id' => $_SESSION['user_id'],'ppj_no' => $ppj_no, 'ppj_id' => $ppj_id,'add_time' => time(), 'order_status' => OS_UNCONFIRMED, 'shipping_status' => SS_UNSHIPPED, 'pay_status' =>11, 'agency_id' => get_agency_by_regions(array($consignee['country'], $consignee['province'], $consignee['city'], $consignee['district'])), 'point_id' => empty($point_info['point_id']) ? 0 : $point_info['point_id'], 'shipping_dateStr' => empty($point_info['shipping_dateStr']) ? '' : $point_info['shipping_dateStr'], 'mobile' => isset($_POST['store_mobile']) && !empty($_POST['store_mobile']) ? addslashes(trim($_POST['store_mobile'])) : '');
-		
-		
+
+
 		if (isset($_SESSION['flow_type']) && $flow_type != CART_GENERAL_GOODS && $flow_type != CART_ONESTEP_GOODS) {
 			$order['extension_code'] = $_SESSION['extension_code'];
 			$order['extension_id'] = $_SESSION['extension_id'];
@@ -1466,9 +1470,9 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$user_id = $_SESSION['user_id'];
 
 		if (0 < $user_id) {
-			
+
 			$user_info = user_info($user_id);
-			
+
 			$order['surplus'] = min($order['surplus'], $user_info['user_money'] + $user_info['credit_line']);
 
 			if ($order['surplus'] < 0) {
@@ -1487,8 +1491,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			$order['surplus'] = 0;
 			$order['integral'] = 0;
 		}
-		
-		
+
+
 
 		if (0 < $order['bonus_id']) {
 			$bonus = bonus_info($order['bonus_id']);
@@ -1625,7 +1629,6 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 
 		$total = order_fee($order, $cart_goods, $consignee, 1, $_SESSION['cart_value'], $pay_type, $cart_goods_list, $this->region_id, $this->area_id, $store_id);
 
-		
 		$order['bonus'] = $total['bonus'];
 		$order['coupons'] = $total['coupons'];
 		$order['use_value_card'] = $total['use_value_card'] ? $total['use_value_card'] : 0;
@@ -1801,66 +1804,58 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
 		$error_no = 0;
-        if($_POST['bid_price'] == '0.00'){
-                   show_message('金额不能为0！', '', '', 'warning');
-        }else{
-               $bid_price= number_format($_POST['bid_price'],2);
-        }
-		do {
-			$order['order_sn'] = get_order_sn();
-			
-			$new_order = $this->db->filter_field('order_info', $order);
-			
-			$new_order_id = $this->db->table('order_info')->data($new_order)->add();
-			if($new_order_id){
- 
-				$margin_date=array(
-                    'user_id'=>$new_order['user_id'],
-                    'ppj_id'=>$new_order['ppj_id'],
-                    'ppj_no'=>$new_order['ppj_no'],
-                    'order_id'=>$new_order_id,
-                    'order_sn'=>$new_order['order_sn'],
-                    'pay_fee'=>$new_order['order_amount'],
-                    'createtime'=>time()
-				);				
+		if($order['extension_code'] == 'paipai_buy'){
 
-                // // 保证金数据插入和更新 
-                // if($m_data){
-                // 	$margin_update_sql="UPDATE ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." SET order_id=".$new_order_id.", order_sn=".$new_order['order_sn']." WHERE ppj_id=".$new_order['ppj_id']." AND  ppj_no=".$new_order['ppj_no']." AND user_id=".$new_order['user_id'];
-                // 	$margin_update=$this->db->query($margin_update_sql);
-                // }else{
-                $margin_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_pay_margin'), $margin_date, 'INSERT');        	
-//                }
-                // 出价金额添加与修改
-                if( $margin_id){
-                	// $bid_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id='{$new_order['ppj_id']}' AND  ppj_no='{$new_order['ppj_no']}' AND user_id='{$new_order['user_id']}' ";    
-                 //    $bid=$this->db->query($bid_sql);
-                    $margin_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE  order_sn='{$margin_date['order_sn']}'";       
-                    $m_data=$this->db->getRow($margin_sql);  
-       
-                    $bid_data=array(
-                    	'user_id'=>$new_order['user_id'],
-                    	'spm_id' => $m_data['spm_id'],
-	                    'ppj_id'=>$new_order['ppj_id'],
-	                    'ppj_no'=>$new_order['ppj_no'],
-	                    'bid_price'=>$bid_price,
-	                    'createtime'=>time()
-                	);
-                    // if($bid){
-                    //      $bid_update_sql="UPDATE ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." SET bid_price=".$bid_price.", bid_time=".time()." WHERE ppj_id={$new_order['ppj_id']} AND  ppj_no={$new_order['ppj_no']} AND user_id={$new_order['user_id']} ";
-                    //     $bid_update=$this->db->query($bid_update_sql);
-                    // }else{
-                    $bid_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_goods_bid_user'), $bid_data, 'INSERT'); 
-//                    }
-                }
-				
+			if($_POST['bid_price'] == '0.00'){
+				show_message('金额不能为0！', '', '', 'warning');
+			}else{
+				$bid_price= number_format($_POST['bid_price'],2);
 			}
-			
-			$error_no = $GLOBALS['db']->errno();
-			if (0 < $error_no && $error_no != 1062) {
-				exit($GLOBALS['db']->errno());
-			}
-		} while ($error_no == 1062);
+			do {
+				$order['order_sn'] = get_order_sn();
+
+				$new_order = $this->db->filter_field('order_info', $order);
+
+				$new_order_id = $this->db->table('order_info')->data($new_order)->add();
+				if($new_order_id){
+
+					$margin_date=array(
+						'user_id'=>$new_order['user_id'],
+						'ppj_id'=>$new_order['ppj_id'],
+						'ppj_no'=>$new_order['ppj_no'],
+						'order_id'=>$new_order_id,
+						'order_sn'=>$new_order['order_sn'],
+						'pay_fee'=>$new_order['order_amount'],
+						'createtime'=>time()+8*3600
+					);
+
+					// 保证金数据插入和更新
+					$margin_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_pay_margin'), $margin_date, 'INSERT');
+
+					// 出价金额添加与修改
+					if( $margin_id){
+
+						$margin_sql="SELECT spm_id FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE  order_sn='{$margin_date['order_sn']}'";
+						$m_data=$this->db->getRow($margin_sql);
+						$bid_data=array(
+							'user_id'=>$new_order['user_id'],
+							'spm_id' => $m_data['spm_id'],
+							'ppj_id'=>$new_order['ppj_id'],
+							'ppj_no'=>$new_order['ppj_no'],
+							'bid_price'=>$bid_price,
+							'createtime'=>time()+8*3600
+						);
+						$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_goods_bid_user'), $bid_data, 'INSERT');
+					}
+				}
+
+				$error_no = $GLOBALS['db']->errno();
+				if (0 < $error_no && $error_no != 1062) {
+					exit($GLOBALS['db']->errno());
+				}
+			} while ($error_no == 1062);
+		}
+
 
 		$order['order_id'] = $new_order_id;
 		$goodsIn = '';
@@ -1885,7 +1880,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 
 			$sql = 'INSERT INTO ' . $this->ecs->table('order_goods') . '( ' . 'user_id,order_id, goods_id, goods_name, goods_sn, product_id,ppj_no,sellers_fee,is_reality,is_return,is_fast, goods_number, market_price, goods_price, commission_rate, ' . 'goods_attr, is_real, extension_code, parent_id, is_gift,freight, tid,shipping_fee, model_attr, goods_attr_id, ru_id, shopping_fee, warehouse_id, area_id, is_distribution, drp_money) ' . (' SELECT \'' . $user_id . '\', \'' . $new_order_id . '\', ca.goods_id, ca.goods_name, ca.goods_sn, ca.product_id,ca.ppj_no,ca.sellers_fee,(SELECT is_reality FROM ') . $GLOBALS['ecs']->table('goods_extend') . ' AS ge WHERE ge.goods_id = ca.goods_id),(SELECT is_return FROM ' . $GLOBALS['ecs']->table('goods_extend') . ' AS ge WHERE ge.goods_id = ca.goods_id),(SELECT is_fast FROM ' . $GLOBALS['ecs']->table('goods_extend') . ' AS ge WHERE ge.goods_id = ca.goods_id), ca.goods_number, ca.market_price, ca.goods_price, ca.commission_rate, ca.goods_attr, ' . 'ca.is_real, ca.extension_code, ca.parent_id, ca.is_gift,ca.freight, ca.tid,ca.shipping_fee,ca.model_attr, ca.goods_attr_id, ca.ru_id, ca.shopping_fee, ca.warehouse_id,ca.area_id,' . ('g.is_distribution*\'' . $is_distribution . '\' as is_distribution, ') . ('g.dis_commission*g.is_distribution*ca.goods_price*ca.goods_number/100*\'' . $is_distribution . '\' as drp_money') . ' FROM ' . $this->ecs->table('cart') . ' ca' . ' LEFT JOIN  {pre}goods as g ON ca.goods_id = g.goods_id' . ' WHERE ca.' . $this->sess_id . (' AND ca.is_checked = 1 AND ca.rec_type = \'' . $flow_type . '\'') . $goodsIn;
 			$this->db->query($sql);
-			
+
 			$drp_money = dao('order_goods')->where(array('order_id' => $order['order_id']))->sum('drp_money');
 			$goods = dao('order_goods')->field('goods_name')->where(array('order_id' => $order['order_id']))->find();
 
@@ -1907,7 +1902,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			}
 
 			$sql = 'INSERT INTO ' . $this->ecs->table('order_goods') . '( ' . 'user_id, order_id, goods_id, goods_name, goods_sn, product_id,is_reality,is_return,is_fast, goods_number, market_price, commission_rate, ' . 'goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, model_attr, goods_attr_id, ru_id, shopping_fee, warehouse_id, area_id, freight, tid, shipping_fee) ' . (' SELECT \'' . $user_id . '\', \'' . $new_order_id . '\', ca.goods_id, ca.goods_name, ca.goods_sn, ca.product_id,(SELECT is_reality FROM ') . $GLOBALS['ecs']->table('goods_extend') . ' AS ge WHERE ge.goods_id = ca.goods_id),(SELECT is_return FROM ' . $GLOBALS['ecs']->table('goods_extend') . ' AS ge WHERE ge.goods_id = ca.goods_id),(SELECT is_fast FROM ' . $GLOBALS['ecs']->table('goods_extend') . ' AS ge WHERE ge.goods_id = ca.goods_id), ca.goods_number, ca.market_price, ca.commission_rate, ' . 'ca.goods_price, ca.goods_attr, ca.is_real, ca.extension_code, ca.parent_id, ca.is_gift, ca.model_attr, ca.goods_attr_id, ca.ru_id, ca.shopping_fee, ca.warehouse_id, ca.area_id, ca.freight, ca.tid, ca.shipping_fee' . ' FROM ' . $this->ecs->table('cart') . ' AS ca' . ' WHERE ' . $this->sess_id . (' AND ca.rec_type = \'' . $flow_type . '\'') . $goodsIn;
-			
+
 			$this->db->query($sql);
 		}
 
@@ -2229,7 +2224,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$payment = payment_info($order['pay_id']);
 		$order['pay_code'] = $payment['pay_code'];
 		if (0 < $order['order_amount'] && $payment['pay_code'] == 'onlinepay' && $payment['pay_code'] != 'cod') {
-			
+
 			ecs_header('Location: ' . url('onlinepay/index/index', array('order_sn' => $order['order_sn'])) . "\n");
 		}
 
@@ -2237,6 +2232,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$this->assign('page_title', L('order_success'));
 		$this->display();
 	}
+
 
 
 
@@ -3418,6 +3414,10 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
 		return true;
+	}
+
+	public function actionPaidone(){
+		var_dump($_POST);
 	}
 }
 
