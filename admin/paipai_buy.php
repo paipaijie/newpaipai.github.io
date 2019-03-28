@@ -1078,7 +1078,6 @@ else {
 			}else{
 				$goods_id_row = $goods_id_row5;
 			}
-
 			//活动添加
 			$goods_sql2 = " SELECT goods_id,goods_name,cost_price,goods_sn,market_price,shop_price,goods_number FROM " . $GLOBALS['ecs']->table('goods') . " WHERE goods_id in(" . implode(",", $goods_id_row) . ")";
 			$goods_data = $GLOBALS['db']->getAll($goods_sql2);
@@ -1090,7 +1089,7 @@ else {
 
 				$ppj_no = $ppj_goods['ppj_no'] + 1;
 
-				$ppj_margin_fee = "0.00";
+				$ppj_margin_fee = "0.01";
 
 				if ($val['shop_price'] < 500) {
 					$part = '5';

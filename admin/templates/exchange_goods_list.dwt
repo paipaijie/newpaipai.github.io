@@ -32,6 +32,9 @@
                 	<div class="fl">
                         <a href="exchange_goods.php?act=add"><div class="fbutton"><div class="add" title="{$lang.add_exchange}"><span><i class="icon icon-plus"></i>{$lang.add_exchange}</span></div></div></a>
                     </div>
+                    <div class="fl">
+                        <a href="exchange_goods.php?act=batch_add"><div class="fbutton"><div class="add" title="批量添加积分活动"><span><i class="icon icon-plus"></i>批量添加积分活动</span></div></div></a>
+                    </div>
                     {/if}
                     <div class="refresh">
                     	<div class="refresh_tit" title="{$lang.refresh_data}"><i class="icon icon-refresh"></i></div>

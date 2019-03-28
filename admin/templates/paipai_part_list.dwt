@@ -62,6 +62,14 @@
                         <a href="paipai_part.php?act=paipaiauto"><div class="fbutton"><div class="add" title="拍拍活动自动执行"><span><i class="icon icon-plus"></i>拍拍活动自动执行</span></div></div></a>
                     </div>
 
+                    <div class="fl">
+                        <a href="paipai_part.php?act=exchange"><div class="fbutton"><div class="add" title="积分活动订单"><span><i class="icon icon-plus"></i>积分活动订单</span></div></div></a>
+                    </div>
+
+                    <div class="fl">
+                        <a href="paipai_part.php?act=update_exchange"><div class="fbutton"><div class="add" title="积分活动订单修改"><span><i class="icon icon-plus"></i>积分活动订单修改</span></div></div></a>
+                    </div>
+
                     {/if}
 
                     <div class="refresh">

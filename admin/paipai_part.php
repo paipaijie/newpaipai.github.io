@@ -65,7 +65,14 @@ function grouping($total,$num,$area){
     return $result;
 }
 function ordertime($year,$mouth,$days){
-    $order_time = $year . '-' . $mouth . '-' . $days;
+    $d=rand(1,$days);
+    if($mouth<10){
+        $mouth='0'.$mouth;
+    }
+    if($d<10){
+        $d='0'.$d;
+    }
+    $order_time = $year . '-' . $mouth . '-' . $d;
     $S = rand(8, 22);//随机--时
     if ($S < 10) {
         $S = '0' . $S;
@@ -80,6 +87,7 @@ function ordertime($year,$mouth,$days){
     }
     $SC = $S + 1;
     $MC = $M + 5;
+    $order_date['order_time']=$year . $mouth .$d;
     $order_date['add_time'] = strtotime($order_time . " " . $S . ":" . $F . ":" . $M);  //提交时间
     $order_date['pay_time'] = strtotime($order_time . " " . $S . ":" . $F . ":" . $MC);  //支付时间
     $order_date['confirm_time'] = strtotime($order_time . " " . $SC . ":" . $F . ":" . $M);
@@ -394,6 +402,45 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
     }
 
 }
+function exchange_add_order($oi_row){
+
+    $batch_number=time();
+    $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,integral,integral_money,referer,add_time,confirm_time,pay_time,extension_code,extension_id) VALUES ";
+    $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,is_real,warehouse_id,area_id,order_sn) VALUES";
+    $out_logs_sql = "INSERT INTO ".$GLOBALS['ecs']->table('goods_inventory_logs')."(goods_id,use_storage,admin_id,number,add_time,batch_number,order_sn) VALUES ";
+    foreach($oi_row as $key=>$val){
+
+        $pay_name="在线支付";
+        $referer='touch';
+        $goods_id_arr[]=$val['extension_id'];
+        $order_sn_arr[]=$val['order_sn'];
+
+        $oi_sql .= "('".$val['order_sn']."','".$val['user_id']."',".'1'.",".'2'.",".'2'.",'".$val['consignee']."','". $val['country']."','".$val['province']."','".$val['city']."','".$val['district']."','".$val['mobile']."',".'15'.",'".$pay_name."','".$val['goods_amount']."','".$val['integral']."','".$val['integral_money']."','".$referer."','".$val['add_time']."','".$val['confirm_time']."','".$val['pay_time']."','".$val['extension_code']."','".$val['extension_id']. "'),";
+        $og_sql.="('".$val['user_id']."','".$val['extension_id']."','".$val['goods_name']."','".$val['ordere_sn']."','".$val['market_price']."',".'1'.",".'2'.",".'24'.",'".$val['order_sn']."'),";
+        $out_logs_sql .= "( '".$val['extension_id']."',".'1'.",".'0'.",".'-1'.",'".$val['pay_time']."','".$batch_number."','".$val['order_sn']."'),";
+    }
+    $oi_sql = substr( $oi_sql,0, strlen($oi_sql)-1 );
+    $og_sql = substr( $og_sql,0, strlen($og_sql)-1 );
+    $out_logs_sql = substr( $out_logs_sql,0, strlen($out_logs_sql)-1 );
+    $res1=$GLOBALS['db']->query($oi_sql);
+    if($res1){
+        $res2=$GLOBALS['db']->query($og_sql);
+        if($res2){
+            $res3=$GLOBALS['db']->query($out_logs_sql);
+        }
+    }
+
+    if(count($oi_row)%5000==0){
+        $GLOBALS['db']->query('commit');
+        $GLOBALS['db']->query('begin');
+    }
+    $GLOBALS['db']->query('commit');
+
+    if($res3){
+        return '1';
+    }
+}
+
 
 // 执行方法
 define('IN_ECS', true);
@@ -1315,5 +1362,153 @@ elseif($_REQUEST['act'] =='paipai'){
     }else{
         exit(json_encode(array('row'=>'nonono')));
     }
+
+}
+elseif($_REQUEST['act'] =='exchange'){
+
+    $year = $_POST['year'];
+    $mouth = $_POST['mouth'];
+    $outprice = $_POST['out_price'];
+
+    if($year && $mouth && $outprice){
+        $eg_sql='SELECT eg.goods_id,eg.exchange_integral,eg.market_integral,g.goods_name,g.goods_sn,g.market_price FROM '. $GLOBALS['ecs']->table('exchange_goods').' AS eg LEFT JOIN '.$GLOBALS['ecs']->table('goods').' AS g ON eg.goods_id=g.goods_id WHERE eg.is_exchange=1 ';
+        $eg_row=$GLOBALS['db']->getAll($eg_sql);
+
+        $oi_uid_sql='SELECT distinct user_id,consignee,country,province,city,district,mobile FROM '. $GLOBALS['ecs']->table('order_info');
+        $oi_uid_row=$GLOBALS['db']->getAll($oi_uid_sql);
+        foreach($oi_uid_row as $uidkey=>$uidval){
+            $uid_arr[]=array(
+                'user_id'=>$uidval['user_id'],
+                'consignee'=>$uidval['consignee'],
+                'country'=>$uidval['country'],
+                'province'=>$uidval['province'],
+                'city'=>$uidval['city'],
+                'district'=>$uidval['district'],
+                'mobile'=>$uidval['mobile'],
+            );
+        }
+
+        $eg_count=count($eg_row);
+
+        $one_total_price=grouping($outprice,$eg_count,100);
+
+        for($i=0;$i<count($one_total_price);$i++){
+             $oi_data[]=array(
+                 'goods_id'=>$eg_row[$i]['goods_id'],
+                 'goods_name'=>$eg_row[$i]['goods_name'],
+                 'goods_sn'=>$eg_row[$i]['goods_sn'],
+                 'market_price'=>$eg_row[$i]['market_price'],
+                 'exchange_integral'=>$eg_row[$i]['exchange_integral'],
+                 'num'=> round($one_total_price[$i+1]*10/$eg_row[$i]['exchange_integral']),
+             );
+        }
+
+        $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+        foreach($oi_data as $oikey=>$oival){
+            for($n=0;$n<$oival['num'];$n++){
+                 $uid_row=array_rand($uid_arr);
+                 $user_row=$uid_arr[$uid_row];
+                 $order_time=ordertime($year,$mouth,$days);
+                 $order_sn=$order_time['order_time'].'11'.str_pad(mt_rand(1, 999999999), 9, '0', STR_PAD_LEFT);
+                 $oi_row[]=array(
+                     'order_sn'=>$order_sn,
+                     'user_id'=>$user_row['user_id'],
+                     'consignee'=>$user_row['consignee'],
+                     'country'=>$user_row['country'],
+                     'province'=>$user_row['province'],
+                     'city'=>$user_row['city'],
+                     'district'=>$user_row['district'],
+                     'mobile'=>$user_row['mobile'],
+                     'goods_amount'=>number_format($oival['exchange_integral']/100,2),
+                     'integral'=>$oival['exchange_integral'],
+                     'integral_money'=>number_format($oival['exchange_integral']/100,2),
+                     'add_time'=>$order_time['add_time'],
+                     'confirm_time'=>$order_time['confirm_time'],
+                     'pay_time'=>$order_time['pay_time'],
+                     'shipping_time'=>$order_time['shipping_time'],
+                     'extension_code'=>'exchange_goods',
+                     'extension_id'=>$oival['goods_id'],
+                     'goods_name'=>$oival['goods_name'],
+                     'goods_sn'=>$oival['goods_sn'],
+                     'market_price'=>$oival['market_price'],
+                 );
+            }
+        }
+        $res=exchange_add_order($oi_row);
+        if($res =='1'){
+            var_dump('成功');
+            var_dump(date("H:i:s", time() + 8 * 3600));
+        }
+
+    }
+    $smarty->display('paipai_part_exchange.dwt');
+
+}
+elseif($_REQUEST['act'] =='update_exchange'){
+
+    $year=$_POST['year'];
+    $mouth = $_POST['mouth'];
+    $days=cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+
+    $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
+    $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
+    $limit_min_time=strtotime($min_time);
+    $limit_max_time=strtotime($max_time);
+    var_dump(date("H:i:s", time() + 8 * 3600));
+    if($year && $mouth){
+        $order_sql="SELECT order_id,order_sn,extension_code,extension_id FROM ".$GLOBALS['ecs']->table('order_info')." WHERE add_time<=".$limit_max_time." AND add_time>=".$limit_min_time." AND extension_code='exchange_goods' ORDER BY order_id DESC";
+        $update_data=$GLOBALS['db']->getAll($order_sql);
+        foreach($update_data as $ukey=>$uval) {
+            $order_sn_arr[] = $uval['order_sn'];
+        }
+
+        $rec_id_sql = "SELECT rec_id,order_sn,goods_id FROM " . $GLOBALS['ecs']->table('order_goods') . " WHERE order_sn IN (".implode(",", $order_sn_arr).") ORDER BY rec_id DESC";
+        $rec_id_row = $GLOBALS['db']->getALL($rec_id_sql);
+
+        $logs_id_sql = "SELECT id,order_sn FROM " . $GLOBALS['ecs']->table('goods_inventory_logs') . " WHERE order_sn IN (".implode(",", $order_sn_arr).") ORDER BY id DESC";
+        $logs_id_row = $GLOBALS['db']->getALL($logs_id_sql);
+
+        foreach($update_data as $key=>$val) {
+            if($val['order_sn']==$rec_id_row[$key]['order_sn']){
+                $update_data[$key]['order_id']=$val['order_id'];
+                $update_data[$key]['order_sn']=$rec_id_row[$key]['order_sn'];
+                $update_data[$key]['rec_id']=$rec_id_row[$key]['rec_id'];
+                $rec_id_arr[] = $rec_id_row[$key]['rec_id'];
+            }
+            if($val['order_sn']==$logs_id_row[$key]['order_sn']){
+                $update_data[$key]['logs_id']=$logs_id_row[$key]['id'];
+                $logs_id_arr[] = $logs_id_row[$key]['id'];
+            }
+        }
+        //更改order_info下的order_id
+        $up_og_sql="UPDATE  ".$GLOBALS['ecs']->table('order_goods')." SET  order_id= CASE rec_id";
+        foreach($update_data as $key4=>$val4) {
+            $up_og_sql.=" WHEN ".$val4['rec_id']." THEN ". $val4['order_id'];
+        }
+        $up_og_sql.=" END WHERE rec_id IN(".implode(",", $rec_id_arr).") ";
+
+        //更改goods_logs下的order_id
+        $up_gl_sql="UPDATE  ".$GLOBALS['ecs']->table('goods_inventory_logs')." SET  order_id= CASE id";
+        foreach($update_data as $key3=>$val3) {
+            $up_gl_sql.=" WHEN ".$val3['logs_id']." THEN ". $val3['order_id'];
+        }
+        $up_gl_sql.=" END WHERE id IN(".implode(",", $logs_id_arr).") ";
+
+        $og_res=$GLOBALS['db']->query($up_og_sql);
+        if($og_res){
+            $gl_res=$GLOBALS['db']->query($up_gl_sql);
+            if($gl_res){
+                var_dump('成功');
+                var_dump(date("H:i:s", time() + 8 * 3600));
+            }
+        }
+        if(count($update_data)%1000==0){
+            $GLOBALS['db']->query('commit transaction');
+            $GLOBALS['db']->query('begin');
+        }
+        $GLOBALS['db']->query('commit');
+    }
+
+    $smarty->display('paipai_part_exchangenext.dwt');
 
 }

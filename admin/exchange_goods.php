@@ -313,5 +313,37 @@ else if ($_REQUEST['act'] == 'search_goods') {
 	$arr = get_goods_list($filters);
 	make_json_result($arr);
 }
+else if ($_REQUEST['act'] == 'batch_add') {
+
+	$year = $_POST['year'];
+	$suppliers_id_arr=$_POST['suppliers'];
+
+	var_dump(date("H:i:s", time() + 8 * 3600));
+	if($year && $suppliers_id_arr){
+
+		$suppliers_id = explode(",", $suppliers_id_arr);
+		for($i=0;$i<count($suppliers_id);$i++){
+			$goods_sql = " SELECT goods_id,suppliers_id,shop_price,cost_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE suppliers_id=" . $suppliers_id[$i];
+			$goods_row[$i] = $GLOBALS['db']->getAll($goods_sql);
+		}
+		$goods_arr=array_reduce($goods_row, 'array_merge', array());
+		$add_eg_sql = "INSERT INTO " . $GLOBALS['ecs']->table('exchange_goods') . "(goods_id,review_status,user_id,exchange_integral,market_integral,is_exchange,is_hot,is_best) VALUES";
+        foreach($goods_arr as $key=>$val){
+
+			$exchange_integral=number_format($val['shop_price']*0.6,0)*10;
+			$market_integral=number_format($val['cost_price'],2)*10;
+			$add_eg_sql .= "('" . $val['goods_id'] . "',".'3'.",".'0'.",'".$exchange_integral ."','".$market_integral."',".'1'.",".'1'.",".'1'."),";
+		}
+		$add_eg_sql = substr($add_eg_sql, 0, strlen($add_eg_sql) - 1);
+		$res = $GLOBALS['db']->query($add_eg_sql);
+        if($res){
+        	var_dump('成功');
+			var_dump(date("H:i:s", time() + 8 * 3600));
+		}
+
+	}
+
+	$smarty->display('exchange_batch_add.dwt');
+}
 
 ?>
