@@ -999,13 +999,13 @@ function get_user_order_comment_list($user_id, $type = 0, $sign = 0, $order_id =
 		$where .= ' AND (SELECT count(*) FROM ' . $GLOBALS['ecs']->table('comment') . (' AS c WHERE c.comment_type = 0 AND c.id_value = g.goods_id AND c.rec_id = og.rec_id AND c.parent_id = 0 AND c.user_id = \'' . $user_id . '\') > 0 ');
 		$where .= ' AND (SELECT count(*) FROM ' . $GLOBALS['ecs']->table('comment_img') . ' AS ci, ' . $GLOBALS['ecs']->table('comment') . ' AS c' . (' WHERE c.comment_type = 0 AND c.id_value = g.goods_id AND ci.rec_id = og.rec_id AND c.parent_id = 0 AND c.user_id = \'' . $user_id . '\' AND ci.comment_id = c.comment_id ) > 0 ');
 	}
-
+	$limit_max_time=time()+7*24*3600;
 	if ($type == 1) {
-		$sql = 'SELECT count(*) FROM ' . $GLOBALS['ecs']->table('order_goods') . ' AS og ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' AS oi ON og.order_id = oi.order_id ' . 'LEFT JOIN  ' . $GLOBALS['ecs']->table('goods') . ' AS g ON og.goods_id = g.goods_id ' . ('WHERE og.goods_id = g.goods_id AND og.extension_code != \'package_buy\' AND oi.user_id = \'' . $user_id . '\' ' . $where . ' ORDER BY oi.add_time DESC');
+		$sql = 'SELECT count(*) FROM ' . $GLOBALS['ecs']->table('order_goods') . ' AS og ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' AS oi ON og.order_id = oi.order_id ' . 'LEFT JOIN  ' . $GLOBALS['ecs']->table('goods') . ' AS g ON og.goods_id = g.goods_id ' . ('WHERE og.goods_id = g.goods_id AND og.extension_code != \'package_buy\' AND oi.user_id = \'' . $user_id . '\' ' . $where .' AND oi.pay_time<'.$limit_max_time. ' ORDER BY oi.add_time DESC');
 		$arr = $GLOBALS['db']->getOne($sql);
 	}
 	else {
-		$sql = 'SELECT og.rec_id, og.order_id, og.goods_id, og.goods_attr, og.goods_name, oi.add_time,g.goods_thumb, g.goods_product_tag, og.ru_id FROM ' . $GLOBALS['ecs']->table('order_goods') . ' AS og ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' AS oi ON og.order_id = oi.order_id ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON og.goods_id = g.goods_id ' . ('WHERE og.goods_id = g.goods_id AND og.extension_code != \'package_buy\' AND oi.user_id = \'' . $user_id . '\' ' . $where . ' ORDER BY oi.add_time DESC');
+		$sql = 'SELECT og.rec_id, og.order_id, og.goods_id, og.goods_attr, og.goods_name, oi.add_time,g.goods_thumb, g.goods_product_tag, og.ru_id FROM ' . $GLOBALS['ecs']->table('order_goods') . ' AS og ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' AS oi ON og.order_id = oi.order_id ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON og.goods_id = g.goods_id ' . ('WHERE og.goods_id = g.goods_id AND og.extension_code != \'package_buy\' AND oi.user_id = \'' . $user_id . '\' ' . $where .' AND oi.pay_time<'.$limit_max_time.  ' ORDER BY oi.add_time DESC');
 
 		if (0 < $size) {
 			$res = $GLOBALS['db']->SelectLimit($sql, $size, $start);
