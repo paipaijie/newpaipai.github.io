@@ -877,8 +877,9 @@ function get_order_goods($order)
 {
 	$goods_list = array();
 	$goods_attr = array();
-	$sql = 'SELECT o.*, o.extension_code AS iog_extension_code, g.model_inventory, g.model_attr AS model_attr, g.suppliers_id AS suppliers_id, g.goods_number AS storage, g.goods_thumb, o.goods_attr, IFNULL(b.brand_name, \'\') AS brand_name, p.product_sn, g.bar_code, ' . 'oi.order_sn, oi.extension_code as oi_extension_code, oi.extension_id ' . 'FROM ' . $GLOBALS['ecs']->table('order_goods') . ' AS o ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('products') . ' AS p ON o.product_id = p.product_id ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON o.goods_id = g.goods_id ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('brand') . ' AS b ON g.brand_id = b.brand_id ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' AS oi ON oi.order_id = o.order_id ' . ('WHERE o.order_id = \'' . $order['order_id'] . '\' ');
+	$sql = 'SELECT o.*, o.extension_code AS iog_extension_code, g.model_inventory, g.model_attr AS model_attr, g.suppliers_id AS suppliers_id, g.goods_number AS storage,g.cost_price, g.goods_thumb, o.goods_attr, IFNULL(b.brand_name, \'\') AS brand_name, p.product_sn, g.bar_code, ' . 'oi.order_sn, oi.extension_code as oi_extension_code, oi.extension_id ' . 'FROM ' . $GLOBALS['ecs']->table('order_goods') . ' AS o ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('products') . ' AS p ON o.product_id = p.product_id ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON o.goods_id = g.goods_id ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('brand') . ' AS b ON g.brand_id = b.brand_id ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' AS oi ON oi.order_id = o.order_id ' . ('WHERE o.order_id = \'' . $order['order_id'] . '\' ');
 	$res = $GLOBALS['db']->query($sql);
+
 
 	while ($row = $GLOBALS['db']->fetchRow($res)) {
 		if ($row['is_real'] == 0) {
@@ -1806,12 +1807,15 @@ function download_orderlist($result)
 		$order_sn = i('#' . $result[$i]['order_sn']);
 		$order_user = i($result[$i]['buyer']);
 		$goods_name = i($result[$i]['goods_list'][0]['goods_name']);
+		$cost_price = i($result[$i]['goods_list'][0]['cost_price']);
 		$order_time = i($result[$i]['short_order_time']);
 		$consignee = i($result[$i]['consignee']);
 		$tel = !empty($result[$i]['mobile']) ? i($result[$i]['mobile']) : i($result[$i]['tel']);
 		$address = i(addslashes(str_replace(',', '，', '[' . $result[$i]['region'] . '] ' . $result[$i]['address'])));
 		$order_amount = i($result[$i]['order_amount']);
 		$goods_amount = i($result[$i]['goods_amount']);
+		$integral = i($result[$i]['integral_money']*100);
+		$integral_money = i($result[$i]['integral_money']);
 		$shipping_fee = i($result[$i]['old_shipping_fee']);
 		$discount = i($result[$i]['discount']);
 		$order_status = i($GLOBALS['_LANG']['os'][$result[$i]['order_status']]);
@@ -1820,7 +1824,7 @@ function download_orderlist($result)
 		$shipping_status = i($GLOBALS['_LANG']['ss'][$result[$i]['shipping_status']]);
 		$total_fee = i($result[$i]['total_fee']);
 		$total_fee_order = i($result[$i]['total_fee_order']);
-		$data .= $order_sn . ',' . $seller_name . ','.$goods_name.',' . $order_user . ',' . $order_time . ',' . $consignee . ',' . $tel . ',' . $address . ',' . $goods_amount . ',' .  $shipping_fee . ',' . $total_fee . ',' . $discount . ',' . $total_fee_order . ',' . $order_amount . ',' . $order_status . ',' . $pay_status . ',' . $shipping_status . "\n";
+		$data .= $order_sn . ',' . $seller_name . ','.$goods_name.','.$cost_price .','. $order_user . ',' . $order_time . ',' . $consignee . ',' . $tel . ',' . $address . ',' . $goods_amount . ',' .  $shipping_fee . ',' . $total_fee . ',' . $discount . ',' . $total_fee_order . ',' . $order_amount . ',' .$integral. ','.$integral_money. ','. $order_status . ',' . $pay_status . ',' . $shipping_status . "\n";
 	}
 
 

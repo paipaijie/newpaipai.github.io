@@ -1371,7 +1371,7 @@ elseif($_REQUEST['act'] =='exchange'){
     $outprice = $_POST['out_price'];
 
     if($year && $mouth && $outprice){
-        $eg_sql='SELECT eg.goods_id,eg.exchange_integral,eg.market_integral,g.goods_name,g.goods_sn,g.market_price FROM '. $GLOBALS['ecs']->table('exchange_goods').' AS eg LEFT JOIN '.$GLOBALS['ecs']->table('goods').' AS g ON eg.goods_id=g.goods_id WHERE eg.is_exchange=1 ';
+        $eg_sql='SELECT eg.goods_id,eg.exchange_integral,eg.market_integral,g.goods_name,g.goods_sn,g.market_price,g.cost_price FROM '. $GLOBALS['ecs']->table('exchange_goods').' AS eg LEFT JOIN '.$GLOBALS['ecs']->table('goods').' AS g ON eg.goods_id=g.goods_id WHERE eg.is_exchange=1 ';
         $eg_row=$GLOBALS['db']->getAll($eg_sql);
 
         $oi_uid_sql='SELECT distinct user_id,consignee,country,province,city,district,mobile FROM '. $GLOBALS['ecs']->table('order_info');
@@ -1399,7 +1399,7 @@ elseif($_REQUEST['act'] =='exchange'){
                  'goods_sn'=>$eg_row[$i]['goods_sn'],
                  'market_price'=>$eg_row[$i]['market_price'],
                  'exchange_integral'=>$eg_row[$i]['exchange_integral'],
-                 'num'=> round($one_total_price[$i+1]*10/$eg_row[$i]['exchange_integral']),
+                 'num'=> round($one_total_price[$i+1]/$eg_row[$i]['cost_price']),
              );
         }
 
