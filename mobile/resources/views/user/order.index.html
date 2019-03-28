@@ -77,7 +77,27 @@
                             <span class="f-c-a-count">共 <%order.order_goods_num%>款</span><i class="iconfont icon-jiantou tf-180"></i>
                         </span>
                     </div>
-					<div class="padding-all f-05 user-order-money b-color-f">共<%order.order_goods_num%>款商品 合计：<em class="t-first"><%#order.total_fee%></em></div>
+					<div class="padding-all f-05 user-order-money b-color-f">
+                        <% if order.extension_code=='paipai_buy' %>
+                        <span style="float: left;display:block;width:2rem;height:2rem;background-color:#F94290;text-align:center;padding-top:0.25rem;color:#ffffff;border-radius:1rem;" >
+                            拍
+                        </span>
+                        <%else if order.extension_code=='exchange_goods' %>
+                        <span style="float: left;display:block;width:2rem;height:2rem;background-color:#CE3BF6;text-align:center;padding-top:0.25rem;color:#ffffff;border-radius:1rem;" >
+                            积
+                        </span>
+                        <%else%>
+                        <span style="float: left;display:block;width:2rem;height:2rem;background-color:#ADD818;text-align:center;padding-top:0.25rem;color:#ffffff;border-radius:1rem;" >
+                            普
+                        </span>
+                        <%/if%>
+                        <% if order.pay_status=='10' %>
+                        <span style="float: left;display:block;width:10rem;height:2rem;text-align:center;padding-top:0.25rem;margin-left:1rem;">
+                            保证金支付 无实物
+                        </span>
+                        <%/if%>
+                        共<%order.order_goods_num%>款商品 合计：<em class="t-first"><%#order.total_fee%></em>
+                    </div>
 					
                     <footer class="padding-all b-color-f m-top1px of-hidden dis-box">
                         <h4 class="t-remark2 box-flex"></h4>
@@ -100,7 +120,7 @@
                              <button class="btn-default-new br-5 min-btn del-order" data-item="<%order.order_id%>">删除</button>
                             <%/if%>
                             <%if order.online_pay%>
-                            <a class="btn-default-new br-5 min-btn" href="<%#order.online_pay%>">立即支付</a>
+                            <% if order.order_pay_status =='3'%><a class="btn-default-new br-5 min-btn" >已失效</a><%else%><a class="btn-default-new br-5 min-btn" href="<%#order.online_pay%>">立即支付</a><%/if%>
                             <%/if%>
                             
                       <!--

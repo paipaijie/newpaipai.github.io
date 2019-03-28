@@ -588,7 +588,7 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 			$default_sort_order_type = 'ppj_id';
 		}
 
-			if (IS_AJAX) {
+		if (IS_AJAX) {
 			
 			$this->sort = isset($_REQUEST['sort']) && in_array(trim(strtolower($_REQUEST['sort'])), array('ppj_id', 'start_time', 'sales_volume', 'comments_number')) ? trim($_REQUEST['sort']) : $default_sort_order_type;
 			
@@ -600,7 +600,7 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 			$keywords = I('keyword');
 			
 			$count = group_buy_count($keywords);
-			
+
 			$max_page = 0 < $count ? ceil($count / $this->size) : 1;
 
 			if ($max_page < $page) {
@@ -608,7 +608,7 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 			}
 
 			$gb_list = paipai_buy_list($this->size, $page, $keywords, $this->sort, $this->order);
-			
+
 			exit(json_encode(array('gb_list' => $gb_list, 'totalPage' => ceil($count / $this->size))));
 
 		}
@@ -643,7 +643,7 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 		}
 		
 		//var_dump($this->groupbuyid);
-		$group_buy = paipai_buy_info($this->groupbuyid);	
+		$group_buy = paipai_buy_info($this->groupbuyid);
 
 		if (empty($group_buy)) {
 			ecs_header("Location: ./\n");
@@ -1147,8 +1147,8 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 		}
 
  // 商品价格
-		$goods_price = 0 < $group_buy['ppj_margin_fee'] ? $group_buy['ppj_margin_fee'] : $group_buy['cur_price'];
-		
+		//$goods_price = 0 < $group_buy['ppj_margin_fee'] ? $group_buy['ppj_margin_fee'] : $group_buy['cur_price'];
+		$goods_price =$group_buy['ppj_margin_fee'];
 		
 		$cart = array('ppj_id' => $group_buy['ppj_id'],'ppj_no' => $group_buy['ppj_no'],'sellers_fee' => $sellers_fee,'user_id' => $_SESSION['user_id'], 'session_id' => $sess, 'goods_id' => $group_buy['goods_id'], 'product_id' => $product_info['product_id'], 'goods_sn' => addslashes($goods['goods_sn']), 'goods_name' => addslashes($goods['goods_name']), 'market_price' => $goods['market_price'], 'goods_price' => $goods_price, 'goods_number' => $number, 'goods_attr' => addslashes($goods_attr), 'goods_attr_id' => $specs, 'ru_id' => $goods['user_id'], 'warehouse_id' => $this->region_id, 'area_id' => $this->area_id, 'is_real' => $goods['is_real'], 'extension_code' => addslashes($goods['extension_code']), 'parent_id' => 0, 'rec_type' => CART_GROUP_BUY_GOODS, 'is_gift' => 0);
 		

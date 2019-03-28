@@ -237,22 +237,29 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 		$where = 'and oi.pay_status = 10';		
 	}
 	$select = ' (SELECT count(*) FROM ' . $GLOBALS['ecs']->table('comment') . (' AS c WHERE c.comment_type = 0 AND c.id_value = og.goods_id AND c.order_id = oi.order_id AND c.parent_id = 0 AND c.user_id = \'' . $user_id . '\') AS sign1, ') . '(SELECT count(*) FROM ' . $GLOBALS['ecs']->table('comment_img') . ' AS ci, ' . $GLOBALS['ecs']->table('comment') . ' AS c' . (' WHERE c.comment_type = 0 AND c.id_value = og.goods_id AND c.order_id = oi.order_id AND c.parent_id = 0 AND c.user_id = \'' . $user_id . '\' AND ci.comment_id = c.comment_id )  AS sign2, ');
-	$total_arr = $GLOBALS['db']->getAll('SELECT oi.order_id FROM ' . $GLOBALS['ecs']->table('order_info') . ' as oi' . ' left join ' . $GLOBALS['ecs']->table('order_goods') . ' as og on oi.order_id = og.order_id' . (' WHERE oi.user_id = \'' . $user_id . '\' and oi.is_delete = \'0\' and oi.is_zc_order=0 ') . $where . ' and (select count(*) from ' . $GLOBALS['ecs']->table('order_info') . ' as oi2 where oi2.main_order_id = oi.order_id) = 0 ' . ' group by oi.order_id ORDER BY oi.add_time DESC');
+	$total_sql='SELECT oi.order_id FROM ' . $GLOBALS['ecs']->table('order_info') . ' as oi' . ' left join ' . $GLOBALS['ecs']->table('order_goods') . ' as og on oi.order_id = og.order_id' . (' WHERE oi.user_id = \'' . $user_id . '\' and oi.is_delete = \'0\' and oi.is_zc_order=0 ') . $where . ' and (select count(*) from ' . $GLOBALS['ecs']->table('order_info') . ' as oi2 where oi2.main_order_id = oi.order_id) = 0 ' . ' group by oi.order_id ORDER BY oi.add_time DESC';
+	$total_arr = $GLOBALS['db']->getAll($total_sql);
 	$total = is_array($total_arr) ? count($total_arr) : 0;
 	$start = ($page - 1) * $num;
 	$arr = array();
-    
 	if (is_dir(APP_TEAM_PATH)) {
-		
 		$sql = 'SELECT og.ru_id, oi.main_order_id,og.sellers_fee,og.ppj_no,oi.ppj_id,oi.ppj_no,oi.consignee,oi.pay_name, oi.order_id, oi.order_sn,oi.pay_time,oi.order_status, oi.shipping_status, oi.pay_status, oi.add_time, oi.shipping_time, oi.auto_delivery_time, oi.sign_time,oi.team_id,oi.extension_code, ' . $select . '(oi.goods_amount + oi.shipping_fee + oi.insure_fee + oi.pay_fee + oi.pack_fee + oi.card_fee + oi.tax - oi.discount - oi.coupons) AS total_fee, og.goods_id, ' . 'oi.invoice_no, oi.shipping_name, oi.tel, oi.email, oi.address, oi.province, oi.city, oi.district ' . ' FROM ' . $GLOBALS['ecs']->table('order_info') . ' as oi' . ' left join ' . $GLOBALS['ecs']->table('order_goods') . ' as og on oi.order_id = og.order_id' . (' WHERE oi.user_id = \'' . $user_id . '\' and oi.is_delete = \'0\' and oi.is_zc_order=0  ') . $where . ' and (select count(*) from ' . $GLOBALS['ecs']->table('order_info') . ' as oi2 where oi2.main_order_id = oi.order_id) = 0 ' . (' group by oi.order_id ORDER BY oi.add_time DESC LIMIT ' . $start . ', ' . $num);
 	}
 	else {
 		$sql = 'SELECT og.ru_id, oi.main_order_id, oi.consignee,oi.pay_name, oi.order_id,og.sellers_fee,og.ppj_no,oi.ppj_id,oi.ppj_no,oi.order_sn,oi.pay_time,oi.order_status, oi.shipping_status, oi.pay_status, oi.add_time, oi.shipping_time, oi.auto_delivery_time, oi.sign_time,oi.extension_code, ' . $select . '(oi.goods_amount + oi.shipping_fee + oi.insure_fee + oi.pay_fee + oi.pack_fee + oi.card_fee + oi.tax - oi.discount - oi.coupons) AS total_fee, og.goods_id, ' . 'oi.invoice_no, oi.shipping_name, oi.tel, oi.email, oi.address, oi.province, oi.city, oi.district ' . ' FROM ' . $GLOBALS['ecs']->table('order_info') . ' as oi' . ' left join ' . $GLOBALS['ecs']->table('order_goods') . ' as og on oi.order_id = og.order_id' . (' WHERE oi.user_id = \'' . $user_id . '\' and oi.is_delete = \'0\' and oi.is_zc_order=0  ') . $where . ' and (select count(*) from ' . $GLOBALS['ecs']->table('order_info') . ' as oi2 where oi2.main_order_id = oi.order_id) = 0 ' . (' group by oi.order_id ORDER BY oi.add_time DESC LIMIT ' . $start . ', ' . $num);
 	}
-    
 	$res = $GLOBALS['db']->query($sql);
 
-	$noTime = gmtime();
+//	$ntime=time()+8*3600;
+//	foreach($res as $rkey=>$rval){
+//		$pl_sql='SELECT ppj_id FROM '.$GLOBALS['ecs']->table('paipai_list').' WHERE ppj_id='.$rval['ppj_id'].' AND end_time<'.$ntime;
+//		$pl_row=$GLOBALS['db']->query($pl_sql);
+//		if($pl_row){
+//			unset($res[$rkey]);
+//		}
+//	}
+
+	$noTime = gmtime()+8*3600;
 	$os = L('os');
 	$ps = L('ps');
 	$ss = L('ss');
@@ -484,8 +491,8 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 		} 
 		$pl_sql="SELECT start_time,end_time,ppj_startpay_time,ppj_endpay_time FROM {pre}paipai_list WHERE ppj_id={$row['ppj_id']} AND ppj_no={$row['ppj_no']}  ";
 		$pl_data=$GLOBALS['db']->getRow($pl_sql);
-		$ppj_start_time=$pl_data['start_time']+8*60*60;
-		$ppj_end_time=$pl_data['end_time']+8*60*60;
+		$ppj_start_time=$pl_data['start_time'];
+		$ppj_end_time=$pl_data['end_time'];
 		$ppj_startpay_time=$pl_data['ppj_startpay_time']*60;
 		$ppj_endpay_time=$pl_data['ppj_endpay_time']*60;
 
@@ -522,15 +529,14 @@ function get_user_orders($user_id, $num = 10, $page = 1, $status = 0)
 	$arr = array();
 
 	if (is_dir(APP_TEAM_PATH)) {
-		$sql = 'SELECT og.ru_id, oi.main_order_id, oi.consignee,oi.pay_name, oi.order_id, oi.order_sn,oi.pay_time,oi.order_status, oi.shipping_status, oi.pay_status, oi.add_time, oi.shipping_time, oi.auto_delivery_time, oi.sign_time,oi.team_id,oi.extension_code, ' . $select . '(oi.goods_amount + oi.shipping_fee + oi.insure_fee + oi.pay_fee + oi.pack_fee + oi.card_fee + oi.tax - oi.discount - oi.coupons) AS total_fee, og.goods_id, ' . 'oi.invoice_no, oi.shipping_name, oi.tel, oi.email, oi.address, oi.province, oi.city, oi.district ' . ' FROM ' . $GLOBALS['ecs']->table('order_info') . ' as oi' . ' left join ' . $GLOBALS['ecs']->table('order_goods') . ' as og on oi.order_id = og.order_id' . (' WHERE oi.user_id = \'' . $user_id . '\' and oi.is_delete = \'0\' and oi.is_zc_order=0  ') . $where . ' and (select count(*) from ' . $GLOBALS['ecs']->table('order_info') . ' as oi2 where oi2.main_order_id = oi.order_id) = 0 ' . (' group by oi.order_id ORDER BY oi.add_time DESC LIMIT ' . $start . ', ' . $num);
+		$sql = 'SELECT og.ru_id, oi.main_order_id, oi.consignee,oi.pay_name, oi.order_id, oi.order_sn,oi.pay_time,oi.order_status, oi.shipping_status, oi.pay_status, oi.add_time, oi.shipping_time, oi.auto_delivery_time, oi.sign_time,oi.team_id,oi.extension_code,oi.extension_id, ' . $select . '(oi.goods_amount + oi.shipping_fee + oi.insure_fee + oi.pay_fee + oi.pack_fee + oi.card_fee + oi.tax - oi.discount - oi.coupons) AS total_fee, og.goods_id, ' . 'oi.invoice_no, oi.shipping_name, oi.tel, oi.email, oi.address, oi.province, oi.city, oi.district ' . ' FROM ' . $GLOBALS['ecs']->table('order_info') . ' as oi' . ' left join ' . $GLOBALS['ecs']->table('order_goods') . ' as og on oi.order_id = og.order_id' . (' WHERE oi.user_id = \'' . $user_id . '\' and oi.is_delete = \'0\' and oi.is_zc_order=0  ') . $where . ' and (select count(*) from ' . $GLOBALS['ecs']->table('order_info') . ' as oi2 where oi2.main_order_id = oi.order_id) = 0 ' . (' group by oi.order_id ORDER BY oi.add_time DESC LIMIT ' . $start . ', ' . $num);
 	}
 	else {
-		$sql = 'SELECT og.ru_id, oi.main_order_id, oi.consignee,oi.pay_name, oi.order_id, oi.order_sn,oi.pay_time,oi.order_status, oi.shipping_status, oi.pay_status, oi.add_time, oi.shipping_time, oi.auto_delivery_time, oi.sign_time,oi.extension_code, ' . $select . '(oi.goods_amount + oi.shipping_fee + oi.insure_fee + oi.pay_fee + oi.pack_fee + oi.card_fee + oi.tax - oi.discount - oi.coupons) AS total_fee, og.goods_id, ' . 'oi.invoice_no, oi.shipping_name, oi.tel, oi.email, oi.address, oi.province, oi.city, oi.district ' . ' FROM ' . $GLOBALS['ecs']->table('order_info') . ' as oi' . ' left join ' . $GLOBALS['ecs']->table('order_goods') . ' as og on oi.order_id = og.order_id' . (' WHERE oi.user_id = \'' . $user_id . '\' and oi.is_delete = \'0\' and oi.is_zc_order=0  ') . $where . ' and (select count(*) from ' . $GLOBALS['ecs']->table('order_info') . ' as oi2 where oi2.main_order_id = oi.order_id) = 0 ' . (' group by oi.order_id ORDER BY oi.add_time DESC LIMIT ' . $start . ', ' . $num);
+		$sql = 'SELECT og.ru_id, oi.main_order_id, oi.consignee,oi.pay_name, oi.order_id, oi.order_sn,oi.pay_time,oi.order_status, oi.shipping_status, oi.pay_status, oi.add_time, oi.shipping_time, oi.auto_delivery_time, oi.sign_time,oi.extension_code,oi.extension_id, ' . $select . '(oi.goods_amount + oi.shipping_fee + oi.insure_fee + oi.pay_fee + oi.pack_fee + oi.card_fee + oi.tax - oi.discount - oi.coupons) AS total_fee, og.goods_id, ' . 'oi.invoice_no, oi.shipping_name, oi.tel, oi.email, oi.address, oi.province, oi.city, oi.district ' . ' FROM ' . $GLOBALS['ecs']->table('order_info') . ' as oi' . ' left join ' . $GLOBALS['ecs']->table('order_goods') . ' as og on oi.order_id = og.order_id' . (' WHERE oi.user_id = \'' . $user_id . '\' and oi.is_delete = \'0\' and oi.is_zc_order=0  ') . $where . ' and (select count(*) from ' . $GLOBALS['ecs']->table('order_info') . ' as oi2 where oi2.main_order_id = oi.order_id) = 0 ' . (' group by oi.order_id ORDER BY oi.add_time DESC LIMIT ' . $start . ', ' . $num);
 	}
-
 	$res = $GLOBALS['db']->query($sql);
-	// var_dump($sql);exit;
-	$noTime = gmtime();
+
+	$noTime = gmtime()+8*3600;
 	$os = L('os');
 	$ps = L('ps');
 	$ss = L('ss');
@@ -694,7 +700,22 @@ function get_user_orders($user_id, $num = 10, $page = 1, $status = 0)
 		if (0 < $store_id && $row['shipping_status'] == SS_SHIPPED && $row['pay_status'] == PS_PAYED) {
 			@$row['handler'] = '<a class="btn-default-new br-5 min-btn" href="' . url('user/order/affirmreceived', array('order_id' => $row['order_id'])) . '" onclick="if (!confirm(\'' . L('confirm_received') . '\')) return false;">' . L('received') . '</a>';
 		}
-
+        if($row['extension_id']>0){
+			$pl_sql="SELECT start_time,end_time FROM ". $GLOBALS['ecs']->table('paipai_list')." WHERE ppj_id=".$row['extension_id'];
+			$pl_row= $GLOBALS['db']->getRow($pl_sql);
+			if($pl_row){
+				if($pl_row['end_time']< $noTime){
+					$order_pay_status='3';
+				}
+			}
+		}else{
+			$confim_max_time=$row['add_time']+24*3600;
+        	if( $confim_max_time < $noTime){
+				$order_pay_status='4';
+			}else{
+				$order_pay_status='';
+			}
+		}
 		$ru_id = $row['ru_id'];
 		if($row['extension_code']=='two_price'){
             $so_sql="SELECT spm_id FROM ". $GLOBALS['ecs']->table('paipai_seller_ok')." WHERE order_id=".$row['order_id'];
@@ -720,9 +741,8 @@ function get_user_orders($user_id, $num = 10, $page = 1, $status = 0)
 		$district_name = !empty($district['region_name']) ? $district['region_name'] : '';
 		$address_detail = $province['region_name'] . '&nbsp;' . $city['region_name'] . '市' . '&nbsp;' . $district_name;
 		$delivery['delivery_time'] = local_date($GLOBALS['_CFG']['time_format'], $delivery['update_time']);
-		$arr[] = array('order_id' => $row['order_id'], 'order_sn' => $row['order_sn'], 'order_time' => local_date($GLOBALS['_CFG']['time_format'], $row['add_time']), 'order_status' => $row['order_status'], 'order_del' => $row['order_del'], 'online_pay' => $row['online_pay'], 'status' => $row['status'], 'status_number' => $status_number, 'consignee' => $row['consignee'], 'main_order_id' => $row['main_order_id'], 'user_name' => get_shop_name($ru_id, 1), 'order_goods' => $row['order_goods'], 'order_goods_num' => count($row['order_goods']), 'order_child' => $order_child, 'no_picture' => $GLOBALS['_CFG']['no_picture'], 'order_child' => $order_child, 'delete_yes' => $row['delete_yes'], 'invoice_no' => $row['invoice_no'], 'shipping_name' => $row['shipping_name'], 'email' => $row['email'], 'address_detail' => $row['address_detail'], 'address' => $row['address'], 'address_detail' => $address_detail, 'tel' => $row['tel'], 'delivery_time' => $delivery['delivery_time'], 'order_count' => $order_count, 'kf_type' => $basic_info['kf_type'], 'kf_ww' => $basic_info['kf_ww'], 'kf_qq' => $basic_info['kf_qq'], 'total_fee' => price_format($row['total_fee'], false), 'handler_return' => $row['handler_return'], 'pay_status' => $row['pay_status'], 'handler' => $row['handler'], 'team_id' => $row['team_id'], 'extension_code' => $row['extension_code'], 'order_url' => url('user/order/detail', array('order_id' => $row['order_id'])), 'delay' => $delay);
+		$arr[] = array('order_id' => $row['order_id'], 'order_sn' => $row['order_sn'],'order_pay_status'=>$order_pay_status, 'order_time' => local_date($GLOBALS['_CFG']['time_format'], $row['add_time']), 'order_status' => $row['order_status'], 'order_del' => $row['order_del'], 'online_pay' => $row['online_pay'], 'status' => $row['status'], 'status_number' => $status_number, 'consignee' => $row['consignee'], 'main_order_id' => $row['main_order_id'], 'user_name' => get_shop_name($ru_id, 1), 'order_goods' => $row['order_goods'], 'order_goods_num' => count($row['order_goods']), 'order_child' => $order_child, 'no_picture' => $GLOBALS['_CFG']['no_picture'], 'order_child' => $order_child, 'delete_yes' => $row['delete_yes'], 'invoice_no' => $row['invoice_no'], 'shipping_name' => $row['shipping_name'], 'email' => $row['email'], 'address_detail' => $row['address_detail'], 'address' => $row['address'], 'address_detail' => $address_detail, 'tel' => $row['tel'], 'delivery_time' => $delivery['delivery_time'], 'order_count' => $order_count, 'kf_type' => $basic_info['kf_type'], 'kf_ww' => $basic_info['kf_ww'], 'kf_qq' => $basic_info['kf_qq'], 'total_fee' => price_format($row['total_fee'], false), 'handler_return' => $row['handler_return'], 'pay_status' => $row['pay_status'], 'handler' => $row['handler'], 'team_id' => $row['team_id'], 'extension_code' => $row['extension_code'], 'order_url' => url('user/order/detail', array('order_id' => $row['order_id'])), 'delay' => $delay);
 	}
-
 	$order_list = array('list' => $arr, 'totalpage' => ceil($total / $num));
 	return $order_list;
 }

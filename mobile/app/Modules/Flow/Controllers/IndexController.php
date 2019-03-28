@@ -253,6 +253,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 
 		$cart_goods_list_new = cart_by_favourable($cart_goods_list);
 
+
 		$this->assign('goods_list', $cart_goods_list_new);
 
 		if ($flow_type != CART_GENERAL_GOODS || C('shop.one_step_buy') == '1') {
@@ -290,7 +291,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		
 		
 		$total = order_fee($order, $cart_goods, $consignee, 0, $cart_value, 0, $cart_goods_list, $this->region_id, $this->area_id, $store_id);
-		
+
 		
 		$this->assign('total', $total);
 		
@@ -1454,8 +1455,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$ppj_id=$this->db->getOne($cartsql);
 		$ppj_no=session('ppj_no');
 
-        var_dump( $_SESSION['extension_code']);
-        if($_SESSION['extension_code'] == 'paipai_buy'){
+
+        if(!empty($ppj_id)){
             $pay_status='11';
         }else{
             $pay_status='0';
@@ -1716,11 +1717,14 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
 		$stores_sms = 0;
-
 		if ($order['order_amount'] <= 0) {
+			if(!empty($order['ppj_id'])){
+				$order['pay_status'] = '10';
+			}else{
+				$order['pay_status'] = PS_PAYED;
+			}
 			$order['order_status'] = OS_CONFIRMED;
 			$order['confirm_time'] = time();
-			$order['pay_status'] = PS_PAYED;
 			$order['pay_time'] = time();
 			$order['order_amount'] = 0;
 			$stores_sms = 1;
@@ -1822,18 +1826,30 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				$bid_price= number_format($_POST['bid_price'],2);
 			}
 			do {
-
 				if($new_order_id){
-
-					$margin_date=array(
-						'user_id'=>$new_order['user_id'],
-						'ppj_id'=>$new_order['ppj_id'],
-						'ppj_no'=>$new_order['ppj_no'],
-						'order_id'=>$new_order_id,
-						'order_sn'=>$new_order['order_sn'],
-						'pay_fee'=>$new_order['order_amount'],
-						'createtime'=>time()+8*3600
-					);
+                    if($new_order['order_amount'] == '0'){
+						$margin_date=array(
+							'user_id'=>$new_order['user_id'],
+							'ppj_id'=>$new_order['ppj_id'],
+							'ppj_no'=>$new_order['ppj_no'],
+							'order_id'=>$new_order_id,
+							'order_sn'=>$new_order['order_sn'],
+							'pay_fee'=>$new_order['order_amount'],
+							'ls_pay_ok'=>'1',
+							'createtime'=>time()+8*3600,
+							'paytime'=>time()+8*3600
+						);
+					}else{
+						$margin_date=array(
+							'user_id'=>$new_order['user_id'],
+							'ppj_id'=>$new_order['ppj_id'],
+							'ppj_no'=>$new_order['ppj_no'],
+							'order_id'=>$new_order_id,
+							'order_sn'=>$new_order['order_sn'],
+							'pay_fee'=>$new_order['order_amount'],
+							'createtime'=>time()+8*3600
+						);
+					}
 
 					// 保证金数据插入和更新
 					$margin_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_pay_margin'), $margin_date, 'INSERT');
@@ -1843,14 +1859,28 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 
 						$margin_sql="SELECT spm_id FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE  order_sn='{$margin_date['order_sn']}'";
 						$m_data=$this->db->getRow($margin_sql);
-						$bid_data=array(
-							'user_id'=>$new_order['user_id'],
-							'spm_id' => $m_data['spm_id'],
-							'ppj_id'=>$new_order['ppj_id'],
-							'ppj_no'=>$new_order['ppj_no'],
-							'bid_price'=>$bid_price,
-							'createtime'=>time()+8*3600
-						);
+						if($new_order['order_amount'] == '0') {
+							$bid_data=array(
+								'user_id'=>$new_order['user_id'],
+								'spm_id' => $m_data['spm_id'],
+								'ppj_id'=>$new_order['ppj_id'],
+								'ppj_no'=>$new_order['ppj_no'],
+								'bid_price'=>$bid_price,
+								'is_status'=>'2',
+								'createtime'=>time()+8*3600,
+								'bid_time'=>time()+8*3600
+							);
+						}else{
+							$bid_data=array(
+								'user_id'=>$new_order['user_id'],
+								'spm_id' => $m_data['spm_id'],
+								'ppj_id'=>$new_order['ppj_id'],
+								'ppj_no'=>$new_order['ppj_no'],
+								'bid_price'=>$bid_price,
+								'createtime'=>time()+8*3600
+							);
+						}
+
 						$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_goods_bid_user'), $bid_data, 'INSERT');
 					}
 				}
@@ -3422,9 +3452,6 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		return true;
 	}
 
-	public function actionPaidone(){
-		var_dump($_POST);
-	}
 }
 
 ?>

@@ -119,9 +119,9 @@
                                 <a class="btn-default-new br-5 min-btn" href="{url('user/userbuy/paipaibuy')}&ppj_id=&ppj_no=&sell=<%order.sell_user_data%>">待付款</a> 
                             <%else%>
                                 <% if order.cur_price  < order.bid_price %>                             
-                                <span style="color: rosybrown;"> 正在匹配适合的卖家...</span>
+                                <span style="color: rosybrown; font-size: 13px;"> 正在匹配适合的卖家...</span>
                                 <%else%>
-                                <span style="color:orangered;">匹配失败，请重新出价</span>
+                                <span style="color:orangered; font-size: 13px;">匹配失败，请重新出价</span>
                                 <%/if%>
                                 <a class="btn-default-new br-5 min-btn" href="{url('groupbuy/index/detail')}&id=<%order.ppj_id%>">再次出价</a>
                         	<%/if%>

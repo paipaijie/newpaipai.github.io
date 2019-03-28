@@ -197,20 +197,15 @@ public function actionPaipaibuy()
 //		$where_pay = ' AND oi.pay_status = 10';
 //		$paipai_count = get_order_where_count($user_id, $type, $where_pay);
 		$ntime=time()+8*3600;
-		$oi_ing='SELECT count(order_id) as count FROM '.$GLOBALS['ecs']->table('order_info').' AS oi LEFT JOIN '.$GLOBALS['ecs']->table('paipai_list').' AS pl ON oi.ppj_id=pl.ppj_id WHERE oi.user_id='.$user_id.' AND oi.pay_status=10 AND pl.start_time<='.$ntime.' AND pl.end_time>'.$ntime ;
+		$oi_ing='SELECT count(order_id) as count FROM '.$GLOBALS['ecs']->table('order_info').' AS oi LEFT JOIN '.$GLOBALS['ecs']->table('paipai_list').' AS pl ON oi.ppj_id=pl.ppj_id WHERE oi.user_id='.$user_id.' AND oi.order_status!=3 AND oi.pay_status=10 AND pl.start_time<='.$ntime.' AND pl.end_time>'.$ntime ;
 		$paipai_count=$GLOBALS['db']->getRow($oi_ing);
 		$this->assign('paipai_count', intval($paipai_count['count']));
 
 
 		//待付款
-		$sql = "select count(*) from dsc_order_info where user_id = {$_SESSION['user_id']} and pay_status = 11";
-		$res = $GLOBALS['db']->getAll($sql);
-		$arrt = array();
-		foreach ($res as $key => $value) {
-			# code...
-			$arrt = $value;
-		}
-		$att = $arrt['count(*)'];
+		$sql = "select count(order_id) as count from dsc_order_info where user_id = {$_SESSION['user_id']} and pay_status = 11 OR pay_status=0 AND order_status!=3 ";
+		$res = $GLOBALS['db']->getRow($sql);
+		$att = $res['count'];
 		$this->assign('pay_count', intval($att));
 		
 		$where_confirmed = ' AND oi.pay_status = ' . PS_PAYED . ' AND oi.order_status in (' . OS_CONFIRMED . ', ' . OS_SPLITED . ', ' . OS_SPLITING_PART . ') AND (oi.shipping_status >= ' . SS_UNSHIPPED . ' AND oi.shipping_status <> ' . SS_RECEIVED . ')';			

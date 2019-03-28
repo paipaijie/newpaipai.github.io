@@ -29,15 +29,10 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		$page = I('page', 1, 'intval');
 		
 		$status = I('status', 0, 'intval');
-		
-	           
 
-		if (IS_POST) {	
-					
+		if (IS_POST) {
 			$order_list = get_user_paipaiorders($this->user_id, $size, $page, $status);
-
 			exit(json_encode(array('order_list' => $order_list['list'], 'totalPage' => $order_list['totalpage'])));
-			
 		}
 		
 		$all_order = get_order_where_count($this->user_id, 0, '');
@@ -77,7 +72,6 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 // 我的订单
 	public function actionIndex()
 	{
-
 		$size = 10;
 		$page = I('page', 1, 'intval');
 		$status = I('status', 0, 'intval');
@@ -93,16 +87,13 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		$where_confirmed = ' AND oi.pay_status = ' . PS_PAYED . ' AND oi.order_status in (' . OS_CONFIRMED . ', ' . OS_SPLITED . ', ' . OS_SPLITING_PART . ') AND (oi.shipping_status >= ' . SS_UNSHIPPED . ' AND oi.shipping_status <> ' . SS_RECEIVED . ')';
 		$confirmed_count = get_order_where_count($this->user_id, 0, $where_confirmed);
 
-		//查询出没有支付保证金的订单
-		$sql = "select count(*) from dsc_order_info where user_id = {$_SESSION['user_id']} and pay_status = 11";
-		$res = $GLOBALS['db']->getAll($sql);
-		$arrt = array();
-		foreach ($res as $key => $value) {
-			# code...
-			$arrt = $value;
-		}
-		$att = $arrt['count(*)'];
-		
+		$ntime=time()+8*3600;
+		$pl_sql='SELECT count(order_id) as count FROM '.$GLOBALS['ecs']->table('order_info').' AS oi LEFT JOIN '.$GLOBALS['ecs']->table('paipai_list').' AS pl ON oi.ppj_id=pl.ppj_id WHERE oi.user_id='.$_SESSION['user_id'].' AND oi.pay_status = 11  AND pl.start_time<'.$ntime.' AND pl.end_time>'.$ntime;
+		$pl_res = $GLOBALS['db']->getRow($pl_sql);
+		$oi_sql = "select count(*) as count from dsc_order_info where user_id = {$_SESSION['user_id']} and pay_status = 0 ";
+		$oi_res = $GLOBALS['db']->getRow($oi_sql);
+        $paipai_pay_count=$pl_res['count']+$oi_res['count'];
+
 		//查询出拍拍的订单
 		$sql1 = "select count(*) from dsc_order_info where user_id = {$_SESSION['user_id']} and extension_code = 'paipai_buy'";
 		$res1 = $GLOBALS['db']->getAll($sql1);
@@ -114,7 +105,7 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		$att1 = $arrt1['count(*)'];
 		
 		//把数据放到页面上
-		$order_num = array('all_order' => $all_order, 'pay_count' => $pay_count, 'confirmed_count' => $confirmed_count,'paipai_pay_count' => $att,'paipai_count' => $att1);
+		$order_num = array( 'confirmed_count' => $confirmed_count,'paipai_pay_count' => $paipai_pay_count);
 		$this->assign('order_num', $order_num);
 		$this->assign('status', $status);
 		$this->assign('page_title', L('order_list_lnk'));
@@ -416,7 +407,7 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 	public function actionDetail()
 	{
 		$order_id = I('order_id', 0, 'intval');
-		$noTime = gmtime();
+		$noTime = gmtime()+8*3600;
 		$date = array('order_sn', 'order_status', 'shipping_status', 'pay_status', 'shipping_time', 'auto_delivery_time');
 		$orderInfo = get_table_date('order_info', 'order_id = \'' . $order_id . '\' and user_id = \'' . $this->user_id . '\'', $date);
 
@@ -434,6 +425,18 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
 		$order = get_order_detail($order_id, $this->user_id);
+
+		if($order['extension_id']>0){
+			$pl_sql="SELECT start_time,end_time FROM ". $GLOBALS['ecs']->table('paipai_list')." WHERE ppj_id=".$order['extension_id'];
+			$pl_row= $GLOBALS['db']->getRow($pl_sql);
+			if($pl_row){
+				if($pl_row['end_time']< $noTime){
+					$order['order_pay_status']='3';
+				}
+			}
+		}else{
+			$order['order_pay_status']='';
+		}
 
 		if ($order === false) {
 			$this->err->show(L('back_home_lnk'), './');
@@ -687,7 +690,6 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		$this->assign('goods_count', $goods_count);
 		$this->assign('package_goods_count', $package_goods_count);
 		$this->assign('page_title', L('order_detail'));
-		//var_dump($order);
 		//exit;
 		$this->display();
 	}

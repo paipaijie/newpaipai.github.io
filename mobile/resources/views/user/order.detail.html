@@ -1,6 +1,12 @@
 {include file="page_header"}
 
 <div class="con">
+    <div id="fanhui" class="text-all dis-box j-text-all text-all-back" style="position:fixed;z-index:999;background:#f3f3f3;">
+
+        <a class="a-icon-back" href="javascript:history.go(-1) "><i class="iconfont icon-back"></i>
+            <span style="margin-left:2rem;padding-top:1.1rem;">&nbsp;&nbsp;返回                    </span>	</a>
+
+    </div>
     <div class="flow-checkout" style="margin-top:40px">
         {if $offline_store}
         <!--门店自提码  -->
@@ -433,26 +439,31 @@
     <p class="u-o-checkout-price t-remark text-left box-flex padding-all">
         应付总额：<span class="t-first">{$order.formated_order_amount}</span>
     </p>
-    {if $team && $order.failure > 0}
-    <div class="n-right-width">
-        <button class="btn-default btn-submit min-two-btn" type="button">订单过期</button>
-    </div>
+    {if $order.order_pay_status != '3'}
+        {if $team && $order.failure > 0}
+        <div class="n-right-width">
+            <button class="btn-default btn-submit min-two-btn" type="button">订单过期</button>
+        </div>
+        {else}
+            {if $order.pay_status!='已付款'}
+                {if $order.order_amount > 0 && empty($order.hidden_pay_button)}
+                    <div class="n-right-width">
+                        <a type="button" class="box-flex btn-submit min-two-btn" href="{url('onlinepay/index/index')}&order_sn={$order.order_sn}">立即付款</a>
+                    </div>
+                {/if}
+            {/if}
+        {/if}
+
+        <!-- 作者：xul@chuove.com
+        时间：2018-08-16
+        描述：取消付款 -->
+        {if $order.handler}
+        <div class="n-right-width">{$order.handler}</div>
+        {/if}
     {else}
-    {if $order.order_amount > 0 && empty($order.hidden_pay_button)}
     <div class="n-right-width">
-
-        <a type="button" class="box-flex btn-submit min-two-btn" href="{url('onlinepay/index/index')}&order_sn={$order.order_sn}">立即付款</a>
+        <a type="button" class="box-flex btn-submit min-two-btn">已失效</a>
     </div>
-    
-    {/if}
-    {/if}
-
-	<!-- 作者：xul@chuove.com
-	时间：2018-08-16
-	描述：取消付款 -->
-
-    {if $order.handler}
-    <div class="n-right-width">{$order.handler}</div>
     {/if}
 
     {if $order.invoice_no}
