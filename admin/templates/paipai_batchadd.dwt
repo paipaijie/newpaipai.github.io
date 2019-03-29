@@ -72,6 +72,15 @@
                                         </div>
 
                                         <div class="item">
+                                            <div class="label">保证金</div>
+                                            <div class="label_value">
+                                                <input type="text" name="margin_fee"  class="text" autocomplete="off" />
+                                                <div class="notic">元为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
                                             <div class="label">&nbsp;</div>
 
                                             <div class="label_value info_btn">

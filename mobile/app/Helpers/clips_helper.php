@@ -1004,7 +1004,7 @@ function get_user_order_comment_list($user_id, $type = 0, $sign = 0, $order_id =
 		$sql = 'SELECT count(*) FROM ' . $GLOBALS['ecs']->table('order_goods') . ' AS og ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' AS oi ON og.order_id = oi.order_id ' . 'LEFT JOIN  ' . $GLOBALS['ecs']->table('goods') . ' AS g ON og.goods_id = g.goods_id ' . ('WHERE og.goods_id = g.goods_id AND og.extension_code != \'package_buy\' AND oi.user_id = \'' . $user_id . '\' ' . $where .' AND oi.pay_time<'.$limit_max_time. ' ORDER BY oi.add_time DESC');
 		$arr = $GLOBALS['db']->getOne($sql);
 		if($arr>5){
-			$arr='1'.'+';
+			$arr='1+';
 		}
 	}
 	else {

@@ -1036,6 +1036,7 @@ else {
 		$days = $_POST['days'];
 		$goods_number=$_POST['goods_number'];
 		$limit_number=$_POST['limit_number'];
+		$post_margin_fee = $_POST['margin_fee'];
 		$year='2019';
 
 		$min_time=$year.'-'.$mouth.'-'.$days.' 07:00:00';
@@ -1089,8 +1090,12 @@ else {
 
 				$ppj_no = $ppj_goods['ppj_no'] + 1;
 
-				$ppj_margin_fee = "0.01";
 
+				if(!empty($post_margin_fee)){
+					$ppj_margin_fee = $post_margin_fee;
+				}else{
+					$ppj_margin_fee ='0.00';
+				}
 				if ($val['shop_price'] < 500) {
 					$part = '5';
 				} elseif ($val['shop_price'] >= 100 && $val['shop_price'] < 300) {

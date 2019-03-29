@@ -1,5 +1,12 @@
 {include file="page_header"}
-<div class="con" id="checkPage" style="margin-top:45px;">
+<div id="back" class="text-all dis-box j-text-all text-all-back" style="position:fixed;z-index:999;background:#f3f3f3;">
+    <a class="a-icon-back" href="javascript:history.go(-1) "><i class="iconfont icon-back"></i>
+        <span style="margin-left:2rem;padding-top:1.2rem;padding-bottom: 0.2rem; font-size: 16px">
+			&nbsp;&nbsp;返回
+		</span>
+    </a>
+</div>
+<div class="con" id="checkPage" style="margin-top:60px;">
     <div class="flow-cart blur-div">
         <!-- {if !$goods_list} -->
         <section class="flow-no-cart mb-7">
@@ -557,7 +564,33 @@
 
 {/if}
 <div class="mask-filter-div"></div>
-
+<footer class="footer-nav dis-box">
+    <a href="{url('/')}" class="box-flex nav-list">
+        <i class="nav-box i-home"></i><span>首页</span>
+    </a>
+    <a href="{url('category/index/index')}" class="box-flex nav-list">
+        <i class="nav-box i-cate"></i><span>分类</span>
+    </a>
+    <a href="{url('search/index/index')}" class="box-flex nav-list">
+        <i class="nav-box i-shop"></i><span>搜索</span>
+    </a>
+    <a href="{url('cart/index/index')}" class="box-flex position-rel nav-list active">
+        <i class="nav-box i-flow"></i><span>购物车</span>
+    </a>
+    {if $filter}
+    <a href="{url('drp/user/index')}" class="box-flex nav-list ">
+        <i class="nav-box i-user"></i><span>{$custom}中心</span>
+    </a>
+    {elseif $community}
+    <a href="{url('community/index/index')}" class="box-flex nav-list">
+        <i class="nav-box i-user"></i><span>社区</span>
+    </a>
+    {else}
+    <a href="{url('user/index/index')}" class="box-flex nav-list">
+        <i class="nav-box i-user"></i><span>我</span>
+    </a>
+    {/if}
+</footer>
 <script>
     var currency_format = '{$currency_format}';
 
