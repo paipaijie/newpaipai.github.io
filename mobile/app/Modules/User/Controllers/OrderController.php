@@ -88,9 +88,9 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		$confirmed_count = get_order_where_count($this->user_id, 0, $where_confirmed);
 
 		$ntime=time()+8*3600;
-		$pl_sql='SELECT count(order_id) as count FROM '.$GLOBALS['ecs']->table('order_info').' AS oi LEFT JOIN '.$GLOBALS['ecs']->table('paipai_list').' AS pl ON oi.ppj_id=pl.ppj_id WHERE oi.user_id='.$_SESSION['user_id'].' AND oi.pay_status = 11  AND pl.start_time<'.$ntime.' AND pl.end_time>'.$ntime;
+		$pl_sql='SELECT count(order_id) as count FROM '.$GLOBALS['ecs']->table('order_info').' AS oi LEFT JOIN '.$GLOBALS['ecs']->table('paipai_list').' AS pl ON oi.ppj_id=pl.ppj_id WHERE oi.user_id='.$_SESSION['user_id'].' AND oi.pay_status = 11 AND oi.order_status!=3  AND pl.start_time<'.$ntime.' AND pl.end_time>'.$ntime;
 		$pl_res = $GLOBALS['db']->getRow($pl_sql);
-		$oi_sql = "select count(*) as count from dsc_order_info where user_id = {$_SESSION['user_id']} and pay_status = 0 ";
+		$oi_sql = "select count(*) as count from dsc_order_info where user_id = {$_SESSION['user_id']} and pay_status = 0 AND order_status!=3 ";
 		$oi_res = $GLOBALS['db']->getRow($oi_sql);
         $paipai_pay_count=$pl_res['count']+$oi_res['count'];
 
