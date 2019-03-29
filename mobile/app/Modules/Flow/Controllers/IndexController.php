@@ -224,7 +224,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			ecs_header('Location: ' . url('address_list'));
 			exit();
 		}
-
+	$extension_code= $_SESSION['extension_code'];
+	$this->assign('extension_code',$extension_code);
 // 用户出价  保证金
 	$sql = 'SELECT sellers_fee,ppj_id,ppj_no FROM {pre}cart WHERE rec_id in (' . $cart_value . ')  LIMIT 1';
     $sellers_fee = $this->db->getRow($sql);
@@ -2256,7 +2257,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				}
 			}
 		}
-
+		$pay_status_extension=array('pay_status'=>$order['extension_code'],'extension_code'=>$order['extension_code']);
+		$this->assign('extension_row', $pay_status_extension);
 		$payment = payment_info($order['pay_id']);
 		$order['pay_code'] = $payment['pay_code'];
 		if (0 < $order['order_amount'] && $payment['pay_code'] == 'onlinepay' && $payment['pay_code'] != 'cod') {

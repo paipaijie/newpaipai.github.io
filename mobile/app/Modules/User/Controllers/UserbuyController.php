@@ -334,8 +334,8 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
 	
 	public function actionPbuy(){
 		
-		$ppj_id=$_POST['pjd'];
-    	$ppj_no=$_POST['pjn'];
+		$ppj_id=$_REQUEST['pjd'];
+    	$ppj_no=$_REQUEST['pjn'];
     	$where = ' WHERE 1 ';
     	$user_id=$this->user_id;
         $goods_sql="SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price,g.cost_price FROM ".$GLOBALS['ecs']->table('paipai_list')." AS pl LEFT JOIN ".$GLOBALS['ecs']->table('goods')." AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id={$ppj_id} AND pl.ppj_no={$ppj_no} ";		

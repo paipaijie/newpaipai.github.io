@@ -56,7 +56,11 @@
             </div>
             {if $order.order_amount==0 || $order.presaletime > 0 || $order.pay_code == 'cod'}
             <div class="flow-done-other dis-box">
-               <a href="{url('user/order/index')}" class="flow-done-btn btn-default-new min-two-btn br-5">查看订单</a>
+                {if $extension_row.extension_code=='paipai_buy'}
+                   <a href="{url('user/userbuy/userbuy',array(id=>$order.order_id))}" class="flow-done-btn btn-default-new min-two-btn br-5">进入拍拍匹配</a>
+                {else}
+                   <a href="{url('user/order/index')}" class="flow-done-btn btn-default-new min-two-btn br-5">查看订单</a>
+                {/if}
             </div>
             {/if}
         </div>

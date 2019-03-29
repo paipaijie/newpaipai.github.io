@@ -940,7 +940,7 @@
         <span class="box-flex t-remark">实付款 {if $total.exchange_integral}<em class="t-first">{$total.exchange_integral}积分 + </em>{/if}<em class="t-first" id="amount">{$total.amount_formated}</em></span>
         {if $isStoreOrder == 1}<div><a href="{url('category/index/index')}" class="btn-submit" style="background:#fff;color:#444">继续购物</a></div>{/if}
         <div>
-            <button name="submit" type="submit" class="btn-submit">{if $total.exchange_integral}确认兑换{else}安全支付{/if}</button>
+            <button name="submit" type="submit" class="btn-submit">{if $total.exchange_integral}确认兑换{elseif $extension_code='paipai_buy'}确认参加{else}安全支付{/if}</button>
         </div>
     </section>
 </form>
