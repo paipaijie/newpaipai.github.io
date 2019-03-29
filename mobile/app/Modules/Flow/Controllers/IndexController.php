@@ -1462,7 +1462,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
         }else{
             $pay_status='0';
         }
-		$order = array('shipping_id' => empty($shipping['shipping_id']) ? 0 : $shipping['shipping_id'], 'shipping_type' => empty($shipping['shipping_type']) ? 0 : $shipping['shipping_type'], 'shipping_code' => empty($shipping['shipping_code']) ? 0 : $shipping['shipping_code'], 'pay_id' => intval($_POST['payment']), 'pack_id' => isset($_POST['pack']) ? intval($_POST['pack']) : 0, 'card_id' => isset($_POST['card']) ? intval($_POST['card']) : 0, 'card_message' => trim($_POST['card_message']), 'surplus' => isset($_POST['surplus']) ? floatval($_POST['surplus']) : 0, 'integral' => isset($_POST['integral']) ? intval($_POST['integral']) : 0, 'is_surplus' => isset($_POST['is_surplus']) ? intval($_POST['is_surplus']) : 0, 'bonus_id' => I('bonus', 0, 'intval'), 'uc_id' => I('uc_id', 0, 'intval'), 'vc_id' => I('vc_id', 0, 'intval'), 'need_inv' => empty($_POST['need_inv']) ? 0 : 1, 'tax_id' => isset($_POST['tax_id']) ? trim($_POST['tax_id']) : '', 'inv_type' => I('inv_type', 1, 'intval'), 'inv_payee' => isset($_POST['inv_payee']) ? trim($_POST['inv_payee']) : '', 'invoice_id' => I('invoice_id', 0, 'intval'), 'invoice' => I('invoice', 1, 'intval'), 'invoice_type' => I('inv_type', 1, 'intval'), 'inv_content' => isset($_POST['inv_content']) ? trim($_POST['inv_content']) : '', 'vat_id' => I('vat_id', 0, 'intval'), 'postscript' => empty($postscript) ? '' : $postscript, 'how_oos' => isset($how_oos) ? addslashes($how_oos) : '', 'need_insure' => isset($_POST['need_insure']) ? intval($_POST['need_insure']) : 0, 'user_id' => $_SESSION['user_id'],'ppj_no' => $ppj_no, 'ppj_id' => $ppj_id,'add_time' => time(), 'order_status' => OS_UNCONFIRMED, 'shipping_status' => SS_UNSHIPPED, 'pay_status' =>$pay_status, 'agency_id' => get_agency_by_regions(array($consignee['country'], $consignee['province'], $consignee['city'], $consignee['district'])), 'point_id' => empty($point_info['point_id']) ? 0 : $point_info['point_id'], 'shipping_dateStr' => empty($point_info['shipping_dateStr']) ? '' : $point_info['shipping_dateStr'], 'mobile' => isset($_POST['store_mobile']) && !empty($_POST['store_mobile']) ? addslashes(trim($_POST['store_mobile'])) : '');
+		$order = array('shipping_id' => empty($shipping['shipping_id']) ? 0 : $shipping['shipping_id'], 'shipping_type' => empty($shipping['shipping_type']) ? 0 : $shipping['shipping_type'], 'shipping_code' => empty($shipping['shipping_code']) ? 0 : $shipping['shipping_code'], 'pay_id' => intval($_POST['payment']), 'pack_id' => isset($_POST['pack']) ? intval($_POST['pack']) : 0, 'card_id' => isset($_POST['card']) ? intval($_POST['card']) : 0, 'card_message' => trim($_POST['card_message']), 'surplus' => isset($_POST['surplus']) ? floatval($_POST['surplus']) : 0, 'integral' => isset($_POST['integral']) ? intval($_POST['integral']) : 0, 'is_surplus' => isset($_POST['is_surplus']) ? intval($_POST['is_surplus']) : 0, 'bonus_id' => I('bonus', 0, 'intval'), 'uc_id' => I('uc_id', 0, 'intval'), 'vc_id' => I('vc_id', 0, 'intval'), 'need_inv' => empty($_POST['need_inv']) ? 0 : 1, 'tax_id' => isset($_POST['tax_id']) ? trim($_POST['tax_id']) : '', 'inv_type' => I('inv_type', 1, 'intval'), 'inv_payee' => isset($_POST['inv_payee']) ? trim($_POST['inv_payee']) : '', 'invoice_id' => I('invoice_id', 0, 'intval'), 'invoice' => I('invoice', 1, 'intval'), 'invoice_type' => I('inv_type', 1, 'intval'), 'inv_content' => isset($_POST['inv_content']) ? trim($_POST['inv_content']) : '', 'vat_id' => I('vat_id', 0, 'intval'), 'postscript' => empty($postscript) ? '' : $postscript, 'how_oos' => isset($how_oos) ? addslashes($how_oos) : '', 'need_insure' => isset($_POST['need_insure']) ? intval($_POST['need_insure']) : 0, 'user_id' => $_SESSION['user_id'],'ppj_no' => $ppj_no, 'ppj_id' => $ppj_id,'add_time' => time()+8*3600, 'order_status' => OS_UNCONFIRMED, 'shipping_status' => SS_UNSHIPPED, 'pay_status' =>$pay_status, 'agency_id' => get_agency_by_regions(array($consignee['country'], $consignee['province'], $consignee['city'], $consignee['district'])), 'point_id' => empty($point_info['point_id']) ? 0 : $point_info['point_id'], 'shipping_dateStr' => empty($point_info['shipping_dateStr']) ? '' : $point_info['shipping_dateStr'], 'mobile' => isset($_POST['store_mobile']) && !empty($_POST['store_mobile']) ? addslashes(trim($_POST['store_mobile'])) : '');
 
 		if (isset($_SESSION['flow_type']) && $flow_type != CART_GENERAL_GOODS && $flow_type != CART_ONESTEP_GOODS) {
 			$order['extension_code'] = $_SESSION['extension_code'];
@@ -1509,7 +1509,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		else if (isset($_POST['bonus_sn'])) {
 			$bonus_sn = trim($_POST['bonus_sn']);
 			$bonus = bonus_info(0, $bonus_sn);
-			$now = time();
+			$now = time()+8*3600;
 			if (empty($bonus) || 0 < $bonus['user_id'] || 0 < $bonus['order_id'] || cart_amount(true, $flow_type, $_SESSION['cart_value']) < $bonus['min_goods_amount'] || $bonus['use_end_date'] < $now) {
 			}
 			else {
@@ -1535,7 +1535,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			$now = time();
 			if (!(empty($value_card) || 0 < $value_card['user_id'])) {
 				if (0 < $user_id && empty($value_card['end_time'])) {
-					$end_time = ', end_time = \'' . local_strtotime('+' . $value_card['vc_indate'] . ' months ') . '\' ';
+					$end_time = ', end_time = \'' .Local_strtotime('+' . $value_card['vc_indate'] . ' months ') . '\' ';
 					$sql = ' UPDATE {pre}value_card SET user_id = \'' . $user_id . '\', bind_time = \'' . time() . '\'' . $end_time . (' WHERE vid = \'' . $value_card['vid'] . '\' ');
 					$this->db->query($sql);
 					$order['vc_id'] = $value_card['vid'];
@@ -1725,8 +1725,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				$order['pay_status'] = PS_PAYED;
 			}
 			$order['order_status'] = OS_CONFIRMED;
-			$order['confirm_time'] = time();
-			$order['pay_time'] = time();
+			$order['confirm_time'] = time()+8*3600;
+			$order['pay_time'] = time()+8*3600;
 			$order['order_amount'] = 0;
 			$stores_sms = 1;
 			$snapshot = true;
@@ -1786,7 +1786,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 					$team_doods = $this->db->getRow($sql);
 					$team['t_id'] = $_SESSION['t_id'];
 					$team['goods_id'] = $team_doods['goods_id'];
-					$team['start_time'] = time();
+					$team['start_time'] = time()+8*3600;
 					$team['status'] = 0;
 					$new_team = $this->db->filter_field('team_log', $team);
 					$team_log_id = $this->db->table('team_log')->data($new_team)->add();
@@ -1803,7 +1803,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				$team_doods = $this->db->getRow($sql);
 				$team['t_id'] = $_SESSION['t_id'];
 				$team['goods_id'] = $team_doods['goods_id'];
-				$team['start_time'] = time();
+				$team['start_time'] = time()+8*3600;
 				$team['status'] = 0;
 				$new_team = $this->db->filter_field('team_log', $team);
 				$team_log_id = $this->db->table('team_log')->data($new_team)->add();
@@ -2088,7 +2088,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 					$sql = 'SELECT COUNT(*)' . ' FROM ' . $GLOBALS['ecs']->table('order_goods') . (' WHERE order_id = \'' . $order['order_id'] . '\' ') . ' AND is_real = 1';
 
 					if ($GLOBALS['db']->getOne($sql) <= 0) {
-						update_order($order['order_id'], array('order_status' => OS_CONFIRMED, 'shipping_status' => SS_SHIPPED, 'shipping_time' => time()));
+						update_order($order['order_id'], array('order_status' => OS_CONFIRMED, 'shipping_status' => SS_SHIPPED, 'shipping_time' => time()+8*3600));
 
 						if (0 < $order['user_id']) {
 							$user = user_info($order['user_id']);
