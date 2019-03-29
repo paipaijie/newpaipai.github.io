@@ -79,20 +79,20 @@
                     </div>
 					<div class="padding-all f-05 user-order-money b-color-f">
                         <% if order.extension_code=='paipai_buy' %>
-                        <span style="float: left;display:block;width:2rem;height:2rem;background-color:#F94290;text-align:center;padding-top:0.25rem;color:#ffffff;border-radius:1rem;" >
+                        <span style="float: left;display:block;width:2rem;height:2rem;background-color:#F94290;text-align:center;color:#ffffff;border-radius:1rem;" >
                             拍
                         </span>
                         <%else if order.extension_code=='exchange_goods' %>
-                        <span style="float: left;display:block;width:2rem;height:2rem;background-color:#CE3BF6;text-align:center;padding-top:0.25rem;color:#ffffff;border-radius:1rem;" >
+                        <span style="float: left;display:block;width:2rem;height:2rem;background-color:#CE3BF6;text-align:center;color:#ffffff;border-radius:1rem;" >
                             积
                         </span>
                         <%else%>
-                        <span style="float: left;display:block;width:2rem;height:2rem;background-color:#ADD818;text-align:center;padding-top:0.25rem;color:#ffffff;border-radius:1rem;" >
+                        <span style="float: left;display:block;width:2rem;height:2rem;background-color:#ADD818;text-align:center;color:#ffffff;border-radius:1rem;" >
                             普
                         </span>
                         <%/if%>
                         <% if order.pay_status=='10' %>
-                        <span style="float: left;display:block;width:10rem;height:2rem;text-align:center;padding-top:0.25rem;margin-left:1rem;">
+                        <span style="float: left;display:block;width:14rem;height:2rem;text-align:center;padding-top:0.25rem;margin-left:1rem;">
                             保证金支付 无实物
                         </span>
                         <%/if%>
