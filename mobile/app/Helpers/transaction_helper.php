@@ -496,7 +496,7 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 		$ppj_startpay_time=$pl_data['ppj_startpay_time']*60;
 		$ppj_endpay_time=$pl_data['ppj_endpay_time']*60;
 
-		$arr[] = array('order_id' => $row['order_id'],'ppj_id' => $row['ppj_id'],'ppj_no' => $row['ppj_no'],'sellers_fee' => number_format($user_bid_price['bid_price'],2), 'order_sn' => $row['order_sn'], 'order_time' => local_date($GLOBALS['_CFG']['time_format'], $row['add_time']), 'order_status' => $row['order_status'], 'order_del' => $row['order_del'], 'online_pay' => $row['online_pay'], 'status' => $row['status'], 'status_number' => $status_number, 'consignee' => $row['consignee'], 'main_order_id' => $row['main_order_id'], 'user_name' => get_shop_name($ru_id, 1), 'order_goods' => $row['order_goods'], 'order_goods_num' => count($row['order_goods']), 'order_child' => $order_child, 'no_picture' => $GLOBALS['_CFG']['no_picture'], 'order_child' => $order_child, 'delete_yes' => $row['delete_yes'], 'invoice_no' => $row['invoice_no'], 'shipping_name' => $row['shipping_name'], 'email' => $row['email'], 'address_detail' => $row['address_detail'], 'address' => $row['address'], 'address_detail' => $address_detail, 'tel' => $row['tel'], 'delivery_time' => $delivery['delivery_time'], 'order_count' => $order_count, 'kf_type' => $basic_info['kf_type'], 'kf_ww' => $basic_info['kf_ww'], 'kf_qq' => $basic_info['kf_qq'], 'total_fee' => price_format($row['total_fee'], false), 'handler_return' => $row['handler_return'], 'pay_status' => $row['pay_status'], 'handler' => $row['handler'], 'team_id' => $row['team_id'], 'extension_code' => $row['extension_code'], 'order_url' => url('user/order/detailpaipai', array('order_id' => $row['order_id'])), 'delay' => $delay,'two_status'=>$ps_data['status'],'ls_refund'=>$ps_data['ls_refund'],'sell_user_data'=>$sg_data['createtime'].$sg_data['seller_min_fee']*100,'ppj_start_time'=>$ppj_start_time,'ppj_end_time'=>$ppj_end_time,'ppj_startpay_time'=>$ppj_startpay_time,'ppj_endpay_time'=>$ppj_endpay_time,'time'=>time());
+		$arr[] = array('order_id' => $row['order_id'],'ppj_id' => $row['ppj_id'],'ppj_no' => $row['ppj_no'],'sellers_fee' => number_format($user_bid_price['bid_price'],2), 'order_sn' => $row['order_sn'], 'order_time' => date($GLOBALS['_CFG']['time_format'], $row['add_time']), 'order_status' => $row['order_status'], 'order_del' => $row['order_del'], 'online_pay' => $row['online_pay'], 'status' => $row['status'], 'status_number' => $status_number, 'consignee' => $row['consignee'], 'main_order_id' => $row['main_order_id'], 'user_name' => get_shop_name($ru_id, 1), 'order_goods' => $row['order_goods'], 'order_goods_num' => count($row['order_goods']), 'order_child' => $order_child, 'no_picture' => $GLOBALS['_CFG']['no_picture'], 'order_child' => $order_child, 'delete_yes' => $row['delete_yes'], 'invoice_no' => $row['invoice_no'], 'shipping_name' => $row['shipping_name'], 'email' => $row['email'], 'address_detail' => $row['address_detail'], 'address' => $row['address'], 'address_detail' => $address_detail, 'tel' => $row['tel'], 'delivery_time' => $delivery['delivery_time'], 'order_count' => $order_count, 'kf_type' => $basic_info['kf_type'], 'kf_ww' => $basic_info['kf_ww'], 'kf_qq' => $basic_info['kf_qq'], 'total_fee' => price_format($row['total_fee'], false), 'handler_return' => $row['handler_return'], 'pay_status' => $row['pay_status'], 'handler' => $row['handler'], 'team_id' => $row['team_id'], 'extension_code' => $row['extension_code'], 'order_url' => url('user/order/detailpaipai', array('order_id' => $row['order_id'])), 'delay' => $delay,'two_status'=>$ps_data['status'],'ls_refund'=>$ps_data['ls_refund'],'sell_user_data'=>$sg_data['createtime'].$sg_data['seller_min_fee']*100,'ppj_start_time'=>$ppj_start_time,'ppj_end_time'=>$ppj_end_time,'ppj_startpay_time'=>$ppj_startpay_time,'ppj_endpay_time'=>$ppj_endpay_time,'time'=>time());
 
 	}
 
@@ -741,7 +741,7 @@ function get_user_orders($user_id, $num = 10, $page = 1, $status = 0)
 		$district_name = !empty($district['region_name']) ? $district['region_name'] : '';
 		$address_detail = $province['region_name'] . '&nbsp;' . $city['region_name'] . '市' . '&nbsp;' . $district_name;
 		$delivery['delivery_time'] = local_date($GLOBALS['_CFG']['time_format'], $delivery['update_time']);
-		$arr[] = array('order_id' => $row['order_id'], 'order_sn' => $row['order_sn'],'order_pay_status'=>$order_pay_status, 'order_time' => local_date($GLOBALS['_CFG']['time_format'], $row['add_time']), 'order_status' => $row['order_status'], 'order_del' => $row['order_del'], 'online_pay' => $row['online_pay'], 'status' => $row['status'], 'status_number' => $status_number, 'consignee' => $row['consignee'], 'main_order_id' => $row['main_order_id'], 'user_name' => get_shop_name($ru_id, 1), 'order_goods' => $row['order_goods'], 'order_goods_num' => count($row['order_goods']), 'order_child' => $order_child, 'no_picture' => $GLOBALS['_CFG']['no_picture'], 'order_child' => $order_child, 'delete_yes' => $row['delete_yes'], 'invoice_no' => $row['invoice_no'], 'shipping_name' => $row['shipping_name'], 'email' => $row['email'], 'address_detail' => $row['address_detail'], 'address' => $row['address'], 'address_detail' => $address_detail, 'tel' => $row['tel'], 'delivery_time' => $delivery['delivery_time'], 'order_count' => $order_count, 'kf_type' => $basic_info['kf_type'], 'kf_ww' => $basic_info['kf_ww'], 'kf_qq' => $basic_info['kf_qq'], 'total_fee' => price_format($row['total_fee'], false), 'handler_return' => $row['handler_return'], 'pay_status' => $row['pay_status'], 'handler' => $row['handler'], 'team_id' => $row['team_id'], 'extension_code' => $row['extension_code'], 'order_url' => url('user/order/detail', array('order_id' => $row['order_id'])), 'delay' => $delay);
+		$arr[] = array('order_id' => $row['order_id'], 'order_sn' => $row['order_sn'],'order_pay_status'=>$order_pay_status, 'order_time' => date('Y-m-d H:i:s', $row['add_time']), 'order_status' => $row['order_status'], 'order_del' => $row['order_del'], 'online_pay' => $row['online_pay'], 'status' => $row['status'], 'status_number' => $status_number, 'consignee' => $row['consignee'], 'main_order_id' => $row['main_order_id'], 'user_name' => get_shop_name($ru_id, 1), 'order_goods' => $row['order_goods'], 'order_goods_num' => count($row['order_goods']), 'order_child' => $order_child, 'no_picture' => $GLOBALS['_CFG']['no_picture'], 'order_child' => $order_child, 'delete_yes' => $row['delete_yes'], 'invoice_no' => $row['invoice_no'], 'shipping_name' => $row['shipping_name'], 'email' => $row['email'], 'address_detail' => $row['address_detail'], 'address' => $row['address'], 'address_detail' => $address_detail, 'tel' => $row['tel'], 'delivery_time' => $delivery['delivery_time'], 'order_count' => $order_count, 'kf_type' => $basic_info['kf_type'], 'kf_ww' => $basic_info['kf_ww'], 'kf_qq' => $basic_info['kf_qq'], 'total_fee' => price_format($row['total_fee'], false), 'handler_return' => $row['handler_return'], 'pay_status' => $row['pay_status'], 'handler' => $row['handler'], 'team_id' => $row['team_id'], 'extension_code' => $row['extension_code'], 'order_url' => url('user/order/detail', array('order_id' => $row['order_id'])), 'delay' => $delay);
 	}
 	$order_list = array('list' => $arr, 'totalpage' => ceil($total / $num));
 	return $order_list;
@@ -1014,27 +1014,27 @@ function get_order_detail($order_id, $user_id = 0)
 	}
 
 	if (0 < $order['confirm_time'] && ($order['order_status'] == OS_CONFIRMED || $order['order_status'] == OS_SPLITED || $order['order_status'] == OS_SPLITING_PART)) {
-		$order['confirm_time'] = sprintf($GLOBALS['_LANG']['confirm_time'], local_date($GLOBALS['_CFG']['time_format'], $order['confirm_time']));
+		$order['confirm_time'] = sprintf($GLOBALS['_LANG']['confirm_time'], date($GLOBALS['_CFG']['time_format'], $order['confirm_time']));
 	}
 	else {
 		$order['confirm_time'] = '';
 	}
-
 	if (0 < $order['pay_time'] && $order['pay_status'] != PS_UNPAYED) {
-		$order['pay_time'] = sprintf($GLOBALS['_LANG']['pay_time'], local_date($GLOBALS['_CFG']['time_format'], $order['pay_time']));
+		$order['pay_time'] = sprintf($GLOBALS['_LANG']['pay_time'], date($GLOBALS['_CFG']['time_format'], $order['pay_time']));
 	}
 	else {
 		$order['pay_time'] = '';
 	}
 
 	if (0 < $order['shipping_time'] && in_array($order['shipping_status'], array(SS_SHIPPED, SS_RECEIVED))) {
-		$order['shipping_time'] = sprintf($GLOBALS['_LANG']['shipping_time'], local_date($GLOBALS['_CFG']['time_format'], $order['shipping_time']));
+		$order['shipping_time'] = sprintf($GLOBALS['_LANG']['shipping_time'], date($GLOBALS['_CFG']['time_format'], $order['shipping_time']));
 	}
 	else {
 		$order['shipping_time'] = '';
 	}
 
-	$order['add_time'] = local_date($GLOBALS['_CFG']['time_format'], $order['add_time']);
+	$order['add_time'] = date($GLOBALS['_CFG']['time_format'], $order['add_time']);
+
 	$sql = 'SELECT cu.uc_id, c.cou_money, cu.cou_id, c.cou_type FROM ' . $GLOBALS['ecs']->table('coupons_user') . ' as cu' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('coupons') . ' as c' . ' ON cu.cou_id = c.cou_id' . ' WHERE cu.order_id = ' . $order['order_id'] . ' AND cu.user_id = \'' . $_SESSION['user_id'] . '\' ';
 	$coupons = $GLOBALS['db']->query($sql);
 

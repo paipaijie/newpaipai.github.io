@@ -617,6 +617,8 @@
                                                         <div class="order_icon order_icon_bargain" title="{$lang.bargain_order}">{$lang.bargain_order}</div>
                                                     {elseif $order.o_extension_code eq "wholesale"}    
                                                     	<div class="order_icon order_icon_wholesale" title="{$lang.wholesale_order}">{$lang.bargain_order}</div>
+                                                    {elseif $order.o_extension_code eq "paipai_buy"}
+                                                         <div class="order_icon order_icon_pm" title="拍拍活动">拍拍活动</div>
                                                     {/if}
         											{if $order.iog_extension_code eq "package_buy"}
                                                         <div class="order_icon order_icon_package" title="{$lang.package_order}">{$lang.package_order}</div>
@@ -714,7 +716,7 @@
                                     <td><div class="tDiv" style="height: 100px;text-align: left;">{$order.consignee|escape}<br>{if $order.mobile} TEL: {$order.mobile|escape}{/if}<br>{$order.region} {$order.address|escape}</div></td>
                                     <td>
                                     	<div class="tDiv" style="height: 100px;">
-                                            <span class="order-price">{$order.formated_total_fee_order}</span>
+                                            <span class="order-price">{$order.formated_total_fee_order}<br/>{if $order.exchange_integral}(积分价:{$order.exchange_integral}) {elseif $order.pay_status=='10'}(保证金支付) {/if}</span>
                                             <div class="price-shipping">({if $order.shipping_name}{$order.shipping_name}{else}{$lang.wu}{/if}：{$order.shipping_fee})</div>
                                             <div class="price-shipping">
                                                 <p>{$lang.pay_name}：{if $order.pay_name}{$order.pay_name}{else}{$lang.wu}{/if}</p>

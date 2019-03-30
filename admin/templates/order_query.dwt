@@ -226,6 +226,7 @@
                                                     <li><a href="javascript:;" data-value="dbdd">{$lang.db_order}</a></li>
                                                     <li><a href="javascript:;" data-value="msdd">{$lang.ms_order}</a></li>
                                                     <li><a href="javascript:;" data-value="tgdd">{$lang.tg_order}</a></li>
+                                                    <li><a href="javascript:;" data-value="ppdd">拍拍订单</a></li>
                                                     <li><a href="javascript:;" data-value="pmdd">{$lang.pm_order}</a></li>
                                                     <li><a href="javascript:;" data-value="jfdd">{$lang.jf_order}</a></li>
                                                     <li><a href="javascript:;" data-value="ysdd">{$lang.ys_order}</a></li>
