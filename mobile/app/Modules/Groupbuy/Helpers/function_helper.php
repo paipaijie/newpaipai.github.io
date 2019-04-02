@@ -131,7 +131,7 @@ function paipai_buy_add_list($size, $page, $keywords, $sort, $order)
 {
 	$gb_list = array();
 	
-	$now = time();
+	$now = time()+8*3600;
 	
 	$where = '';
 	$where .= ' AND g.is_delete = 0';
@@ -242,7 +242,6 @@ function paipai_buy_add_list($size, $page, $keywords, $sort, $order)
 		
 	}
 
- //  var_dump ($val['url']);
    
 	return $group_buy;
 }
@@ -314,17 +313,25 @@ function get_filter_one($id)
 	return $info;
 }
 
-function group_buy_count($keywords)
+function group_buy_count($keywords,$status)
 {
 	$now = time()+8*3600;
 	$where = '';
 	$where .= ' AND g.is_delete = 0 ';
 
+	if($status=='nostarted'){
+		$where.=' AND ga.start_time >' . $now ;
+	}elseif($status=='underway'){
+		$where.=' AND ga.start_time <=' . $now .' AND ga.end_time >= ' . $now;
+	}
+
 	if ($keywords) {
 		$where .= ' AND (ga.ppj_name LIKE \'%' . $keywords . '%\' OR g.goods_name LIKE \'%' . $keywords . '%\') ';
 	}
 
-	$sql = 'SELECT COUNT(*) ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS ga ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON ga.goods_id = g.goods_id ' . 'WHERE ga.act_type = \'' . GAT_PAIPAI_BUY . '\' ' . ('AND ga.start_time <= \'' . $now . '\' AND ga.end_time >= \'' . $now . '\' AND ga.ppj_staus < 3 AND ga.review_status = 3 ') . $where;
+//	$sql = 'SELECT COUNT(*) ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS ga ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON ga.goods_id = g.goods_id ' . 'WHERE ga.act_type = \'' . GAT_PAIPAI_BUY . '\' ' . ('AND ga.start_time <= \'' . $now . '\' AND ga.end_time >= \'' . $now . '\' AND ga.ppj_staus < 3 AND ga.review_status = 3 ') . $where;
+	$sql = 'SELECT COUNT(*) ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS ga ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON ga.goods_id = g.goods_id ' . 'WHERE ga.act_type = \'' . GAT_PAIPAI_BUY . '\' ' . (' AND ga.ppj_staus < 3 AND ga.review_status = 3 ') . $where;
+
 	return $GLOBALS['db']->getOne($sql);
 }
 

@@ -26,7 +26,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 	//显示进行中的拍拍活动
 	public function actionUnderway(){
 
-		$now = time();
+		$now = time()+8*2600;
 		$user_id = $_SESSION['user_id'];
 		
 		$default_sort_order_method = C('sort_order_method') == '0' ? 'ASC' : 'DESC';
@@ -38,154 +38,153 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			$default_sort_order_type = 'ppj_id';
 		}
 		
-			$this->sort = isset($_REQUEST['sort']) && in_array(trim(strtolower($_REQUEST['sort'])), array('ppj_id', 'start_time', 'sales_volume', 'comments_number')) ? trim($_REQUEST['sort']) : $default_sort_order_type;
-			
-		
-			$this->order = isset($_REQUEST['order']) && in_array(trim(strtoupper($_REQUEST['order'])), array('ASC', 'DESC')) ? trim($_REQUEST['order']) : $default_sort_order_method;
-			
-			$page = I('post.page', 1, 'intval');
-			
-			$keywords = I('keyword');
-			
-			$count = group_buy_count($keywords);
-			
-			$max_page = 0 < $count ? ceil($count / $this->size) : 1;
+		$this->sort = isset($_REQUEST['sort']) && in_array(trim(strtolower($_REQUEST['sort'])), array('ppj_id', 'start_time', 'sales_volume', 'comments_number')) ? trim($_REQUEST['sort']) : $default_sort_order_type;
 
-			if ($max_page < $page) {
-				$page = $max_page;
-			}
 
-			$gb_list = paipai_buy_list($this->size, $page, $keywords, $this->sort, $this->order);
-//			
+		$this->order = isset($_REQUEST['order']) && in_array(trim(strtoupper($_REQUEST['order'])), array('ASC', 'DESC')) ? trim($_REQUEST['order']) : $default_sort_order_method;
+
+		$page = I('post.page', 1, 'intval');
+
+		$keywords = I('keyword');
+
+		$status='underway';
+		$count = group_buy_count($keywords,$status);
+
+		$max_page = 0 < $count ? ceil($count / $this->size) : 1;
+
+		if ($max_page < $page) {
+			$page = $max_page;
+		}
+
+		$gb_list = paipai_buy_list($this->size, $page, $keywords, $this->sort, $this->order);
+
 //		 var_dump($gb_list);
-//		 exit;
 
-			foreach($gb_list as $k => $val){
+		foreach($gb_list as $k => $val){
 								
-		$ext_info = unserialize($val['ext_info']);
-		
-		$val = array_merge($val, $ext_info);
-		
-		
-		$val['formated_end_date'] = groupbuydate($val['end_date']);
-		$val['formated_start_date'] = groupbuydate($val['start_date']);
-			
-		//$val['is_end'] = $val['end_date'] < $now ? 1 : 0;
-	
-		if($val['end_date'] > $now && $val['start_date'] < $now){
-			
-			$val['is_end'] = 1;
-			
-		}else if($val['start_date'] > $now){
-			
-			$val['is_end'] = 0;
-			
-		}else{
-			$val['is_end'] = 2;
-		}
+			$ext_info = unserialize($val['ext_info']);
+
+			$val = array_merge($val, $ext_info);
 
 
-				
-		$val['formated_deposit'] = price_format($val['ppj_margin_fee'], false);
-		
-		
-		$price_ladder = $val['price_ladder'];
-		
-		
-		if (!is_array($price_ladder) || empty($price_ladder)) {
-			
-			$price_ladder = array(
-				array('amount' => 0, 'price' => 0)
-				);
-		}
-		else {
-			foreach ($price_ladder as $key => $amount_price) {
-				
-				$price_ladder[$key]['formated_price'] = price_format($amount_price['price']);
-				
+			$val['formated_end_date'] = groupbuydate($val['end_date']);
+			$val['formated_start_date'] = groupbuydate($val['start_date']);
+
+			//$val['is_end'] = $val['end_date'] < $now ? 1 : 0;
+
+			if($val['end_date'] > $now && $val['start_date'] < $now){
+
+				$val['is_end'] = 1;
+
+			}else if($val['start_date'] > $now){
+
+				$val['is_end'] = 0;
+
+			}else{
+				$val['is_end'] = 2;
 			}
-		}
 
-		$val['price_ladder'] = $price_ladder;
+
+
+			$val['formated_deposit'] = price_format($val['ppj_margin_fee'], false);
+
+
+			$price_ladder = $val['price_ladder'];
 		
-		$price = $val['market_price'];
 		
-		$nowprice = $val['price_ladder'][0]['price'];
-		
+			if (!is_array($price_ladder) || empty($price_ladder)) {
+
+				$price_ladder = array(
+					array('amount' => 0, 'price' => 0)
+					);
+			}
+			else {
+				foreach ($price_ladder as $key => $amount_price) {
+
+					$price_ladder[$key]['formated_price'] = price_format($amount_price['price']);
+
+				}
+			}
+
+			$val['price_ladder'] = $price_ladder;
+
+			$price = $val['market_price'];
+
+			$nowprice = $val['price_ladder'][0]['price'];
+
+
+
+			$stat = paipai_buy_stat($val['ppj_id'], $val['ppj_no'],$val['ppj_margin_fee']);//获取订单数
+
+			$val = array_merge($val, $stat);
+
+			$cur_amount = $stat['valid_order'];
 		
 
-		$stat = paipai_buy_stat($val['ppj_id'], $val['ppj_no'],$val['ppj_margin_fee']);//获取订单数
-		
-		$val = array_merge($val, $stat);
-			
-		$cur_amount = $stat['valid_order'];
-		
+			foreach ($price_ladder as $key => $amount_price) {
 
-	foreach ($price_ladder as $key => $amount_price) {
-		
-		if ($amount_price['amount'] <= $cur_amount) {
-			
-			$cur_price = $amount_price['price'];
-			
-		}
-		else {
-						
-			$cur_price=0;
-			break;
-		}		
-	 	    }
-	     
-		$val['cur_amount'] = $cur_amount;
-		
-		
-		$val['goods_thumb'] = get_image_path($val['goods_thumb']);
-		
-		$val['url'] = build_uri('groupbuy', array('gbid' => $val['group_buy_id']));
-		
-		
-		$val['cur_price'] = $cur_price;
-	
-	
-	    $val['price'] = price_format($cur_price, false);// 当前价格
-					
-					
-				//遍历报名表
-		$sqls='select * from '. $GLOBALS['ecs']->table('paipai_goods_sellers') .'where user_id='.$user_id.' and ppj_id='.$val['ppj_id'].' and ppj_no='.$val['ppj_no'];
-		
-		$baoming = $GLOBALS['db']->getRow($sqls);
-		
-		if(empty($baoming))
-		{
-			$is_baoming =0; // 未报名，未出价
-		}
-else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
-		{
-			$is_baoming =1; // 已手动出过一次价，但未匹配成功      	//已设置应该是设置了自动售出。手动的话就是已经直接售出了   没有设置一说
-			
-		}
-		else if($baoming['ls_ok']==1&&$baoming['ls_staus']==1)
-		{
-			$is_baoming =2; // 已设置过自动出价   				//
-			
-		}else if($baoming['ls_ok']==0)
-		{
-			$is_baoming =3 ;//此单 卖家已过成功一单
-		}
-		
-		 $val['is_baoming']=$is_baoming;
-		 
-	    $u_sql="SELECT seller_max_fee FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers')."WHERE user_id=".$user_id." AND ppj_id=".$val['ppj_id']." AND ppj_no=".$val['ppj_no'];
-	    $gs_data = $GLOBALS['db']->getOne($u_sql);
-	    $u_sql1="SELECT seller_min_fee FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers')."WHERE user_id=".$user_id." AND ppj_id=".$val['ppj_id']." AND ppj_no=".$val['ppj_no'];
-	    $gs_data1 = $GLOBALS['db']->getOne($u_sql1);
-	    
-    	$val['seller_min_fee']=$gs_data1;
-    	$val['seller_max_fee']=$gs_data;
-		$group_buy[] = $val;
-	}		
-//	var_dump($group_buy);
-			$this->assign('att',$group_buy);		
-			$this->display();
+				if ($amount_price['amount'] <= $cur_amount) {
+
+					$cur_price = $amount_price['price'];
+
+				}
+				else {
+
+					$cur_price=0;
+					break;
+				}
+			}
+
+			$val['cur_amount'] = $cur_amount;
+
+			$val['goods_thumb'] = get_image_path($val['goods_thumb']);
+
+			$val['url'] = build_uri('groupbuy', array('gbid' => $val['group_buy_id']));
+
+
+			$val['cur_price'] = $cur_price;
+
+
+			$val['price'] = price_format($cur_price, false);// 当前价格
+
+
+					//遍历报名表
+			$sqls='select * from '. $GLOBALS['ecs']->table('paipai_goods_sellers') .'where user_id='.$user_id.' and ppj_id='.$val['ppj_id'].' and ppj_no='.$val['ppj_no'];
+
+			$baoming = $GLOBALS['db']->getRow($sqls);
+
+			if(empty($baoming))
+			{
+				$is_baoming =0; // 未报名，未出价
+			}
+			else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
+			{
+				$is_baoming =1; // 已手动出过一次价，但未匹配成功      	//已设置应该是设置了自动售出。手动的话就是已经直接售出了   没有设置一说
+
+			}
+			else if($baoming['ls_ok']==1&&$baoming['ls_staus']==1)
+			{
+				$is_baoming =2; // 已设置过自动出价   				//
+
+			}else if($baoming['ls_ok']==0)
+			{
+				$is_baoming =3 ;//此单 卖家已过成功一单
+			}
+
+			 $val['is_baoming']=$is_baoming;
+
+			$u_sql="SELECT seller_max_fee FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers')."WHERE user_id=".$user_id." AND ppj_id=".$val['ppj_id']." AND ppj_no=".$val['ppj_no'];
+			$gs_data = $GLOBALS['db']->getOne($u_sql);
+			$u_sql1="SELECT seller_min_fee FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers')."WHERE user_id=".$user_id." AND ppj_id=".$val['ppj_id']." AND ppj_no=".$val['ppj_no'];
+			$gs_data1 = $GLOBALS['db']->getOne($u_sql1);
+
+			$val['seller_min_fee']=$gs_data1;
+			$val['seller_max_fee']=$gs_data;
+			$group_buy[] = $val;
+	    }
+//	    var_dump($group_buy);
+		$this->assign('att',$group_buy);
+		$this->display();
 			
 	}
 			
@@ -193,8 +192,8 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 	//显示未开始的方法
 	public function actionNotstarted(){
 		
-			$now = time();
-			$user_id = $_SESSION['user_id'];
+		$now = time()+8*3600;
+		$user_id = $_SESSION['user_id'];
 				
 		$default_sort_order_method = C('sort_order_method') == '0' ? 'ASC' : 'DESC';
 
@@ -205,142 +204,139 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 			$default_sort_order_type = 'ppj_id';
 		}
 		
-			$this->sort = isset($_REQUEST['sort']) && in_array(trim(strtolower($_REQUEST['sort'])), array('ppj_id', 'start_time', 'sales_volume', 'comments_number')) ? trim($_REQUEST['sort']) : $default_sort_order_type;
-			
-		
-			$this->order = isset($_REQUEST['order']) && in_array(trim(strtoupper($_REQUEST['order'])), array('ASC', 'DESC')) ? trim($_REQUEST['order']) : $default_sort_order_method;
-			
-			$page = I('post.page', 1, 'intval');
-			
-			$keywords = I('keyword');
-			
-			$count = group_buy_count($keywords);
-			
-			$max_page = 0 < $count ? ceil($count / $this->size) : 1;
+		$this->sort = isset($_REQUEST['sort']) && in_array(trim(strtolower($_REQUEST['sort'])), array('ppj_id', 'start_time', 'sales_volume', 'comments_number')) ? trim($_REQUEST['sort']) : $default_sort_order_type;
 
-			if ($max_page < $page) {
-				$page = $max_page;
+
+		$this->order = isset($_REQUEST['order']) && in_array(trim(strtoupper($_REQUEST['order'])), array('ASC', 'DESC')) ? trim($_REQUEST['order']) : $default_sort_order_method;
+
+		$page = I('post.page', 1, 'intval');
+
+		$keywords = I('keyword');
+
+		$status='nostarted';
+		$count = group_buy_count($keywords,$status);
+
+		$max_page = 0 < $count ? ceil($count / $this->size) : 1;
+
+		if ($max_page < $page) {
+			$page = $max_page;
+		}
+
+		$gb_list = paipai_buy_add_list($this->size, $page, $keywords, $this->sort, $this->order);
+
+
+		foreach ($gb_list as $key => $val) {
+		
+		
+			$ext_info = unserialize($val['ext_info']);
+
+			$val = array_merge($val, $ext_info);
+
+
+			$val['formated_end_date'] = groupbuydate($val['end_date']);
+			$val['formated_start_date'] = groupbuydate($val['start_date']);
+
+
+			//$val['is_end'] = $val['end_date'] < $now ? 1 : 0;
+
+			if($val['end_date'] > $now && $val['start_date'] < $now){
+
+				$val['is_end'] = 1;
+
+			}else if($val['start_date'] > $now){
+
+				$val['is_end'] = 0;
+
+			}else{
+				$val['is_end'] = 2;
 			}
 
-			$gb_list = paipai_buy_add_list($this->size, $page, $keywords, $this->sort, $this->order);
-
-		
-			foreach ($gb_list as $key => $val) {
-		
-		
-		$ext_info = unserialize($val['ext_info']);
-		
-		$val = array_merge($val, $ext_info);
-		
-		
-		$val['formated_end_date'] = groupbuydate($val['end_date']);
-		$val['formated_start_date'] = groupbuydate($val['start_date']);
-		
-	
-		//$val['is_end'] = $val['end_date'] < $now ? 1 : 0;
-	
-		if($val['end_date'] > $now && $val['start_date'] < $now){
-			
-			$val['is_end'] = 1;
-			
-		}else if($val['start_date'] > $now){
-			
-			$val['is_end'] = 0;
-			
-		}else{
-			$val['is_end'] = 2;
-		}
 
 
-				
-		$val['formated_deposit'] = price_format($val['ppj_margin_fee'], false);
-		
-		
-		$price_ladder = $val['price_ladder'];
-		
-		
-		if (!is_array($price_ladder) || empty($price_ladder)) {
-			
-			$price_ladder = array(
-				array('amount' => 0, 'price' => 0)
-				);
-		}
-		else {
+			$val['formated_deposit'] = price_format($val['ppj_margin_fee'], false);
+
+
+			$price_ladder = $val['price_ladder'];
+
+
+			if (!is_array($price_ladder) || empty($price_ladder)) {
+
+				$price_ladder = array(
+					array('amount' => 0, 'price' => 0)
+					);
+			}
+			else {
+				foreach ($price_ladder as $key => $amount_price) {
+
+					$price_ladder[$key]['formated_price'] = price_format($amount_price['price']);
+
+				}
+			}
+
+			$val['price_ladder'] = $price_ladder;
+
+			$price = $val['market_price'];
+
+			$nowprice = $val['price_ladder'][0]['price'];
+
+
+
+			$stat = paipai_buy_stat($val['ppj_id'], $val['ppj_no'],$val['ppj_margin_fee']);//获取订单数
+
+			$val = array_merge($val, $stat);
+
+			$cur_amount = $stat['valid_order'];
+
+
 			foreach ($price_ladder as $key => $amount_price) {
-				
-				$price_ladder[$key]['formated_price'] = price_format($amount_price['price']);
-				
+
+				if ($amount_price['amount'] <= $cur_amount) {
+
+					$cur_price = $amount_price['price'];
+
+				}
+				else {
+
+					$cur_price=0;
+					break;
+				}
 			}
-		}
 
-		$val['price_ladder'] = $price_ladder;
-		
-		$price = $val['market_price'];
-		
-		$nowprice = $val['price_ladder'][0]['price'];
-		
-		
 
-		$stat = paipai_buy_stat($val['ppj_id'], $val['ppj_no'],$val['ppj_margin_fee']);//获取订单数
-		
-		$val = array_merge($val, $stat);
-			
-		$cur_amount = $stat['valid_order'];
-		
+			$val['cur_amount'] = $cur_amount;
 
-	foreach ($price_ladder as $key => $amount_price) {
-		
-		if ($amount_price['amount'] <= $cur_amount) {
-			
-			$cur_price = $amount_price['price'];
-			
-		}
-		else {
-						
-			$cur_price=0;
-			break;
-		}		
-	     }
-	     
-	     
-		$val['cur_amount'] = $cur_amount;
-		
-		
-		$val['goods_thumb'] = get_image_path($val['goods_thumb']);
-		
-		$val['url'] = build_uri('groupbuy', array('gbid' => $val['group_buy_id']));
-		
-		
-		$val['cur_price'] = $cur_price;
-	
-	
-	    $val['price'] = price_format($cur_price, false);// 当前价格
-		
-		//遍历报名表
-		$sqls='select * from '. $GLOBALS['ecs']->table('paipai_goods_sellers') .'where user_id='.$user_id.' and ppj_id='.$val['ppj_id'].' and ppj_no='.$val['ppj_no'];
-		
-		$baoming = $GLOBALS['db']->getRow($sqls);
-		
-		if(empty($baoming))
-		{
-			$is_baoming =0;
-		}else
-		{
-			$is_baoming =1;
-		}
-		
-		 $val['is_baoming']=$is_baoming;
-		
+
+			$val['goods_thumb'] = get_image_path($val['goods_thumb']);
+
+			$val['url'] = build_uri('groupbuy', array('gbid' => $val['group_buy_id']));
+
+
+			$val['cur_price'] = $cur_price;
+
+
+			$val['price'] = price_format($cur_price, false);// 当前价格
+
+			//遍历报名表
+			$sqls='select * from '. $GLOBALS['ecs']->table('paipai_goods_sellers') .'where user_id='.$user_id.' and ppj_id='.$val['ppj_id'].' and ppj_no='.$val['ppj_no'];
+
+			$baoming = $GLOBALS['db']->getRow($sqls);
+
+			if(empty($baoming)){
+				$is_baoming =0;
+			}else{
+				$is_baoming =1;
+			}
+
+			$val['is_baoming']=$is_baoming;
+
 			$group_buy[] = $val;
-		
 						
-	}
+	    }
 			
-			
-			
-			$this->assign('att',$group_buy);
+	$this->assign('att',$group_buy);
 		
-			$this->display();
+	$this->display();
+
 	}
 	
 	
@@ -598,9 +594,9 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 			$page = I('post.page', 1, 'intval');
 			
 			$keywords = I('keyword');
-			
-			$count = group_buy_count($keywords);
 
+			$status='underway';
+			$count = group_buy_count($keywords,$status);
 			$max_page = 0 < $count ? ceil($count / $this->size) : 1;
 
 			if ($max_page < $page) {
@@ -608,7 +604,6 @@ else if($baoming['ls_ok']==1&&$baoming['ls_staus']==0)
 			}
 
 			$gb_list = paipai_buy_list($this->size, $page, $keywords, $this->sort, $this->order);
-
 			exit(json_encode(array('gb_list' => $gb_list, 'totalPage' => ceil($count / $this->size))));
 
 		}
