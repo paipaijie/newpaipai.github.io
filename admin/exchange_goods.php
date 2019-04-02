@@ -330,15 +330,17 @@ else if ($_REQUEST['act'] == 'batch_add') {
 		$add_eg_sql = "INSERT INTO " . $GLOBALS['ecs']->table('exchange_goods') . "(goods_id,review_status,user_id,exchange_integral,market_integral,is_exchange,is_hot,is_best) VALUES";
         foreach($goods_arr as $key=>$val){
 
-			$exchange_integral=number_format($val['shop_price']*0.6,0)*10;
-			$market_integral=number_format($val['cost_price'],2)*10;
+			$exchange_integral=($val['shop_price']*0.6)*10;
+			$market_integral=$val['cost_price']*10;
 			$add_eg_sql .= "('" . $val['goods_id'] . "',".'3'.",".'0'.",'".$exchange_integral ."','".$market_integral."',".'1'.",".'1'.",".'1'."),";
 		}
 		$add_eg_sql = substr($add_eg_sql, 0, strlen($add_eg_sql) - 1);
 		$res = $GLOBALS['db']->query($add_eg_sql);
         if($res){
-        	var_dump('成功');
-			var_dump(date("H:i:s", time() + 8 * 3600));
+			$links = array(
+				array('href' => 'exchange_goods.php?act=list', 'text' => $_LANG['back_list']) //返回列表
+			);
+			sys_msg($_LANG['add_success'], 0, $links);  //编辑成功
 		}
 
 	}

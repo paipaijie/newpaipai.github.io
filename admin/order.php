@@ -332,7 +332,6 @@ function order_list($page = 0)
 		if (0 < $adminru['rs_id']) {
 			$filter['rs_id'] = $adminru['rs_id'];
 		}
-
 		$where = ' WHERE 1 ';
 
 		if ($filter['keywords']) {
@@ -1821,7 +1820,7 @@ function download_orderlist($result)
 		$address = i(addslashes(str_replace(',', '，', '[' . $result[$i]['region'] . '] ' . $result[$i]['address'])));
 		$order_amount = i($result[$i]['order_amount']);
 		$goods_amount = i($result[$i]['goods_amount']);
-		$integral = i($result[$i]['integral_money']*100);
+		$exchange_integral = i($result[$i]['exchange_integral']);
 		$integral_money = i($result[$i]['integral_money']);
 		$shipping_fee = i($result[$i]['old_shipping_fee']);
 		$discount = i($result[$i]['discount']);
@@ -1831,7 +1830,7 @@ function download_orderlist($result)
 		$shipping_status = i($GLOBALS['_LANG']['ss'][$result[$i]['shipping_status']]);
 		$total_fee = i($result[$i]['total_fee']);
 		$total_fee_order = i($result[$i]['total_fee_order']);
-		$data .= $order_sn . ',' . $seller_name . ','.$goods_name.','.$cost_price .','. $order_user . ',' . $order_time . ',' . $consignee . ',' . $tel . ',' . $address . ',' . $goods_amount . ',' .  $shipping_fee . ',' . $total_fee . ',' . $discount . ',' . $total_fee_order . ',' . $order_amount . ',' .$integral. ','.$integral_money. ','. $order_status . ',' . $pay_status . ',' . $shipping_status . "\n";
+		$data .= $order_sn . ',' . $seller_name . ','.$goods_name.','.$cost_price .','. $order_user . ',' . $order_time . ',' . $consignee . ',' . $tel . ',' . $address . ',' . $goods_amount . ',' .  $shipping_fee . ',' . $total_fee . ',' . $discount . ',' . $total_fee_order . ',' . $order_amount . ',' . $exchange_integral .','. $integral_money .','. $order_status . ',' . $pay_status . ',' . $shipping_status . "\n";
 	}
 
 
@@ -2606,6 +2605,7 @@ function download_order_list()
 		$row[$key]['value_card'] = $value_card ? $value_card : 0;
 		$row[$key]['formated_value_card'] = price_format($value_card);
 		$row[$key]['formated_total_fee_order'] = price_format($value['total_fee_order']);
+		$row[$key]['integral_money'] = price_format($value['integral_money']);
 		$row[$key]['region'] = get_user_region_address($value['order_id']);
 		$order_id = $value['order_id'];
 		$date = array('order_id');
@@ -2792,6 +2792,7 @@ else if ($_REQUEST['act'] == 'list') {
 	$serch_type = isset($_GET['serch_type']) ? $_GET['serch_type'] : -1;
 	$smarty->assign('serch_type', $serch_type);
 	$order_list = order_list();
+
 	$is_zc = !isset($_REQUEST['is_zc']) ? 0 : intval($_REQUEST['is_zc']);
 	$smarty->assign('order_list', $order_list['orders']);
 	$smarty->assign('is_zc', $is_zc);
