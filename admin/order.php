@@ -40,7 +40,6 @@ function get_status_list($type = 'all')
 			$list[$pre . $key] = $value;
 		}
 	}
-
 	return $list;
 }
 
@@ -330,7 +329,6 @@ function order_list($page = 0)
 		$filter['gid'] = !isset($_REQUEST['gid']) ? 0 : intval($_REQUEST['gid']);
 		$filter['serch_type'] = !isset($_REQUEST['serch_type']) ? -1 : intval($_REQUEST['serch_type']);
 		$filter['rs_id'] = empty($_REQUEST['rs_id']) ? 0 : intval($_REQUEST['rs_id']);
-
 		if (0 < $adminru['rs_id']) {
 			$filter['rs_id'] = $adminru['rs_id'];
 		}
@@ -444,7 +442,6 @@ function order_list($page = 0)
 		if ($filter['pay_id']) {
 			$where .= ' AND o.pay_id  = \'' . $filter['pay_id'] . '\'';
 		}
-
 		if ($filter['order_status'] != -1) {
 			$where .= ' AND o.order_status  = \'' . $filter['order_status'] . '\'';
 		}
@@ -512,6 +509,10 @@ function order_list($page = 0)
 
 			case 'tgdd':
 				$where .= ' AND o.extension_code = \'group_buy\' ';
+				break;
+
+			case 'ppdd':
+				$where .= ' AND o.extension_code = \'paipai_buy\' ';
 				break;
 
 			case 'pmdd':
@@ -718,8 +719,8 @@ function order_list($page = 0)
 		$filter = $result['filter'];
 	}
 
-	$row = $GLOBALS['db']->getAll($sql);
 
+	$row = $GLOBALS['db']->getAll($sql);
 	foreach ($row as $key => $value) {
 		if ($value['shipping_status'] == 2 && empty($value['confirm_take_time'])) {
 			$sql = 'SELECT MAX(log_time) AS log_time FROM ' . $GLOBALS['ecs']->table('order_action') . ' WHERE order_id = \'' . $value['order_id'] . '\' AND shipping_status = \'' . SS_RECEIVED . '\'';
@@ -839,6 +840,7 @@ function order_list($page = 0)
 
 		$order = array('order_id' => $value['order_id'], 'order_sn' => $value['order_sn']);
 		$goods = get_order_goods($order);
+
 		$row[$key]['goods_list'] = $goods['goods_list'];
 		$first_order = reset($goods['goods_list']);
 		$value['ru_id'] = $first_order['ru_id'];
@@ -851,11 +853,15 @@ function order_list($page = 0)
 			$row[$key]['iog_extension_code'] = $first_order['iog_extension_code'];
 		}
 
+		if($row[$key]['o_extension_code'] == 'exchange_goods'){
+			$eg_sql = 'SELECT exchange_integral FROM ' . $GLOBALS['ecs']->table('exchange_goods') . ' WHERE goods_id =' . $row[$key]['extension_id'];
+			$row[$key]['exchange_integral'] = $GLOBALS['db']->getOne($eg_sql);
+		}
+
 		$value['self_run'] = $GLOBALS['db']->getOne(' SELECT self_run FROM ' . $GLOBALS['ecs']->table('merchants_shop_information') . ' WHERE user_id = \'' . $value['ru_id'] . '\'', true);
 		$row[$key]['user_name'] = get_shop_name($value['ru_id'], 1);
 		$row[$key]['self_run'] = $value['self_run'];
 	}
-
 	$arr = array('orders' => $row, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
 
 	return $arr;

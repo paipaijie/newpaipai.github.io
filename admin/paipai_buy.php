@@ -1088,7 +1088,7 @@ else {
 				$act_sql = "SELECT ppj_no FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE goods_id=" . $val['goods_id'] . " ORDER BY ppj_id DESC";
 				$ppj_goods = $GLOBALS['db']->getRow($act_sql);
 
-				$ppj_no = $ppj_goods['ppj_no'] + 1;
+				$ppj_no = $ppj_goods['ppj_no'] + 1+210;
 
 
 				if(!empty($post_margin_fee)){
@@ -1143,10 +1143,15 @@ else {
 			$ppj_add_sql = substr($ppj_add_sql, 0, strlen($ppj_add_sql) - 1);
 			$res = $GLOBALS['db']->query($ppj_add_sql);
 			if($res){
-				var_dump('成功');
-				var_dump(date("H:i:s", time() + 8 * 3600));
+				$links = array(
+					array('href' => 'paipai_buy.php?act=list', 'text' => $_LANG['back_list']) //返回商品列表
+				);
+				sys_msg($_LANG['add_success'], 0, $links);  //编辑团购活动成功
 			}else{
-				var_dump('失败');
+				$links = array(
+					array('href' => 'paipai_buy.php?act=list', 'text' => $_LANG['back_list']) //返回商品列表
+				);
+				sys_msg($_LANG['cancel_order_reason'], 0, $links);  //编辑团购活动失败
 			}
 		}else{
 			var_dump("输入有效数据");

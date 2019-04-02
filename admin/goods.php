@@ -702,6 +702,37 @@ else {
 		assign_query_info();
 		$smarty->display('goods_info.dwt');
 	}
+	else if ($_REQUEST['act'] == 'up_goods_num') {
+
+		$goods_num=$_REQUEST['goods_num'];
+		$suppliers_id=$_REQUEST['suppliers_id'];
+
+        if($goods_num){
+        	$where.=' where 1';
+            if($suppliers_id){
+            	$where.=' AND suppliers_id='.$suppliers_id;
+			}
+            $sel_sql='SELECT goods_id,goods_number,suppliers_id FROM '.$GLOBALS['ecs']->table('goods').$where;
+            $goods_row=$GLOBALS['db']->getAll($sel_sql);
+			//更改order_info下的order_id
+			$up_g_sql="UPDATE  ".$GLOBALS['ecs']->table('goods')." SET  goods_number= CASE goods_id";
+			foreach($goods_row as $key=>$val){
+				$goods_id_arr[]=$val['goods_id'];
+				$new_g_num=$val['goods_number']+$goods_num;
+				$up_g_sql.=" WHEN ".$val['goods_id']." THEN ". $new_g_num;
+			}
+			$up_g_sql.=" END WHERE goods_id IN(".implode(",", $goods_id_arr).") ";
+			$res=$GLOBALS['db']->query($up_g_sql);
+			if($res){
+				$links = array(
+				    array('href' => 'goods.php?act=list', 'text' => $_LANG['back_list']) //返回商品列表
+			    );
+			    sys_msg($_LANG['edit_success'], 0, $links);  //编辑成功
+			}
+		}
+
+		$smarty->display('goods_up_num.dwt');
+	}
 	else if ($_REQUEST['act'] == 'review_status') {
 		$handler_list = array();
 		$handler_list['virtual_card'][] = array('url' => 'virtual_card.php?act=card', 'title' => $_LANG['card'], 'icon' => 'icon-credit-card');

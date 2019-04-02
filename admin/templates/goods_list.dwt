@@ -66,6 +66,7 @@
 						<a href="goods.php?act=add{if $code eq 'virtual_card'}&extension_code=virtual_card{/if}"><div class="fbutton"><div class="add" title="{$lang.add_product}"><span><i class="icon icon-plus"></i>{$lang.add_product}</span></div></div></a>
                         <a href="goods.php?act=add_desc"><div class="fbutton"><div class="edit" title="{$lang.lab_goods_desc}"><span><i class="icon icon-edit"></i>{$lang.lab_goods_desc}</span></div></div></a>
                         <a href="goods.php?act=img_file_list"><div class="fbutton"><div class="edit" title="{$lang.sync_oss_img}"><span><i class="icon icon-edit"></i>{$lang.sync_oss_img}</span></div></div></a>
+                        <a href="goods.php?act=up_goods_num"><div class="fbutton"><div class="add" title="批量修改库存"><span><i class="icon icon-plus"></i>批量修改库存</span></div></div></a>
                     </div>
                     {/if}
                     {/if}
