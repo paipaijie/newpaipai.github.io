@@ -95,7 +95,7 @@
         {else}
         <div class="no-div-message">
             <i class="iconfont icon-biaoqingleiben"></i>
-            <p>亲，还没有拍拍商品哦～！</p>
+            <p>亲，还没有拍拍活动哦～！</p>
         </div>
         {/if}
     </div>
@@ -195,17 +195,17 @@
                 title: '预售价格区间',
                 skin: 'layui-layer-rim',
                 area: ['300px', '80%'],
-                content: ' <div class="row" style="width: 230px;">'
-                    + '<div class="col-sm-12">'
+                content: ' <div class="row" style="width: 380px;height: 140px">'
+                    + '<div class="col-sm-12"><br/>'
                     + '<div class="input-group">'
-                    + '<span class="input-group-addon" style="width:70px"> 最低价:</span>'
-                    + '<input id="seller_min_fee" name="seller_min_fee" type="text" class="form-control" placeholder="不能少于成本价">'
+                    + '<span class="input-group-addon" > 最低价:</span>'
+                    + '<input id="seller_min_fee" name="seller_min_fee" type="text"  style="border-bottom: 1px solid #CBCBCB;" class="form-control" placeholder="请填写大于当前价的金额">'
                     + '</div>'
-                    + '</div>'
+                    + '</div><br/>'
                     + '<div class="col-sm-12" style="margin-top: 10px">'
                     + '<div class="input-group">'
                     + '<span class="input-group-addon">最高价:</span>'
-                    + '<input id="seller_max_fee" name="seller_max_fee" type="text" class="form-control" placeholder="不能高于零售价">'
+                    + '<input id="seller_max_fee" name="seller_max_fee" type="text"  style="border-bottom: 1px solid #CBCBCB;" class="form-control" placeholder="请填写大于当前价的金额">'
                     + '</div>'
                     + '</div>'
                     + '</div>'

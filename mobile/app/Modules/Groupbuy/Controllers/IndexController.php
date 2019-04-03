@@ -55,10 +55,9 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		if ($max_page < $page) {
 			$page = $max_page;
 		}
+		$this->assign('total_pages',$max_page);
 
-		$gb_list = paipai_buy_list($this->size, $page, $keywords, $this->sort, $this->order);
-
-//		 var_dump($gb_list);
+		$gb_list = paipai_underway_list($keywords, $this->sort, $this->order);
 
 		foreach($gb_list as $k => $val){
 								
@@ -182,8 +181,8 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 			$val['seller_max_fee']=$gs_data;
 			$group_buy[] = $val;
 	    }
-//	    var_dump($group_buy);
 		$this->assign('att',$group_buy);
+
 		$this->display();
 			
 	}
