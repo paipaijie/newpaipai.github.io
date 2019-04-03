@@ -801,13 +801,13 @@ transform: rotate(135deg);background:#fff; bottom:-.6rem; z-index: -1; left:50%;
  * 商品列表3－最小化图片浏览
  * 在.product-list处加入.product-list-small即可实现
  */
-.product-list-small ul li{width:100%; padding-bottom:1px;}
+.product-list-small ul li{width:100%; padding-bottom:1rem;}
 .product-list-small .product-div{padding:.8rem;}
 .product-list-small .product-div img{ border:1px solid #f1f1f1;}
 .product-list-small .product-list-img{width:9.2rem; height: auto; float:left;}
 .product-list-small .product-text{margin-left:10.6rem; padding:.2rem 0;/*height:5.8rem;*/}
 .product-list-small .p-t-remark{padding-top:.6rem; font-size:1.3rem; }
-.product-list-small .p-price{font-size:rem;}
+.product-list-small .p-price{font-size:16px;}
 .product-list-small .p-price small{margin-left:.6rem; font-size:1.4rem;}
 .product-list-small .icon-flow-cart{ right:1.3rem; bottom:1.3rem;width:2.8rem; height:2.8rem; line-height:2.8rem; }
 .product-list-small .icon-flow-cart i.icon-gouwuche{font-size:1.8rem;}
@@ -2051,8 +2051,8 @@ transform: rotate(45deg);-ms-transform: rotate(45deg);-webkit-transform: rotate(
 .user-register-1 .hd-1 li{  margin: 1rem 0rem;border-left:1px solid #eee;font-size:1.6rem;color:#333333}
 .user-register-1 .hd-1 .active{color:#EC5151;}
 .user-register-1 .swiper-slide{box-sizing: border-box;}
-.group-bq-box{position:absolute;right:0;top:0;  background-color: rgba(236,81,81,1);padding:0.3rem 0.5rem;color:#fff;font-size:1.6rem;  z-index: 2;}
-.group-bq-box span{font-size:1rem;padding-left:0.2rem;margin-top:-0.5rem;}
+.group-bq-box{position:absolute;right:0;top:0;  background-color: rgba(236,81,81,1);padding:0.2rem 0.5rem;color:#fff;width:5rem;height:2.5rem;  z-index: 2;}
+.group-bq-box span{font-size:14px; padding-left:0.2rem;margin-top:-0.5rem;}
 .group-cont{font-size:1rem;color:#666666;  position: absolute;right: 0;}
 .group-num-box{font-size:1.2rem;color:#333333;  position: absolute;right: 0;bottom: -2.9rem;}
 .my-sousou{font-size:2.3rem;}
