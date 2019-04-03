@@ -17320,7 +17320,7 @@ h5.title-hrbg hr {
 
 .product-list-small ul li {
 	width: 100%;
-	padding-bottom: 1px
+	padding-bottom: 1rem;
 }
 
 .product-list-small .product-div {
