@@ -20,10 +20,10 @@ function paipai_buy_list($size, $page, $keywords, $sort, $order)
 	}
 
 	if ($sort == 'comments_number') {
-		$sql = 'SELECT b.*, IFNULL(g.goods_thumb, \'\') AS goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . ('AND b.start_time <= \'' . $now . '\' AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY g.') . $sort . ' ' . $order;
+		$sql = 'SELECT b.*, IFNULL(g.goods_thumb, \'\') AS goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . ('AND b.start_time <= \'' . $now . '\' AND b.end_time >= \'' . $now . '\' AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY g.') . $sort . ' ' . $order;
 	}
 	else {
-		$sql = 'SELECT b.*, IFNULL(g.goods_thumb, \'\') AS goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . ('AND b.start_time <= \'' . $now . '\' AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY b.') . $sort . ' ' . $order;
+		$sql = 'SELECT b.*, IFNULL(g.goods_thumb, \'\') AS goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . ('AND b.start_time <= \'' . $now . '\' AND b.end_time >= \'' . $now . '\' AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY b.') . $sort . ' ' . $order;
 	}
    
 	$res = $GLOBALS['db']->selectLimit($sql, $size, ($page - 1) * $size);
@@ -132,7 +132,8 @@ function paipai_buy_add_list($size, $page, $keywords, $sort, $order)
 	$gb_list = array();
 	
 	$now = time()+8*3600;
-	
+	$limit_time = $now+24*3600;
+
 	$where = '';
 	$where .= ' AND g.is_delete = 0';
 
@@ -141,12 +142,12 @@ function paipai_buy_add_list($size, $page, $keywords, $sort, $order)
 	}
 
 	if ($sort == 'comments_number') {
-		$sql = 'SELECT b.*, IFNULL(g.goods_thumb, \'\') AS goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . (' AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY g.') . $sort . ' ' . $order;
+		$sql = 'SELECT b.*, IFNULL(g.goods_thumb, \'\') AS goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . (' AND b.start_time >= \'' . $now . '\' AND b.start_time <= \'' . $limit_time . '\'  AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY g.') . $sort . ' ' . $order;
 	}
 	else {
-		$sql = 'SELECT b.*, IFNULL(g.goods_thumb, \'\') AS goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . (' AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY b.') . $sort . ' ' . $order;
+		$sql = 'SELECT b.*, IFNULL(g.goods_thumb, \'\') AS goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . (' AND b.start_time >= \'' . $now . '\' AND b.start_time <= \'' . $limit_time . '\' AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY b.') . $sort . ' ' . $order;
 	}
-
+//	$res = $GLOBALS['db']->selectLimit($sql, $size, ($page - 1) * $size);
 	$res = $GLOBALS['db']->query($sql);
 
 	foreach ($res as $key => $val) {
@@ -261,12 +262,12 @@ function paipai_underway_list($keywords, $sort, $order)
 	}
 
 	if ($sort == 'comments_number') {
-		$sql = 'SELECT b.*, g.goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . ('AND b.start_time <= \'' . $now . '\' AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY g.') . $sort . ' ' . $order;
+		$sql = 'SELECT b.*, g.goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . ('AND b.start_time <= \'' . $now . '\' AND b.end_time >= \'' . $now . '\'  AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY g.') . $sort . ' ' . $order;
 	}
 	else {
-		$sql = 'SELECT b.*, g.goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . ('AND b.start_time <= \'' . $now . '\' AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY b.') . $sort . ' ' . $order;
+		$sql = 'SELECT b.*, g.goods_thumb, b.ppj_id AS group_buy_id, g.market_price,' . 'b.start_time AS start_date, b.end_time AS end_date ' . 'FROM ' . $GLOBALS['ecs']->table('paipai_list') . ' AS b ' . 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON b.goods_id = g.goods_id ' . 'WHERE b.act_type = \'' . GAT_PAIPAI_BUY . ('\' ' . $where . ' ') . ('AND b.start_time <= \'' . $now . '\' AND b.end_time >= \'' . $now . '\' AND b.ppj_staus < 3 AND b.review_status = 3 ORDER BY b.') . $sort . ' ' . $order;
 	}
-
+//	$res = $GLOBALS['db']->selectLimit($sql, $size, ($page - 1) * $size);
 	$res = $GLOBALS['db']->query($sql);
 
 	foreach ($res as $key => $val) {
