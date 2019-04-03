@@ -153,15 +153,15 @@ function order_add($sale_data,$year, $mouth,$batch_number,$ceil_order_num){
     $ppj_goods_id_row=array_values(array_unique($ppj_goods_id));
 
     //更改商品的库存数
-    $up_g_sql="UPDATE ".$GLOBALS['ecs']->table('goods')." SET  goods_number=  CASE goods_id ";
-    $goods_id_count=implode(",", $goods_id_arr);
-    for($ug=0;$ug<count($ppj_goods_id_row);$ug++){
-
-        $up_g_sql.=" WHEN ".$ppj_goods_id_row[$ug] ." THEN ".$sale_data[$ug]['goods_number'];
-    }
-    $up_g_sql.=" END  WHERE goods_id in(".implode(",", $ppj_goods_id_row).")";
-
-    $GLOBALS['db']->query($up_g_sql);
+//    $up_g_sql="UPDATE ".$GLOBALS['ecs']->table('goods')." SET  goods_number=  CASE goods_id ";
+//    $goods_id_count=implode(",", $goods_id_arr);
+//    for($ug=0;$ug<count($ppj_goods_id_row);$ug++){
+//
+//        $up_g_sql.=" WHEN ".$ppj_goods_id_row[$ug] ." THEN ".$sale_data[$ug]['goods_number'];
+//    }
+//    $up_g_sql.=" END  WHERE goods_id in(".implode(",", $ppj_goods_id_row).")";
+//
+//    $GLOBALS['db']->query($up_g_sql);
 
 
     $ppj_add_sql="INSERT INTO ".$GLOBALS['ecs']->table('paipai_list')."(ppj_name,goods_id,ppj_no,goods_count,ppj_start_fee,ppj_buy_fee,start_time,end_time,ppj_margin_fee,ppj_startpay_time,ppj_endpay_time,ppj_createtime,goods_name,is_hot,is_new,review_status,user_id,ppj_staus) VALUES";
@@ -184,6 +184,9 @@ function order_add($sale_data,$year, $mouth,$batch_number,$ceil_order_num){
  
     if($res3){
         $res4=$GLOBALS['db']->query($ppj_add_sql);
+        if($res4){
+            return '1';
+        }
     }
 
 
@@ -936,9 +939,12 @@ elseif($_REQUEST['act'] == 'outorder') {
         }
         $ceil_order_num=$first_goods_num;
         $row = order_add($sale_data,$year, $mouth,$batch_number,$ceil_order_num);
-
-
-        var_dump(date("H:i:s", time() + 8 * 3600));
+        if($row){
+            $links = array(
+                array('href' => 'paipai_part.php?act=list', 'text' => $_LANG['back_list']) //返回列表
+            );
+            sys_msg($_LANG['add_success'], 0, $links);  //编辑成功
+        }
     } else {
         var_dump("q请填写有效数据");
     }
@@ -949,7 +955,8 @@ elseif($_REQUEST['act'] =='upordernext'){
 
     $year=$_POST['year'];
     $mouth = $_POST['mouth'];
-    $days=$_POST['days'];
+//    $days=$_POST['days'];
+    $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
 
     $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
     $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
@@ -957,15 +964,15 @@ elseif($_REQUEST['act'] =='upordernext'){
     $limit_max_time=strtotime($max_time);
     var_dump(date("H:i:s", time() + 8 * 3600));
     if($mouth){
-        $order_sql="SELECT order_id,order_sn FROM ".$GLOBALS['ecs']->table('order_info')." WHERE add_time<=".$limit_max_time." AND add_time>=".$limit_min_time;
+        $order_sql="SELECT order_id,order_sn FROM ".$GLOBALS['ecs']->table('order_info')." WHERE add_time<=".$limit_max_time." AND add_time>=".$limit_min_time.' ORDER BY order_id DESC';
         $update_data=$GLOBALS['db']->getAll($order_sql);
 
         foreach($update_data as $ukey=>$uval) {
             $order_sn_arr[] = $uval['order_sn'];
         }
-        $rec_id_sql = "SELECT rec_id,order_sn,goods_id FROM " . $GLOBALS['ecs']->table('order_goods') . " WHERE order_sn IN (".implode(",", $order_sn_arr).")";
+        $rec_id_sql = "SELECT rec_id,order_sn,goods_id FROM " . $GLOBALS['ecs']->table('order_goods') . " WHERE order_sn IN (".implode(",", $order_sn_arr).")".'  ORDER BY rec_id DESC';
         $rec_id_row = $GLOBALS['db']->getALL($rec_id_sql);
-        $logs_id_sql = "SELECT id,order_sn FROM " . $GLOBALS['ecs']->table('goods_inventory_logs') . " WHERE order_sn IN (".implode(",", $order_sn_arr).")";
+        $logs_id_sql = "SELECT id,order_sn FROM " . $GLOBALS['ecs']->table('goods_inventory_logs') . " WHERE order_sn IN (".implode(",", $order_sn_arr).")".'  ORDER BY id DESC';
         $logs_id_row = $GLOBALS['db']->getALL($logs_id_sql);
         foreach($update_data as $key=>$val) {
             if($val['order_sn']==$rec_id_row[$key]['order_sn']){
@@ -1023,9 +1030,14 @@ elseif($_REQUEST['act'] =='upordernext'){
             $GLOBALS['db']->query('commit transaction');
             $GLOBALS['db']->query('begin');
         }
-        $GLOBALS['db']->query('commit');
+        $res6=$GLOBALS['db']->query('commit');
+        if($res6){
+            $links = array(
+                array('href' => 'paipai_part.php?act=list', 'text' => $_LANG['back_list']) //返回列表
+            );
+            sys_msg($_LANG['add_success'], 0, $links);  //编辑成功
+        }
 
-        var_dump(date("H:i:s", time() + 8 * 3600));
 
     }
 
