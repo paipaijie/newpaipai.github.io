@@ -31,14 +31,14 @@
                 {if $v['is_end'] == 0}
                 
                 <li>
-                    <div class="product-div" style="height:14rem">
+                    <div class="product-div" style="height:14rem;">
                         <a href="{$v['url']}">
                             {if $v['is_end'] == 1}
                             <div class="group-bq-box" style="display:block"> <span>进行中</span> </div>
                             {elseif $v['is_end'] == 2}
                             <div class="group-bq-box" style="display:block"> <span>已结束</span> </div>
                             {else}
-                            <div class="group-bq-box" style="display:block;background:#FFF0F0;color:red"> <span>未开始</span>
+                            <div class="group-bq-box" style="display:block;background: #FBA534;color:#fff;text-align: center"> <span>未开始</span>
                             </div>
                             {/if}
 
