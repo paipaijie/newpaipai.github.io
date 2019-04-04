@@ -1542,8 +1542,8 @@ function delivery_order_info($delivery_id, $delivery_sn = '')
 	if ($delivery) {
 		$delivery['formated_insure_fee'] = price_format($delivery['insure_fee'], false);
 		$delivery['formated_shipping_fee'] = price_format($delivery['shipping_fee'], false);
-		$delivery['formated_add_time'] = local_date($GLOBALS['_CFG']['time_format'], $delivery['add_time']);
-		$delivery['formated_update_time'] = local_date($GLOBALS['_CFG']['time_format'], $delivery['update_time']);
+		$delivery['formated_add_time'] = date($GLOBALS['_CFG']['time_format'], $delivery['add_time']);
+		$delivery['formated_update_time'] = date($GLOBALS['_CFG']['time_format'], $delivery['update_time']);
 		$return_order = $delivery;
 	}
 
@@ -1574,9 +1574,9 @@ function back_order_info($back_id)
 	if ($back) {
 		$back['formated_insure_fee'] = price_format($back['insure_fee'], false);
 		$back['formated_shipping_fee'] = price_format($back['shipping_fee'], false);
-		$back['formated_add_time'] = local_date($GLOBALS['_CFG']['time_format'], $back['add_time']);
-		$back['formated_update_time'] = local_date($GLOBALS['_CFG']['time_format'], $back['update_time']);
-		$back['formated_return_time'] = local_date($GLOBALS['_CFG']['time_format'], $back['return_time']);
+		$back['formated_add_time'] = date($GLOBALS['_CFG']['time_format'], $back['add_time']);
+		$back['formated_update_time'] = date($GLOBALS['_CFG']['time_format'], $back['update_time']);
+		$back['formated_return_time'] = date($GLOBALS['_CFG']['time_format'], $back['return_time']);
 		$return_order = $back;
 	}
 
@@ -3172,10 +3172,10 @@ else if ($_REQUEST['act'] == 'info') {
 		$order['formated_money_refund'] = price_format(abs($order['order_amount']));
 	}
 
-	$order['order_time'] = local_date($_CFG['time_format'], $order['add_time']);
-	$order['pay_time'] = 0 < $order['pay_time'] ? local_date($_CFG['time_format'], $order['pay_time']) : $_LANG['ps'][PS_UNPAYED];
-	$order['shipping_time'] = 0 < $order['shipping_time'] ? local_date($_CFG['time_format'], $order['shipping_time']) : $_LANG['ss'][SS_UNSHIPPED];
-	$order['confirm_take_time'] = 0 < $order['confirm_take_time'] ? local_date($_CFG['time_format'], $order['confirm_take_time']) : $_LANG['ss'][SS_UNSHIPPED];
+	$order['order_time'] = date($_CFG['time_format'], $order['add_time']);
+	$order['pay_time'] = 0 < $order['pay_time'] ? date($_CFG['time_format'], $order['pay_time']) : $_LANG['ps'][PS_UNPAYED];
+	$order['shipping_time'] = 0 < $order['shipping_time'] ? date($_CFG['time_format'], $order['shipping_time']) : $_LANG['ss'][SS_UNSHIPPED];
+	$order['confirm_take_time'] = 0 < $order['confirm_take_time'] ? date($_CFG['time_format'], $order['confirm_take_time']) : $_LANG['ss'][SS_UNSHIPPED];
 	$order['status'] = $_LANG['os'][$order['order_status']] . ',' . $_LANG['ps'][$order['pay_status']] . ',' . $_LANG['ss'][$order['shipping_status']];
 
 	if ($order['from_ad'] == 0) {
@@ -3379,7 +3379,7 @@ else if ($_REQUEST['act'] == 'info') {
 	$operable_list = operable_list($order);
 	$smarty->assign('operable_list', $operable_list);
 	$sql = 'SELECT log_time  FROM ' . $ecs->table('order_action') . (' WHERE order_id = \'' . $order['order_id'] . '\' ');
-	$res_time = local_date($_CFG['time_format'], $db->getOne($sql));
+	$res_time = date($_CFG['time_format'], $db->getOne($sql));
 	$smarty->assign('res_time', $res_time);
 	$act_list = array();
 	$sql = 'SELECT * FROM ' . $ecs->table('order_action') . (' WHERE order_id = \'' . $order['order_id'] . '\' ORDER BY log_time DESC,action_id DESC');
@@ -3389,7 +3389,7 @@ else if ($_REQUEST['act'] == 'info') {
 		$row['order_status'] = $_LANG['os'][$row['order_status']];
 		$row['pay_status'] = $_LANG['ps'][$row['pay_status']];
 		$row['shipping_status'] = $_LANG['ss'][$row['shipping_status']];
-		$row['action_time'] = local_date($_CFG['time_format'], $row['log_time']);
+		$row['action_time'] = date($_CFG['time_format'], $row['log_time']);
 		$act_list[] = $row;
 	}
 
@@ -7167,11 +7167,11 @@ else {
 
 					if ($_CFG['send_confirm_email'] == '1') {
 						$tpl = get_mail_template('order_confirm');
-						$order['formated_add_time'] = local_date($GLOBALS['_CFG']['time_format'], $order['add_time']);
+						$order['formated_add_time'] = date($GLOBALS['_CFG']['time_format'], $order['add_time']);
 						$smarty->assign('order', $order);
 						$smarty->assign('shop_name', $_CFG['shop_name']);
-						$smarty->assign('send_date', local_date($GLOBALS['_CFG']['time_format'], gmtime()));
-						$smarty->assign('sent_date', local_date($GLOBALS['_CFG']['time_format'], gmtime()));
+						$smarty->assign('send_date', date($GLOBALS['_CFG']['time_format'], gmtime()));
+						$smarty->assign('sent_date', date($GLOBALS['_CFG']['time_format'], gmtime()));
 						$content = $smarty->fetch('str:' . $tpl['template_content']);
 						send_mail($order['consignee'], $order['email'], $tpl['template_subject'], $content, $tpl['is_html']);
 					}

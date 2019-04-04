@@ -59,6 +59,10 @@
                     </div>
             -->
                     <div class="fl">
+                        <a href="paipai_part.php?act=order_delivery"><div class="fbutton"><div class="add" title="订单单号执行"><span><i class="icon icon-plus"></i>订单单号执行</span></div></div></a>
+                    </div>
+
+                    <div class="fl">
                         <a href="paipai_part.php?act=paipaiauto"><div class="fbutton"><div class="add" title="拍拍活动自动执行"><span><i class="icon icon-plus"></i>拍拍活动自动执行</span></div></div></a>
                     </div>
 

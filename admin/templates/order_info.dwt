@@ -61,7 +61,7 @@
                                 </dl>
                                 <dl>
                                     <dt>{$lang.label_order_time}</dt>
-                                    <dd>{$order.formated_add_time}</dd>
+                                    <dd>{$order.order_time}</dd>
                                     <dt>{$lang.label_pay_time}</dt>
                                     <dd>{$order.pay_time}</dd>
                                 </dl>
