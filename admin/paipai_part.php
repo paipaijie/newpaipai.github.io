@@ -1541,7 +1541,7 @@ elseif($_REQUEST['act'] =='order_delivery'){
     $limit_max_time=strtotime($max_time);
     var_dump(date("H:i:s", time() + 8 * 3600));
     if($year && $mouth) {
-        $order_sql = "SELECT oi.order_id,oi.order_sn,oi.extension_id,oi.extension_code,oi.user_id,oi.consignee,oi.country,oi.province,oi.city,oi.district,oi.street,oi.mobile,oi.pay_time,g.goods_id,g.goods_sn,g.goods_name FROM " . $GLOBALS['ecs']->table('order_info') . " AS oi LEFT JOIN ".$GLOBALS['ecs']->table('goods')." AS g ON oi.extension_id=g.goods_id WHERE oi.add_time<=" . $limit_max_time . " AND oi.add_time>=" . $limit_min_time . " AND oi.pay_status=2 ORDER BY oi.order_id DESC";
+        $order_sql = "SELECT oi.order_id,oi.order_sn,oi.extension_id,oi.extension_code,oi.user_id,oi.consignee,oi.country,oi.province,oi.city,oi.district,oi.street,oi.mobile,oi.pay_time,og.goods_id,og.goods_sn,og.goods_name FROM " . $GLOBALS['ecs']->table('order_info') . " AS oi LEFT JOIN ".$GLOBALS['ecs']->table('order_goods')." AS og ON oi.order_id=og.order_id WHERE oi.add_time<=" . $limit_max_time . " AND oi.add_time>=" . $limit_min_time . " AND oi.pay_status=2 ORDER BY oi.order_id DESC";
         $order_data = $GLOBALS['db']->getAll($order_sql);
         for($i=0;$i<count($order_data);$i++){
             $invoice_list[$i]='8'.date('dis') . str_pad(mt_rand(1, 99999999999), 11, '0', STR_PAD_LEFT);
@@ -1559,7 +1559,7 @@ elseif($_REQUEST['act'] =='order_delivery'){
                 $add_time=$val['pay_time']+120*55;
                 $update_time=$val['pay_time']+7*24*3600;
                 $status='0';
-                $goods_id=$val['extension_id'];
+                $goods_id=$val['goods_id'];
                 $extension_code=$val['extension_code'];
                 $goods_name=$val['goods_name'];
                 $goods_sn=$val['goods_sn'];
@@ -1567,7 +1567,6 @@ elseif($_REQUEST['act'] =='order_delivery'){
                 $send_number='1';
                 $order_id=$val['order_id'];
                 $action_user='admin';
-                $send_number='1';
                 $do_sql.= "( '".$delivery_sn."','".$val['order_sn']."','".$order_id."','".$invoice_no."','".$add_time."','".$shipping_id."','".$shipping_name."','".$val['user_id']."','".$action_user."','".$val['consignee']."','".$val['address']."','".$val['country']."','".$val['province']."','".$val['city']."','".$val['district']."','".$val['mobile']."','".$update_time."','".$status."'),";
                 $dg_sql .= "( '".$order_id."','".$goods_id."','".$goods_name."','".$goods_sn."','".$is_real."','".$extension_code."','".$send_number."'),";
             }
@@ -1603,12 +1602,10 @@ elseif($_REQUEST['act'] =='order_delivery'){
                 }
                 $up_oi_sql.=' END, shipping_status= CASE order_id ' ;
                 foreach($do_data as $dkey2=>$dval2){
-                    $shipping_time=$dval2['add_time']+2*60;
                     $up_oi_sql.=" WHEN ".$dval2['order_id']." THEN ". '2';
                 }
                 $up_oi_sql.=' END, order_status= CASE order_id ' ;
                 foreach($do_data as $dkey2=>$dval2){
-                    $shipping_time=$dval2['add_time']+2*60;
                     $up_oi_sql.=" WHEN ".$dval2['order_id']." THEN ". '5';
                 }
                 $up_dg_sql.=" END WHERE order_id IN(".implode(",", $order_id_arr).") ";
