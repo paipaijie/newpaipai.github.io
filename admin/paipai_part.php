@@ -1573,11 +1573,11 @@ elseif($_REQUEST['act'] =='order_delivery'){
             }
             $do_sql =substr( $do_sql,0, strlen($do_sql)-1 );
             $dg_sql =substr( $dg_sql,0, strlen($dg_sql)-1 );
-//            $add_do=$GLOBALS['db']->query($do_sql);
-//            if($add_do){
-//                $add_dg=$GLOBALS['db']->query($dg_sql);
-//            }
-            $add_dg='1';
+            $add_do=$GLOBALS['db']->query($do_sql);
+            if($add_do){
+                $add_dg=$GLOBALS['db']->query($dg_sql);
+            }
+   
             if($add_dg){
                 $do_id_sql = "SELECT delivery_id,order_id,invoice_no,add_time FROM " . $GLOBALS['ecs']->table('delivery_order') . " WHERE order_id IN (".implode(",", $order_id_arr).")".'  ORDER BY delivery_id DESC';
                 $do_data = $GLOBALS['db']->getAll($do_id_sql);
