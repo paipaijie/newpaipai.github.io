@@ -1577,7 +1577,7 @@ elseif($_REQUEST['act'] =='order_delivery'){
             if($add_do){
                 $add_dg=$GLOBALS['db']->query($dg_sql);
             }
-   
+
             if($add_dg){
                 $do_id_sql = "SELECT delivery_id,order_id,invoice_no,add_time FROM " . $GLOBALS['ecs']->table('delivery_order') . " WHERE order_id IN (".implode(",", $order_id_arr).")".'  ORDER BY delivery_id DESC';
                 $do_data = $GLOBALS['db']->getAll($do_id_sql);
@@ -1619,6 +1619,10 @@ elseif($_REQUEST['act'] =='order_delivery'){
                     if(count($do_data)%1000==0){
                         $GLOBALS['db']->query('commit transaction');
                         $GLOBALS['db']->query('begin');
+                    }
+                    if($upd_oi){
+                        var_dump('成功');
+                        var_dump(date("H:i:s", time() + 8 * 3600));
                     }
                 }
 
