@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+	<head>{include file ='library/admin_html_head.lbi'}</head>
+
+	<body class="iframe_body">
+		<div class="warpper">
+			<div class="title">
+				<a href="paipai_buy.php?act=list" class="s-back">{$lang.back}</a>{$lang.promotion} - {$ur_here}</div>
+			<div class="content">
+
+				<!--操作提示start  --><!--
+				<div class="explanation" id="explanation">
+					<div class="ex_tit"><i class="sc_icon"></i>
+						<h4>{$lang.operating_hints}</h4><span id="explanationZoom" title="{$lang.fold_tips}"></span></div>
+					<ul>
+						<li>{$lang.operation_prompt_content_common}</li>
+						<li>{$lang.operation_prompt_content.info.0}</li>
+						<li>{$lang.operation_prompt_content.info.1}</li>
+						<li>{$lang.operation_prompt_content.info.2}</li>
+					</ul>
+				</div>-->
+				<!--操作提示end  -->
+
+				<div class="flexilist">
+
+					<div class="common-content">
+
+						<div class="mian-info">
+
+							<form method="post" action="paipai_part.php?act=order_delivery" name="theForm" id="group_buy_form">
+
+								<div class="switch_info">
+
+									<!--字段详情start  -->
+                                    <div class="items">
+
+                                        <div class="item">
+                                            <div class="label">年</div>
+                                            <div class="label_value">
+                                                <input type="text" name="year"  class="text" autocomplete="off" />
+                                                <div class="notic">年为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
+                                            <div class="label">月</div>
+                                            <div class="label_value">
+                                                <input type="text" name="mouth"  class="text" autocomplete="off" />
+                                                <div class="notic">月为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
+                                            <div class="label">&nbsp;</div>
+
+                                            <div class="label_value info_btn">
+                                                <input name="act_id" type="hidden" id="act_id" value="{$group_buy.ppj_id}" id="submitBtn">
+                                                {if $group_buy.ppj_staus eq 1 || $group_buy.ppj_staus eq 0}
+                                                <input type="submit" name="submit" value="{$lang.button_submit}" class="button" />
+                                                {/if}
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <!--字段详情end  -->
+
+								</div>
+
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+	
+	</body>
+
+</html>
