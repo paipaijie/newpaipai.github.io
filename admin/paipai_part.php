@@ -1535,9 +1535,9 @@ elseif($_REQUEST['act'] =='order_delivery'){
 
     $year=$_POST['year'];
     $mouth = $_POST['mouth'];
-    $days = $_POST['days'];
+//    $days = $_POST['days'];
     $exchange = $_POST['exchange'];
-//    $days=@cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+    $days=@cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
 
     $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
     $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
