@@ -102,19 +102,19 @@ function ordertime($year,$mouth,$days){
     $order_date['take_time'] = strtotime($year . '-' . $mouth . '-' . $td . " " . $S . ":" . $F . ":" . $M);
     return $order_date;
 }
-function order_add($sale_data,$year, $mouth,$batch_number,$ceil_order_num){
+function order_add($sale_data,$year, $mouth,$days,$batch_number,$ceil_order_num){
 
     $batch_number=time();
-    $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+//    $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
     $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,add_time,confirm_time,pay_time,shipping_time,confirm_take_time) VALUE ";
     $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,goods_price,is_real,warehouse_id,area_id,order_sn) VALUES";
     $out_logs_sql = "INSERT INTO ".$GLOBALS['ecs']->table('goods_inventory_logs')."(goods_id,use_storage,admin_id,number,add_time,batch_number,order_sn) VALUES ";
 
     foreach($sale_data as $key=>$val){
 
-        $d=rand(1,$days);
-        if($d<10){
-            $d='0'.$d;
+//        $d=rand(1,$days);
+        if($days<10){
+            $d='0'.$days;
         }
         $order_sn=$year.$mouth.$d.str_pad(mt_rand(1, 999999999), 9, '0', STR_PAD_LEFT);
 
@@ -872,13 +872,13 @@ elseif($_REQUEST['act'] == 'outorder') {
 
         $sale_pro=$saleprice/$outprice;
 
-        $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+//        $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
         foreach ($goods_row2 as $gdkey => $gdval){
             for($gi=1;$gi<=$gdval['goods_number'];$gi++){
 
-                $d=rand(1,$days);
-                if($d<10){
-                    $d='0'.$d;
+//                $d=rand(1,$days);
+                if($days<10){
+                    $d='0'.$days;
                 }
                 $order_time=$year.'-'.$mouth.'-'.$d;
                 $S=rand(8,22);//随机--时
@@ -944,7 +944,7 @@ elseif($_REQUEST['act'] == 'outorder') {
             }
         }
         $ceil_order_num=$first_goods_num;
-        $row = order_add($sale_data,$year, $mouth,$batch_number,$ceil_order_num);
+        $row = order_add($sale_data,$year, $mouth,$d,$batch_number,$ceil_order_num);
         if($row){
             $links = array(
                 array('href' => 'paipai_part.php?act=list', 'text' => $_LANG['back_list']) //返回列表
@@ -961,8 +961,8 @@ elseif($_REQUEST['act'] =='upordernext'){
 
     $year=$_POST['year'];
     $mouth = $_POST['mouth'];
-//    $days=$_POST['days'];
-    $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+    $days=$_POST['days'];
+//    $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
 
     $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
     $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
@@ -1535,6 +1535,7 @@ elseif($_REQUEST['act'] =='order_delivery'){
 
     $year=$_POST['year'];
     $mouth = $_POST['mouth'];
+    $exchange = $_POST['exchange'];
     $days=@cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
 
     $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
@@ -1543,7 +1544,10 @@ elseif($_REQUEST['act'] =='order_delivery'){
     $limit_max_time=strtotime($max_time);
     var_dump(date("H:i:s", time() + 8 * 3600));
     if($year && $mouth) {
-        $order_sql = "SELECT oi.order_id,oi.order_sn,oi.extension_id,oi.extension_code,oi.user_id,oi.consignee,oi.country,oi.province,oi.city,oi.district,oi.street,oi.mobile,oi.pay_time,og.goods_id,og.goods_sn,og.goods_name FROM " . $GLOBALS['ecs']->table('order_info') . " AS oi LEFT JOIN ".$GLOBALS['ecs']->table('order_goods')." AS og ON oi.order_id=og.order_id WHERE oi.add_time<=" . $limit_max_time . " AND oi.add_time>=" . $limit_min_time . " AND oi.pay_status=2 ORDER BY oi.order_id DESC";
+        if($exchange){
+            $where.=" AND oi.extension_code='exchange_goods' ";
+        }
+        $order_sql = "SELECT oi.order_id,oi.order_sn,oi.extension_id,oi.extension_code,oi.user_id,oi.consignee,oi.country,oi.province,oi.city,oi.district,oi.street,oi.mobile,oi.pay_time,og.goods_id,og.goods_sn,og.goods_name FROM " . $GLOBALS['ecs']->table('order_info') . " AS oi LEFT JOIN ".$GLOBALS['ecs']->table('order_goods')." AS og ON oi.order_id=og.order_id WHERE oi.add_time<=" . $limit_max_time . " AND oi.add_time>=" . $limit_min_time .$where. " AND oi.pay_status=2 ORDER BY oi.order_id DESC";
         $order_data = $GLOBALS['db']->getAll($order_sql);
         for($i=0;$i<count($order_data);$i++){
             $invoice_list[$i]='8'.date('dis') . str_pad(mt_rand(1, 99999999999), 11, '0', STR_PAD_LEFT);
@@ -1627,6 +1631,8 @@ elseif($_REQUEST['act'] =='order_delivery'){
 
             }
 
+        }else{
+            var_dump('无数据');
         }
     }
 

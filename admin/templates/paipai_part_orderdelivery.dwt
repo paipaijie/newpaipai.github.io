@@ -54,6 +54,15 @@
                                         </div>
 
                                         <div class="item">
+                                            <div class="label">分类</div>
+                                            <div class="label_value">
+                                                <input type="text" name="exchange"  class="text" autocomplete="off" />
+                                                <div class="notic">月为单位（积分订单输入exchange_goods 别的为空）</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
                                             <div class="label">&nbsp;</div>
 
                                             <div class="label_value info_btn">

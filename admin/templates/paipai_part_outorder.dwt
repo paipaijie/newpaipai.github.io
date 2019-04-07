@@ -54,6 +54,15 @@
                                         </div>
 
                                         <div class="item">
+                                            <div class="label">年月日</div>
+                                            <div class="label_value">
+                                                <input type="text" name="days"  class="text" autocomplete="off" />
+                                                <div class="notic">日为单位</div>
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
                                             <div class="label">出库总金额</div>
                                             <div class="label_value">
                                                 <input type="text" name="out_price"  class="text" autocomplete="off" />
