@@ -270,7 +270,7 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
     }
 
     //出价记录添加
-    $ppj_bid_sql = "INSERT INTO ".$GLOBALS['ecs']->table('paipai_goods_bid_user')."(user_id,ppj_id,ppj_no,bid_price,bid_time,is_status,createtime,spm_id) VALUES ";
+    $ppj_bid_sql = "INSERT INTO ".$GLOBALS['ecs']->table('paipai_goods_bid_user')."(user_id,ppj_id,ppj_no,bid_price,bid_time,is_status,createtime,rt_auto,spm_id) VALUES ";
     foreach($ppj_row as $key2=>$val2){
         $sel_pm_sql ="SELECT spm_id FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE user_id=".$val2['user_id']." AND ppj_id=".$val2['ppj_id']." ORDER BY spm_id DESC";;
         $margin_row=$GLOBALS['db']->getRow($sel_pm_sql);
@@ -299,8 +299,9 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
             $bid_status=0;
         }
         $ppj_row[$key2]['pay_price']=$pay_price;
+        $rt_auto='1';
         $ppj_row[$key2]['spm_id']=$margin_row['spm_id'];
-        $ppj_bid_sql .= "( '".$val2['user_id']."','".$val2['ppj_id']."','".$val2['ppj_no']."','".$bid_price."','".$now_time."',".$bid_status.",'".$now_time."','".$margin_row['spm_id']."'),";
+        $ppj_bid_sql .= "( '".$val2['user_id']."','".$val2['ppj_id']."','".$val2['ppj_no']."','".$bid_price."','".$now_time."',".$bid_status.",'".$now_time."','".$rt_auto."','".$margin_row['spm_id']."'),";
     }
     $ppj_bid_sql = substr( $ppj_bid_sql,0, strlen($ppj_bid_sql)-1 );
     $res2=$GLOBALS['db']->query($ppj_bid_sql);
@@ -1426,7 +1427,7 @@ elseif($_REQUEST['act'] =='exchange'){
                  $uid_row=array_rand($uid_arr);
                  $user_row=$uid_arr[$uid_row];
                  $order_time=ordertime($year,$mouth,$days);
-                 $order_sn=$order_time['order_time'].'11'.str_pad(mt_rand(1, 999999999), 9, '0', STR_PAD_LEFT);
+                 $order_sn=$order_time['order_time'].'1'.$mouth.str_pad(mt_rand(1, 999999999), 9, '0', STR_PAD_LEFT);
                  $oi_row[]=array(
                      'order_sn'=>$order_sn,
                      'user_id'=>$user_row['user_id'],

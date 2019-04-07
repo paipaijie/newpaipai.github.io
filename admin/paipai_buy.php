@@ -1087,8 +1087,12 @@ else {
 				//最近一期商品的拍拍活动
 				$act_sql = "SELECT ppj_no FROM " . $GLOBALS['ecs']->table('paipai_list') . " WHERE goods_id=" . $val['goods_id'] . " ORDER BY ppj_id DESC";
 				$ppj_goods = $GLOBALS['db']->getRow($act_sql);
-
-				$ppj_no = $ppj_goods['ppj_no'] + 1+210;
+				if($ppj_goods['ppj_no']<200){
+					$add_pjn=210;
+				}else{
+					$add_pjn=1;
+				}
+				$ppj_no = $ppj_goods['ppj_no'] + $add_pjn;
 
 
 				if(!empty($post_margin_fee)){
