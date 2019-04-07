@@ -1427,7 +1427,8 @@ elseif($_REQUEST['act'] =='exchange'){
                  $uid_row=array_rand($uid_arr);
                  $user_row=$uid_arr[$uid_row];
                  $order_time=ordertime($year,$mouth,$days);
-                 $order_sn=$order_time['order_time'].$days.$mouth.str_pad(mt_rand(1, 999999999), 9, '0', STR_PAD_LEFT);
+                 $d=rand(1,$days);
+                 $order_sn=$order_time['order_time'].$d.$mouth.str_pad(mt_rand(1, 999999999), 9, '0', STR_PAD_LEFT);
                  $oi_row[]=array(
                      'order_sn'=>$order_sn,
                      'user_id'=>$user_row['user_id'],
