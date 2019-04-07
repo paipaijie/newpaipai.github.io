@@ -116,7 +116,7 @@
                                     <!-- <%/if%> -->
                                     <a class="btn-default-new br-5 min-btn received-order" data-item-received="<%order.order_id%>">确认收货</a>
                             <%else if order.two_status ==0 %>
-                                <a class="btn-default-new br-5 min-btn" href="{url('user/userbuy/paipaibuy')}&ppj_id=&ppj_no=&sell=<%order.sell_user_data%>">待付款</a> 
+                                <a class="btn-default-new br-5 min-btn" href="{url('user/userbuy/paipaibuy')}&ppj_id=<%order.ppj_id%>&ppj_no=<%order.ppj_no%>&sell=<%order.sell_user_data%>">请确认发货</a>
                             <%else%>
                                 <% if order.cur_price  < order.bid_price %>                             
                                 <span style="color: rosybrown; font-size: 13px;"> 正在匹配适合的卖家...</span>

@@ -114,6 +114,14 @@
                         {else}
                         <input name="payment" type="hidden" value="-1"/>
                         {/if}
+                        {if $match_status == 1}
+                        <li class="dis-box padding-all-n m-top1px b-color-f j-show-div" id="payment">
+                            <label class="t-remark g-t-temark">提示</label>
+                            <div class="box-flex t-goods1 text-right onelist-hidden">
+                                <span>抱歉,速度慢了,对应卖家已被抢走!!!</span>
+                            </div>
+                        </li>
+                        {/if}
                     </ul>
                 </section>
 
@@ -121,16 +129,26 @@
                 <section class="filter-btn f-checkout-filter-btn dis-box pl">
 			        <!-- 检测单个商品是否支持配送 -->
 			        <input type="hidden" name="shipping_prompt_str" value="" >
-
-			        <span class="box-flex t-remark">实付款 <em class="t-first" id="amount">{$user_bid['bid_price']}</em></span>
+                    <!--<span class="box-flex t-remark">实付款 <em class="t-first" id="amount">{$user_bid['bid_price']}</em></span>-->
+                    <span class="box-flex t-remark">到付货款 <em class="t-first" id="amount">{$user_bid['bid_price']}</em></span>
 			        <input type="hidden" name="ppj_id" value="{$user_bid['ppj_id']}">
 			        <input type="hidden" name="ppj_no" value="{$user_bid['ppj_no']}">
-					<input type="hidden" name="svalt" value="{$svalt}">
-			        <input type="hidden" name="svalp" value="{$svalp}">
+					<input type="hidden" name="sell_id" value="{$sell_id}">
+                    <input type="hidden" name="sell_price" value="{$sell_price}">
 			        <input type="hidden" name="order" value="1">
-			        <div>
-			            <button name="submit" type="submit" class="btn-submit">安全支付</button>
-			        </div>
+                    {if $match_status == 1}
+                        <div>
+                            <a href="/mobile/index.php?m=groupbuy&a=detail&id={$user_bid['ppj_id']}" style="line-height: 2.4rem;"><span  style="display: block;width:10rem;text-align:center;padding-bottom:1rem;line-height: 2.4rem; color: #fff;background-color: red">重新出价</span></a>
+                        </div>
+                    {else}
+                        <div>
+                           <button name="submit" type="submit" class="btn-submit">确认发货</button>
+                        </div>
+                        <!--<div>-->
+                            <!--<button name="submit" type="submit" class="btn-submit">安全支付</button>-->
+                        <!--</div>-->
+                    {/if}
+
 			    </section>
         
         </div>

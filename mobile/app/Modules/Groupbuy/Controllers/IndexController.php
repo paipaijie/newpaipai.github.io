@@ -222,7 +222,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
 		$gb_list = paipai_buy_add_list($this->size, $page, $keywords, $this->sort, $this->order);
-
+ 
 
 		foreach ($gb_list as $key => $val) {
 		
@@ -1028,8 +1028,9 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		}
 
          $sellers_fee =number_format(($_POST['sellers_fee']),2);
-         //echo $sellers_fee;
-        // exit();
+		 $sellers_fee=str_replace(array(","),"",$sellers_fee);
+//         echo $sellers_fee;
+//         exit();
          
          //购买数量 
 		$number = isset($_POST['number']) ? intval($_POST['number']) : 1;		

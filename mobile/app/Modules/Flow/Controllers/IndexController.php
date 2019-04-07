@@ -1825,6 +1825,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				show_message('金额不能为0！', '', '', 'warning');
 			}else{
 				$bid_price= number_format($_POST['bid_price'],2);
+				$bid_price=str_replace(array(","),"",$bid_price);
 			}
 			do {
 				if($new_order_id){

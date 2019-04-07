@@ -439,7 +439,7 @@ function exchange_add_order($oi_row){
         }
     }
 
-    if(count($oi_row)%5000==0){
+    if(count($oi_row)%1000==0){
         $GLOBALS['db']->query('commit');
         $GLOBALS['db']->query('begin');
     }
@@ -1467,7 +1467,7 @@ elseif($_REQUEST['act'] =='update_exchange'){
 
     $year=$_POST['year'];
     $mouth = $_POST['mouth'];
-    $days=cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+    $days=@cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
 
     $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
     $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
