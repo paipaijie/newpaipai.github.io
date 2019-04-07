@@ -915,7 +915,7 @@ elseif($_REQUEST['act'] == 'outorder') {
                 $g_sql='SELECT goods_id,goods_name,goods_sn,market_price,shop_price,goods_number FROM '.$GLOBALS['ecs']->table('goods').' WHERE goods_id='.$gdval['goods_id'];
                 $goods_row=$GLOBALS['db']->getRow($g_sql);
                 //单个商品的单价
-                $one_price = str_replace(',', '', number_format($goods_sale_num[$s + 1] / $gdval['out_num'], 2));
+                $one_price =@ str_replace(',', '', number_format($goods_sale_num[$s + 1] / $gdval['out_num'], 2));
                 $sale_data[] = array(
                     'goods_id' => $gdval['goods_id'],
                     'shop_price' => $gdval['shop_price'],
@@ -1535,8 +1535,9 @@ elseif($_REQUEST['act'] =='order_delivery'){
 
     $year=$_POST['year'];
     $mouth = $_POST['mouth'];
+    $days = $_POST['days'];
     $exchange = $_POST['exchange'];
-    $days=@cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+//    $days=@cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
 
     $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
     $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
