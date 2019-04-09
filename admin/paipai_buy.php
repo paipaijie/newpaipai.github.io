@@ -10,7 +10,7 @@ function group_buy_list($ru_id)
 	$result = get_filter();  //admin\includes\lib_main.php文件的第619行,取得上次的过滤条件
 
 	if ($result === false) { // 
-			
+			   
 			//echo "kkk" ;
 			
 		$filter['keyword'] = empty($_REQUEST['keyword']) ? '' : trim($_REQUEST['keyword']);		
