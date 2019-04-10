@@ -52,7 +52,7 @@
                                                 <div class="form_prompt"></div>
                                             </div>
                                         </div>
-
+                                <!--
                                         <div class="item">
                                             <div class="label">年月日</div>
                                             <div class="label_value">
@@ -61,7 +61,7 @@
                                                 <div class="form_prompt"></div>
                                             </div>
                                         </div>
-
+                                -->
                                         <div class="item">
                                             <div class="label">出库总金额</div>
                                             <div class="label_value">
