@@ -257,17 +257,77 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
 
     $time=date('H:i:s',time()+8*3600);
     $now_time=strtotime($year.'-'.$mouth.'-'.$days.' '.$time);
-
+    //订单保证金添加
+    $m_oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,referer,add_time,pay_time,extension_code,extension_id,ppj_id,ppj_no) VALUE ";
+    $m_og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,goods_price,is_real,warehouse_id,area_id,ppj_no,order_sn) VALUES";
     //保证金记录添加
-    $ppj_pm_sql = "INSERT INTO ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')."(user_id,ppj_id,ppj_no,pay_fee,ls_pay_ok,ls_refund,createtime,paytime) VALUES ";
-    foreach($ppj_row as $key=>$val){
-        $ppj_pm_sql .= "( '".$val['user_id']."','".$val['ppj_id']."','".$val['ppj_no']."',".'0.00'.",".'1'.",".'0'.",'".$now_time."','".$now_time."'),";
+    $ppj_pm_sql = "INSERT INTO ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')."(user_id,ppj_id,ppj_no,order_sn,pay_fee,ls_pay_ok,ls_refund,createtime,paytime) VALUES ";
+    foreach($ppj_row as $moikey=>$moival){
+        $sel_g_sql ="SELECT goods_id,goods_name,goods_sn,cost_price,shop_price,market_price FROM ".$GLOBALS['ecs']->table('goods')." WHERE goods_id=".$moival['goods_id'];
+        $moi_goods_row=$GLOBALS['db']->getRow($sel_g_sql);
+        $mu_sql='SELECT u.user_id,ua.consignee,ua.country,ua.province,ua.city,ua.district,ua.mobile FROM '.$GLOBALS['ecs']->table('users').' AS u LEFT JOIN '.$GLOBALS['ecs']->table('user_address').'AS ua ON u.user_id=ua.user_id  WHERE u.user_id='.$moival['user_id'];
+        $moi_user_row=$GLOBALS['db']->getRow($mu_sql);
+        $moi_order_sn=$year.$mouth.$days.str_pad(mt_rand(1, 99999999), 8, '0', STR_PAD_LEFT);
+
+        $moiprice='0.00';
+        $pay_name="在线支付";
+        $moi_ordersn_arr[]=$moi_order_sn;
+        $extension_code="paipai_buy";
+        $referer='touch';
+
+        $m_oi_sql .= "('".$moi_order_sn."','".$moival['user_id']."',".'1'.",".'0'.",".'10'.",'".$moi_user_row['consignee']."','". $moi_user_row['country']."','".$moi_user_row['province']."','".$moi_user_row['city']."','".$moi_user_row['district']."','".$moi_user_row['mobile']."',".'15'.",'".$pay_name."','".$moiprice."','".$moiprice."','".$moiprice."','".$referer."','".$now_time."','".$now_time."','".$extension_code."','".$moival['goods_id']."','".$moival['ppj_id']."','".$moival['ppj_no']."'),";
+        $m_og_sql.="('".$moival['user_id']."','".$moival['goods_id']."','".$moi_goods_row['goods_name']."','".$moi_order_sn."','".$moi_goods_row['market_price']."','".$moi_goods_row['shop_price']."',".'1'.",".'2'.",".'24'.",'".$moival['ppj_no']."','".$moi_order_sn."'),";
+        $ppj_pm_sql .= "( '".$moival['user_id']."','".$moival['ppj_id']."','".$moival['ppj_no']."','".$moi_order_sn."',".'0.00'.",".'1'.",".'0'.",'".$now_time."','".$now_time."'),";
     }
+    $m_oi_sql = substr( $m_oi_sql,0, strlen($m_oi_sql)-1 );
+    $m_og_sql = substr( $m_og_sql,0, strlen($m_og_sql)-1 );
     $ppj_pm_sql = substr( $ppj_pm_sql,0, strlen($ppj_pm_sql)-1 );
-    $res1=$GLOBALS['db']->query($ppj_pm_sql);
-    if(!$res1){
-        var_dump(保证金记录添加失败); exit;
+
+    $m_oi_int=$GLOBALS['db']->query($m_oi_sql);
+    if($m_oi_int){
+        $m_og_int=$GLOBALS['db']->query($m_og_sql);
+        if($m_og_int){
+            $pm_int=$GLOBALS['db']->query($ppj_pm_sql);
+            if($pm_int){
+                $m_order_id_sql = "SELECT order_id,order_sn FROM " . $GLOBALS['ecs']->table('order_info') . " WHERE order_sn IN (".implode(",", $moi_ordersn_arr).") ORDER BY order_id DESC ";
+                $m_update_data=$GLOBALS['db']->getAll($m_order_id_sql);
+                $m_rec_id_sql = "SELECT rec_id,order_sn,goods_id FROM " . $GLOBALS['ecs']->table('order_goods') . " WHERE order_sn IN (".implode(",", $moi_ordersn_arr).") ORDER BY rec_id DESC ";
+                $m_rec_id_row = $GLOBALS['db']->getALL($m_rec_id_sql);
+                $pm_id_sql = "SELECT spm_id,order_sn FROM " . $GLOBALS['ecs']->table('paipai_seller_pay_margin') . " WHERE order_sn IN (".implode(",", $moi_ordersn_arr).") ORDER BY spm_id DESC ";
+                $pm_id_row = $GLOBALS['db']->getALL($pm_id_sql);
+                foreach($m_update_data as $mkey=>$mval) {
+                    if($mval['order_sn']==$m_rec_id_row[$mkey]['order_sn']){
+                        $m_update_data[$mkey]['rec_id']=$m_rec_id_row[$mkey]['rec_id'];
+                        $m_rec_id_arr[] = $m_rec_id_row[$mkey]['rec_id'];
+                    }
+                    if($mval['order_sn']==$pm_id_row[$mkey]['order_sn']){
+                        $m_update_data[$mkey]['spm_id']=$pm_id_row[$mkey]['spm_id'];
+                        $pm_id_arr[] = $pm_id_row[$mkey]['spm_id'];
+                    }
+                }
+                //保证金数据
+                //更改order_info下的order_id   更改paipai_seller_pay_margin下的order_id
+                $m_up_og_sql="UPDATE  ".$GLOBALS['ecs']->table('order_goods')." SET  order_id= CASE rec_id";
+                $m_up_pm_sql="UPDATE  ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." SET  order_id= CASE spm_id";
+                foreach($m_update_data as $mkey2=>$mval2) {
+                    $m_up_og_sql.=" WHEN ".$mval2['rec_id']." THEN ". $mval2['order_id'];
+                    $m_up_pm_sql.=" WHEN ".$mval2['spm_id']." THEN ". $mval2['order_id'];
+                }
+                $m_up_og_sql.=" END WHERE rec_id IN(".implode(",", $m_rec_id_arr).") ";
+                $m_up_pm_sql.=" END WHERE spm_id IN(".implode(",", $pm_id_arr).") ";
+                $m_uog=$GLOBALS['db']->query($m_up_og_sql);
+                if($m_uog){
+                    $m_upm=$GLOBALS['db']->query($m_up_pm_sql);
+                    if(!$m_upm){
+                        var_dump(更改paipai_seller_pay_margin保证金的order_id失败); exit;
+                    }
+                }else{
+                    var_dump(更改order_goods的order_id记录失败); exit;
+                }
+            }
+        }
     }
+
 
     //出价记录添加
     $ppj_bid_sql = "INSERT INTO ".$GLOBALS['ecs']->table('paipai_goods_bid_user')."(user_id,ppj_id,ppj_no,bid_price,bid_time,is_status,createtime,rt_auto,spm_id) VALUES ";
@@ -276,19 +336,27 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
         $margin_row=$GLOBALS['db']->getRow($sel_pm_sql);
         $sel_bu_sql ="SELECT bid_price,count(bid_id) as total_bid FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id=".$val2['ppj_id']." ORDER BY bid_id DESC";
         $bid_row=$GLOBALS['db']->getRow($sel_bu_sql);
-        if($bid_row['bid_price']){
-            $bid_price=number_format($bid_row['bid_price']+$bid_row['bid_price']*0.18,2);
-        }else{
-            $bid_price=number_format($val2['buy_fee'],2);
-        }
-
-        for($i=1;$i<=count($val2['ext_info']['price_ladder']);$i++){
-            if($bid_row['total_bid']>=$val2['ext_info']['price_ladder'][$i]['amount'] && $bid_row['total_bid']<=$val2['ext_info']['price_ladder'][$i+1]['amount']){
-                $pay_price=$val2['ext_info']['price_ladder'][$i]['price'];
-            }elseif($bid_row['total_bid']=='0'){
-                $pay_price=$bid_price;
+        //获取当前价
+        $price_ladder = $val2['ext_info']['price_ladder'];
+        $cur_amount=$bid_row['total_bid'];
+        foreach ($price_ladder as $plkey => $amount_price) {
+            if ($amount_price['amount'] <= $cur_amount) {
+                $cur_price = $amount_price['price'];
+            }
+            else if( $cur_amount == 0 ) {
+                $cur_price=$amount_price['price'];
+                break;
             }
         }
+        $mag_arr=array(0.04,0.05,0.06,0.07,0.08);
+        $ceil_around=array_rand($mag_arr,1);
+        $pay_price=$cur_price+$cur_price*$mag_arr[$ceil_around];
+        if($pay_price>=1000){
+            $pay_price=str_replace(',','',number_format($pay_price,2));
+        }else{
+            $pay_price=number_format($pay_price,2);
+        }
+
         $min_time=$year.'-'.$mouth.'-'.$days.' 07:00:00';
         $max_time=$year.'-'.$mouth.'-'.$days.' 22:00:00';
         $limit_min_time=strtotime($min_time);
@@ -301,7 +369,7 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
         $ppj_row[$key2]['pay_price']=$pay_price;
         $rt_auto='1';
         $ppj_row[$key2]['spm_id']=$margin_row['spm_id'];
-        $ppj_bid_sql .= "( '".$val2['user_id']."','".$val2['ppj_id']."','".$val2['ppj_no']."','".$bid_price."','".$now_time."',".$bid_status.",'".$now_time."','".$rt_auto."','".$margin_row['spm_id']."'),";
+        $ppj_bid_sql .= "( '".$val2['user_id']."','".$val2['ppj_id']."','".$val2['ppj_no']."','".$pay_price."','".$now_time."',".$bid_status.",'".$now_time."','".$rt_auto."','".$margin_row['spm_id']."'),";
     }
     $ppj_bid_sql = substr( $ppj_bid_sql,0, strlen($ppj_bid_sql)-1 );
     $res2=$GLOBALS['db']->query($ppj_bid_sql);
@@ -309,15 +377,15 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
         var_dump(出价记录添加失败); exit;
     }
 
-    //选取两个订单添加
-    $order_num=2;
+    //选取订单添加
+    $order_num=rand(2,5);
     for($i=0;$i<$order_num;$i++){
         $order_one_id=rand(0,count($ppj_row)-1);
         $order_arr[]=$ppj_row[$order_one_id];
     }
 
-    $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,add_time,pay_time,extension_code,extension_id,ppj_id,ppj_no) VALUE ";
-    $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,goods_price,is_real,warehouse_id,area_id,ppj_no,order_sn) VALUES";
+    $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,referer,add_time,pay_time,extension_code,extension_id,ppj_id,ppj_no) VALUE ";
+    $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,goods_number,market_price,goods_price,send_number,is_real,warehouse_id,area_id,ppj_no,order_sn) VALUES";
     $out_logs_sql = "INSERT INTO ".$GLOBALS['ecs']->table('goods_inventory_logs')."(goods_id,use_storage,admin_id,number,add_time,batch_number,order_sn) VALUES ";
 
     foreach($order_arr as $okey=>$oval){
@@ -331,20 +399,24 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
         $order_sn=$year.$mouth.$days.str_pad(mt_rand(1, 99999999), 8, '0', STR_PAD_LEFT);
 
         $price=$oval['pay_price'];
-        $pay_name="支付宝支付";
+        $pay_name="在线支付";
         $goods_id_arr[]=$oval['goods_id'];
         $ordersn_arr[]=$order_sn;
         $order_arr[$okey]['order_sn']=$order_sn;
         $extension_code="paipai_buy";
+        $referer='touch';
+        $goods_number='1';
+        $send_number='1';
 
-        $oi_sql .= "('".$order_sn."','".$oval['user_id']."',".'1'.",".'0'.",".'2'.",'".$user_row['consignee']."','". $user_row['country']."','".$user_row['province']."','".$user_row['city']."','".$user_row['district']."','".$user_row['mobile']."',".'9'.",'".$pay_name."','".$price."','".$price."','".$price."','".$now_time."','".$now_time."','".$extension_code."','".$oval['ppj_id']."','".$oval['ppj_id']."','".$oval['ppj_no']."'),";
-        $og_sql.="('".$oval['user_id']."','".$oval['goods_id']."','".$goods_row['goods_name']."','".$order_sn."','".$goods_row['market_price']."','".$goods_row['shop_price']."',".'1'.",".'2'.",".'24'.",'".$oval['ppj_no']."','".$order_sn."'),";
+        $oi_sql .= "('".$order_sn."','".$oval['user_id']."',".'1'.",".'0'.",".'2'.",'".$user_row['consignee']."','". $user_row['country']."','".$user_row['province']."','".$user_row['city']."','".$user_row['district']."','".$user_row['mobile']."',".'15'.",'".$pay_name."','".$price."','".$price."','".$price."','".$referer."','".$now_time."','".$now_time."','".$extension_code."','".$oval['ppj_id']."','".$oval['ppj_id']."','".$oval['ppj_no']."'),";
+        $og_sql.="('".$oval['user_id']."','".$oval['goods_id']."','".$goods_row['goods_name']."','".$goods_row['goods_sn']."','".$goods_number."','".$goods_row['market_price']."','".$goods_row['shop_price']."','".$send_number."',".'1'.",".'2'.",".'24'.",'".$oval['ppj_no']."','".$order_sn."'),";
         $out_logs_sql .= "( '".$oval['goods_id']."',".'8'.",".'59'.",".'-1'.",'".$now_time."','".$now_time."','".$order_sn."'),";
 
     }
 
     $oi_sql = substr( $oi_sql,0, strlen($oi_sql)-1 );
     $og_sql = substr( $og_sql,0, strlen($og_sql)-1 );
+
     $out_logs_sql = substr( $out_logs_sql,0, strlen($out_logs_sql)-1 );
     $oires=$GLOBALS['db']->query($oi_sql);
     if($oires){
@@ -1302,7 +1374,7 @@ elseif($_REQUEST['act'] =='paipaiauto'){
             $ppj_ext_info_arr[]=$val['ext_info'];
             $ppj_goods_count[]=$val['goods_count'];
         }
-        $one_num=rand(3,5);
+        $one_num=rand(5,10);
         for($i=0;$i<$one_num;$i++){
             $ppj_one_id=rand(0,count($ppj_id_arr)-1);
             $user_id=rand(40079,861288);

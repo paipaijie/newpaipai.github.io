@@ -699,14 +699,14 @@ function order_list($page = 0)
 			$record_count = count($GLOBALS['db']->getAll($sql));
 		}
 		else {
-			$sql = 'SELECT COUNT(*) FROM ' . $GLOBALS['ecs']->table('order_info') . ' AS o ' . $leftJoin . $where . $status_where . $where_store . $no_main_order;
+			$sql = 'SELECT COUNT(*) FROM ' . $GLOBALS['ecs']->table('order_info') . ' AS o ' . $leftJoin . $where . $status_where .' AND o.pay_status!=10 '. $where_store . $no_main_order;
 			$record_count = $GLOBALS['db']->getOne($sql);
 		}
 
 		$filter['record_count'] = $record_count;
 		$filter['page_count'] = 0 < $filter['record_count'] ? ceil($filter['record_count'] / $filter['page_size']) : 1;
 
-		$sql = 'SELECT ifnull(bai.is_stages,0) is_stages, o.extension_code as oi_extension_code, o.order_id, o.main_order_id, o.order_sn, o.add_time, o.order_status, o.shipping_status, o.pay_status, o.order_amount, o.money_paid, o.is_delete,' . 'o.shipping_fee, o.insure_fee, o.pay_fee, o.surplus,o.tax, o.integral_money, o.bonus, o.discount, o.coupons,' . 'o.shipping_time, o.auto_delivery_time, o.consignee, o.address, o.email, o.tel, o.mobile, o.extension_code as o_extension_code, o.extension_id, o.is_zc_order, o.pay_id, ' . 'o.pay_name, o.referer, o.froms, o.user_id, o.chargeoff_status, o.confirm_take_time, o.shipping_id, o.shipping_name, o.goods_amount, ' . '(' . order_amount_field('o.') . ') AS total_fee, (o.goods_amount + o.tax + o.shipping_fee + o.insure_fee + o.pay_fee + o.pack_fee + o.card_fee - o.discount) AS total_fee_order' . ' FROM ' . $GLOBALS['ecs']->table('order_info') . ' AS o ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('baitiao_log') . ' AS bai ON o.order_id=bai.order_id ' . $leftJoin . $where . $status_where . $where_store . $no_main_order . $groupBy . (' ORDER BY ' . $filter['sort_by'] . ' ' . $filter['sort_order'] . ' ') . ' LIMIT ' . ($filter['page'] - 1) * $filter['page_size'] . (',' . $filter['page_size']);
+		$sql = 'SELECT ifnull(bai.is_stages,0) is_stages, o.extension_code as oi_extension_code, o.order_id, o.main_order_id, o.order_sn, o.add_time, o.order_status, o.shipping_status, o.pay_status, o.order_amount, o.money_paid, o.is_delete,' . 'o.shipping_fee, o.insure_fee, o.pay_fee, o.surplus,o.tax, o.integral_money, o.bonus, o.discount, o.coupons,' . 'o.shipping_time, o.auto_delivery_time, o.consignee, o.address, o.email, o.tel, o.mobile, o.extension_code as o_extension_code, o.extension_id, o.is_zc_order, o.pay_id, ' . 'o.pay_name, o.referer, o.froms, o.user_id, o.chargeoff_status, o.confirm_take_time, o.shipping_id, o.shipping_name, o.goods_amount, ' . '(' . order_amount_field('o.') . ') AS total_fee, (o.goods_amount + o.tax + o.shipping_fee + o.insure_fee + o.pay_fee + o.pack_fee + o.card_fee - o.discount) AS total_fee_order' . ' FROM ' . $GLOBALS['ecs']->table('order_info') . ' AS o ' . ' LEFT JOIN ' . $GLOBALS['ecs']->table('baitiao_log') . ' AS bai ON o.order_id=bai.order_id ' . $leftJoin . $where . $status_where .' AND o.pay_status!=10 '. $where_store . $no_main_order . $groupBy . (' ORDER BY ' . $filter['sort_by'] . ' ' . $filter['sort_order'] . ' ') . ' LIMIT ' . ($filter['page'] - 1) * $filter['page_size'] . (',' . $filter['page_size']);
 
 		foreach (array('order_sn', 'consignee', 'email', 'address', 'zipcode', 'tel', 'user_name') as $val) {
 			$filter[$val] = stripslashes($filter[$val]);
@@ -1981,7 +1981,7 @@ function ppj_order_list($list_type){
     	}
            
         foreach($pso_data as $key => $val){
-             $osql=" SELECT o.extension_code as oi_extension_code, o.order_id, o.main_order_id, o.order_sn, o.add_time,o.pay_time, o.order_status, o.shipping_status, o.pay_status, o.order_amount, o.money_paid, o.is_delete,o.shipping_fee, o.insure_fee, o.pay_fee, o.surplus,o.tax, o.integral_money, o.bonus, o.discount, o.coupons,o.shipping_time, o.auto_delivery_time, o.consignee, o.address, o.email, o.tel, o.mobile, o.extension_code as o_extension_code, o.extension_id, o.is_zc_order, o.pay_id, o.pay_name, o.referer, o.froms, o.user_id, o.chargeoff_status, o.confirm_take_time, o.shipping_id, o.shipping_name, o.goods_amount, ( o.goods_amount + o.tax + o.shipping_fee + o.insure_fee + o.pay_fee + o.pack_fee + o.card_fee ) AS total_fee, (o.goods_amount + o.tax + o.shipping_fee + o.insure_fee + o.pay_fee + o.pack_fee + o.card_fee - o.discount) AS total_fee_order,o.ppj_id,o.ppj_no FROM ".$GLOBALS['ecs']->table('order_info')." AS o LEFT JOIN ".$GLOBALS['ecs']->table('order_goods')." AS og ON o.order_id = og.order_id WHERE o.order_id={$val['order_id']} GROUP BY o.order_id ORDER BY add_time DESC LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ", " . $filter['page_size'];
+             $osql=" SELECT o.extension_code as oi_extension_code, o.order_id, o.main_order_id, o.order_sn, o.add_time,o.pay_time, o.order_status, o.shipping_status, o.pay_status, o.order_amount, o.money_paid, o.is_delete,o.shipping_fee, o.insure_fee, o.pay_fee, o.surplus,o.tax, o.integral_money, o.bonus, o.discount, o.coupons,o.shipping_time, o.auto_delivery_time, o.consignee, o.address, o.email, o.tel, o.mobile, o.extension_code as o_extension_code, o.extension_id, o.is_zc_order, o.pay_id, o.pay_name, o.referer, o.froms, o.user_id, o.chargeoff_status, o.confirm_take_time, o.shipping_id, o.shipping_name, o.goods_amount, ( o.goods_amount + o.tax + o.shipping_fee + o.insure_fee + o.pay_fee + o.pack_fee + o.card_fee ) AS total_fee, (o.goods_amount + o.tax + o.shipping_fee + o.insure_fee + o.pay_fee + o.pack_fee + o.card_fee - o.discount) AS total_fee_order,o.ppj_id,o.ppj_no FROM ".$GLOBALS['ecs']->table('order_info')." AS o LEFT JOIN ".$GLOBALS['ecs']->table('order_goods')." AS og ON o.order_id = og.order_id WHERE o.order_id={$val['order_id']} GROUP BY o.order_id ORDER BY o.add_time DESC LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ", " . $filter['page_size'];
              $order_data[] = $GLOBALS['db']->getAll($osql);                 
         }
 
@@ -3219,6 +3219,7 @@ else if ($_REQUEST['act'] == 'info') {
 	$date = array('order_id');
 	$order_child = count(get_table_date('order_info', 'main_order_id=\'' . $order['order_id'] . '\'', $date, 1));
 	$order['order_child'] = $order_child;
+
 	$smarty->assign('order', $order);
 	$sql = 'SELECT cou_id FROM ' . $ecs->table('coupons_user') . ' WHERE user_id = \'' . $order['user_id'] . '\' AND uc_id = \'' . $order['uc_id'] . '\'';
 	$cou_id = $db->getOne($sql, true);
