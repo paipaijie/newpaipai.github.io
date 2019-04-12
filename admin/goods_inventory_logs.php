@@ -12,8 +12,7 @@ function get_goods_inventory_logs($ru_id)
 			$filter['keyword'] = json_str_iconv($filter['keyword']);
 			$filter['order_sn'] = json_str_iconv($filter['order_sn']);
 		}
-
-
+		$filter['suppliers_id'] = empty($_REQUEST['suppliers_id']) ? '' : trim($_REQUEST['suppliers_id']);
 		$filter['start_time'] = empty($_REQUEST['start_time']) ? '' : trim($_REQUEST['start_time']);
 		$filter['end_time'] = empty($_REQUEST['end_time']) ? '' : trim($_REQUEST['end_time']);
 		$filter['warehouse_id'] = !isset($_REQUEST['warehouse_id']) ? 0 : intval($_REQUEST['warehouse_id']);
@@ -37,6 +36,10 @@ function get_goods_inventory_logs($ru_id)
 
 		if (!empty($filter['keyword'])) {
 			$where .= ' AND g.goods_name LIKE \'%' . mysql_like_quote($filter['keyword']) . '%\'';
+		}
+
+		if(!empty($filter['suppliers_id'])){
+			$where .=  ' AND g.suppliers_id = \'' . $filter['suppliers_id'] . '\'';
 		}
 
 		if (!empty($filter['order_sn'])) {
