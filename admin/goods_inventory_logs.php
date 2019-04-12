@@ -178,10 +178,14 @@ function get_goods_inventory_logs_list($ru_id){
 
 	$filter['start_time'] = empty($_REQUEST['start_time']) ? '' : trim($_REQUEST['start_time']);
 	$filter['end_time'] = empty($_REQUEST['end_time']) ? '' : trim($_REQUEST['end_time']);
+	$filter['suppliers_id'] = empty($_REQUEST['suppliers_id']) ? '' : trim($_REQUEST['suppliers_id']);
 	if (!empty($filter['start_time']) || !empty($filter['end_time'])) {
 		$start_time = strtotime($filter['start_time']);
 		$end_time = strtotime($filter['end_time']);
 		$where .= ' AND gil.add_time > \'' . $start_time . '\' AND gil.add_time < \'' . $end_time . '\'';
+	}
+	if(!empty($filter['suppliers_id'])){
+		$where .=  ' AND g.suppliers_id = \'' . $filter['suppliers_id'] . '\'';
 	}
 
 //	if ($filter['step'] == 'out') {
