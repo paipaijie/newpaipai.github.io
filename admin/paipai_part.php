@@ -768,7 +768,7 @@ elseif($_REQUEST['act'] == 'order'){
     $days=$_POST['days'];
     $stoprice=$_POST['storage_price'];
     $cat_id=$_POST['cat_id'];
-
+    $supplier_id=$_POST['supplier_id'];
 
     $year=2019;
     $order_time=$year.'-'.$mouth.'-'.$days;
@@ -779,27 +779,36 @@ elseif($_REQUEST['act'] == 'order'){
 
     
 
-    if($cat_id && $stoprice && $mouth && $days) {
+    if($stoprice && $mouth && $days) {
         var_dump(date("H:i:s",time()+8*3600));
-        $cat_one_sql="SELECT cat_id,cat_name FROM ".$GLOBALS['ecs']->table('category')." WHERE parent_id=" . $cat_id." AND is_show=1 ";
-        $cat_one_row=$GLOBALS['db']->getRow($cat_one_sql);
-        if(!$cat_one_row){
+        if($cat_id){
+            $cat_one_sql="SELECT cat_id,cat_name FROM ".$GLOBALS['ecs']->table('category')." WHERE parent_id=" . $cat_id." AND is_show=1 ";
+            $cat_one_row=$GLOBALS['db']->getRow($cat_one_sql);
+            if(!$cat_one_row){
                 var_dump("输入的类别错误"); exit;
-        }
+            }
 
 
-        $cat2_sql = "SELECT cat_id,cat_name,parent_id FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id." AND is_show=1 ";
-        $cat2_row = $GLOBALS['db']->getAll($cat2_sql);
-        
-        foreach ($cat2_row as $cakey => $catval) {
-            $goods_sql = "SELECT count(goods_id) as count FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
-            $goods_count[] = $GLOBALS['db']->getAll($goods_sql);
-            $goods_sql2 = "SELECT goods_id,cat_id,cost_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id']." ORDER BY shop_price DESC";
-            $goods_row[] = $GLOBALS['db']->getAll($goods_sql2);
+            $cat2_sql = "SELECT cat_id,cat_name,parent_id FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id." AND is_show=1 ";
+            $cat2_row = $GLOBALS['db']->getAll($cat2_sql);
+
+            foreach ($cat2_row as $cakey => $catval) {
+                $goods_sql = "SELECT count(goods_id) as count FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
+                $goods_count[] = $GLOBALS['db']->getAll($goods_sql);
+                $goods_sql2 = "SELECT goods_id,cat_id,cost_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id']." ORDER BY shop_price DESC";
+                $goods_row[] = $GLOBALS['db']->getAll($goods_sql2);
+            }
+        }else if($supplier_id){
+            $sc_goods_sql = "SELECT count(goods_id) as count FROM " . $GLOBALS['ecs']->table('goods') . "  WHERE suppliers_id=" . $supplier_id;
+            $goods_count[] = $GLOBALS['db']->getAll($sc_goods_sql);
+            $s_goods_sql = "SELECT goods_id,cat_id,cost_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE suppliers_id=" . $supplier_id." ORDER BY shop_price DESC";
+            $goods_row[] = $GLOBALS['db']->getAll($s_goods_sql);
         }
+
         if($goods_count[0][0]['count'] == '0'){
               var_dump("商品数量为空"); exit;
         }
+        
         for ($i = 0; $i < count($goods_row); $i++) {
             $new_goods = $goods_row[$i];
             for ($y = 0; $y < count($new_goods); $y++) {
@@ -1404,8 +1413,8 @@ elseif($_REQUEST['act'] =='paipaiauto'){
 elseif($_REQUEST['act'] =='paipai'){
 
     $year='2019';
-    $mouth = '3';
-    $days = '22';
+    $mouth = '4';
+    $days = '12';
 //    $mouth = $_POST['mouth'];
 //    $days = $_POST['days'];
 
@@ -1416,7 +1425,7 @@ elseif($_REQUEST['act'] =='paipai'){
 
     if($mouth && $days){
 
-        $ppj_sql="SELECT ppj_id,ppj_no, FROM ".$GLOBALS['ecs']->table('paipai_list')." WHERE end_time=<".$limit_max_time." AND start_time>=".$limit_min_time;
+        $ppj_sql="SELECT ppj_id,ppj_no FROM ".$GLOBALS['ecs']->table('paipai_list')." WHERE end_time=<".$limit_max_time." AND start_time>=".$limit_min_time;
         $ppj_data=$GLOBALS['db']->getAll($ppj_sql);
 
         $ppj_sql="SELECT ppj_id,ppj_no,goods_id,goods_count,ppj_buy_fee,ppj_now_fee,ext_info FROM ".$GLOBALS['ecs']->table('paipai_list')." WHERE end_time<=".$limit_max_time." AND start_time>=".$limit_min_time;
@@ -1452,7 +1461,6 @@ elseif($_REQUEST['act'] =='paipai'){
     }else{
         exit(json_encode(array('row'=>'nonono')));
     }
-
 }
 elseif($_REQUEST['act'] =='exchange'){
 
