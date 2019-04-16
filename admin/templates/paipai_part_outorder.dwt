@@ -89,6 +89,14 @@
                                             </div>
                                         </div>
 
+                                        <div class="item">
+                                            <div class="label">供应商id</div>
+                                            <div class="label_value">
+                                                <input type="text" name="supplier_id"  class="text" autocomplete="off" />
+                                                <div class="form_prompt"></div>
+                                            </div>
+                                        </div>
+
 
                                         <div class="item">
                                             <div class="label">&nbsp;</div>

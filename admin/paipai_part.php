@@ -808,7 +808,7 @@ elseif($_REQUEST['act'] == 'order'){
         if($goods_count[0][0]['count'] == '0'){
               var_dump("商品数量为空"); exit;
         }
-        
+
         for ($i = 0; $i < count($goods_row); $i++) {
             $new_goods = $goods_row[$i];
             for ($y = 0; $y < count($new_goods); $y++) {
@@ -884,23 +884,33 @@ elseif($_REQUEST['act'] == 'outorder') {
     $outprice = $_POST['out_price'];
     $saleprice = $_POST['sale_price'];
     $cat_id = $_POST['cat_id'];
+    $supplier_id=$_POST['supplier_id'];
 
     var_dump(date("H:i:s", time() + 8 * 3600));
-    if ($cat_id && $outprice && $mouth) {
-        $cat_one_sql="SELECT cat_id,cat_name FROM ".$GLOBALS['ecs']->table('category')." WHERE parent_id=" . $cat_id." AND is_show=1 ";
-        $cat_one_row=$GLOBALS['db']->getRow($cat_one_sql);
-        if(!$cat_one_row){
-                var_dump("输入的类别错误"); exit;
+    if ($outprice && $mouth) {
+        if($cat_id) {
+            $cat_one_sql = "SELECT cat_id,cat_name FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id . " AND is_show=1 ";
+            $cat_one_row = $GLOBALS['db']->getRow($cat_one_sql);
+            if (!$cat_one_row) {
+                var_dump("输入的类别错误");
+                exit;
+            }
+
+            $cat2_sql = "SELECT cat_id,cat_name,parent_id FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id . " AND is_show=1 ";
+            $cat2_row = $GLOBALS['db']->getAll($cat2_sql);
+            foreach ($cat2_row as $key => $catval) {
+                $goods_sql = "SELECT count(goods_id) as count FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
+                $goods_count[] = $GLOBALS['db']->getAll($goods_sql);
+                $goods_sql2 = "SELECT goods_id,cat_id,goods_number,cost_price,shop_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
+                $goods_row[] = $GLOBALS['db']->getAll($goods_sql2);
+            }
+        }else if($supplier_id){
+            $sc_goods_sql = "SELECT count(goods_id) as count FROM " . $GLOBALS['ecs']->table('goods') . "  WHERE suppliers_id=" . $supplier_id;
+            $goods_count[] = $GLOBALS['db']->getAll($sc_goods_sql);
+            $s_goods_sql = "SELECT goods_id,cat_id,cost_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE suppliers_id=" . $supplier_id." ORDER BY shop_price DESC";
+            $goods_row[] = $GLOBALS['db']->getAll($s_goods_sql);
         }
 
-        $cat2_sql = "SELECT cat_id,cat_name,parent_id FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id . " AND is_show=1 ";
-        $cat2_row = $GLOBALS['db']->getAll($cat2_sql);
-        foreach ($cat2_row as $key => $catval) {
-            $goods_sql = "SELECT count(goods_id) as count FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
-            $goods_count[] = $GLOBALS['db']->getAll($goods_sql);
-            $goods_sql2 = "SELECT goods_id,cat_id,goods_number,cost_price,shop_price FROM " . $GLOBALS['ecs']->table('goods') . " WHERE cat_id=" . $catval['cat_id'];
-            $goods_row[] = $GLOBALS['db']->getAll($goods_sql2);
-        }
         if ($goods_count[0][0]['count'] == '0') {
             var_dump("商品数量为空");
             exit;
