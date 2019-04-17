@@ -1729,3 +1729,61 @@ elseif($_REQUEST['act'] =='order_delivery'){
 
     $smarty->display('paipai_part_orderdelivery.dwt');
 }
+elseif($_REQUEST['act'] == 'delete_order') {
+
+    $p_start_time=$_POST['start_time'];
+    $p_end_time = $_POST['end_time'];
+    $extension_code = $_POST['extension_code'];
+
+    $limit_time=strtotime('2018-12-31 23:59:59');
+    if($p_start_time && $p_end_time && $extension_code){
+        $start_time=strtotime($p_start_time);
+        $end_time=strtotime($p_end_time);
+        if($start_time < $limit_time){
+            var_dump('开始日期必须大于2018年');exit;
+        }
+        if($end_time<=$start_time){
+            var_dump('结束日期小于开始日期');exit;
+        }
+        if($extension_code!='paipai_buy' && $extension_code!='exchange_goods'){
+            var_dump('订单类型格式错误');exit;
+        }
+
+        $oi_sql="SELECT order_id FROM".$GLOBALS['ecs']->table('order_info')." WHERE extension_code='{$extension_code}' AND add_time>=".$start_time." AND add_time<".$end_time;
+        $order_data = $GLOBALS['db']->getAll($oi_sql);
+        foreach($order_data as $key=>$val){
+            $order_id_arr[]=$val['order_id'];
+        }
+        $order_id_row=implode(",", $order_id_arr);
+        $del_oi='DELETE FROM '.$GLOBALS['ecs']->table('order_info').' WHERE order_id IN('.$order_id_row.')';
+        $del_og='DELETE FROM '.$GLOBALS['ecs']->table('order_goods').' WHERE order_id IN('.$order_id_row.')';
+        $del_logs='DELETE FROM '.$GLOBALS['ecs']->table('goods_inventory_logs').' WHERE order_id IN('.$order_id_row.')';
+        $res1=$GLOBALS['db']->query($del_oi);
+        if($res1){
+            $res2=$GLOBALS['db']->query($del_og);
+            if($res2){
+                $res3=$GLOBALS['db']->query($del_logs);
+                if($res3){
+                    var_dump('删除成功');
+                }else{
+                    var_dump('出库记录删除失败');
+                }
+            }else{
+                var_dump('订单商品删除失败');
+            }
+        }else{
+            var_dump('订单记录删除失败');
+        }
+
+        if(count($order_data)%1000==0){
+            $GLOBALS['db']->query('commit');
+            $GLOBALS['db']->query('begin');
+        }
+        $GLOBALS['db']->query('commit');
+
+    }else{
+        var_dump('数据不完整');
+    }
+
+    $smarty->display('paipai_part_deleteorder.dwt');
+}

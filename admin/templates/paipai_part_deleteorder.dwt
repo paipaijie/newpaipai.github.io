@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+
+	<head>{include file ='library/admin_html_head.lbi'}</head>
+
+	<body class="iframe_body">
+		<div class="warpper">
+			<div class="title">
+				<a href="paipai_part.php?act=list" class="s-back">{$lang.back}</a>拍拍活动时间段</div>
+			<div class="content">
+
+				<div class="flexilist">
+
+					<div class="common-content">
+
+						<div class="mian-info">
+
+							<form method="post" action="paipai_part.php?act=delete_order" name="theForm" id="group_buy_form">
+									
+									<!--字段详情start  -->
+									<div class="items">
+
+										
+										<div class="item">
+											<div class="label">起止时间：</div>
+											<div class="label_value text_time">
+												<input type="text" class="text mr0" name="start_time" style="width:150px" id="start_time" autocomplete="off" readonly>
+												<span class="bolang">&nbsp;&nbsp;~&nbsp;&nbsp;</span>
+												<input type="text" class="text" name="end_time" style="width:150px" id="end_time"  autocomplete="off" readonly>
+												<div class="notic">请务必选择好，否则无法恢复数据，结束日期须大于开始日期</div>
+												<div class="form_prompt"></div>
+											</div>
+										</div>
+
+										<div class="item">
+											<div class="label">订单类型：</div>
+											<div class="label_value">
+												<input name="extension_code" type="text"  class="text" autocomplete="off" />
+												<div class="notic">paipai_buy为拍拍活动订单，exchange_goods为积分订单，不可为空，只可删除2019年订单</div>
+												<div class="form_prompt"></div>
+											</div>
+										</div>
+
+										<div class="item">
+											<div class="label">&nbsp;</div>
+											
+											<div class="label_value info_btn">
+												<input name="act_id" type="hidden" id="act_id" value="{$group_buy.ppj_id}" id="submitBtn">
+												{if $group_buy.ppj_staus eq 1 || $group_buy.ppj_staus eq 0}
+												<input type="submit" name="submit" value="{$lang.button_submit}" class="button" />
+												{/if}
+
+											</div>
+											
+										</div>
+										
+										
+									</div>
+
+<!--字段详情end  -->
+
+								</div>
+
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{include file ='library/pagefooter.lbi'}
+		
+		
+		<script type="text/javascript">
+    
+        //日期选择插件调用start sunle
+        {if !$group_buy.status}
+        var opts1 = {
+            'targetId':'start_time',//时间写入对象的id
+            'triggerId':['start_time'],//触发事件的对象id
+            'alignId':'start_time',//日历对齐对象
+            'format':'-'//时间格式 默认'YYYY-MM-DD HH:MM:SS'
+        },opts2 = {
+            'targetId':'end_time',
+            'triggerId':['end_time'],
+            'alignId':'end_time',
+            'format':'-'
+        }
+        xvDate(opts1);
+        xvDate(opts2);
+        {else}
+        var opts2 = {
+            'targetId':'end_time',
+            'triggerId':['end_time'],
+            'alignId':'end_time',
+            'format':'-'
+        }
+        xvDate(opts2);
+        {/if}
+        //日期选择插件调用end sunle
+        $(document).on("blur","[ectype='checkedPrice']",function(){
+            var deposit = parseInt($("input[name='deposit']").val());
+            var this_val =  parseInt($(this).val());
+            if(deposit > 0){
+                if(deposit > this_val){
+                    alert(ladder_price_min_notice);
+                    $(this).val(deposit);
+                }
+            }    
+        })
+
+    </script>
+		
+	
+	</body>
+
+</html>
