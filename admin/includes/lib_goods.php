@@ -980,6 +980,25 @@ function goods_list($is_delete = 0, $real_goods = 1, $conditions = '', $review_s
 	return array('goods' => $row, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
 }
 
+function upd_sales_volume()
+{
+	$sql = 'SELECT goods_id FROM ' . $GLOBALS['ecs']->table('goods');
+	$goods_id_row=$GLOBALS['db']->getAll($sql);
+	foreach($goods_id_row as $key=>$val){
+		$oi_sql = 'SELECT count(oi.order_id) as order_amount FROM ' . $GLOBALS['ecs']->table('order_info').' AS oi LEFT JOIN '. $GLOBALS['ecs']->table('order_goods').' AS og ON oi.order_id=og.order_id WHERE og.goods_id='.$val['goods_id'].' AND oi.pay_status=2';
+		$oi_row=$GLOBALS['db']->getRow($oi_sql);
+		$goods_amount_arr[$key]['goods_id']=$val['goods_id'];
+		$goods_amount_arr[$key]['order_amount']=$oi_row['order_amount'];
+		$goods_id_arr[] = $val['goods_id'];
+	}
+	$upd_goods='UPDATE '. $GLOBALS['ecs']->table('goods').' SET sales_volume= CASE goods_id';
+	foreach($goods_amount_arr as $key2=>$val2) {
+		$upd_goods.=" WHEN ".$val2['goods_id']." THEN ". $val2['order_amount'];
+	}
+	$upd_goods.=" END WHERE goods_id IN(".implode(",", $goods_id_arr).") ";
+	$GLOBALS['db']->query($upd_goods);
+}
+
 function check_goods_product_exist($goods_id, $conditions = '')
 {
 	if (empty($goods_id)) {

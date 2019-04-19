@@ -160,6 +160,8 @@ if ($_REQUEST['act'] == 'list' || $_REQUEST['act'] == 'trash' || $_REQUEST['act'
 	else if ($_REQUEST['act'] == 'on_sale') {
 		$_REQUEST['is_on_sale'] = 0;
 	}
+	//更新实际销量
+	$upd_sales_volume=upd_sales_volume();
 
 	$is_delete = $_REQUEST['act'] == 'list' || $_REQUEST['act'] == 'is_sale' || $_REQUEST['act'] == 'on_sale' ? 0 : 1;
 	$real_goods = $_REQUEST['act'] == 'list' ? ($code == '' ? 1 : 0) : -1;
