@@ -1735,12 +1735,12 @@ elseif($_REQUEST['act'] == 'delete_order') {
     $p_end_time = $_POST['end_time'];
     $extension_code = $_POST['extension_code'];
 
-    $limit_time=strtotime('2018-12-31 23:59:59');
+    $limit_time=strtotime('2018-2-28 23:59:59');
     if($p_start_time && $p_end_time && $extension_code){
         $start_time=strtotime($p_start_time);
         $end_time=strtotime($p_end_time);
         if($start_time < $limit_time){
-            var_dump('开始日期必须大于2018年');exit;
+            var_dump('开始日期必须大于2018年2月');exit;
         }
         if($end_time<=$start_time){
             var_dump('结束日期小于开始日期');exit;
@@ -1775,7 +1775,7 @@ elseif($_REQUEST['act'] == 'delete_order') {
             var_dump('订单记录删除失败');
         }
 
-        if(count($order_data)%1000==0){
+        if(count($order_data)%3000==0){
             $GLOBALS['db']->query('commit');
             $GLOBALS['db']->query('begin');
         }
