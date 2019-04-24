@@ -36,7 +36,7 @@
 											<div class="label">订单类型：</div>
 											<div class="label_value">
 												<input name="extension_code" type="text"  class="text" autocomplete="off" />
-												<div class="notic">paipai_buy为拍拍活动订单，exchange_goods为积分订单，不可为空，只可删除2019年订单</div>
+												<div class="notic">paipai_buy为拍拍活动订单，exchange_goods为积分订单，不可为空</div>
 												<div class="form_prompt"></div>
 											</div>
 										</div>
