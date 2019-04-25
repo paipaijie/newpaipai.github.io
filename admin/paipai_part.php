@@ -1061,7 +1061,7 @@ elseif($_REQUEST['act'] =='upordernext'){
     $limit_max_time=strtotime($max_time);
     var_dump(date("H:i:s", time() + 8 * 3600));
     if($mouth){
-        $order_sql="SELECT order_id,order_sn FROM ".$GLOBALS['ecs']->table('order_info')." WHERE add_time<=".$limit_max_time." AND add_time>=".$limit_min_time.' ORDER BY order_id DESC';
+        $order_sql="SELECT oi.order_id,oi.order_sn FROM ".$GLOBALS['ecs']->table('order_info')." AS oi LEFT JOIN ".$GLOBALS['ecs']->table('order_goods')." AS og ON oi.order_sn=og.order_sn WHERE oi.add_time<=".$limit_max_time." AND oi.add_time>=".$limit_min_time.' AND og.order_id=0 ORDER BY oi.order_id DESC';
         $update_data=$GLOBALS['db']->getAll($order_sql);
 
         foreach($update_data as $ukey=>$uval) {
