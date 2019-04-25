@@ -1736,7 +1736,7 @@ elseif($_REQUEST['act'] == 'delete_order') {
     $extension_code = $_POST['extension_code'];
 
     $limit_time=strtotime('2018-2-28 23:59:59');
-    if($p_start_time && $p_end_time && $extension_code){
+    if($p_start_time && $p_end_time){
         $start_time=strtotime($p_start_time);
         $end_time=strtotime($p_end_time);
         if($start_time < $limit_time){
@@ -1745,9 +1745,9 @@ elseif($_REQUEST['act'] == 'delete_order') {
         if($end_time<=$start_time){
             var_dump('结束日期小于开始日期');exit;
         }
-        if($extension_code!='paipai_buy' && $extension_code!='exchange_goods'){
-            var_dump('订单类型格式错误');exit;
-        }
+//        if($extension_code!='paipai_buy' && $extension_code!='exchange_goods'){
+//            var_dump('订单类型格式错误');exit;
+//        }
 
         $oi_sql="SELECT order_id FROM".$GLOBALS['ecs']->table('order_info')." WHERE extension_code='{$extension_code}' AND add_time>=".$start_time." AND add_time<".$end_time;
         $order_data = $GLOBALS['db']->getAll($oi_sql);
