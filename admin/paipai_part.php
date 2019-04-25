@@ -102,21 +102,21 @@ function ordertime($year,$mouth,$days){
     $order_date['take_time'] = strtotime($year . '-' . $mouth . '-' . $td . " " . $S . ":" . $F . ":" . $M);
     return $order_date;
 }
-function order_add($sale_data,$year, $mouth,$ceil_order_num){
+function order_add($sale_data,$year, $mouth,$days,$ceil_order_num){
 
     $batch_number=time();
-    $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
     $oi_sql = "INSERT INTO ".$GLOBALS['ecs']->table('order_info')." (order_sn,user_id,order_status,shipping_status,pay_status,consignee,country,province,city,district,mobile,pay_id,pay_name,goods_amount,money_paid,order_amount,add_time,confirm_time,pay_time,shipping_time,confirm_take_time) VALUE ";
     $og_sql="INSERT INTO ".$GLOBALS['ecs']->table('order_goods')."(user_id,goods_id,goods_name,goods_sn,market_price,goods_price,is_real,warehouse_id,area_id,order_sn) VALUES";
     $out_logs_sql = "INSERT INTO ".$GLOBALS['ecs']->table('goods_inventory_logs')."(goods_id,use_storage,admin_id,number,add_time,batch_number,order_sn) VALUES ";
 
     foreach($sale_data as $key=>$val){
-
-        $d=rand(1,$days);
-        if($d<10){
-            $d='0'.$days;
+        if($mouth<10){
+            $m2='0'.$mouth;
         }
-        $order_sn=$year.$mouth.$d.str_pad(mt_rand(1, 999999999), 9, '0', STR_PAD_LEFT);
+        if($days<10){
+            $d2='0'.$days;
+        }
+        $order_sn=$year.$m2.$d2.str_pad(mt_rand(1, 999999999), 9, '0', STR_PAD_LEFT);
 
         $price=$val['sale_one_price'];
         $pay_name="支付宝支付";
@@ -147,7 +147,7 @@ function order_add($sale_data,$year, $mouth,$ceil_order_num){
     $GLOBALS['db']->query('commit');
 
     //拍拍活动添加
-    $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
+    $min_time=$year.'-'.$mouth.'-'.$days.' 00:00:00';
     $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
     $limit_min_time=strtotime($min_time);
     $limit_max_time=strtotime($max_time);
@@ -757,6 +757,7 @@ elseif($_REQUEST['act'] == 'add'){
 
 
 }
+//入库
 elseif($_REQUEST['act'] == 'order'){
 
 
@@ -872,6 +873,7 @@ elseif($_REQUEST['act'] == 'order'){
 
     $smarty->display('paipai_part_order.dwt');
 }
+//出库
 elseif($_REQUEST['act'] == 'outorder') {
 
     $cat_sql = "SELECT cat_id,cat_name FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=0 AND is_show=1";
@@ -880,14 +882,16 @@ elseif($_REQUEST['act'] == 'outorder') {
 
     $year = $_POST['year'];
     $mouth = $_POST['mouth'];
-//    $days = $_POST['days'];
+    $days = $_POST['days'];
+
+//    $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
     $outprice = $_POST['out_price'];
     $saleprice = $_POST['sale_price'];
     $cat_id = $_POST['cat_id'];
     $supplier_id=$_POST['supplier_id'];
 
     var_dump(date("H:i:s", time() + 8 * 3600));
-    if ($outprice && $mouth) {
+    if ($outprice && $mouth && $days && $year && $saleprice) {
         if($cat_id) {
             $cat_one_sql = "SELECT cat_id,cat_name FROM " . $GLOBALS['ecs']->table('category') . " WHERE parent_id=" . $cat_id . " AND is_show=1 ";
             $cat_one_row = $GLOBALS['db']->getRow($cat_one_sql);
@@ -963,14 +967,10 @@ elseif($_REQUEST['act'] == 'outorder') {
 
         $sale_pro=$saleprice/$outprice;
 
-        $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
         foreach ($goods_row2 as $gdkey => $gdval){
             for($gi=1;$gi<=$gdval['goods_number'];$gi++){
 
-                $d=rand(1,$days);
-                if($days<10){
-                    $d='0'.$d;
-                }
+                $d=$days<10?'0'.$days:$days;
                 $order_time=$year.'-'.$mouth.'-'.$d;
                 $S=rand(8,22);//随机--时
                 if($S<10){
@@ -991,7 +991,7 @@ elseif($_REQUEST['act'] == 'outorder') {
                 $confirm_time=strtotime($order_time." ".$SC.":".$F.":".$M);
                 $shipping_time=strtotime($order_time." ".$SC.":".$F.":".$M);  //发货时间
                 //收货时间
-                $td=$d+rand(2,7);
+                $td=$days+rand(2,7);
                 $take_time=strtotime($year.'-'.$mouth.'-'.$td." ".$S.":".$F.":".$M);
                 //买家
                 $user_id=rand(40079,861288);
@@ -1034,8 +1034,9 @@ elseif($_REQUEST['act'] == 'outorder') {
                 );
             }
         }
+
         $ceil_order_num=$first_goods_num;
-        $row = order_add($sale_data,$year, $mouth,$ceil_order_num);
+        $row = order_add($sale_data,$year, $mouth,$days,$ceil_order_num);
         if($row){
             $links = array(
                 array('href' => 'paipai_part.php?act=list', 'text' => $_LANG['back_list']) //返回列表
@@ -1052,10 +1053,10 @@ elseif($_REQUEST['act'] =='upordernext'){
 
     $year=$_POST['year'];
     $mouth = $_POST['mouth'];
-//    $days=$_POST['days'];
-    $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
+    $days=$_POST['days'];
+//    $days =cal_days_in_month(CAL_GREGORIAN, $mouth, $year);
 
-    $min_time=$year.'-'.$mouth.'-01'.' 00:00:00';
+    $min_time=$year.'-'.$mouth.'-'.$days.' 00:00:00';
     $max_time=$year.'-'.$mouth.'-'.$days.' 23:59:59';
     $limit_min_time=strtotime($min_time);
     $limit_max_time=strtotime($max_time);
@@ -1745,11 +1746,16 @@ elseif($_REQUEST['act'] == 'delete_order') {
         if($end_time<=$start_time){
             var_dump('结束日期小于开始日期');exit;
         }
-//        if($extension_code!='paipai_buy' && $extension_code!='exchange_goods'){
-//            var_dump('订单类型格式错误');exit;
-//        }
+        if($extension_code=='paipai_buy' ){
+            $where=" AND extension_code='{$extension_code}'";
+        }elseif($extension_code=='exchange_goods'){
+            $where=" AND extension_code='{$extension_code}'";
+        }else{
+            $where=" AND extension_code !='exchange_goods' ";
+        }
 
-        $oi_sql="SELECT order_id FROM".$GLOBALS['ecs']->table('order_info')." WHERE extension_code='{$extension_code}' AND add_time>=".$start_time." AND add_time<".$end_time;
+
+        $oi_sql="SELECT order_id FROM".$GLOBALS['ecs']->table('order_info')." WHERE  add_time>=".$start_time." AND add_time<".$end_time.$where;
         $order_data = $GLOBALS['db']->getAll($oi_sql);
         foreach($order_data as $key=>$val){
             $order_id_arr[]=$val['order_id'];
