@@ -31,6 +31,9 @@
                 	<div class="fl">
                         <a href="coupons.php?act=add"><div class="fbutton"><div class="add" id="actionSpan" title="{$lang.continus_add}"><span><i class="icon icon-plus"></i>{$lang.continus_add}</span></div></div></a>
                     </div>
+                    <div class="fl">
+                        <a href="coupons.php?act=person_pai_add"><div class="fbutton"><div class="add" id="actionSpan" title="拍拍活动个人券"><span><i class="icon icon-plus"></i>拍拍活动个人券</span></div></div></a>
+                    </div>
                     {/if}
                     <div class="refresh">
                     	<div class="refresh_tit" title="{$lang.refresh_data}"><i class="icon icon-refresh"></i></div>

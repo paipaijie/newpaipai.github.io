@@ -244,6 +244,43 @@ if ($_REQUEST['act'] == 'add') {
 	$smarty->display('coupons_type_info.dwt');
 }
 
+if ($_REQUEST['act'] == 'person_pai_add') {
+
+	$smarty->display('coupons_pai_add.dwt');
+}
+if ($_REQUEST['act'] == 'pai_add') {
+	$user_id=$_REQUEST['user_id'];
+	$goods_id=$_REQUEST['goods_id'];
+	$start_time=$_REQUEST['start_time'];
+	$end_time=$_REQUEST['end_time'];
+	$beizhu=$_REQUEST['beizhu'];
+	if($user_id && $goods_id && $start_time && $end_time && $beizhu){
+
+		$seller_data['goods_id']=$goods_id;
+		$seller_data['createtime']=time()+8*3600;
+		$seller_data['usestaus']='0';
+		$seller_data['user_id']=$user_id;
+		$seller_data['endtime']=strtotime($end_time);
+		$seller_data['beizhu']=$beizhu;
+		$seller_data['ppj_no']='0';
+		$seller_data['active']='0';
+		for($i=0;$i<3;$i++){
+			$res=$db->autoExecute($ecs->table('paipai_seller'), $seller_data, 'INSERT');
+		}
+		if($res){
+			$links = array(
+				array('href' => 'coupons.php?act=list', 'text' => $_LANG['back_list']) //返回列表
+			);
+			sys_msg('添加数据成功', 0, $links);
+		}
+	}else{
+		$links = array(
+			array('href' => 'coupons.php?act=person_pai_add', 'text' => $_LANG['back_list']) //返回列表
+		);
+		sys_msg('无效的数据', 0, $links);
+
+	}
+}
 if ($_REQUEST['act'] == 'insert') {
 	$cou_start_time = local_strtotime($_POST['cou_start_time']);
 	$cou_end_time = local_strtotime($_POST['cou_end_time']);

@@ -461,6 +461,15 @@ function order_list($page = 0)
 			$where .= ' AND (SELECT u.user_id FROM ' . $GLOBALS['ecs']->table('users') . ' AS u WHERE u.user_name LIKE \'%' . mysql_like_quote($filter['user_name']) . '%\' LIMIT 1) = o.user_id';
 		}
 
+		$BeginDate=date('Y-m-01', strtotime(date("Y-m-d")));
+		$Enddata=date('Y-m-d', strtotime("$BeginDate +1 month -1 day"));
+		if(!$filter['start_time']){
+			$filter['start_time']=strtotime($BeginDate);
+		}
+		if(!$filter['end_time']){
+			$filter['end_time']=strtotime($Enddata);
+		}
+
 		if ($filter['start_time']) {
 			$where .= ' AND o.add_time >= \'' . $filter['start_time'] . '\'';
 		}
