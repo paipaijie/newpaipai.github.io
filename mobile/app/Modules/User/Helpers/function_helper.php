@@ -675,8 +675,8 @@ function plan_min_price($pid = 0)
 
 function get_paipaijuqn_lists($num = 2, $page = 1, $status = 0)
 {
-	$time = gmtime();
-	
+	$time = time()+8*3600;
+
 	$uid = $_SESSION['user_id'];
 
 	if ($status == 0) {
@@ -699,10 +699,10 @@ function get_paipaijuqn_lists($num = 2, $page = 1, $status = 0)
 	$left_join = ' LEFT JOIN ' . $GLOBALS['ecs']->table('order_info') . ' AS o ON cu.order_id = o.order_id ';	
 	$sql = 'SELECT c.*, cu.*, c.cou_money AS cou_money, o.order_sn, o.add_time, cu.cou_money AS uc_money, o.coupons AS order_coupons FROM ' . $GLOBALS['ecs']->table('paipai_seller') . ' AS cu LEFT JOIN  ' . $GLOBALS['ecs']->table('coupons') . ' AS c ON c.cou_id = cu.cou_id ' . $left_join . $where . (' AND c.review_status = 3 limit ' . $start . ',' . $num . ' ');
 	*/
-	
-	$sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('paipai_seller') . ' AS cu ' . $where .'limit ' . $start . ',' . $num . ' ';	
-	$tab = $GLOBALS['db']->getAll($sql);
 
+	$ps_sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('paipai_seller') . ' AS cu ' . $where .'limit ' . $start . ',' . $num . ' ';
+//    $ps_sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('paipai_seller') . ' AS cu ' . $where;
+	$tab = $GLOBALS['db']->getAll($ps_sql);
 
 	foreach ($tab as &$v) {
 		

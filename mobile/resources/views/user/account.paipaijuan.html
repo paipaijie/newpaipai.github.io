@@ -67,7 +67,7 @@
                                         <div class="b-r-a-con text-left">
                                             <div class="range-item"><%order.beizhu%></div>
                                             
-                                            <div class="range-item ">商品开拍时使用</div>
+                                            <div class="range-item ">商品开拍时使用， 使用期数：<%if order.usestaus == 0  %> 不限期数 <% else %> <% order.ppj_no %> <% /if %></div>
                                                
                                             <div class="range-item col-7"><%order.begintime%> 至 <%order.endtime%></div>
                                         </div>

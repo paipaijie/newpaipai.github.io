@@ -236,8 +236,8 @@ public function actionPaipaibuy()
 
 
 		//待付款
-		$sql = "select count(order_id) as count from dsc_order_info where user_id = {$_SESSION['user_id']} and pay_status = 11 OR pay_status=0 AND order_status!=3 ";
-		$res = $GLOBALS['db']->getRow($sql);
+		$oi_sql = "select count(order_id) as count from dsc_order_info where user_id = {$_SESSION['user_id']} and pay_status = 11 OR pay_status=0 AND order_status!=3 ";
+		$res = $GLOBALS['db']->getRow($oi_sql);
 		$att = $res['count'];
 		$this->assign('pay_count', intval($att));
 		
@@ -245,8 +245,8 @@ public function actionPaipaibuy()
 		$confirmed_count = get_order_where_count($user_id, $type, $where_confirmed);	
 		$this->assign('confirmed_count', intval($confirmed_count));
 		
-		$sql = 'SELECT a.msg_id  FROM {pre}feedback AS a WHERE a.parent_id IN ' . ' (SELECT b.msg_id FROM {pre}feedback AS b WHERE b.user_id = \'' . $_SESSION['user_id'] . '\') ORDER BY a.msg_id DESC';
-		$msg_ids = $this->db->getOne($sql);
+		$fb_sql = 'SELECT a.msg_id  FROM {pre}feedback AS a WHERE a.parent_id IN ' . ' (SELECT b.msg_id FROM {pre}feedback AS b WHERE b.user_id = \'' . $_SESSION['user_id'] . '\') ORDER BY a.msg_id DESC';
+		$msg_ids = $this->db->getOne($fb_sql);
 		$this->assign('msg_ids', $msg_ids);
 		$this->assign('admin_count', get_admin_feedback($_SESSION['user_id']));
 		$this->assign('info', get_user_default($this->user_id));
@@ -257,11 +257,10 @@ public function actionPaipaibuy()
 			$this->assign('next_rank_name', sprintf(L('next_level'), $rank['next_rank'], $rank['next_rank_name']));
 		}
 
-// 获取销售券数量 ---start
-		$sql = 'SELECT count(*)  FROM ' . $GLOBALS['ecs']->table('paipai_seller') . (' WHERE usestaus = 0 and user_id = \'' . $user_id . '\'');
-		$coupons_num = $GLOBALS['db']->getOne($sql);
-// 获取销售券数量	---end
-		
+        // 获取销售券数量 ---start
+        $limit_time = time()+8*3600;
+		$uc_sql = 'SELECT count(*)  FROM ' . $GLOBALS['ecs']->table('paipai_seller') .' WHERE usestaus = 0 and user_id = ' . $user_id . ' AND endtime>'.$limit_time ;
+		$coupons_num = $GLOBALS['db']->getOne($uc_sql);
 		
 		$this->assign('coupons_num', intval($coupons_num));
 		$this->assign('msg_list', msg_lists($this->user_id));
