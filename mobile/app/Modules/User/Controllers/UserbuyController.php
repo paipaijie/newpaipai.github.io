@@ -83,8 +83,8 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
 
         
         $margin_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_pay_margin')." WHERE order_sn=".$order['order_sn']." AND ls_pay_ok=1";
-        $margin_data=$GLOBALS['db']->getRow($margin_sql); 
-        
+        $margin_data=$GLOBALS['db']->getRow($margin_sql);
+
         //单个买方出价信息
         $user_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE ppj_id=".$order['ppj_id']. " AND ppj_no=".$order['ppj_no']." AND user_id=".$user_id." AND is_status=2 AND spm_id={$margin_data['spm_id']}";       
         $user_bid=$GLOBALS['db']->getRow($user_sql);
@@ -105,22 +105,12 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         
         $sell=$_GET['sell'];
 
+        $at=$_GET['at'];
+
         $sell_id=substr($sell,0,strpos($sell, 'P1611'));
         $sell_price=substr($sell,strripos($sell,'P1611')+5)/100;
         $this->assign('sell_id', $sell_id);
         $this->assign('sell_price', $sell_price);
-
-        //更改卖家出价状态 买家状态
-        $sel_pgs="SELECT * FROM dsc_paipai_goods_sellers WHERE user_id={$sell_id} AND ppj_id={$ppj_id} AND ppj_no={$ppj_no} AND ls_ok=1 ";
-        $one_pgs_data=$GLOBALS['db']->getRow($sel_pgs);
-        if($one_pgs_data){
-            $up_pgs_sql="UPDATE dsc_paipai_goods_sellers SET ls_ok=2 WHERE user_id={$sell_id} AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}";
-            $GLOBALS['db']->query($up_pgs_sql);
-            $up_pgs_sql="UPDATE dsc_paipai_goods_bid_user SET is_status=1 WHERE user_id={$user_id} AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}";
-            $GLOBALS['db']->query($up_pgs_sql);
-        }else{
-            $this->assign('match_status', '1');
-        }
 
         //地址 
         $consignee = get_consignee($_SESSION['user_id']);
@@ -214,6 +204,34 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
             }
         }
 
+        if($at){
+            //更改卖家出价状态 买家状态
+            $sel_pgs="SELECT * FROM dsc_paipai_goods_sellers WHERE user_id={$sell_id} AND ppj_id={$ppj_id} AND ppj_no={$ppj_no} AND ls_ok=1 ";
+            $one_pgs_data=$GLOBALS['db']->getRow($sel_pgs);
+            if($one_pgs_data){
+                $up_pgs_sql="UPDATE dsc_paipai_goods_sellers SET ls_ok=0 WHERE user_id={$sell_id} AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}";
+                $GLOBALS['db']->query($up_pgs_sql);
+                $up_pgs_sql="UPDATE dsc_paipai_goods_bid_user SET is_status=1 WHERE user_id={$user_id} AND ppj_id={$ppj_id} AND ppj_no={$ppj_no}";
+                $GLOBALS['db']->query($up_pgs_sql);
+                //添加匹配成功记录
+                $sell_ok_data=array(
+                    'user_id'=>$sell_id,
+                    'buy_id'=>$user_id,
+                    'goods_id'=>$goods_data['goods_id'],
+                    'goods_id'=>$goods_data['goods_id'],
+                    'ppj_id'=>$ppj_id,
+                    'ppj_no'=>$ppj_no,
+                    'sellers_fee'=>$one_pgs_data['seller_min_fee'],
+                    'createtime'=>time()+8*3600,
+                    'status'=>'0',
+                    'spm_id'=>$user_bid_data['spm_id'],
+                );
+                $slleer_ok_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_ok'),$sell_ok_data,'INSERT');
+            }else{
+                $this->assign('match_status', '1');
+            }
+        }
+
         $this->assign('payment_list', $payment_list);
 
         if ($user_order_data['pay_id']) {
@@ -238,6 +256,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         $ppj_id=$_POST['ppj_id'];
         $ppj_no=$_POST['ppj_no'];
         $sell_id=$_POST['sell_id'];
+
         $match_price=$_POST['sell_price'];
         //拍拍活动信息
         $pl_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_list'). "WHERE ppj_id=".$ppj_id." AND ppj_no=".$ppj_no;
@@ -245,38 +264,41 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
         //获取商品的信息
         $goods_sql="SELECT pl.start_time,pl.end_time,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.goods_name,g.market_price,g.shop_price,g.cost_price,g.goods_sn FROM ".$GLOBALS['ecs']->table('paipai_list')." AS pl LEFT JOIN ".$GLOBALS['ecs']->table('goods')." AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id={$ppj_id} AND pl.ppj_no={$ppj_no} ";
         $goods_data=$GLOBALS['db']->getRow($goods_sql);
+
         //买家出价信息
         $user_bid_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_bid_user')." WHERE user_id=".$user_id." AND ppj_id=".$ppj_id." AND ppj_no=".$ppj_no." AND is_status=1";
         $user_bid_data = $GLOBALS['db']->getRow($user_bid_sql);
         //卖家出价信息
-        $sell_sql=" SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers')." WHERE user_id={$sell_id} "." AND ppj_id=".$ppj_id." AND ppj_no=".$ppj_no." AND ls_ok=2";
-        $sell_news=$GLOBALS['db']->getRow($sell_sql);   
+        $sell_sql=" SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers')." WHERE user_id={$sell_id} "." AND ppj_no=".$ppj_no." AND ls_ok=0";
+        $sell_news=$GLOBALS['db']->getRow($sell_sql);
+        //成交记录表
+        $sell_ok_sql=" SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_ok')." WHERE user_id={$sell_news['user_id']} AND buy_id={$user_id} "." AND ppj_id=".$ppj_id." AND ppj_no=".$ppj_no;
+        $sell_ok_data=$GLOBALS['db']->getRow($sell_ok_sql);
 
-        if($sell_news){           
-            //卖家利润
-            $income=number_format(($sell_news['seller_min_fee']-$goods_data['cost_price'])*0.8,2);  
-            
-            $sell_ok_data=array(
-                'user_id' => $sell_news['user_id'],
-                'buy_id' => $user_id,
-                'goods_id' => $goods_data['goods_id'],
-                'ppj_id' => $ppj_id,
-                'ppj_no' => $ppj_no,
-                'sellers_fee' => $user_bid_data['bid_price'],
-                'goods_nowprice' => $user_bid_data['bid_price'],
-                'createtime' => time()+8*3600,
-                'status' => 1,   // 货到付款（系统默认为已付款）
-                'getmoney' => $income,
-                'spm_id' => $user_bid_data['spm_id']
-            );
-            //匹配成功数据加入卖家数据表
-            $sell_ok_time=time();
-            $slleer_ok_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_ok'),$sell_ok_data,'INSERT');
 
-        }else{
-            ecs_header('Location: ' . url('user/userbuy/buyerror'));
-            exit();
-        }
+
+//        if($sell_news){
+//            //卖家利润
+//            $income=number_format(($sell_news['seller_min_fee']-$goods_data['cost_price'])*0.8,2);
+//
+//            $sell_ok_data=array(
+//                'user_id' => $sell_news['user_id'],
+//                'buy_id' => $user_id,
+//                'goods_id' => $goods_data['goods_id'],
+//                'ppj_id' => $ppj_id,
+//                'ppj_no' => $ppj_no,
+//                'sellers_fee' => $user_bid_data['bid_price'],
+//                'goods_nowprice' => $user_bid_data['bid_price'],
+//                'createtime' => time()+8*3600,
+//                'status' => 1,   // 货到付款（系统默认为已付款）
+//                'getmoney' => $income,
+//                'spm_id' => $user_bid_data['spm_id']
+//            );
+//            //匹配成功数据加入卖家数据表
+//            $sell_ok_time=time();
+//            $slleer_ok_id=$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('paipai_seller_ok'),$sell_ok_data,'INSERT');
+//
+//        }
 
         $user_order_sql="SELECT * FROM ".$GLOBALS['ecs']->table('order_info'). "WHERE user_id=".$user_id." AND ppj_id=".$ppj_id." AND ppj_no=".$ppj_no." AND goods_amount=".$pl_data['ppj_margin_fee']." AND pay_status='10' AND extension_code ='paipai_buy' ";
         $user_order_data = $GLOBALS['db']->getRow($user_order_sql);
@@ -347,8 +369,11 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
                     'add_time'=> time()+8*3600,
                 );
                 $log_res =$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('goods_inventory_logs'),$goods_logs_data,'INSERT');
+
+                $up_so_sql="UPDATE dsc_paipai_seller_ok SET order_id={$order_id['order_id']} WHERE ok_id=".$sell_ok_data['ok_id'];
+                $up_so_res=$GLOBALS['db']->query($up_so_sql);
             }
-            if($log_res){
+            if($log_res && $up_so_res){
                 //送券三张
                 $time=date('Y-m-d',time()+8*3600);
                 $endtime=strtotime(date('Y-m-d',strtotime("$time + 1 month")))+15*3600;
@@ -413,7 +438,7 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
     	$ppj_no=$_REQUEST['pjn'];
     	$where = ' WHERE 1 ';
     	$user_id=$this->user_id;
-        $goods_sql="SELECT pl.start_time,pl.end_time,pl.ext_info,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price,g.cost_price FROM ".$GLOBALS['ecs']->table('paipai_list')." AS pl LEFT JOIN ".$GLOBALS['ecs']->table('goods')." AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id={$ppj_id} AND pl.ppj_no={$ppj_no} ";
+        $goods_sql="SELECT pl.start_time,pl.end_time,pl.ppj_margin_fee,pl.ext_info,pl.ppj_startpay_time,pl.ppj_endpay_time,pl.ppj_staus,pl.goods_count,pl.ppj_start_fee,pl.ppj_buy_fee,pl.goods_count,g.goods_id,g.market_price,g.shop_price,g.cost_price FROM ".$GLOBALS['ecs']->table('paipai_list')." AS pl LEFT JOIN ".$GLOBALS['ecs']->table('goods')." AS g ON pl.goods_id=g.goods_id WHERE pl.ppj_id={$ppj_id} AND pl.ppj_no={$ppj_no} ";
   	    $goods_data=$GLOBALS['db']->getRow($goods_sql);  
 
         if($goods_data['goods_count'] == '0'){
@@ -459,7 +484,45 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
 				$sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers') .$where.' AND user_id!='.$user_id.' AND ls_ok=1';
 			    $seller_data=$GLOBALS['db']->getAll($sql);
 				if(empty($seller_data)){
-				    exit(json_encode(array('match_bid' => 2)));
+                    $stat = paipai_buy_stat($ppj_id, $ppj_id,$goods_data['ppj_margin_fee']);//获取订单数
+                    $cur_amount = $stat['valid_order'];
+                    if($cur_amount>=0){
+                        $ext_info = unserialize($goods_data['ext_info']);
+                        $price_ladder = $ext_info['price_ladder'];
+                        foreach ($price_ladder as $plkey => $amount_price) {
+                            if ($amount_price['amount'] <= $cur_amount) {
+                                $cur_price = $amount_price['price'];
+                            }
+                            else if( $cur_amount == 0 ) {
+                                $cur_price=$amount_price['price'];
+                                break;
+                            }
+                        }
+                        $us_sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers') .$where." AND user_id='3331' AND ls_ok=1";
+                        $us_data=$GLOBALS['db']->getRow($us_sql);
+                        if(!$us_data){
+                            $goods_seller_data=array(
+                                'user_id'=>'3331',
+                                'ppj_id'=>$ppj_id,
+                                'ppj_no'=>$ppj_no,
+                                'seller_min_fee'=>$cur_price,
+                                'seller_max_fee'=>$cur_price+20,
+                                'ls_ok'=>'1',
+                                'ls_staus'=>'1',
+                                'createtime'=>time()+8*3600
+                            );
+                            $sell_res=$GLOBALS['db']->autoExecute('dsc_paipai_goods_sellers', $goods_seller_data, 'INSERT');
+                        }
+                        if($sell_res || $us_data){
+                            //卖方
+                            $sql="SELECT * FROM ".$GLOBALS['ecs']->table('paipai_goods_sellers') .$where.' AND user_id!='.$user_id.' AND ls_ok=1';
+                            $seller_data=$GLOBALS['db']->getAll($sql);
+                        }else{
+                            exit(json_encode(array('match_bid' => 2)));
+                        }
+                    }else{
+                        exit(json_encode(array('match_bid' => 2)));
+                    }
 			    }
 
 		        foreach($seller_data as $key=>$val){

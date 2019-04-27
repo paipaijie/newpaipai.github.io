@@ -90,8 +90,10 @@
                           <%if order.two_status == 1 || order.two_status == 2%>
                              <span style="color:orangered;">成交价格：<%order.sellers_fee%> </span>
                           <%else%>
-							<span style="color:orangered;">当前价格：<%order.price%> </span>
-						    <span  style="color:burlywood;">
+                           <%if order.ppj_end_time > order.time%>
+							<span style="color:orangered;">当前价格：<%order.price%>元 </span>
+                           <%/if%>
+                            <span  style="color:burlywood;">
                         	最后一次出价：<%order.sellers_fee%>元 
                           <%/if%>       
                         </span>
@@ -116,7 +118,7 @@
                                     <!-- <%/if%> -->
                                     <a class="btn-default-new br-5 min-btn received-order" data-item-received="<%order.order_id%>">确认收货</a>
                             <%else if order.two_status ==0 %>
-                                <a class="btn-default-new br-5 min-btn" href="{url('user/userbuy/paipaibuy')}&ppj_id=<%order.ppj_id%>&ppj_no=<%order.ppj_no%>&sell=<%order.sell_user_data%>">请确认发货</a>
+                                <a class="btn-default-new br-5 min-btn" href="{url('user/userbuy/paipaibuy')}&ppj_id=<%order.ppj_id%>&ppj_no=<%order.ppj_no%>&sell=<%order.sell_user_data%>">点击确认发货</a>
                             <%else%>
                                 <% if order.cur_price  < order.bid_price %>                             
                                 <span style="color: rosybrown; font-size: 13px;"> 正在匹配适合的卖家...</span>
@@ -136,7 +138,7 @@
 
                             <%if !order.handler%>
                             
-                            <a class="btn-default-new br-5 min-btn" href="<%order.order_url%>">查看订单</a>
+                            <a class="btn-default-new br-5 min-btn" href="<%order.order_url%>">查看保证金订单</a>
                             
                             <%/if%>
 
@@ -159,12 +161,12 @@
                             <!-- <%else%> -->
                             <!-- <a class="btn-default-new br-5 min-btn" href="">保证金退款中</a> -->
                             <!-- <%/if%> -->
-					  <%/if%>
+					   <%/if%>
 					    <%if order.pay_status==2%>
 					    <a class="btn-default-new br-5 min-btn" >确认收货</a> 
 						<%/if%>
 					    <%if !order.handler%>
-                         <a class="btn-default-new br-5 min-btn" href="<%order.order_url%>">查看订单</a>                         
+                         <a class="btn-default-new br-5 min-btn" href="<%order.order_url%>">查看保证金订单</a>
                         <%/if%>
 						
                     <%/if%>

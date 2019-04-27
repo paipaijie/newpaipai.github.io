@@ -83,56 +83,58 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 				$val['is_end'] = 2;
 			}
 
-
-
-			$val['formated_deposit'] = price_format($val['ppj_margin_fee'], false);
-
-
-			$price_ladder = $val['price_ladder'];
-		
-		
-			if (!is_array($price_ladder) || empty($price_ladder)) {
-
-				$price_ladder = array(
-					array('amount' => 0, 'price' => 0)
-					);
-			}
-			else {
-				foreach ($price_ladder as $key => $amount_price) {
-
-					$price_ladder[$key]['formated_price'] = price_format($amount_price['price']);
-
-				}
-			}
-
-			$val['price_ladder'] = $price_ladder;
-
-			$price = $val['market_price'];
-
-			$nowprice = $val['price_ladder'][0]['price'];
-
-
-
 			$stat = paipai_buy_stat($val['ppj_id'], $val['ppj_no'],$val['ppj_margin_fee']);//获取订单数
 
 			$val = array_merge($val, $stat);
 
 			$cur_amount = $stat['valid_order'];
-		
 
-			foreach ($price_ladder as $key => $amount_price) {
+			$val['formated_deposit'] = price_format($val['ppj_margin_fee'], false);
 
+			$price_ladder = $val['price_ladder'];
+
+			foreach ($price_ladder as $plkey => $amount_price) {
 				if ($amount_price['amount'] <= $cur_amount) {
-
 					$cur_price = $amount_price['price'];
-
 				}
-				else {
-
-					$cur_price=0;
+				else if( $cur_amount == 0 ) {
+					$cur_price='0';
 					break;
 				}
 			}
+//			if (!is_array($price_ladder) || empty($price_ladder)) {
+//
+//				$price_ladder = array(
+//					array('amount' => 0, 'price' => 0)
+//					);
+//			}
+//			else {
+//				foreach ($price_ladder as $key => $amount_price) {
+//
+//					$price_ladder[$key]['formated_price'] = price_format($amount_price['price']);
+//
+//				}
+//			}
+
+//			$val['price_ladder'] = $price_ladder;
+//
+//			$price = $val['market_price'];
+//
+//			$nowprice = $val['price_ladder'][0]['price'];
+
+//			foreach ($price_ladder as $key => $amount_price) {
+//
+//				if ($amount_price['amount'] <= $cur_amount) {
+//
+//					$cur_price = $amount_price['price'];
+//
+//				}
+//				else {
+//
+//					$cur_price=0;
+//					break;
+//				}
+//			}
 
 			$val['cur_amount'] = $cur_amount;
 
@@ -146,8 +148,7 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 
 			$val['price'] = price_format($cur_price, false);// 当前价格
 
-
-					//遍历报名表
+			//遍历报名表
 			$sqls='select * from '. $GLOBALS['ecs']->table('paipai_goods_sellers') .'where user_id='.$user_id.' and ppj_id='.$val['ppj_id'].' and ppj_no='.$val['ppj_no'];
 
 			$baoming = $GLOBALS['db']->getRow($sqls);

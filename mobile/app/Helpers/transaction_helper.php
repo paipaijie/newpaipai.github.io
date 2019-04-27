@@ -249,7 +249,6 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 		$sql = 'SELECT og.ru_id, oi.main_order_id, oi.consignee,oi.pay_name, oi.order_id,og.sellers_fee,og.ppj_no,oi.ppj_id,oi.ppj_no,oi.order_sn,oi.pay_time,oi.order_status, oi.shipping_status, oi.pay_status, oi.add_time, oi.shipping_time, oi.auto_delivery_time, oi.sign_time,oi.extension_code, ' . $select . '(oi.goods_amount + oi.shipping_fee + oi.insure_fee + oi.pay_fee + oi.pack_fee + oi.card_fee + oi.tax - oi.discount - oi.coupons) AS total_fee, og.goods_id, ' . 'oi.invoice_no, oi.shipping_name, oi.tel, oi.email, oi.address, oi.province, oi.city, oi.district ' . ' FROM ' . $GLOBALS['ecs']->table('order_info') . ' as oi' . ' left join ' . $GLOBALS['ecs']->table('order_goods') . ' as og on oi.order_id = og.order_id' . (' WHERE oi.user_id = \'' . $user_id . '\' and oi.is_delete = \'0\' and oi.is_zc_order=0  ') . $where . ' and (select count(*) from ' . $GLOBALS['ecs']->table('order_info') . ' as oi2 where oi2.main_order_id = oi.order_id) = 0 ' . (' group by oi.order_id ORDER BY oi.add_time DESC LIMIT ' . $start . ', ' . $num);
 	}
 	$res = $GLOBALS['db']->query($sql);
-
 //	$ntime=time()+8*3600;
 //	foreach($res as $rkey=>$rval){
 //		$pl_sql='SELECT ppj_id FROM '.$GLOBALS['ecs']->table('paipai_list').' WHERE ppj_id='.$rval['ppj_id'].' AND end_time<'.$ntime;
@@ -466,10 +465,23 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 			 * 获取商品的当前价格
 			 */
 		   $group_buy = paipai_buy_info($row['ppj_id'] );
-		   	
+
+		   $ext_info=unserialize($group_buy['ext_info']);
+		   $price_ladder = $ext_info['price_ladder'];
+		   $stat = paipai_buy_stat($group_buy['ppj_id'], $group_buy['ppj_no'],$group_buy['ppj_margin_fee']);//获取订单数
+		   $cur_amount = $stat['valid_order'];
+		   foreach ($price_ladder as $plkey => $amount_price) {
+				if ($amount_price['amount'] <= $cur_amount) {
+					$cur_price = $amount_price['price'];
+				}
+				else if( $cur_amount == 0 ) {
+					$cur_price='0';
+					break;
+				}
+		   }
 		   $row['cur_price'] =$group_buy['cur_price'];
 		   
-		   $row['price'] =$group_buy['formated_cur_price'];
+		   $row['price'] =$cur_price;
 		   
 			
 			/*
@@ -496,7 +508,7 @@ function get_user_paipaiorders($user_id, $num = 10, $page = 1, $status = 0)
 		$ppj_startpay_time=$pl_data['ppj_startpay_time']*60;
 		$ppj_endpay_time=$pl_data['ppj_endpay_time']*60;
 
-		$arr[] = array('order_id' => $row['order_id'],'ppj_id' => $row['ppj_id'],'ppj_no' => $row['ppj_no'],'sellers_fee' => number_format($user_bid_price['bid_price'],2), 'order_sn' => $row['order_sn'], 'order_time' => date($GLOBALS['_CFG']['time_format'], $row['add_time']), 'order_status' => $row['order_status'], 'order_del' => $row['order_del'], 'online_pay' => $row['online_pay'], 'status' => $row['status'], 'status_number' => $status_number, 'consignee' => $row['consignee'], 'main_order_id' => $row['main_order_id'], 'user_name' => get_shop_name($ru_id, 1), 'order_goods' => $row['order_goods'], 'order_goods_num' => count($row['order_goods']), 'order_child' => $order_child, 'no_picture' => $GLOBALS['_CFG']['no_picture'], 'order_child' => $order_child, 'delete_yes' => $row['delete_yes'], 'invoice_no' => $row['invoice_no'], 'shipping_name' => $row['shipping_name'], 'email' => $row['email'], 'address_detail' => $row['address_detail'], 'address' => $row['address'], 'address_detail' => $address_detail, 'tel' => $row['tel'], 'delivery_time' => $delivery['delivery_time'], 'order_count' => $order_count, 'kf_type' => $basic_info['kf_type'], 'kf_ww' => $basic_info['kf_ww'], 'kf_qq' => $basic_info['kf_qq'], 'total_fee' => price_format($row['total_fee'], false), 'handler_return' => $row['handler_return'], 'pay_status' => $row['pay_status'], 'handler' => $row['handler'], 'team_id' => $row['team_id'], 'extension_code' => $row['extension_code'], 'order_url' => url('user/order/detailpaipai', array('order_id' => $row['order_id'])), 'delay' => $delay,'two_status'=>$ps_data['status'],'ls_refund'=>$ps_data['ls_refund'],'sell_user_data'=>$sg_data['user_id'].'P1611'.$sg_data['seller_min_fee']*100,'ppj_start_time'=>$ppj_start_time,'ppj_end_time'=>$ppj_end_time,'ppj_startpay_time'=>$ppj_startpay_time,'ppj_endpay_time'=>$ppj_endpay_time,'time'=>time());
+		$arr[] = array('order_id' => $row['order_id'],'ppj_id' => $row['ppj_id'],'ppj_no' => $row['ppj_no'],'sellers_fee' => number_format($user_bid_price['bid_price'],2), 'order_sn' => $row['order_sn'], 'order_time' => date($GLOBALS['_CFG']['time_format'], $row['add_time']),'price'=>$row['price'] ,'order_status' => $row['order_status'], 'order_del' => $row['order_del'], 'online_pay' => $row['online_pay'], 'status' => $row['status'], 'status_number' => $status_number, 'consignee' => $row['consignee'], 'main_order_id' => $row['main_order_id'], 'user_name' => get_shop_name($ru_id, 1), 'order_goods' => $row['order_goods'], 'order_goods_num' => count($row['order_goods']), 'order_child' => $order_child, 'no_picture' => $GLOBALS['_CFG']['no_picture'], 'order_child' => $order_child, 'delete_yes' => $row['delete_yes'], 'invoice_no' => $row['invoice_no'], 'shipping_name' => $row['shipping_name'], 'email' => $row['email'], 'address_detail' => $row['address_detail'], 'address' => $row['address'], 'address_detail' => $address_detail, 'tel' => $row['tel'], 'delivery_time' => $delivery['delivery_time'], 'order_count' => $order_count, 'kf_type' => $basic_info['kf_type'], 'kf_ww' => $basic_info['kf_ww'], 'kf_qq' => $basic_info['kf_qq'], 'total_fee' => price_format($row['total_fee'], false), 'handler_return' => $row['handler_return'], 'pay_status' => $row['pay_status'], 'handler' => $row['handler'], 'team_id' => $row['team_id'], 'extension_code' => $row['extension_code'], 'order_url' => url('user/order/detailpaipai', array('order_id' => $row['order_id'])), 'delay' => $delay,'two_status'=>$ps_data['status'],'ls_refund'=>$ps_data['ls_refund'],'sell_user_data'=>$sg_data['user_id'].'P1611'.$sg_data['seller_min_fee']*100,'ppj_start_time'=>$ppj_start_time,'ppj_end_time'=>$ppj_end_time,'ppj_startpay_time'=>$ppj_startpay_time,'ppj_endpay_time'=>$ppj_endpay_time,'time'=>time()+8*3600);
 
 	}
 

@@ -22,7 +22,7 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 	
 	
 	//匹配中的拍拍订单
-		public function actionIndexpaipai()
+	  public function actionIndexpaipai()
 	{
 		$size = 10;
 		
@@ -32,9 +32,17 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 
 		if (IS_POST) {
 			$order_list = get_user_paipaiorders($this->user_id, $size, $page, $status);
+
+            foreach($order_list['list'] as $key=>$val){
+				$sell_ok_sql=" SELECT * FROM ".$GLOBALS['ecs']->table('paipai_seller_ok')." WHERE  buy_id={$this->user_id} "." AND ppj_id=".$val['ppj_id']." AND ppj_no=".$val['ppj_no']." AND order_id!=''";
+				$sell_ok_data=$GLOBALS['db']->getRow($sell_ok_sql);
+				if($sell_ok_data){
+					$order_list['list'][$key]['two_status']='1';
+				}
+			}
 			exit(json_encode(array('order_list' => $order_list['list'], 'totalPage' => $order_list['totalpage'])));
 		}
-		
+
 		$all_order = get_order_where_count($this->user_id, 0, '');
 		
 		$where_pay = ' AND oi.pay_status = 10';
@@ -56,8 +64,7 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		$order_num = array('all_order' => $all_order, 'pay_count' => $pay_count['count'], 'confirmed_count' => $confirmed_count);
 		
 		$ordersuccess_num = array('all_order' => $all_order, 'pay_count' => $paysuccess_count, 'confirmed_count' => $confirmed_count);
-		
-		
+
 		$this->assign('order_num', $order_num);
 		
 		$this->assign('ordersuccess_num', $ordersuccess_num);
@@ -683,7 +690,6 @@ class OrderController extends \App\Modules\Base\Controllers\FrontendController
 		else {
 			$kefu = 'https://wpa.qq.com/msgrd?v=3&uin=' . preg_replace('/^[^\\-]*\\|/is', '', $zkf['kf_qq']) . '&site=qq&menu=yes';
 		}
-
 		$this->assign('kefu', $kefu);
 		$this->assign('order', $order);
 		$this->assign('goods_list', $goods_list);

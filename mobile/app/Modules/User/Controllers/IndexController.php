@@ -23,42 +23,72 @@ class IndexController extends \App\Modules\Base\Controllers\FrontendController
 		$this->assign('user_id', $this->user_id);
 	}
 
-//匹配拍拍卖方算法
-
+//匹配拍拍卖方算法(自动卖出)
 public function actionPaipaibuy()
 {		
 		$ppj_id = $_POST['ppd'];
 		$ppj_no = $_POST['ppn'];
 		$goods_id = $_POST['g_id'];
 		$user_id = $_SESSION['user_id'];
-		$time = time();
+		$time = time()+8*3600;
 	
 		//查询卖家是否有销售券
 		$sql_quan = "select * from dsc_paipai_seller where user_id = {$user_id} and goods_id = {$goods_id}";		
 		$result = $GLOBALS['db']->query($sql_quan);
-		
         if(empty($result[0])){
         	echo json_encode(array('re'=>1)); exit;
         }
 		else{
 			
-          	foreach($result as $k => $v){          		
+          	foreach($result as $k => $v){
+
 				//判断是否有可用的销售券
 				if($v['usestaus'] == 0){
+
+					//拍拍活动详情
+					$pl_sql  = "SELECT ext_info FROM dsc_paipai_list WHERE ppj_id = {$ppj_id} and ppj_no = {$ppj_no}";
+					$pl_data = $GLOBALS['db']->getRow($pl_sql);
+					$ext_info =unserialize($pl_data['ext_info']);
+					$price_ladder = $ext_info['price_ladder'];
+
+					$stat = paipai_buy_stat($ppj_id,$ppj_no);//获取订单数
+					$cur_amount = $stat['valid_order'];
+					//获取当前价 销量为0时不出售
+					foreach ($price_ladder as $plkey => $amount_price) {
+						if ($amount_price['amount'] <= $cur_amount) {
+							$cur_price = $amount_price['price'];
+						}
+						else if( $cur_amount == 0 ) {
+							$mix_price=$amount_price['price'];
+							$cur_price='0';
+							break;
+						}
+					}
+					if($cur_price=='0'){
+						echo json_encode(array('re'=>8)); exit;
+					}
+
 					if($v['ppj_no'] == 0 || $v['ppj_no'] >= $ppj_no){
 						//获取价格最大的数据；
 						$sql1  = "SELECT * FROM dsc_paipai_goods_bid_user WHERE ppj_id = {$ppj_id} and ppj_no = {$ppj_no} and is_status= 2";
 						$r = $GLOBALS['db']->getAll($sql1);
-						
+
 						if(empty($r)){
-							echo json_encode(array('re'=>8));
+							echo json_encode(array('re'=>8)); exit;
 						}else{
 							$max_price = 0;
 							foreach($r as $key=>$val){
 								$max_price = max($max_price,$val['bid_price']);
 								//$min_bid_time = min($min_bid_time,$val['bid_time']);
 							}
-							
+							if($max_price <= $mix_price){
+								echo json_encode(array('re'=>8));exit;
+							}
+
+							//获取活动积分
+							$s_pl_sql = "SELECT gift_integral FROM dsc_paipai_list WHERE ppj_id = {$ppj_id} and ppj_no = {$ppj_no}";
+							$pl_data= $GLOBALS['db']->getRow($s_pl_sql);
+
 							//获取价格最大但是时间最早的	
 							$sql = "SELECT * FROM dsc_paipai_goods_bid_user WHERE bid_price={$max_price} and ppj_id = {$ppj_id} and ppj_no = {$ppj_no}";
 							$re = $GLOBALS['db']->getAll($sql);
@@ -68,31 +98,34 @@ public function actionPaipaibuy()
 							}
 							$min_bid_time = min($min_bid_time);
 							
-							//获取所有条件符合的
+							//获取条件符合的单个买家信息
 							$sql2 = "select * from dsc_paipai_goods_bid_user where bid_price={$max_price} and ppj_id = {$ppj_id} and ppj_no = {$ppj_no} and bid_time = {$min_bid_time}";
 							$res = $GLOBALS['db']->getRow($sql2);
-                            
-							
-							$this->groupbuyid = $ppj_id;
-							$group = paipai_buy_info($this->groupbuyid);
-							$price = ltrim($group['formated_cur_price'],'¥');
 
-							$sqls = "INSERT INTO dsc_paipai_goods_sellers (`user_id`,`ppj_id`,`ppj_no`,`seller_min_fee`,`seller_max_fee`,`ls_ok`,`ls_staus`,`createtime`) VALUES ({$user_id},{$ppj_id},{$ppj_no},{$max_price},0,1,0,{$time})";
+							//更改卖家券状态
+							$sql5 = "update dsc_paipai_seller set usestaus = 1,ppj_no={$ppj_no},ppj_no_amount={$ppj_no} where seller_id = {$v['seller_id']}";
+							$up_ps=$GLOBALS['db']->query($sql5);
 
-							$GLOBALS['db']->query($sqls);
-							
-							$sql3 = "insert into dsc_paipai_seller_ok (`user_id`,`buy_id`,`goods_id`,`ppj_id`,`ppj_no`,`sellers_fee`,`goods_nowprice`,`createtime`,`status`,`spm_id`) VALUES ({$user_id},{$res['user_id']},{$goods_id},{$ppj_id},{$ppj_no},{$max_price},{$price},{$time},0,{$res['spm_id']})";
+							//更改买家出价状态
+							$upd_ubid_sql = "update dsc_paipai_goods_bid_user set is_status = 1 where user_id = {$res['user_id']} AND ppj_id={$ppj_id}";
+							$up_ubid=$GLOBALS['db']->query($upd_ubid_sql);
+
+							//卖家出价状态添加
+							$sqls = "INSERT INTO dsc_paipai_goods_sellers (`user_id`,`ppj_id`,`ppj_no`,`seller_min_fee`,`seller_max_fee`,`ls_ok`,`ls_staus`,`createtime`) VALUES ({$user_id},{$ppj_id},{$ppj_no},{$max_price},0,0,0,{$time})";
+							$up_gs=$GLOBALS['db']->query($sqls);
+
+							//买卖订单添加
+							$sql3 = "insert into dsc_paipai_seller_ok (`user_id`,`buy_id`,`seller_id`,`goods_id`,`ppj_id`,`ppj_no`,`sellers_fee`,`goods_nowprice`,`createtime`,`status`,`spm_id`) VALUES ({$user_id},{$res['user_id']},{$v['seller_id']},{$goods_id},{$ppj_id},{$ppj_no},{$res['bid_price']},{$cur_price},{$time},0,{$res['spm_id']})";
 							$success = $GLOBALS['db']->query($sql3);	
-							$sql5 = "update dsc_paipai_seller set usestaus = 1 where seller_id = {$v['seller_id']}";
-							$GLOBALS['db']->query($sql5);					
-							if($success > 0){
+
+							if($up_ps && $up_ubid && $up_gs && $success){
 								echo json_encode(array('re'=>4));	exit;			
 							}else{
-								echo json_encode(array('re'=>6));exit;				
+								echo json_encode(array('re'=>8));exit;
 							}
 						}
 					}else{
-						echo json_encode(array('re'=>6));exit;	
+						echo json_encode(array('re'=>2));exit;
 					}
 				}else{
 					echo json_encode(array('re'=>3));exit;	
@@ -191,7 +224,7 @@ public function actionPaipaibuy()
 	{
 		$user_id = $this->user_id;
 		$type = 0;
-
+		$this->assign('user_id', $user_id);
 		
 		//拍拍中
 //		$where_pay = ' AND oi.pay_status = 10';
@@ -994,7 +1027,11 @@ public function actionMypaipaiList()
 
 
 //卖方 成交成功的
-public function actionMypaipaiokList()
+
+	/**
+	 *
+	 */
+	public function actionMypaipaiokList()
 	{
 		if (IS_AJAX) {
 			$user_id = $this->user_id;
@@ -1003,26 +1040,28 @@ public function actionMypaipaiokList()
 			
 			$offset = 10;
 			
-			$sql='select * from {pre}goods as g,{pre}paipai_seller_ok as pl where g.goods_id =pl.goods_id and pl.user_id=' . $user_id ;
-			
-			//$sql = 'SELECT count(rec_id) as max FROM {pre}collect_goods WHERE user_id=' . $user_id . ' ';
-			$count = $this->db->getOne($sql);
-			$count_ok = count($count);			
-			$page_size = ceil($count / $offset);			
+//			$sql='select g.*,pl.* from dsc_goods as g,dsc_paipai_seller_ok as pl where g.goods_id =pl.goods_id and pl.user_id=' . $user_id ;
+//
+//			//$sql = 'SELECT count(rec_id) as max FROM {pre}collect_goods WHERE user_id=' . $user_id . ' ';
+//			$count = $this->db->getOne($sql);
+//		    $count_ok = count($count);
+
+	        $sql='select count(ok_id) as count from dsc_paipai_seller_ok  where user_id=' . $user_id ;
+	        $count_data= $this->db->getRow($sql);
+	        $count=$count_data['count'];
+	        $count_ok=$count_data['count'];
+
+			$page_size = ceil($count / $offset);
 			$limit = ' LIMIT ' . ($page - 1) * $offset . ',' . $offset;
 			$collection_goods = get_paipai_sellegoods($user_id, $count_ok, $limit);
-					
 			$show = 0 < $count ? 1 : 0;
-				foreach($collection_goods['goods_list'] as $v=>$k){
-					$sql1 = "SELECT createtime FROM dsc_paipai_seller_ok where user_id = {$user_id}";
-					$result = $GLOBALS['db']->query($sql1);
-					foreach($result as $key => $val){
-						$collection_goods['goods_list'][$v]['createtime']=date('Y-m-d H:i:s',$val['createtime']+8*60*60);
-						
-					}
 
-				}
-//				var_dump($collection_goods['goods_list']);
+			foreach($collection_goods['goods_list'] as $v=>$k){
+				$sql1 = "SELECT createtime FROM dsc_paipai_seller_ok where user_id = {$user_id} AND ppj_id={$k['ppj_id']}";
+				$result = $GLOBALS['db']->getRow($sql1);
+				$collection_goods['goods_list'][$v]['createtime']=date('Y-m-d H:i:s',$result['createtime']);
+			}
+
 			exit(json_encode(array('goods_list' => $collection_goods['goods_list'],'show' => $show, 'totalPage' => $page_size)));
 		}
 		
@@ -1895,6 +1934,29 @@ public function actionAffiliatemeber()
 		$this->assign('url',$url);
 		$this->assign('url1',$url1);
 		$this->display();
+	}
+
+	public function actionPaipaiauto()
+	{
+		$mouth=date(m,time());
+		$days=date(d,time());
+		$this->assign('mouth',$mouth);
+		$this->assign('days',$days);
+
+
+		$this->display();
+	}
+
+	public function actionPauto(){
+       $mouth=$_REQUEST['mouth'];
+       $days=$_REQUEST['days'];
+       if($mouth && $days){
+		   echo json_encode(array('add_res'=>1));  //成功
+	   }else{
+		   echo json_encode(array('add_res'=>4));  //失败
+	   }
+
+
 	}
 	
 }

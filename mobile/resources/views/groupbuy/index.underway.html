@@ -105,7 +105,7 @@
                         </div>
                         {elseif $v['is_baoming'] == 3}
                         <div style="padding-top: 11px;">
-                            <span style="width:150px;color: red;margin-left:17rem;" class="btn-default-new br-5 min-btn">已成功售出</span>
+                            <span style="width:150px;color: red;margin-left:17rem;" class="btn-default-new br-5 min-btn">商品已售出</span>
                         </div>
                         {/if}
                     </footer>
@@ -172,41 +172,42 @@
                         data: { "ppd": ppj_id, "ppn": ppj_no, "g_id": goods_id },
                         dataType: "JSON",
                         success: function (y) {
-                            console.log(y.re);
+                           // console.log(y.re);
                             if (y.re == 1) {
                                 layer.open({
                                     content: '没有券'
                                     , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
+                                    , time: 3 //2秒后自动关闭
                                 });
                                 layer.close(index);
                             } else if (y.re == 2) {
                                 layer.open({
                                     content: '销售券期数不匹配'
                                     , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
+                                    , time: 3 //2秒后自动关闭
                                 });
                                 layer.close(index);
                             } else if (y.re == 3) {
                                 layer.open({
                                     content: '销售券已使用'
                                     , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
+                                    , time: 3 //2秒后自动关闭
                                 });
                                 layer.close(index);
                             } else if (y.re == 4) {
                                 layer.open({
                                     content: '出售成功，买家支付收货后您将获收益！'
                                     , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
+                                    , time: 3 //2秒后自动关闭
                                 });
                                 layer.close(index);
+                                location.reload()
                             }
                             else if (y.re == 8) {
                                 layer.open({
-                                    content: '暂时没有买家出价'
+                                    content: '暂时没有合适的买家出价'
                                     , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
+                                    , time: 3 //2秒后自动关闭
                                 });
                                 layer.close(index);
                             }
