@@ -378,14 +378,14 @@ class UserbuyController extends \App\Modules\Base\Controllers\FrontendController
                 $time=date('Y-m-d',time()+8*3600);
                 $endtime=strtotime(date('Y-m-d',strtotime("$time + 1 month")))+15*3600;
 
-                $sql="SELECT * FROM dsc_paipai_seller WHERE user_id=".$sell_id." AND goods_id=".$order_id['order_id']." AND beizhu='购买赠送' GROUP BY seller_id DESC LIMIT 1 ";
+                $sql="SELECT * FROM dsc_paipai_seller WHERE user_id=".$user_bid_data['user_id']." AND goods_id=".$order_id['order_id']." AND beizhu='购买赠送' GROUP BY seller_id DESC LIMIT 1 ";
                 $ticket_last=$GLOBALS['db']->getRow($sql);
 
                 $insert_data=array(
                     'goods_id'=> $pl_data['goods_id'],
                     'createtime' => strtotime($time),
                     'usestaus' => 0,
-                    'user_id' => $sell_id,
+                    'user_id' => $user_bid_data['user_id'],
                     'endtime' => $endtime,
                     'beizhu' => '购买赠送',
                 );
