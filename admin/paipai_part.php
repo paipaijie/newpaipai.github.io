@@ -1396,8 +1396,8 @@ elseif($_REQUEST['act'] =='paipaiauto'){
             $ppj_ext_info_arr[]=$val['ext_info'];
             $ppj_goods_count[]=$val['goods_count'];
         }
-        $min_num=ceil(count($ppj_data)/3);
-        $max_num=ceil(count($ppj_data)/2);
+        $min_num=ceil(count($ppj_data)/2);
+        $max_num=count($ppj_data)-5;
         $one_num=rand($min_num,$max_num);
         for($i=0;$i<$one_num;$i++){
             $ppj_one_id=rand(0,count($ppj_id_arr)-1);
