@@ -378,7 +378,9 @@ function ppj_auto($ppj_row,$year,$mouth,$days){
     }
 
     //选取订单添加
-    $order_num=rand(2,5);
+    $min_order_num=ceil(count($ppj_row)/3);
+    $max_order_num=ceil(count($ppj_row)/2);
+    $order_num=rand($min_order_num,$max_order_num);
     for($i=0;$i<$order_num;$i++){
         $order_one_id=rand(0,count($ppj_row)-1);
         $order_arr[]=$ppj_row[$order_one_id];
@@ -1394,7 +1396,9 @@ elseif($_REQUEST['act'] =='paipaiauto'){
             $ppj_ext_info_arr[]=$val['ext_info'];
             $ppj_goods_count[]=$val['goods_count'];
         }
-        $one_num=rand(5,10);
+        $min_num=ceil(count($ppj_data)/3);
+        $max_num=ceil(count($ppj_data)/2);
+        $one_num=rand($min_num,$max_num);
         for($i=0;$i<$one_num;$i++){
             $ppj_one_id=rand(0,count($ppj_id_arr)-1);
             $user_id=rand(40079,861288);
