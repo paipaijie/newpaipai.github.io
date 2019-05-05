@@ -34,13 +34,13 @@ class IndexController extends \App\Modules\Mapi\Foundation\Controller
         $this->resp(array('sort' => $main_sort_data,'message'=>$message_data));
     }
 
+    //滚动图  二级子目录
+    public function actionBanners(){
 
-    //活动
-	public function actionIndex()
-	{
+        $cat_id=$_REQUEST['cat_id'];
 
-        $cat_id=$_POST['cat_id'];
         if(empty($cat_id) || $cat_id=='1'){
+            $cat_id='1';
             $ap_sql='SELECT position_id,ad_width FROM '. $GLOBALS['ecs']->table('touch_ad_position') .' WHERE position_desc=1';
             $ap_data=$GLOBALS['db']->getAll($ap_sql);
         }else{
@@ -65,6 +65,7 @@ class IndexController extends \App\Modules\Mapi\Foundation\Controller
                 $banner_id=$apval['position_id'];     //banner
             }
         }
+
         if(!$module_id || !$banner_id){
             $sort_data=array(
                 'code'=> 10003,
@@ -73,9 +74,10 @@ class IndexController extends \App\Modules\Mapi\Foundation\Controller
             $this->resp(array('cat_data'=>$sort_data));
         }
 
-		//banners
-		$banners_sql='SELECT ad_id,position_id,ad_name,ad_link,ad_code FROM '. $GLOBALS['ecs']->table('touch_ad') .' WHERE position_id='.$banner_id ;
-		$index_banners_data=$GLOBALS['db']->getAll($banners_sql);
+        //banners
+        $banners_sql='SELECT ad_id,position_id,ad_name,ad_link,ad_code FROM '. $GLOBALS['ecs']->table('touch_ad') .' WHERE position_id='.$banner_id ;
+        $index_banners_data=$GLOBALS['db']->getAll($banners_sql);
+
         if($index_banners_data){
             foreach($index_banners_data as $bkey=>$bval){
                 $index_banners_data[$bkey]['ad_code']='http://www.paipaistreet.com/data/afficheimg/'.$bval['ad_code'];
@@ -115,6 +117,92 @@ class IndexController extends \App\Modules\Mapi\Foundation\Controller
                 );
             }
         }
+
+        $this->resp(array('banner'=>$index_banners,'sort_icon'=>$cat_icon_date));
+
+    }
+
+
+    //活动
+	public function actionIndex()
+	{
+
+        $cat_id=$_POST['cat_id'];
+//        if(empty($cat_id) || $cat_id=='1'){
+//            $ap_sql='SELECT position_id,ad_width FROM '. $GLOBALS['ecs']->table('touch_ad_position') .' WHERE position_desc=1';
+//            $ap_data=$GLOBALS['db']->getAll($ap_sql);
+//        }else{
+//            $cat_one_sql="SELECT cat_id,cat_name FROM ".$GLOBALS['ecs']->table('category') . ' WHERE cat_id='.$cat_id .' AND parent_id=0  AND is_show=1 ' ;
+//            $cat_one_data=$GLOBALS['db']->getRow($cat_one_sql);
+//            if($cat_id =='' || empty($cat_one_data)){
+//                $sort_data=array(
+//                    'code'=> 10003,
+//                    'data'=>'分类参数无效'
+//                );
+//                $this->resp(array('cat_data'=>$sort_data));
+//            }else{
+//                $ap_sql='SELECT position_id,ad_width FROM '. $GLOBALS['ecs']->table('touch_ad_position') .' WHERE position_desc='.$cat_id;
+//                $ap_data=$GLOBALS['db']->getAll($ap_sql);
+//            }
+//        }
+//
+//        foreach($ap_data as $apkey=>$apval){
+//            if($apval['ad_width']<200){
+//                $module_id=$apval['position_id'];   //模块图
+//            }elseif($apval['ad_width']>200){
+//                $banner_id=$apval['position_id'];     //banner
+//            }
+//        }
+//        if(!$module_id || !$banner_id){
+//            $sort_data=array(
+//                'code'=> 10003,
+//                'data'=>'参数不足,无效数据'
+//            );
+//            $this->resp(array('cat_data'=>$sort_data));
+//        }
+//
+//		//banners
+//		$banners_sql='SELECT ad_id,position_id,ad_name,ad_link,ad_code FROM '. $GLOBALS['ecs']->table('touch_ad') .' WHERE position_id='.$banner_id ;
+//		$index_banners_data=$GLOBALS['db']->getAll($banners_sql);
+//        if($index_banners_data){
+//            foreach($index_banners_data as $bkey=>$bval){
+//                $index_banners_data[$bkey]['ad_code']='http://www.paipaistreet.com/data/afficheimg/'.$bval['ad_code'];
+//            }
+//            $index_banners=array(
+//                'code'=> 10001,
+//                'data'=>$index_banners_data
+//            );
+//        }else{
+//            $index_banners=array(
+//                'code'=> 10002,
+//                'data'=>'暂无数据'
+//            );
+//        }
+//
+//        //二级目录
+//        if(!$module_id){
+//            $cat_icon_date=array(
+//                'code'=> 10002,
+//                'data'=>'暂无数据'
+//            );
+//        }else{
+//            $icon_sql='SELECT ta.ad_id,ta.ad_name,ta.ad_link,ta.ad_code FROM '. $GLOBALS['ecs']->table('touch_ad_position') . 'AS tap LEFT JOIN '.$GLOBALS['ecs']->table('touch_ad').'AS ta ON tap.position_id=ta.position_id WHERE tap.position_id='.$module_id.' ORDER BY ta.ad_id ASC' ;
+//            $icon_data=$GLOBALS['db']->getAll($icon_sql);
+//            if($icon_data){
+//                foreach($icon_data as $ikey=>$ival){
+//                    $icon_data[$ikey]['ad_code']='http://www.paipaistreet.com/data/afficheimg/'.$ival['ad_code'];
+//                }
+//                $cat_icon_date=array(
+//                    'code'=> 10001,
+//                    'data'=>$icon_data
+//                );
+//            }else{
+//                $cat_icon_date=array(
+//                    'code'=> 10002,
+//                    'data'=>'暂无数据'
+//                );
+//            }
+//        }
 
         //拍拍活动（ALL）
         $ntime=time()+8*3600;
@@ -217,8 +305,8 @@ class IndexController extends \App\Modules\Mapi\Foundation\Controller
             );
         }
 
-        $this->resp(array('banner'=>$index_banners,'sort_icon'=>$cat_icon_date,'pai_data'=>$pai_data));
-
+//        $this->resp(array('banner'=>$index_banners,'sort_icon'=>$cat_icon_date,'pai_data'=>$pai_data));
+        $this->resp(array('pai_data'=>$pai_data));
 	}
 
 }
